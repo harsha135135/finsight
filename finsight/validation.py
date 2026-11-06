@@ -73,8 +73,13 @@ def validate_answer(
     supplied: Mapping[str, Passage],
     rows: Mapping[str, Sequence[Decimal]] | None = None,
     required_periods: Sequence[str] = (),
+    as_written: bool = False,
 ) -> ResearchResult:
-    """Validate a model answer against the passages actually supplied to it."""
+    """Validate a model answer against the passages actually supplied to it.
+
+    ``as_written`` executes with figures exactly as written (FinQA's convention);
+    otherwise operands are converted to base units using their declared scale.
+    """
     if output.abstain:
         if output.answer is not None or output.program:
             return _result(ReasonCode.MODEL_OUTPUT_INVALID, ["abstained but also returned an answer or program"])
@@ -126,7 +131,7 @@ def validate_answer(
         return _result(ReasonCode.VALIDATION_CONTRADICTION, issues, operands=operands)
 
     try:
-        values = execute(output.program, {o.name: o.base_value for o in operands}, rows)
+        values = execute(output.program, {o.name: (o.value if as_written else o.base_value) for o in operands}, rows)
     except CalcError as exc:
         code = ReasonCode.MODEL_OUTPUT_INVALID if exc.kind == "structure" else ReasonCode.VALIDATION_CONTRADICTION
         return _result(code, [str(exc)], operands=operands)
