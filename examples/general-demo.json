@@ -1,0 +1,12 @@
+{
+  "goal": "Assess the fictional support knowledge-base pilot. Summarize what the evidence establishes, identify uncertainty, and propose a measurable next experiment. Label the evidence as synthetic and cite sources.",
+  "domain": "general",
+  "provider": "demo",
+  "sources": [
+    {"id": "support-pilot", "title": "Synthetic support operations pilot", "path": "data/operations-pilot.md"}
+  ],
+  "allowed_hosts": [],
+  "max_model_calls": 8,
+  "max_retries": 2,
+  "max_revisions": 1
+}

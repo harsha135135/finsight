@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autonomous-research-pipeline"
+version = "0.1.0"
+description = "Resumable autonomous finance research and reporting with bounded model calls"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "Harshavardhan M"}]
+dependencies = []
+
+[project.scripts]
+aiagents = "aiagents.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["aiagents*"]
