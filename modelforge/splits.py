@@ -18,6 +18,7 @@ import json
 import random
 import re
 from collections.abc import Iterable
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from finsight.contracts import Passage
@@ -25,7 +26,7 @@ from finsight.normalize import figures_in
 from modelforge.datasets import finqa
 from modelforge.items import EvalItem
 
-BUILDER_VERSION = "2"
+BUILDER_VERSION = "3"
 MIN_DEDUP_CHARS = 40
 MANIFEST_DIR = Path("evals/manifests")
 
@@ -49,15 +50,44 @@ def _sample(ids: list[str], n: int, seed: int) -> list[str]:
     return sorted(rng.sample(sorted(ids), min(n, len(ids))))
 
 
+def _needed_literals(program: str) -> tuple[set[tuple[str, str | None]], bool]:
+    """Figures a FinQA program reads from the evidence, as (written value, unit) pairs.
+
+    Constants (``const_*``), step references and ``none`` are not evidence. A percent
+    literal such as ``7.81%`` must appear in the evidence as 7.81 with unit "%".
+    Returns the literals and whether the program uses table operations.
+    """
+    needed: set[tuple[str, str | None]] = set()
+    uses_rows = False
+    for op, args in re.findall(r"([a-z_]+)\(([^()]*)\)", program):
+        if op.startswith("table_"):
+            uses_rows = True
+            continue
+        for arg in (a.strip() for a in args.split(",")):
+            if arg.startswith(("#", "const_")) or arg == "none":
+                continue
+            percent = arg.endswith("%")
+            try:
+                value = Decimal(arg.rstrip("%").replace(",", ""))
+            except InvalidOperation:
+                continue
+            needed.add((format(value.normalize(), "f"), "%" if percent else None))
+    return needed, uses_rows
+
+
 def unanswerable_variant(item: EvalItem) -> EvalItem | None:
     if not item.gold_passage_ids or not item.gold_steps:
         return None
     remaining = [p for p in item.passages if p.id not in set(item.gold_passage_ids)]
-    needed = {a for s in item.gold_steps for a in s.args if not a.startswith(("#", "row:"))}
-    # Table operations need their gold row; removing it makes the item unanswerable.
-    uses_rows = any(a.startswith("row:") for s in item.gold_steps for a in s.args)
-    present = {format(f.value.normalize(), "f") for p in remaining for f in figures_in(p.text)}
-    if not uses_rows and needed and needed <= present:
+    needed, uses_rows = _needed_literals(item.meta.get("program", ""))
+    figures = [(format(f.value.normalize(), "f"), f.unit) for p in remaining for f in figures_in(p.text)]
+    values = {v for v, _ in figures}
+    percents = {v for v, unit in figures if unit == "%"}
+    still_present = all((v in percents) if unit == "%" else (v in values) for v, unit in needed)
+    removed_gold_row = uses_rows and any(pid.startswith("table_") for pid in item.gold_passage_ids)
+    if not needed and not removed_gold_row:
+        return None
+    if still_present and not removed_gold_row:
         return None
     gold_rows = {pid for pid in item.gold_passage_ids if pid.startswith("table_")}
     return item.model_copy(update={

@@ -66,7 +66,7 @@ def main() -> int:
     from trl import SFTConfig, SFTTrainer
 
     from modelforge.energy import GpuEnergyMeter
-    from modelforge.probe import load_text_model
+    from modelforge.probe import language_lora_targets, load_text_model
 
     args.out.mkdir(parents=True, exist_ok=True)
     data_manifest = json.loads((args.data / "data_manifest.json").read_text())
@@ -84,9 +84,11 @@ def main() -> int:
     quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_use_double_quant=True,
                                       bnb_4bit_compute_dtype=torch.bfloat16)
     model, model_class = load_text_model(args.model, args.revision, quantization)
+    targets, coverage = language_lora_targets(model)
+    if not coverage["coverage_ok"]:
+        raise SystemExit(f"LoRA targets do not cover every decoder layer: {json.dumps(coverage)}")
     lora = LoraConfig(r=args.lora_r, lora_alpha=args.lora_alpha, lora_dropout=args.lora_dropout, bias="none",
-                      task_type="CAUSAL_LM",
-                      target_modules=r".*language_model.*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)$")
+                      task_type="CAUSAL_LM", target_modules=targets)
     config = SFTConfig(
         output_dir=str(args.out / "checkpoints"), num_train_epochs=args.epochs, max_steps=args.max_steps,
         learning_rate=args.lr, lr_scheduler_type="cosine", warmup_ratio=0.03,
@@ -110,6 +112,8 @@ def main() -> int:
         "base_model": args.model, "base_revision": args.revision, "model_class": model_class,
         "settings": {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items()},
         "quantization": "bitsandbytes nf4, double quant, bf16 compute", "data_manifest": data_manifest,
+        "lora_targets": {"regex": targets, **coverage},
+        "code_commit": (Path("BUILD_COMMIT").read_text().strip() if Path("BUILD_COMMIT").exists() else "unknown"),
         "dataset_lengths": {s: info for s, (_, info) in splits.items()},
         "train_metrics": result.metrics, "eval_history": [h for h in trainer.state.log_history if "eval_loss" in h],
         "best_checkpoint": trainer.state.best_model_checkpoint,

@@ -58,22 +58,26 @@ Test: `ssh gpu-box 'uname -a && nvidia-smi --query-gpu=name,memory.total --forma
 ## 4. What Claude will run (for reference)
 
 ```bash
-# Sync code and frozen training data (no secrets, no virtualenv)
-rsync -az --delete --exclude .venv --exclude .git --exclude .legacy --exclude .aiagents ./ gpu-box:~/finsight/
+# Sync code and frozen training data (no secrets, no virtualenv). GPU-side outputs
+# (adapters, checkpoints, probe reports, vLLM runs) are never deleted by a sync.
+git rev-parse HEAD > BUILD_COMMIT
+rsync -az --delete --exclude .venv --exclude .git --exclude .legacy --exclude .aiagents --exclude .env \
+  --exclude 'artifacts/adapters/' --exclude 'artifacts/probe/' --exclude 'artifacts/runs/' --exclude '*.log' \
+  ./ gpu-box:~/finsight/
 ssh gpu-box 'cd ~/finsight && ~/.local/bin/uv sync --extra gpu'
 
 # 1) Probe: VRAM, telemetry, 4-bit loading, QLoRA step memory by sequence length
 ssh gpu-box 'cd ~/finsight && ~/.local/bin/uv run --extra gpu modelforge probe'
 
 # 2) Serve the unchanged baseline with vLLM, reached over an SSH tunnel (no open port)
-ssh gpu-box 'cd ~/finsight && nohup ~/.local/bin/uv run --extra gpu vllm serve Qwen/Qwen3.5-4B --revision <sha> \
+ssh gpu-box 'cd ~/finsight && nohup ~/.local/bin/uv run --extra gpu vllm serve Qwen/Qwen3.5-4B --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
    --max-model-len 4096 --enable-lora --max-lora-rank 16 > vllm.log 2>&1 &'
 ssh -N -L 8000:localhost:8000 gpu-box &
 uv run modelforge run --adapter qwen --model Qwen/Qwen3.5-4B --label qwen35-4b-baseline --selection val_200
 
 # 3) QLoRA fine-tune on the frozen train split, then serve the adapter on the same base
 ssh gpu-box 'cd ~/finsight && ~/.local/bin/uv run --extra gpu python -m modelforge.training.train_qlora \
-   --model Qwen/Qwen3.5-4B --revision <sha> --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen35-4b-finqa-v1'
+   --model Qwen/Qwen3.5-4B --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen35-4b-finqa-v1'
 ```
 
 Notes:

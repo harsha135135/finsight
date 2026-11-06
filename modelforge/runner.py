@@ -27,6 +27,9 @@ SCORECARD_VERSION = "1"
 
 
 def _commit() -> str:
+    build_commit = Path("BUILD_COMMIT")
+    if not Path(".git").exists() and build_commit.exists():
+        return build_commit.read_text().strip()
     try:
         sha = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
         dirty = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, check=True).stdout.strip()
@@ -83,7 +86,16 @@ def run(manifest_name: str, selection: str, adapter: Adapter, out_dir: Path, lim
         "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold",
         "started_at": datetime.now(timezone.utc).isoformat(),
     }
-    (out_dir / "config.json").write_text(json.dumps(config, indent=1) + "\n")
+    config_path = out_dir / "config.json"
+    if config_path.exists() and done:
+        previous = json.loads(config_path.read_text())
+        keys = ("manifest_sha256", "selection", "item_ids", "adapter", "settings", "prompt_sha256", "scorecard_version")
+        changed = [k for k in keys if previous.get(k) != config.get(k)]
+        if changed:
+            raise ValueError(f"{out_dir} holds predictions from a different configuration ({', '.join(changed)}); "
+                             "use a new output directory")
+        config["started_at"] = previous.get("started_at", config["started_at"])
+    config_path.write_text(json.dumps(config, indent=1) + "\n")
     with predictions_path.open("a", encoding="utf-8") as handle:
         for item in items:
             if item.id in done:
@@ -92,6 +104,13 @@ def run(manifest_name: str, selection: str, adapter: Adapter, out_dir: Path, lim
             handle.write(prediction.model_dump_json() + "\n")
             handle.flush()
     return write_scorecard(out_dir, items)
+
+
+def _percent_scale_error(prediction: Prediction, item: EvalItem) -> bool:
+    """Wrong answer that would be right divided by 100 (a percent-vs-fraction convention error)."""
+    if prediction.correct or prediction.executed in (None, "yes", "no") or item.gold_answer in (None, "yes", "no"):
+        return False
+    return matches_gold(Decimal(prediction.executed) / 100, item.gold_answer)
 
 
 def summarize(predictions: list[Prediction], items: list[EvalItem]) -> dict:
@@ -128,6 +147,8 @@ def summarize(predictions: list[Prediction], items: list[EvalItem]) -> dict:
         "contradiction_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.VALIDATION_CONTRADICTION)),
         "operational_failure_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.OPERATIONAL)),
         "reason_codes": dict(sorted(Counter(p.reason_code.value for p in predictions).items())),
+        "diagnostic_percent_scale_errors": sum(
+            1 for i in answerable if i.id in by_id and _percent_scale_error(by_id[i.id], i)),
         "truncated_outputs": sum(a.status == "truncated" for a in attempts),
         "latency_ms": {"p50": pct(latencies, 0.5), "p95": pct(latencies, 0.95)} if latencies else None,
         "ttft_ms": {"p50": pct(ttfts, 0.5), "p95": pct(ttfts, 0.95)} if ttfts else None,

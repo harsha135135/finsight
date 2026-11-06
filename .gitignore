@@ -15,3 +15,4 @@ artifacts/
 .env.*
 !.env.example
 .DS_Store
+BUILD_COMMIT

@@ -1,5 +1,5 @@
 {
- "builder_version": "2",
+ "builder_version": "3",
  "dataset": "finqa",
  "name": "finqa-official",
  "report": {
@@ -13,7 +13,7 @@
  },
  "revision": "0f16e2867befa6840783e58be38c9efb9229d742",
  "rules": "Official FinQA splits, unchanged. Filing groups overlap across splits (see report).",
- "sha256": "3501b816d5f4480cd3167a07aa32c3125b32985e22394faa474a050c91a1079c",
+ "sha256": "8f6962ad8ab0fe3ecd516201bf281edc3c6697153812f3965d411e2ce43854ab",
  "splits": {
   "test": [
    "AAL/2010/page_72.pdf-1",

@@ -19,6 +19,7 @@ import time
 from pathlib import Path
 
 DEFAULT_MODELS = ["Qwen/Qwen3.5-4B"]
+PINNED_REVISIONS = {"Qwen/Qwen3.5-4B": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"}
 SEQ_LENGTHS = [1024, 2048, 3072, 4096]
 
 
@@ -44,6 +45,50 @@ def load_text_model(model_id: str, revision: str | None, quantization):
     raise RuntimeError("could not load model: " + " | ".join(errors))
 
 
+def language_lora_targets(model) -> tuple[str, dict]:
+    """Discover every linear layer in the language model's decoder layers.
+
+    Qwen3.5 is hybrid (linear-attention and full-attention layers use different
+    projection names), so fixed name lists silently miss most layers. Returns a
+    PEFT target regex and a coverage report; ``coverage_ok`` requires every decoder
+    layer to have at least one adapted attention/mixer module and one MLP module.
+    """
+    import re
+    from collections import defaultdict
+
+    import torch.nn as nn
+    linear_types: tuple = (nn.Linear,)
+    try:
+        import bitsandbytes as bnb
+        linear_types = (nn.Linear, bnb.nn.Linear4bit)
+    except ImportError:
+        pass
+    per_layer: dict[int, set[str]] = defaultdict(set)
+    suffixes: set[str] = set()
+    for name, module in model.named_modules():
+        if "language_model" not in name or "visual" in name or not isinstance(module, linear_types):
+            continue
+        match = re.search(r"\.layers\.(\d+)\.(.+)$", name)
+        if not match:
+            continue
+        per_layer[int(match.group(1))].add(match.group(2))
+        suffixes.add(name.rsplit(".", 1)[-1])
+    config = getattr(model, "config", None)
+    text_config = getattr(config, "text_config", config)
+    expected = getattr(text_config, "num_hidden_layers", None)
+    missing = []
+    for layer in range(expected or 0):
+        modules = per_layer.get(layer, set())
+        if not any("attn" in m or "attention" in m for m in modules) or not any("mlp" in m for m in modules):
+            missing.append(layer)
+    regex = r".*language_model.*\.layers\.\d+\..*\.(" + "|".join(sorted(re.escape(x) for x in suffixes)) + r")$"
+    report = {"expected_layers": expected, "layers_with_linear": len(per_layer), "suffixes": sorted(suffixes),
+              "layers_missing_attention_or_mlp": missing,
+              "coverage_ok": bool(expected) and not missing and len(per_layer) == expected,
+              "example_layer_modules": {k: sorted(per_layer[k]) for k in sorted(per_layer)[:4]}}
+    return regex, report
+
+
 def _run(command: list[str]) -> str:
     try:
         return subprocess.run(command, capture_output=True, text=True, timeout=60).stdout.strip()
@@ -66,7 +111,7 @@ def _training_step_memory(model_id: str, revision: str | None) -> dict:
     from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
     from transformers import BitsAndBytesConfig
 
-    revision = revision or model_info(model_id).sha
+    revision = revision or PINNED_REVISIONS.get(model_id) or model_info(model_id).sha
     result: dict = {"model": model_id, "revision": revision}
     quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_use_double_quant=True,
                                       bnb_4bit_compute_dtype=torch.bfloat16)
@@ -74,12 +119,15 @@ def _training_step_memory(model_id: str, revision: str | None) -> dict:
     model, model_class = load_text_model(model_id, revision, quantization)
     result["model_class"] = model_class
     result["weights_gib"] = round(torch.cuda.memory_allocated() / 2**30, 3)
+    targets, coverage = language_lora_targets(model)
+    result["lora_targets"] = {"regex": targets, **coverage}
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
-    lora = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05, task_type="CAUSAL_LM",
-                      target_modules=r".*language_model.*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)$")
+    lora = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05, task_type="CAUSAL_LM", target_modules=targets)
     model = get_peft_model(model, lora)
     result["trainable_parameters"] = sum(p.numel() for p in model.parameters() if p.requires_grad)
     result["lora_modules_matched"] = sum(1 for n, _ in model.named_modules() if n.endswith("lora_A"))
+    if not coverage["coverage_ok"]:
+        result["WARNING"] = "LoRA target discovery did not cover every decoder layer; training will refuse to run"
     steps = {}
     for length in SEQ_LENGTHS:
         torch.cuda.empty_cache()
