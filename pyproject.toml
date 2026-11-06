@@ -29,6 +29,19 @@ app = [
     "psycopg-pool>=3.2",
 ]
 
+# Fine-tuning and serving on the Linux/WSL2 GPU machine only. Training and serving share
+# one environment so the tokenizer, chat template and torch build are identical.
+gpu = [
+    "torch==2.14.0; sys_platform == 'linux'",
+    "transformers>=5.16.1,<5.21; sys_platform == 'linux'",
+    "peft>=0.21.2; sys_platform == 'linux'",
+    "trl>=1.17.1; sys_platform == 'linux'",
+    "bitsandbytes>=0.50.2; sys_platform == 'linux'",
+    "accelerate>=1.15.0; sys_platform == 'linux'",
+    "vllm==0.33.0; sys_platform == 'linux'",
+    "nvidia-ml-py>=13.615.71; sys_platform == 'linux'",
+]
+
 [project.scripts]
 finsight = "finsight.cli:main"
 modelforge = "modelforge.cli:main"
@@ -44,4 +57,13 @@ testpaths = ["tests"]
 markers = [
     "postgres: needs FINSIGHT_TEST_DATABASE_URL",
     "network: touches the network",
+]
+
+[tool.uv]
+# The Mac runs the app; the WSL2 GPU box runs training/serving. vLLM pins an older
+# FastAPI, so the two extras are installed in separate environments.
+conflicts = [[{ extra = "app" }, { extra = "gpu" }]]
+environments = [
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
