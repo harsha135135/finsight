@@ -78,7 +78,10 @@ def figures_in(text: str) -> list[ParsedFigure]:
 
 
 def _squash(text: str) -> str:
-    return re.sub(r"\s+", " ", text.replace("−", "-").replace("–", "-")).strip().lower()
+    text = re.sub(r"\s+", " ", text.replace("−", "-").replace("–", "-")).strip().lower()
+    # FinQA tokenizes symbols ("$ 5.5 billion", "5.5 %", "( 12 )"); spacing beside a symbol is not content.
+    # Spaces between digits are kept, so "1 234" never matches "1234".
+    return re.sub(r"\s*([$€£¥%(),:;])\s*", r"\1", text)
 
 
 def supports(passage_text: str, original_text: str, value: Decimal, scale: Scale) -> bool:
