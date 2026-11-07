@@ -74,6 +74,14 @@ class AdapterHealthCallback(TrainerCallback):
                            unchanged=unchanged[:20], checked_after_optimizer_steps=self.optimizer_steps)
         self._finish(problems)
 
+    def on_train_end(self, args, state, control, **kwargs):
+        if self.report.get("status") == "pending":
+            # e.g. a resumed session that ran fewer optimizer steps than the check needs
+            self.report.update(status="incomplete", checked_after_optimizer_steps=self.optimizer_steps,
+                               problems=[f"only {self.optimizer_steps} optimizer step(s) this session; "
+                                         f"the check needs {self.check_after}"])
+            self.initial = {}
+
     def _finish(self, problems: list[str]) -> None:
         self.report["status"] = "ok" if not problems else "failed"
         self.report["problems"] = problems
