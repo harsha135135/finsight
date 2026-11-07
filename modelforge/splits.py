@@ -175,8 +175,67 @@ def load(name: str, directory: Path = MANIFEST_DIR) -> dict:
     return manifest
 
 
+V2_NAME = "finqa-grouped-v2"
+
+
+def _check_bound_audit(manifest: dict) -> None:
+    """A manifest built from audited labels records the audit file's hash; refuse to resolve if it changed."""
+    audit = (manifest.get("variant_generator") or {}).get("audit")
+    if audit:
+        path = Path(audit["path"])
+        actual = hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+        if actual != audit["sha256"]:
+            raise ValueError(f"manifest {manifest['name']} is bound to {path} sha256 {audit['sha256'][:12]}, "
+                             f"found {actual and actual[:12]}; the labels changed after the manifest was frozen")
+
+
+def build_v2(audit_path: Path = Path("evals/labels/finqa-unanswerable-audit-v1.json")) -> dict:
+    """finqa-grouped-v2: validation split by filing group into val_select and val_dev, negatives from audited labels.
+
+    train and test are the finqa-grouped v1 splits. Every unanswerable example in a v2 selection
+    was reviewed by hand and verified (see modelforge/audit.py); the manifest binds the audit file's
+    hash and the variant generator, so later label edits cannot silently change it.
+    """
+    parent = load("finqa-grouped")
+    audit = json.loads(audit_path.read_text())
+    undecided = [k for k, v in audit["candidates"].items() if v["decision"] is None]
+    if undecided:
+        raise ValueError(f"{len(undecided)} audit candidates have no decision, e.g. {undecided[:3]}")
+    select_groups, dev_groups = set(audit["partition"]["val_select_groups"]), set(audit["partition"]["val_dev_groups"])
+    val = resolve_items(parent, parent["splits"]["val"])
+    verified = {k: v["pool"] for k, v in audit["candidates"].items() if v["decision"] == "verified_unanswerable"}
+    val_select = sorted(i.id for i in val if i.group in select_groups)
+    val_dev = sorted(i.id for i in val if i.group in dev_groups)
+    dev_negatives = sorted(k for k, pool in verified.items() if pool == "val_dev")
+    select_negatives = sorted(k for k, pool in verified.items() if pool == "val_select")
+    aligned_dev = sorted(i.id for i in val if i.group in dev_groups and finqa.gold_answer_output(i) is not None)
+    manifest = {
+        "name": V2_NAME, "dataset": "finqa", "revision": parent["revision"], "builder_version": "4",
+        "parent": {"name": parent["name"], "sha256": parent["sha256"]},
+        "rules": build_v2.__doc__.strip(),
+        "variant_generator": {"name": "gold_passages_removed", "builder_version": BUILDER_VERSION,
+                              "audit": {"path": str(audit_path), "version": audit["version"],
+                                        "sha256": hashlib.sha256(audit_path.read_bytes()).hexdigest()}},
+        "splits": {"train": parent["splits"]["train"], "val_select": val_select, "val_dev": val_dev,
+                   "test": parent["splits"]["test"]},
+        "samples": {"val_dev_eval": sorted(val_dev + dev_negatives), "val_dev_unanswerable": dev_negatives,
+                    "val_select_unanswerable": select_negatives},
+        "slices": {"val_dev_contract_answerable": aligned_dev},
+        "report": {"val_groups": {"select": len(select_groups), "dev": len(dev_groups)},
+                   "sizes": {"val_select": len(val_select), "val_dev": len(val_dev),
+                             "val_dev_unanswerable": len(dev_negatives), "val_select_unanswerable": len(select_negatives)},
+                   "audit_decisions": {d: sum(v["decision"] == d for v in audit["candidates"].values())
+                                       for d in ("verified_unanswerable", "derivable", "ambiguous")},
+                   "development_note": "val_dev guides choices and is development data; the test split stays reserved"},
+        "seed": audit["partition"]["seed"],
+    }
+    manifest["sha256"] = canonical_hash(manifest)
+    return manifest
+
+
 def resolve_items(manifest: dict, ids: Iterable[str]) -> list[EvalItem]:
     """Rebuild EvalItems (including unanswerable variants) for manifest ids."""
+    _check_bound_audit(manifest)
     wanted = list(ids)
     base = {i.split("::")[0] for i in wanted}
     found: dict[str, EvalItem] = {}
@@ -232,8 +291,29 @@ def build_comparison(parent_name: str = "finqa-grouped", answerable_n: int = 250
     return manifest
 
 
+def _family(item_id: str) -> str:
+    return item_id.split("::")[0]
+
+
 def verify(manifest: dict) -> dict:
     """Recompute leakage checks for a grouped manifest, or parentage checks for a comparison manifest."""
+    if manifest["name"] == V2_NAME:
+        _check_bound_audit(manifest)
+        names = ("train", "val_select", "val_dev", "test")
+        items = {s: resolve_items(manifest, manifest["splits"][s]) for s in names}
+        groups = {s: {i.group for i in items[s]} for s in names}
+        families = {s: {_family(i) for i in manifest["splits"][s]} for s in names}
+        for sample in ("val_dev_eval", "val_dev_unanswerable"):
+            families["val_dev"] |= {_family(i) for i in manifest["samples"][sample]}
+        families["val_select"] |= {_family(i) for i in manifest["samples"]["val_select_unanswerable"]}
+        pairs = [(a, b) for k, a in enumerate(names) for b in names[k + 1:]]
+        audit = json.loads(Path(manifest["variant_generator"]["audit"]["path"]).read_text())["candidates"]
+        negatives = manifest["samples"]["val_dev_unanswerable"] + manifest["samples"]["val_select_unanswerable"]
+        return {"name": manifest["name"],
+                "shared_groups": {f"{a}/{b}": len(groups[a] & groups[b]) for a, b in pairs},
+                "shared_families": {f"{a}/{b}": len(families[a] & families[b]) for a, b in pairs},
+                "negatives_all_verified": all(audit.get(i, {}).get("decision") == "verified_unanswerable" for i in negatives),
+                "sizes": manifest["report"]["sizes"]}
     if manifest["name"] == COMPARISON_NAME:
         parent = load(manifest["parent"]["name"])
         expanded = set(manifest["samples"]["test_expanded_1247"])

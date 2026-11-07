@@ -37,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="modelforge", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     sp = sub.add_parser("splits", help="build or verify frozen manifests")
-    sp.add_argument("action", choices=["build", "verify", "build-comparison"])
+    sp.add_argument("action", choices=["build", "verify", "build-comparison", "build-v2"])
     sp.add_argument("--name", default="finqa-grouped")
     cs = sub.add_parser("calc-suite", help="execute FinQA gold programs (measures the calculator, not a model)")
     cs.add_argument("--revision", default=None)
@@ -80,6 +80,9 @@ def main(argv: list[str] | None = None) -> int:
         from modelforge import splits
         if args.action == "build":
             for path in splits.write(splits.build_finqa()):
+                print(path)
+        elif args.action == "build-v2":
+            for path in splits.write([splits.build_v2()]):
                 print(path)
         elif args.action == "build-comparison":
             for path in splits.write([splits.build_comparison()]):

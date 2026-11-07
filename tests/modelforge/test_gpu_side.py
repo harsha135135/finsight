@@ -226,3 +226,32 @@ def test_frozen_v1_record_still_verifies():
         pytest.skip("v1 artifacts are not present on this machine")
     report = records.verify(record)
     assert report["passed"], report
+
+
+def test_v1_manifests_are_unbound_and_unchanged():
+    """v1 manifests resolve exactly as before: no audit binding, and their frozen hashes still match."""
+    record = json.loads(Path("evals/records/qwen3-4b-finqa-v1.json").read_text())
+    for name in ("finqa-grouped", "finqa-grouped-comparison"):
+        manifest = splits.load(name)
+        assert "variant_generator" not in manifest
+    assert splits.load("finqa-grouped-comparison")["sha256"] in record["facts"]["manifest"]
+
+
+def test_v2_manifest_refuses_changed_audit_labels(tmp_path: Path):
+    manifest = splits.load("finqa-grouped-v2")
+    audit_copy = tmp_path / "audit.json"
+    audit_copy.write_text(Path(manifest["variant_generator"]["audit"]["path"]).read_text())
+    bound = json.loads(json.dumps(manifest))
+    bound["variant_generator"]["audit"]["path"] = str(audit_copy)
+    splits._check_bound_audit(bound)                                   # identical copy: accepted
+    audit_copy.write_text(audit_copy.read_text().replace("verified_unanswerable", "derivable", 1))
+    with pytest.raises(ValueError, match="labels changed"):
+        splits._check_bound_audit(bound)
+
+
+def test_v2_negatives_are_all_reviewed_and_verified():
+    manifest = splits.load("finqa-grouped-v2")
+    audit = json.loads(Path(manifest["variant_generator"]["audit"]["path"]).read_text())["candidates"]
+    assert all(v["decision"] in ("verified_unanswerable", "derivable", "ambiguous") and v["reason"] for v in audit.values())
+    negatives = manifest["samples"]["val_dev_unanswerable"] + manifest["samples"]["val_select_unanswerable"]
+    assert negatives and all(audit[i]["decision"] == "verified_unanswerable" for i in negatives)
