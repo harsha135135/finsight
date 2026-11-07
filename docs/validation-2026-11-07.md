@@ -114,3 +114,16 @@ Checkpoint selection for the full run uses validation rows outside `val_shared_2
   longest examples would mean up to about 2.6 h, so three hours are reserved.
 - Each session writes its time and GPU energy every 10 steps and at each save, so a killed session still counts
   and totals are marked incomplete after any interruption.
+
+## Full fine-tune result (training only; accuracy below once measured)
+
+| | Result |
+|---|---|
+| Run | `artifacts/adapters/qwen3-4b-finqa-v1`, commit `e456670`, one session, no interruptions |
+| Steps / epochs | 210 / 1.96 (1,710 examples ≤ 4,096 tokens) |
+| Wall time (including 7 evaluations) | 5,322 s (1 h 28.7 min) |
+| Held-out validation loss (steps 30…210) | 0.0773, 0.0555, 0.0428, 0.0412, 0.0402, 0.0392, **0.0391** → checkpoint 210 selected |
+| Mean training loss | 0.102 (1.75 at step 5) |
+| Peak VRAM | 4.40 GiB allocated, 5.41 GiB reserved |
+| GPU energy (NVML, GPU only) | 1.023 MJ = 0.284 kWh |
+| Adapter | 252 modules, 33.0M parameters, health check ok, sha256 `5f1fafffd63e…` |
