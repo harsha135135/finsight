@@ -17,7 +17,9 @@ ModelForge measures how much domain fine-tuning improves a local Qwen model, and
 | Validation (`finsight/validation.py`) | Citation, operand-support, unit, period and answer-consistency checks with distinct reason codes. |
 | FinQA splits (`modelforge/splits.py`) | Frozen, hashed manifests. The official split shares 243 of 278 test filings with train, so `finqa-grouped` keeps the official test set and removes shared filings and passages from train and dev. |
 | Evaluation runner | Resumable runs, filing-clustered bootstrap CIs, deterministic scorecards, demo and vLLM-Qwen adapters. |
-| QLoRA training (`modelforge/training`) | Data built from the frozen train split only; the training script and GPU probe await the GPU machine. |
+| QLoRA training (`modelforge/training`) | Data built from the frozen train split only. Base model `Qwen/Qwen3-4B` (pinned revision). Checkpoints every 25 steps with resume, an adapter-health check, and a kill-and-resume test. |
+| GPU workflow | Mac → WSL2 over SSH (verified commands, rsync and tunnels); probe, recovery test, vLLM serving on 127.0.0.1. See [`docs/gpu-setup.md`](docs/gpu-setup.md). |
+| Comparison sets | `finqa-grouped-comparison`: 300 shared test items (50 declared unanswerable) for all models, plus the expanded 1,247-item test set for local models only. Frozen before any test inference. |
 
 Still to come: Postgres-backed LangGraph runtime and worker, SEC ingestion, the Claude adapter, FastAPI, Docker, CI. See `docs/` and the plan.
 

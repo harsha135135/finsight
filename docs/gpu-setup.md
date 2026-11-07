@@ -88,17 +88,20 @@ keep WSL alive; only a running `wsl.exe` process does. While WSL is stopped, `gp
 
 Options, from simplest:
 1. **Leave one Ubuntu window open** (minimised) for the whole run. Closing it stops training within a minute.
-2. **A logon task that holds a hidden `wsl.exe`** (PowerShell as Administrator):
+2. **A logon task that holds a hidden `wsl.exe`** (PowerShell as Administrator, one line at a time):
    ```powershell
-   $action   = New-ScheduledTaskAction -Execute "C:\Windows\System32\conhost.exe" `
-               -Argument "--headless C:\Windows\System32\wsl.exe -d Ubuntu-24.04 --exec /bin/sleep infinity"
-   $trigger  = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME
-   $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries `
-               -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew
-   Register-ScheduledTask -TaskName "WSL keep-alive" -Action $action -Trigger $trigger -Settings $settings
+   $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -Command `"Start-Process -WindowStyle Hidden -FilePath C:\Windows\System32\wsl.exe -ArgumentList '-d','Ubuntu-24.04','--exec','/bin/sleep','infinity'`""
+   $trigger = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME
+   $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew
+   Register-ScheduledTask -TaskName "WSL keep-alive" -Action $action -Trigger $trigger -Settings $settings -Description "Keeps Ubuntu-24.04 (WSL) running for unattended FinSight training"
    Start-ScheduledTask -TaskName "WSL keep-alive"
    ```
-   Remove with `Stop-ScheduledTask -TaskName "WSL keep-alive"; Unregister-ScheduledTask -TaskName "WSL keep-alive" -Confirm:$false`.
+   The task starts a hidden PowerShell that starts a hidden `wsl.exe` running `sleep infinity`, then exits
+   (`LastTaskResult` 0); the keep-alive shows inside WSL as a `/bin/sleep infinity` process. This command line was
+   checked on the PC on 2026-11-07 (with `touch` in place of `sleep`). A `conhost.exe --headless` launcher was also
+   tried and started nothing from an SSH session, so it is not used.
+   Remove with `Unregister-ScheduledTask -TaskName "WSL keep-alive" -Confirm:$false`, then end the keep-alive with
+   `wsl.exe -d Ubuntu-24.04 --exec pkill -f "sleep infinity"` (WSL then stops within a minute if nothing else holds it).
    It needs the Windows user logged in; after a reboot without logon, WSL stays stopped and training resumes from the
    last checkpoint by hand.
 
