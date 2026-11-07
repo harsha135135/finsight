@@ -234,3 +234,26 @@ Descriptive split by exposure (`artifacts/runs/20261107-v2dev-exposure.json`; no
 16.6% of all examples, or 20.0 abstentions per 100 answerable ("a20" means the latter). The cleaned v2 pool
 (`finqa-grouped-v2-a20`) has 283 / 1,711 = 16.5%, or 19.8 per 100 answerable. Its train negatives passed the rule-based
 filter (about 93% precision on the hand-audited validation sample); they were not hand-verified.
+
+## Claude Haiku 5.5 reference on the corrected development set
+
+Message Batches API, effort `medium` (adaptive thinking, model default), `max_tokens` 2,600 chosen so the worst case
+(exact input from the token-counting endpoint, 1,134,396 tokens, plus every request using its full allowance) stayed
+under the approved $0.25 run cap ($0.2478 reserved). **Actual cost $0.1131.** 294 succeeded; none truncated, refused
+or errored. Same prompt (answer-v4), validator and scoring as the Qwen runs (record
+`evals/records/claude-haiku-5-5-v2dev.json`). Haiku had no exposure to `val_dev`; v1's selection touched 49 of its 66 groups.
+
+| Metric | Base | v1 | Haiku | Haiku − v1 (95% CI) | n |
+|---|---:|---:|---:|---|---:|
+| Accuracy (answerable) | 0.138 | 0.543 | 0.602 | +0.059 (−0.016, +0.136) | 254 |
+| Program accuracy (diagnostic) | — | 0.595 | 0.602 | +0.008 (−0.066, +0.084) | 254 |
+| Abstention recall (verified negatives) | 0.400 | 0.300 | **0.900** | **+0.600 (+0.436, +0.739)** | 40 |
+| False abstention | 0.028 | 0.008 | 0.079 | +0.071 (+0.035, +0.113) | 254 |
+| Invalid output | 0.201 | 0.003 | 0.041 | +0.037 (+0.013, +0.066) | 294 |
+| Evidence-validation failure | 0.446 | 0.153 | 0.102 | −0.051 (−0.107, +0.004) | 294 |
+
+Reading: on answerable questions v1 and Haiku are not distinguishable at this sample size (and computing the final
+number from the program, as FinSight does, they are equal). The gap is abstention: Haiku declines 90% of the verified
+unanswerable questions, at the cost of declining 8% of answerable ones; v1 declines 30% and 1%. Of Haiku's 12 invalid
+outputs, 6 break field limits that the model-facing schema omits (the same schema every model receives) and 6 are
+semantic (for example, "answered" without a value).
