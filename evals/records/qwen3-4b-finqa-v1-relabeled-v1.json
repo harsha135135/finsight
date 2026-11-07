@@ -1,0 +1,79 @@
+{
+ "artifacts": {
+  "base_diagnostics": {
+   "path": "artifacts/runs/20261107-paired-base-val_shared_250-relabeled-v1/diagnostics.json",
+   "sha256": "dcc1f60edbb2ed67a94925bc5de15cb11b163f489cfd26b4cfed9701cf0f8b30"
+  },
+  "labels": {
+   "path": "evals/labels/finqa-unanswerable-audit-valshared250-v1.json",
+   "sha256": "db40b627fe2a130229cdb9a2d3f2081b628970943f152918ad01e6ce1a19e9cb"
+  },
+  "paired_compare_relabeled": {
+   "path": "artifacts/runs/20261107-paired-compare-relabeled-v1.json",
+   "sha256": "ff087cb9dc60966fcf95cbdf9dfaa8c6eb20b597867e761812d18d178e537311"
+  },
+  "tuned_diagnostics": {
+   "path": "artifacts/runs/20261107-paired-tuned-val_shared_250-relabeled-v1/diagnostics.json",
+   "sha256": "f4ebe6755830d5914c8393eb9ea81736bd2537703c1e84e165cfb7b1de5f1574"
+  }
+ },
+ "description": "v1 runs rescored with audited negatives (originals unchanged)",
+ "facts": {
+  "abstention_recall_verified_negatives": {
+   "a": 0.4286,
+   "a_minus_b": 0.0357,
+   "b": 0.3929,
+   "ci95": [
+    -0.1154,
+    0.1786
+   ],
+   "n": 28
+  },
+  "accuracy_answerable": {
+   "a": 0.51,
+   "a_minus_b": 0.385,
+   "b": 0.125,
+   "ci95": [
+    0.3178,
+    0.4523
+   ],
+   "n": 200
+  },
+  "labels": "evals/labels/finqa-unanswerable-audit-valshared250-v1.json (50 of v1's negatives reviewed: 28 verified, 19 derivable, 3 ambiguous)",
+  "paired_program_accuracy": {
+   "a_minus_b": 0.415,
+   "baseline": "artifacts/runs/20261107-paired-base-val_shared_250-relabeled-v1",
+   "ci95": [
+    0.3433,
+    0.4806
+   ]
+  },
+  "program_accuracy_tuned": {
+   "ci95": [
+    0.4792,
+    0.6181
+   ],
+   "mean": 0.55,
+   "n": 200
+  },
+  "source_record": "evals/records/qwen3-4b-finqa-v1.json"
+ },
+ "name": "qwen3-4b-finqa-v1-relabeled-v1",
+ "runs": {
+  "artifacts/runs/20261107-paired-base-val_shared_250-relabeled-v1": {
+   "config_sha256": "bbc37fd018ceac8d18a03084849e004d53f78763aa62aab70ac9310556174eec",
+   "predictions_sha256": "10e949b13c793e35a9c4019d65366466474297238d1e446eeec21a5b84e8419a",
+   "scorecard_sha256": "1a852d850870d33f3bfbeee967cd9f3002fabd92fe81fa26298f82944c69bd7f"
+  },
+  "artifacts/runs/20261107-paired-tuned-val_shared_250-relabeled-v1": {
+   "config_sha256": "0b6681a35012f6e534c9d91797b2cef316c64d9e3ffd92cc2e6f420d1fc6f735",
+   "predictions_sha256": "fca20f0a50f8d5fdbfeaa2a928476908fecd4467283e2acf13ea54f3806cefd6",
+   "scorecard_sha256": "e634ed91a793c0a467986c263b05bb46a3fd869ba405c0c3e3bf4b05effac94d"
+  },
+  "artifacts/runs/20261107-qwen3-4b-base-val_shared_250-mac-c1-relabeled-v1": {
+   "config_sha256": "92184d30321ea55a21c715183efc3c1f134753a236c8c45bcd19a8a11114a7ac",
+   "predictions_sha256": "a9c6479e39d64716715c20c6e30cd2a07ee8312de3371dcfbfbc4bbc0c43f926",
+   "scorecard_sha256": "a684c8280a5204e6ecd17876c499cb45555ef86f4b2e14ded66191d4b859dd06"
+  }
+ }
+}

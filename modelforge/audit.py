@@ -180,3 +180,28 @@ def decide(path: Path, decisions: dict[str, tuple[str, str]]) -> None:
             raise KeyError(variant_id)
         audit["candidates"][variant_id].update(decision=decision, reason=reason)
     write(audit, path)
+
+
+RESCORE_PATH = Path("evals/labels/finqa-unanswerable-audit-valshared250-v1.json")
+
+
+def candidates_for(variant_ids: list[str], pool: str, prior: dict | None = None) -> dict:
+    """Audit skeleton for a fixed list of variants (e.g. v1's val_shared_250 negatives), same rules.
+
+    Decisions already made in ``prior`` (another audit file) are copied with a note, so one
+    reviewer's judgement is not made twice for the same variant.
+    """
+    manifest = splits.load("finqa-grouped")
+    bases = {b.id: b for b in splits.resolve_items(manifest, sorted({v.split("::")[0] for v in variant_ids}))}
+    out = {}
+    for vid in sorted(variant_ids):
+        base = bases[vid.split("::")[0]]
+        entry = {"pool": pool, "flags": auto_flags(base, splits.unanswerable_variant(base)), "decision": None, "reason": None}
+        if prior and vid in prior["candidates"] and prior["candidates"][vid]["decision"]:
+            entry["decision"] = prior["candidates"][vid]["decision"]
+            entry["reason"] = prior["candidates"][vid]["reason"] + f" [decision from {prior['version']}]"
+        out[vid] = entry
+    return {"version": "finqa-unanswerable-audit-valshared250-v1",
+            "generator": {"name": "gold_passages_removed", "builder_version": splits.BUILDER_VERSION},
+            "rules": __doc__.strip(), "purpose": "relabel v1's val_shared_250 negatives to rescore saved v1 runs",
+            "candidates": out}

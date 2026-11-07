@@ -255,3 +255,15 @@ def test_v2_negatives_are_all_reviewed_and_verified():
     assert all(v["decision"] in ("verified_unanswerable", "derivable", "ambiguous") and v["reason"] for v in audit.values())
     negatives = manifest["samples"]["val_dev_unanswerable"] + manifest["samples"]["val_select_unanswerable"]
     assert negatives and all(audit[i]["decision"] == "verified_unanswerable" for i in negatives)
+
+
+def test_relabeled_v1_runs_exclude_exactly_the_unverified_negatives():
+    run = Path("artifacts/runs/20261107-paired-tuned-val_shared_250-relabeled-v1")
+    if not run.exists():
+        pytest.skip("v1 artifacts are not present on this machine")
+    config = json.loads((run / "config.json").read_text())
+    labels = json.loads(Path(config["relabel"]["labels"]).read_text())["candidates"]
+    assert len(config["item_ids"]) == 228 and len(config["relabel"]["excluded_items"]) == 22
+    assert all(labels[i]["decision"] != "verified_unanswerable" for i in config["relabel"]["excluded_items"])
+    from modelforge import records
+    assert records.verify(Path("evals/records/qwen3-4b-finqa-v1-relabeled-v1.json"))["passed"]

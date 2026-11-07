@@ -60,6 +60,13 @@ def main(argv: list[str] | None = None) -> int:
     cp = sub.add_parser("compare", help="paired comparison of two runs on the same items (A minus B)")
     cp.add_argument("run_a", type=Path)
     cp.add_argument("run_b", type=Path)
+    dg = sub.add_parser("diagnose", help="program accuracy and arithmetic consistency (diagnostics.json)")
+    dg.add_argument("run_dir", type=Path)
+    dg.add_argument("--baseline", type=Path)
+    rl = sub.add_parser("relabel", help="copy a run with audited labels (unverified negatives excluded)")
+    rl.add_argument("run_dir", type=Path)
+    rl.add_argument("--labels", type=Path, required=True)
+    rl.add_argument("--out", type=Path, required=True)
     rc = sub.add_parser("record", help="verify a frozen experiment record (artifact hashes, scorecard regeneration)")
     rc.add_argument("action", choices=["verify"])
     rc.add_argument("path", type=Path)
@@ -119,6 +126,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "compare":
         from modelforge import runner
         print(json.dumps(runner.compare(args.run_a, args.run_b), indent=1))
+        return 0
+    if args.command == "diagnose":
+        from modelforge import runner
+        print(json.dumps(runner.diagnose(args.run_dir, args.baseline), indent=1))
+        return 0
+    if args.command == "relabel":
+        from modelforge import runner
+        print(runner.relabel(args.run_dir, args.labels, args.out).read_text())
         return 0
     if args.command == "record":
         from modelforge import records

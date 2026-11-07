@@ -1,0 +1,366 @@
+{
+ "candidates": {
+  "AAP/2011/page_28.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "intermediate value (step 2) 103.92 appears in text_7",
+    "needed literal 201.18 appears (possibly in another format) in text_7",
+    "needed literal 97.26 appears (possibly in another format) in text_7",
+    "needed literal 97.26 appears (possibly in another format) in text_7"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the S&P 500 values (65.70, 88.67) are removed; the remaining prose keeps only AAP and retail-index values"
+  },
+  "AAP/2012/page_12.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "intermediate value (step 0) 116 appears in table_2",
+    "final answer 0.0335260 appears in table_1",
+    "needed literal 3460 appears (possibly in another format) in table_1",
+    "needed literal 3460 appears (possibly in another format) in table_1"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "ending stores = beginning 3,460 + new 116 - closed 0 = 3,576; growth = 116/3,460"
+  },
+  "AAP/2012/page_12.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "new stores = ending - beginning + closed: 2012: 3,576-3,460+0 = 116; 2008: 3,243-3,153+19 = 109"
+  },
+  "AAPL/2014/page_38.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the total cash and securities row is removed; remaining text gives only foreign-subsidiary amounts"
+  },
+  "ABMD/2004/page_26.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 769 appears (possibly in another format) in table_4, table_5"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the 2007 row and the total are removed (two unknowns)"
+  },
+  "AES/2015/page_117.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "FCF = proportional adjusted OCF - maintenance capex - environmental capex: 1,741-449-51 = 1,241 and 1,432-485-56 = 891"
+  },
+  "AES/2017/page_157.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 2710 appears (possibly in another format) in table_3"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the US SBU and eliminations rows are removed and there is no total row [decision from finqa-unanswerable-audit-v1]"
+  },
+  "AES/2017/page_175.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the related-party revenue row is removed; remaining rows are costs and interest"
+  },
+  "AMAT/2014/page_18.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 14 appears (possibly in another format) in table_1"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the 2012 RD&E sentence is removed; no 2012 sales figure remains"
+  },
+  "AON/2009/page_48.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "margin row removed but segment revenue and operating income rows remain: min 180/1345=0.134 [decision from finqa-unanswerable-audit-v1]"
+  },
+  "AOS/2004/page_11.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "final answer 0.340111 appears in text_4, text_5",
+    "needed literal 521.3 appears (possibly in another format) in text_0"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "operating leases and purchase obligations are both removed, leaving two unknowns even with a stated total"
+  },
+  "APD/2013/page_32.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 22.8 appears (possibly in another format) in table_2",
+    "needed literal 21.9 appears (possibly in another format) in text_28"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the GAAP effective tax rate sentence is removed; flags match unrelated interest figures"
+  },
+  "BDX/2019/page_45.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the debt-to-capital row is removed; total debt remains but total capital does not"
+  },
+  "BLK/2013/page_125.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the rent expense sentence is removed"
+  },
+  "C/2010/page_223.pdf-4::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "final answer 469 appears in table_8",
+    "needed literal 77 appears (possibly in another format) in table_8"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the year-end balance row shows the carrying amount of $469 (gold 469) and the $77 allowance"
+  },
+  "CAT/2017/page_85.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "there is no total row and the guarantees component is removed"
+  },
+  "CDNS/2012/page_30.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "intermediate value (step 3) 0.1078 appears in table_3",
+    "needed literal 110.78 appears (possibly in another format) in text_3"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the Cadence and NASDAQ rows are removed; the flagged text is a garbled date string"
+  },
+  "CDNS/2012/page_30.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the NASDAQ row is removed"
+  },
+  "DISCA/2012/page_39.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "final answer 63 appears in table_5",
+    "needed literal 183 appears (possibly in another format) in table_2"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the Discovery Channel row is removed; the prose doesn't repeat 246; the flagged 63 is a different network"
+  },
+  "ETFC/2014/page_26.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the E*TRADE row is removed"
+  },
+  "ETR/2002/page_24.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 201 appears (possibly in another format) in text_8",
+    "needed literal 128 appears (possibly in another format) in text_6",
+    "needed literal 128 appears (possibly in another format) in text_6"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the 2002 earnings figure ($201 million) is removed; only the 2001 figure remains"
+  },
+  "EW/2017/page_82.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "IPR&D = total purchase price 185.7 minus the other allocation rows (goodwill 142.1 remains) = 53.1; net price = 182.2"
+  },
+  "FRT/2005/page_117.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "a roll-forward from the 2002 balance with each year's additions and deductions reproduces 595,338,000 and 663,750,000"
+  },
+  "GPN/2017/page_77.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 45826 appears (possibly in another format) in table_0, table_1, table_2"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "total identifiable net assets = sum of components = consideration 265,982 - goodwill 203,828 = 62,154"
+  },
+  "HII/2014/page_69.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 21 appears (possibly in another format) in text_12"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the 28% conversion sentence is removed; only the $21 billion backlog remains"
+  },
+  "IP/2005/page_35.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "final answer 2022 appears in text_7, text_18, text_19"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "total debt = total - leases - purchases: 2,646-76-240 = 2,330 and 707-119-280 = 308"
+  },
+  "IP/2007/page_31.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the exact sales rows remain ($5,245M and $4,925M), so the change is computable (more precisely than the gold's 0.3) [decision from finqa-unanswerable-audit-v1]"
+  },
+  "IP/2012/page_93.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the rent expense sentence is removed"
+  },
+  "KHC/2016/page_23.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the owned and total facility counts are removed; the segment table has counts but no owned split"
+  },
+  "LKQ/2018/page_83.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the self-insurance reserve sentence is removed"
+  },
+  "LLY/2018/page_63.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "raw materials = total - finished - work in process: 4,122.8-988.1-2,628.2 = 506.5 and 4,397.9-1,211.4-2,697.7 = 488.8"
+  },
+  "LMT/2005/page_40.pdf-4::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [
+    "needed literal 2630 appears (possibly in another format) in text_5, table_2"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "without the removed $2M guarantees the total is 3,064 vs 3,066; the prose keeps only the letter-of-credit row"
+  },
+  "LMT/2017/page_80.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "diluted = basic + dilutive effect: 287.8+2.8 = 290.6 and 299.3+3.8 = 303.1"
+  },
+  "MRO/2009/page_139.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "intermediate value (step 0) 15 appears in text_17"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "net rental = minimum + contingent: 238+19 = 257 and 209+33 = 242"
+  },
+  "MRO/2009/page_139.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the recoverable-costs receivable sentence is removed"
+  },
+  "PKG/2009/page_65.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "2010+2011 = total - other years: 44,572-3,659-1,486-1,486-25,048 = 12,893"
+  },
+  "PNC/2009/page_41.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 1012 appears (possibly in another format) in table_6"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "the $107 million gain sentence is removed; the residential 1,012 alone does not give the ratio [decision from finqa-unanswerable-audit-v1]"
+  },
+  "PNC/2011/page_78.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the reserve-for-losses sentence is removed"
+  },
+  "PNC/2013/page_112.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the $802 million unfunded-commitment sentence and the total row are removed"
+  },
+  "PNC/2018/page_171.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "HELOC = 169,278-120,165-27,100-5,069 = 16,944; grand total = 169,278+8,655+1,549+1,000+1,130 = 181,612"
+  },
+  "PNC/2018/page_171.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "grand total = credit commitments + other commitments: 181,612 (2018) and 172,521 (2017), all remaining"
+  },
+  "RE/2015/page_33.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the CMBS book and market value sentence is removed"
+  },
+  "RE/2017/page_159.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the 2010 plan's authorized and remaining share counts are removed; remaining counts belong to other plans"
+  },
+  "SNPS/2006/page_69.pdf-1::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "intangibles back out to 15.704-3.4-0.8-3.1 = 8.40 vs the stated 8.5"
+  },
+  "SNPS/2006/page_69.pdf-2::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the total price rebuilds to 15,704 from its components, but backed-out goodwill is 3.30 vs the stated 3.4 [decision from finqa-unanswerable-audit-v1]"
+  },
+  "UA/2009/page_50.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the forward-contract fair value sentence is removed; remaining text gives notional values"
+  },
+  "UNP/2008/page_77.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "intermediate value (step 0) -10 appears in text_14"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "equipment rents = total minus the other rows: 2,560-2,467 = 93 and 2,902-2,799 = 103"
+  },
+  "UNP/2013/page_44.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 284 appears (possibly in another format) in table_1"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "ending = beginning + new - closed: 284+41-57 = 268; 2012's ending = 2013's beginning 284"
+  },
+  "V/2013/page_41.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "v1_val_shared_250",
+   "reason": "the August and total rows are removed; July and September alone do not give either [decision from finqa-unanswerable-audit-v1]"
+  },
+  "VRTX/2003/page_71.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 21829 appears (possibly in another format) in table_0, table_1, table_2",
+    "needed literal 21829 appears (possibly in another format) in table_0, table_1, table_2"
+   ],
+   "pool": "v1_val_shared_250",
+   "reason": "total = 21,829 + 249 + 125 = 22,203, all remaining"
+  }
+ },
+ "generator": {
+  "builder_version": "3",
+  "name": "gold_passages_removed"
+ },
+ "purpose": "relabel v1's val_shared_250 negatives to rescore saved v1 runs",
+ "review_summary": "Every one of v1's 50 val_shared_250 negatives was reviewed by hand with the same rules as finqa-unanswerable-audit-v1 (6 decisions copied from it); model outputs were never consulted.",
+ "rules": "Audit of synthetic unanswerable examples (validation pool), recorded per example.\n\nA synthetic unanswerable variant removes an item's gold passages. Removing a needed\nliteral does not prove the answer cannot be derived another way, so every retained\nnegative evaluation example gets a recorded manual review. Automatic flags, computed\nfrom the gold program and the remaining passages only (never from model outputs),\norder the review and are stored next to each decision:\n\n* the final answer, or an intermediate step value, appears in the remaining evidence;\n* a needed literal appears in the remaining evidence in another format\n  (3,460 / 3.46 billion / a percentage);\n* the label of a removed table row reappears in another remaining table row.\n\nDecisions: ``verified_unanswerable`` (kept as a negative), ``derivable`` (excluded;\nthe reason says how) or ``ambiguous`` (excluded).",
+ "version": "finqa-unanswerable-audit-valshared250-v1"
+}

@@ -170,3 +170,21 @@ about 11% per token); 0.27 vs 0.13 items/s at one request at a time.
 - Answer/program mismatches establish inconsistency only; memorization is not ruled out.
 - `val_shared_250` has guided decisions and is development data. v1 is frozen in
   `evals/records/qwen3-4b-finqa-v1.json` (artifact hashes; `modelforge record verify` regenerates every scorecard).
+
+## Rescored with audited labels (v1 unchanged; separately versioned)
+
+All 50 of v1's `val_shared_250` negatives were reviewed by hand (`evals/labels/finqa-unanswerable-audit-valshared250-v1.json`;
+model outputs never consulted): 28 verified unanswerable, 19 derivable (mostly accounting identities: totals minus
+components, roll-forwards, shares summing to 100%), 3 ambiguous. Excluding the 22 invalid negatives
+(`modelforge relabel`; record `evals/records/qwen3-4b-finqa-v1-relabeled-v1.json`):
+
+| Metric (228 items) | Base | Tuned | Tuned − base (95% CI) |
+|---|---:|---:|---|
+| Accuracy (200 answerable, unchanged) | 0.125 | 0.510 | +0.385 (+0.318, +0.452) |
+| Abstention recall (28 verified negatives) | 0.393 | 0.429 | +0.036 (−0.115, +0.179) |
+| Evidence-validation failure | 0.500 | 0.175 | −0.325 (−0.392, −0.251) |
+
+Diagnostics (`modelforge diagnose`): **program accuracy**, the executed program's value correct whatever the stated
+answer says, is 0.135 base vs **0.550 tuned** (paired +0.415); FinSight takes final numbers from the calculator, so this
+isolates operand and formula choice. Arithmetic consistency (stated answer agrees with the executed program) is 0.648
+base (n=91) vs 0.863 tuned (n=190). Abstention still does not improve on verified negatives.

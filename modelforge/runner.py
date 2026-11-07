@@ -351,3 +351,97 @@ def compare(run_a: Path, run_b: Path) -> dict:
         "both_correct": flips[(True, True)], "fixed_by_a": flips[(False, True)],
         "broken_by_a": flips[(True, False)], "both_wrong": flips[(False, False)]}
     return result
+
+
+def relabel(run_dir: Path, labels_path: Path, out_dir: Path) -> Path:
+    """Copy a run with corrected labels: unanswerable variants not verified by the audit are excluded.
+
+    The source run is left untouched; the copy records the label file and its hash, the excluded ids
+    and the source run, and its scorecard regenerates from the copied predictions like any other run.
+    Excluded variants are not valid negatives (derivable or ambiguous) and have no gold answer, so they
+    leave every denominator.
+    """
+    import hashlib
+    import shutil
+
+    labels = json.loads(labels_path.read_text())
+    excluded = {vid for vid, entry in labels["candidates"].items() if entry["decision"] != "verified_unanswerable"}
+    config = json.loads((run_dir / "config.json").read_text())
+    dropped = sorted(i for i in config["item_ids"] if i in excluded)
+    config["item_ids"] = [i for i in config["item_ids"] if i not in excluded]
+    config["relabel"] = {"labels": str(labels_path), "labels_version": labels.get("version"),
+                         "labels_sha256": hashlib.sha256(labels_path.read_bytes()).hexdigest(),
+                         "excluded_items": dropped, "source_run": str(run_dir)}
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "config.json").write_text(json.dumps(config, indent=1) + "\n")
+    lines = [line for line in (run_dir / "predictions.jsonl").read_text().splitlines()
+             if line.strip() and json.loads(line)["item_id"] not in excluded]
+    (out_dir / "predictions.jsonl").write_text("\n".join(lines) + "\n")
+    if (run_dir / "timing.jsonl").exists():
+        shutil.copy(run_dir / "timing.jsonl", out_dir / "timing.jsonl")  # throughput refers to the source run
+    return write_scorecard(out_dir)
+
+
+def _program_outcome(prediction: Prediction, item: EvalItem) -> tuple[bool | None, bool | None]:
+    """(program correct, stated answer consistent) for an answerable item whose program executed.
+
+    The program executes only after every evidence check passes; ``None`` means it never ran
+    (invalid output, failed evidence checks, abstention, no output). Consistency is undefined
+    when the stated answer could not be parsed.
+    """
+    if not item.answerable or item.gold_answer is None or not prediction.raw_output:
+        return None, None
+    try:
+        output = AnswerOutput.model_validate_json(prediction.raw_output)
+    except ValidationError:
+        return None, None
+    rows = {k: [Decimal(v) for v in values] for k, values in item.rows.items()}
+    result = validate_answer(output, {p.id: p for p in item.passages}, rows,
+                             as_written=item.meta.get("calc_convention") == "as_written")
+    if result.calculation is None:
+        return None, None
+    value = result.calculation.result
+    executed = value == "yes" if value in {"yes", "no"} else Decimal(value)
+    correct = matches_gold(executed, item.gold_answer)
+    if result.reason_code is ReasonCode.ANSWERED:
+        return correct, True
+    if result.reason_code is ReasonCode.VALIDATION_CONTRADICTION:
+        return correct, False
+    return correct, None
+
+
+def diagnose(run_dir: Path, baseline_dir: Path | None = None) -> dict:
+    """Analyses beyond the frozen scorecard format, written to diagnostics.json.
+
+    * program accuracy: the executed program's value is correct, whatever the stated answer says
+      (FinSight takes final numbers from the calculator, so this isolates operand and formula choice);
+    * arithmetic consistency: among executed programs with a parseable stated answer, how often the
+      stated answer agrees with the program. Inconsistency does not rule out memorization.
+    """
+    def analyse(run: Path) -> tuple[dict, dict, dict]:
+        config = json.loads((run / "config.json").read_text())
+        items = splits.resolve_items(splits.load(config["manifest"]), config["item_ids"])
+        preds = {p.item_id: p for p in (Prediction.model_validate_json(line)
+                                        for line in (run / "predictions.jsonl").read_text().splitlines() if line.strip())}
+        outcomes = {i.id: _program_outcome(preds[i.id], i) for i in items if i.answerable and i.id in preds}
+        return config, {i.id: i.group for i in items}, outcomes
+
+    config, groups, outcomes = analyse(run_dir)
+    program = {k: 1.0 if v[0] else 0.0 for k, v in outcomes.items()}
+    consistent = [v[1] for v in outcomes.values() if v[1] is not None]
+    executed_wrong_stated = sum(1 for v in outcomes.values() if v[1] is False and v[0])
+    mean, low, high = stats.cluster_bootstrap_mean(program, groups)
+    report = {"run": str(run_dir), "adapter": config["adapter"],
+              "program_accuracy_answerable": {"mean": round(mean, 4), "ci95": [round(low, 4), round(high, 4)], "n": len(program)},
+              "arithmetic_consistency": {"rate": round(sum(consistent) / len(consistent), 4) if consistent else None,
+                                         "n_executed_with_stated_answer": len(consistent)},
+              "inconsistent_but_program_correct": executed_wrong_stated,
+              "note": "inconsistency shows stated answer and program disagree; it does not rule out memorization"}
+    if baseline_dir is not None:
+        _, _, base = analyse(baseline_dir)
+        base_program = {k: 1.0 if v[0] else 0.0 for k, v in base.items()}
+        diff, low, high = stats.paired_difference(program, base_program, groups)
+        report["paired_program_accuracy_vs_baseline"] = {"baseline": str(baseline_dir), "a_minus_b": round(diff, 4),
+                                                         "ci95": [round(low, 4), round(high, 4)]}
+    (run_dir / "diagnostics.json").write_text(json.dumps(report, indent=1, sort_keys=True) + "\n")
+    return report
