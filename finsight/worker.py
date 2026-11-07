@@ -53,6 +53,35 @@ class Heartbeat(threading.Thread):
             conn.close()
 
 
+def build_stages(job: dict, conn, token: uuid.UUID, delays: dict | None = None) -> Stages:
+    """Stages for a job, from the model configuration frozen at admission."""
+    from finsight.ingestion.sec import PostgresRateLimiter, SecSource
+    from finsight.stages import ResearchStages
+
+    config = job["model_config"]
+    if config["provider"] == "demo":
+        return DemoStages(delays=delays or {})
+    settings = get_settings()
+    if config["provider"] == "qwen":
+        from finsight.reasoning.qwen import QwenProvider
+        provider = QwenProvider(config["model"], config.get("base_url") or settings.qwen_base_url,
+                                max_tokens=config.get("max_tokens") or 2048)
+    elif config["provider"] == "claude":
+        from finsight.reasoning.claude import ClaudeProvider
+        from finsight.spend import SpendLedger
+        provider = ClaudeProvider(config["model"], effort=settings.effort_default,
+                                  max_tokens=config.get("max_tokens") or settings.max_tokens_default,
+                                  ledger=SpendLedger(conn, settings.spend_limit_usd))
+    else:
+        from finsight.reasoning.recorded import RecordedProvider
+        provider = RecordedProvider(Path(config["recordings"]), config["model"])
+    source = None
+    if settings.sec_user_agent:
+        source = SecSource(settings.sec_user_agent, settings.state_dir / "artifacts", conn=conn,
+                           rate_limiter=PostgresRateLimiter(conn))
+    return ResearchStages(conn=conn, job_id=job["id"], token=token, source=source, provider=provider, model_config=config)
+
+
 def run_job(conn, saver: PostgresSaver, job: dict, token: uuid.UUID, stages: Stages, artifacts: Path) -> str:
     ctx = JobContext(conn=conn, job_id=job["id"], token=token, artifacts=artifacts)
     graph = build_graph(ctx, stages).compile(checkpointer=saver)
@@ -66,13 +95,19 @@ def run_job(conn, saver: PostgresSaver, job: dict, token: uuid.UUID, stages: Sta
     except Cancelled:
         jobs.finish(conn, job["id"], token, "cancelled", "cancellation requested")
         return "cancelled"
+    except (jobs.OwnershipLost, psycopg.OperationalError, psycopg.InterfaceError):
+        raise
+    except Exception as exc:  # a stage error ends the job with a clear outcome instead of crashing the worker
+        jobs.finish(conn, job["id"], token, "failed", f"{type(exc).__name__}: {exc}"[:500])
+        return "failed"
     outcome = final["reporting"]["outcome"]
     jobs.finish(conn, job["id"], token, outcome)
     return outcome
 
 
-def serve(url: str, worker_id: str, stages: Stages, artifacts: Path, *, once: bool = False,
+def serve(url: str, worker_id: str, stages, artifacts: Path, *, once: bool = False,
           poll: float = 1.0, heartbeat_interval: float = 5.0) -> int:
+    """``stages`` is a Stages object, or a factory ``(job, conn, token) -> Stages``."""
     conn = connect(url, application_name=f"finsight-worker:{worker_id}")
     saver = PostgresSaver(conn)
     saver.setup()
@@ -87,7 +122,8 @@ def serve(url: str, worker_id: str, stages: Stages, artifacts: Path, *, once: bo
         beat = Heartbeat(url, job["id"], token, heartbeat_interval)
         beat.start()
         try:
-            run_job(conn, saver, job, token, stages, artifacts)
+            job_stages = stages(job, conn, token) if callable(stages) else stages
+            run_job(conn, saver, job, token, job_stages, artifacts)
         except (jobs.OwnershipLost, psycopg.OperationalError, psycopg.InterfaceError) as exc:
             print(f"worker {worker_id}: lost authority over job {job['id']} ({type(exc).__name__}); exiting",
                   file=sys.stderr, flush=True)
@@ -102,7 +138,6 @@ def serve(url: str, worker_id: str, stages: Stages, artifacts: Path, *, once: bo
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--once", action="store_true")
-    parser.add_argument("--stages", default="demo", choices=["demo"])
     parser.add_argument("--delay", action="append", default=[], metavar="STAGE=SECONDS")
     parser.add_argument("--heartbeat", type=float, default=5.0)
     parser.add_argument("--worker-id", default=f"{socket.gethostname()}:{os.getpid()}")
@@ -110,8 +145,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     settings = get_settings()
     delays = {k: float(v) for k, v in (d.split("=", 1) for d in args.delay)}
-    stages = DemoStages(delays=delays)
-    return serve(args.database_url or settings.database_url, args.worker_id, stages, settings.state_dir / "artifacts",
+    return serve(args.database_url or settings.database_url, args.worker_id,
+                 lambda job, conn, token: build_stages(job, conn, token, delays), settings.state_dir / "artifacts",
                  once=args.once, heartbeat_interval=args.heartbeat)
 
 

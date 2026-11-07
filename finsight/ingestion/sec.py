@@ -111,6 +111,7 @@ class SecSource:
                               "(SEC refuses generic user agents)")
         self.store = store
         self.conn = conn
+        self.names: dict[str, str] = {}
         self.limiter = rate_limiter or LocalRateLimiter()
         self.client = httpx.Client(headers={"User-Agent": user_agent, "Accept-Encoding": "gzip, deflate"},
                                    timeout=TIMEOUT, follow_redirects=False, transport=transport)
@@ -157,6 +158,7 @@ class SecSource:
     def filings(self, cik: str) -> tuple[list[Filing], str | None]:
         """All filings (recent plus older pages) and the fiscal-year end as MMDD."""
         data = self.submissions(cik)
+        self.names[cik] = data.get("name")
         pages = [data["filings"]["recent"]]
         for extra in data["filings"].get("files", []):
             pages.append(self.get_json(f"https://data.sec.gov/submissions/{extra['name']}"))

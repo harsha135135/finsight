@@ -114,14 +114,14 @@ def _node(ctx: JobContext, stage: str, run):
         jobs.owned_update(ctx.conn, ctx.job_id, ctx.token, stage=stage)
         result = run(state)
         if stage == "reporting":
-            result = {**result, "report_sha256": write_report(ctx, result["report"])}
+            result = {**result, "report_sha256": write_report(ctx, result["report"], result.get("markdown"))}
         with ctx.conn.transaction():
             jobs.owned_event(ctx.conn, ctx.job_id, ctx.token, "stage_result", stage=stage, detail=result)
         return {stage: result}
     return node
 
 
-def write_report(ctx: JobContext, report: dict) -> str:
+def write_report(ctx: JobContext, report: dict, markdown: str | None = None) -> str:
     """Write the report files atomically and record them once per job (idempotent)."""
     body = json.dumps(report, indent=1, sort_keys=True, default=str) + "\n"
     digest = hashlib.sha256(body.encode()).hexdigest()
@@ -129,7 +129,8 @@ def write_report(ctx: JobContext, report: dict) -> str:
     directory = ctx.artifacts / "reports" / str(ctx.job_id) / str(ctx.token)
     directory.mkdir(parents=True, exist_ok=True)
     paths = {"json": directory / "report.json", "markdown": directory / "report.md"}
-    for path, text in ((paths["json"], body), (paths["markdown"], f"# Report {ctx.job_id}\n\n```json\n{body}```\n")):
+    rendered = markdown if markdown is not None else f"# Report {ctx.job_id}\n\n```json\n{body}```\n"
+    for path, text in ((paths["json"], body), (paths["markdown"], rendered)):
         tmp = path.with_suffix(path.suffix + ".tmp")
         tmp.write_text(text)
         tmp.replace(path)
