@@ -110,6 +110,8 @@ def test_serve_command_binds_localhost_and_ignores_model_generation_defaults():
     assert "--enable-lora" in joined and "tuned=artifacts/adapters/x/adapter" in joined
     with pytest.raises(ValueError):
         parse_loras(["missing-path"])
+    two = build_command("m", "r", loras=parse_loras(["b=/x/b", "a=/x/a"]))
+    assert two.count("--lora-modules") == 1 and two[-2:] == ["a=/x/a", "b=/x/b"]
 
 
 def test_qwen_request_sets_every_sampling_parameter_and_fits_the_context():

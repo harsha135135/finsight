@@ -40,8 +40,9 @@ def build_command(model: str, revision: str, *, port: int = 8000, max_model_len:
         "--seed", "0", "--generation-config", "vllm",
         "--enable-lora", "--max-lora-rank", str(max_lora_rank), "--max-loras", "1",
     ]
-    for name, path in sorted((loras or {}).items()):
-        command += ["--lora-modules", f"{name}={path}"]
+    if loras:
+        # One flag followed by every NAME=PATH: vLLM keeps only the last of repeated --lora-modules flags.
+        command += ["--lora-modules", *(f"{name}={path}" for name, path in sorted(loras.items()))]
     return command
 
 
