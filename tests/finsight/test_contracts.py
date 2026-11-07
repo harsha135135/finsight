@@ -34,3 +34,9 @@ def test_answer_schema_is_strict_json_schema():
     schema = AnswerOutput.model_json_schema()
     assert schema["additionalProperties"] is False
     assert set(schema["required"]) >= {"abstain", "operands", "program", "answer", "claims"}
+
+
+def test_settings_load_with_defaults():
+    from finsight.settings import Settings
+    settings = Settings(_env_file=None)
+    assert str(settings.spend_limit_usd) == "2.00" and settings.database_url.endswith(":54329/finsight")

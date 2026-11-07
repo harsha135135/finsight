@@ -9,10 +9,6 @@ from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-    model: str
-    effort: str
-
-
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="FINSIGHT_", env_file=".env", extra="ignore")
 

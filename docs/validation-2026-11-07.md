@@ -188,3 +188,10 @@ Diagnostics (`modelforge diagnose`): **program accuracy**, the executed program'
 answer says, is 0.135 base vs **0.550 tuned** (paired +0.415); FinSight takes final numbers from the calculator, so this
 isolates operand and formula choice. Arithmetic consistency (stated answer agrees with the executed program) is 0.648
 base (n=91) vs 0.863 tuned (n=190). Abstention still does not improve on verified negatives.
+
+## v1 checkpoint re-selection on the corrected selection set
+
+Retained checkpoints re-evaluated on `val_select` rows from `finqa-grouped-v2` (237 rows from 65 filing groups disjoint
+from `val_dev`, `val_shared_250`'s groups and test; 22 hand-verified negatives; `modelforge.training.reselect`):
+checkpoint-150 0.045927, checkpoint-180 0.045493, **checkpoint-210 0.045468**: the same checkpoint is selected. This
+is partial evidence: checkpoints 30–120 were deleted by `save_total_limit` and cannot be compared.
