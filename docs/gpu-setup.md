@@ -120,7 +120,8 @@ git rev-parse HEAD > BUILD_COMMIT
 rsync -az --delete --exclude .venv --exclude .git --exclude .legacy --exclude .aiagents --exclude .env \
   --exclude 'artifacts/adapters/' --exclude 'artifacts/probe/' --exclude 'artifacts/runs/' \
   --exclude 'artifacts/recovery/' --exclude 'artifacts/serving/' --exclude '*.log' ./ gpu-wsl:developer/finsight/
-ssh gpu-wsl "$R && uv sync --locked --extra gpu && uv run --extra gpu pytest -q"
+ssh gpu-wsl "$R && mkdir -p artifacts/runs artifacts/serving artifacts/probe && uv sync --locked --extra gpu && uv run --extra gpu pytest -q"
+# (artifacts/ subfolders are excluded from the sync, so create them before redirecting logs into them)
 
 # Probe (stop vLLM first): real optimizer steps at the intended length, eval timing, adapter health, energy
 ssh gpu-wsl "$R && uv run --extra gpu modelforge probe"
@@ -135,6 +136,11 @@ uv run modelforge run --adapter qwen --model Qwen/Qwen3-4B --label qwen3-4b-base
 ssh gpu-wsl "$R && uv run --extra gpu python -m modelforge.training.recovery_test --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c"
 ssh gpu-wsl "$R && tmux -L finsight new-session -d -s train 'uv run --extra gpu python -m modelforge.training.train_qlora --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen3-4b-finqa-v1 --resume 2>&1 | tee -a artifacts/train.log'"
 ```
+
+Serving notes measured on this PC (2026-11-07): Windows keeps about 1.2 GiB of the card, so vLLM runs at
+`--gpu-memory-utilization 0.87` (0.90 is refused); FlashInfer's sampler needs nvcc or prebuilt kernels, so the serve
+command sets `VLLM_USE_FLASHINFER_SAMPLER=0` (PyTorch sampler; greedy decoding is unaffected). The environment uses
+uv-managed CPython because Triton compiles a helper against `Python.h`, which Ubuntu's system Python lacks.
 
 GPU energy is measured with NVML and is **GPU-only**. If the counter is unsupported under WSL, it is reported as
 unavailable, never as zero; whole-system electricity needs a plug-in meter or a disclosed estimate.
