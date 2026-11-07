@@ -127,3 +127,31 @@ Checkpoint selection for the full run uses validation rows outside `val_shared_2
 | Peak VRAM | 4.40 GiB allocated, 5.41 GiB reserved |
 | GPU energy (NVML, GPU only) | 1.023 MJ = 0.284 kWh |
 | Adapter | 252 modules, 33.0M parameters, health check ok, sha256 `5f1fafffd63e…` |
+
+## Tuned vs base on `val_shared_250` (same vLLM server, one request at a time, from the Mac)
+
+Paired, filing-clustered 95% CIs (`modelforge compare`; runs `20261107-paired-{tuned,base}-val_shared_250`):
+
+| Metric | Base | Tuned | Tuned − base (95% CI) | n |
+|---|---:|---:|---|---:|
+| **Accuracy (answerable)** | 0.125 | **0.510** | **+0.385 (+0.318, +0.452)** | 200 |
+| Accuracy, lenient quotes (diagnostic) | 0.150 | 0.510 | +0.360 (+0.290, +0.427) | 200 |
+| Abstention recall (unanswerable) | 0.260 | 0.320 | +0.060 (−0.060, +0.173) | 50 |
+| False abstention (answerable) | 0.020 | 0.005 | −0.015 (−0.043, +0.009) | 200 |
+| Invalid output | 0.148 | 0.004 | −0.144 (−0.198, −0.093) | 250 |
+| Evidence-validation failure | 0.508 | 0.172 | −0.336 (−0.407, −0.264) | 250 |
+| Operational failure | 0.020 | 0.004 | −0.016 (−0.032, −0.004) | 250 |
+
+Answerable items: 79 fixed by tuning, 2 broken, 23 correct in both, 96 wrong in both. The gain is not quote
+formatting (lenient accuracy moves almost as much as strict). Remaining evidence-validation failures in the tuned
+model are mostly "stated answer disagrees with the executed program" (31 items); only 1 of the 26 answerable
+mismatches states the gold answer, so this is wrong arithmetic in the stated answer, not recalled answers.
+
+Weakness: the tuned model answered 24 of the 50 unanswerable variants with outputs that pass validation. Two of
+those reproduce the original gold answer (the removed figure is derivable from the remaining evidence, a label flaw
+in the variant construction); the other 22 are confident wrong answers built from figures that are present. The
+validator cannot catch these, so abstention needs more or harder abstention training data.
+
+Latency and throughput (same server): median 3.8 s vs 7.3 s, p95 4.5 s vs 12.3 s; output tokens 43.8k vs 101.9k
+for the 250 items (compact JSON with only the needed operands); decoding 46.5 vs 52.4 tokens/s (adapter compute
+about 11% per token); 0.27 vs 0.13 items/s at one request at a time.
