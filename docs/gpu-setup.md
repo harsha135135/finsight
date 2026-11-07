@@ -134,7 +134,8 @@ uv run modelforge run --adapter qwen --model Qwen/Qwen3-4B --label qwen3-4b-base
 
 # Recovery test, then training in tmux (approval needed for the full run)
 ssh gpu-wsl "$R && uv run --extra gpu python -m modelforge.training.recovery_test --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c"
-ssh gpu-wsl "$R && tmux -L finsight new-session -d -s train 'uv run --extra gpu python -m modelforge.training.train_qlora --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen3-4b-finqa-v1 --resume 2>&1 | tee -a artifacts/train.log'"
+ssh gpu-wsl "$R && tmux -L finsight new-session -d -s train 'uv run --extra gpu python -m modelforge.training.train_qlora --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen3-4b-finqa-v1 --max-seq-len 4096 --max-steps 210 --save-steps 30 --eval-limit 200 2>&1 | tee -a artifacts/train.log'"
+# Recover the same run after an interruption by repeating the command with --resume added (refused if settings differ).
 ```
 
 Serving notes measured on this PC (2026-11-07): Windows keeps about 1.2 GiB of the card, so vLLM runs at

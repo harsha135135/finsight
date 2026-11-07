@@ -171,3 +171,48 @@ def test_agreement_measures_rather_than_assumes_identical_reruns(tmp_path: Path)
     result = agreement(tmp_path / "a", tmp_path / "b")
     assert result["common_items"] == 3 and result["identical_outcome"] == round(2 / 3, 4)
     assert result["differing_items"] == ["q3"]
+
+
+def test_fresh_runs_need_an_empty_folder_and_resume_must_match(tmp_path: Path):
+    from modelforge.training.train_qlora import check_run_identity
+    out = tmp_path / "run"
+    identity = {"max_seq_len": 4096, "train_sha256": "a"}
+    check_run_identity(out, identity, resume=False)
+    with pytest.raises(SystemExit):
+        check_run_identity(out, identity, resume=False)          # a second fresh start in the same folder
+    check_run_identity(out, identity, resume=True)                # same experiment: allowed
+    with pytest.raises(SystemExit):
+        check_run_identity(out, {**identity, "max_seq_len": 3072}, resume=True)
+
+
+def test_session_totals_include_interrupted_sessions(tmp_path: Path):
+    from modelforge.training.train_qlora import session_totals
+    (tmp_path / "sessions").mkdir()
+    (tmp_path / "sessions" / "session-1.json").write_text(json.dumps(
+        {"status": "running", "wall_seconds": 600.0, "gpu_energy_joules": 1000.0}))
+    (tmp_path / "sessions" / "session-2.json").write_text(json.dumps(
+        {"status": "completed", "wall_seconds": 300.0, "gpu_energy_joules": 500.0}))
+    totals = session_totals(tmp_path)
+    assert totals["wall_seconds"] == 900.0 and totals["gpu_energy_joules"] == 1500.0 and totals["complete"] is False
+
+
+def test_evidence_subcategories_keep_formatting_apart_from_wrong_passages(finqa_example):
+    from finsight.contracts import AnswerOutput
+    from modelforge.datasets import finqa
+    from modelforge.runner import _evidence_subcategories
+    item = finqa.to_item(finqa_example, "test")
+    table = next(p for p in item.passages if "5,735" in p.text)
+    text_id = next(p.id for p in item.passages if p.id.startswith("text_"))
+    def output(original, pid):
+        return AnswerOutput.model_validate({"abstain": False, "abstain_reason": None, "operands": [
+            {"name": "v0", "original_text": original, "value": "5735", "unit": "USD", "scale": "units", "period": None,
+             "passage_id": pid}], "program": [{"op": "add", "args": ["v0", "v0"]}], "answer": "11470",
+            "answer_unit": None, "claims": []}).model_dump_json()
+    wrong_passage = Prediction(item_id=item.id, config_id="c", reason_code=ReasonCode.VALIDATION_CONTRADICTION,
+                               raw_output=output("$5,735", text_id),
+                               issues=[f"operand v0 ('$5,735') is not supported by passage {text_id}"])
+    assert _evidence_subcategories(wrong_passage, item) == {"figure is in a different passage than the one cited"}
+    formatting = Prediction(item_id=item.id, config_id="c", reason_code=ReasonCode.VALIDATION_CONTRADICTION,
+                            raw_output=output("5735", table.id),
+                            issues=[f"operand v0 ('5735') is not supported by passage {table.id}"])
+    assert _evidence_subcategories(formatting, item) == {"quote formatting differs from the passage (e.g. added $ or commas)"}

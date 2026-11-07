@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import time
 from pathlib import Path
 
@@ -126,3 +127,41 @@ class HashingCollator:
         with self.path.open("a") as handle:
             handle.write(json.dumps({"input_ids_sha": digest, "shape": list(batch["input_ids"].shape)}) + "\n")
         return batch
+
+
+class SessionRecorder(TrainerCallback):
+    """Writes this session's time and GPU energy to disk every ``every`` optimizer steps and at each save.
+
+    A session killed mid-run keeps its last record (status "running"), so cumulative totals include it
+    and are marked incomplete rather than silently dropping the interrupted work.
+    """
+
+    def __init__(self, directory: Path, meter, started_at: str, started_monotonic: float,
+                 resumed_from: str | None, every: int = 10) -> None:
+        self.directory = directory
+        self.meter = meter
+        self.started_at = started_at
+        self.started = started_monotonic
+        self.resumed_from = resumed_from
+        self.every = every
+        self.path = directory / f"session-{time.strftime('%Y%m%dT%H%M%S')}-{os.getpid()}.json"
+
+    def write(self, global_step: int, status: str = "running") -> None:
+        reading = self.meter.reading()
+        record = {"started": self.started_at, "resumed_from": self.resumed_from, "status": status,
+                  "global_step": global_step, "wall_seconds": round(time.monotonic() - self.started, 1),
+                  "gpu_energy_joules": reading.gpu_energy_joules, "energy_method": reading.method}
+        self.directory.mkdir(parents=True, exist_ok=True)
+        tmp = self.path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(record) + "\n")
+        tmp.replace(self.path)
+
+    def on_train_begin(self, args, state, control, **kwargs):
+        self.write(state.global_step)
+
+    def on_step_end(self, args, state, control, **kwargs):
+        if state.global_step % self.every == 0:
+            self.write(state.global_step)
+
+    def on_save(self, args, state, control, **kwargs):
+        self.write(state.global_step)

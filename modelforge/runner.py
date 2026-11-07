@@ -26,7 +26,7 @@ from modelforge.adapters import Adapter
 from modelforge.datasets.finqa import matches_gold
 from modelforge.items import EvalItem
 
-SCORECARD_VERSION = "2"
+SCORECARD_VERSION = "3"
 
 
 def _commit() -> str:
@@ -165,6 +165,48 @@ def _lenient_correct(prediction: Prediction, item: EvalItem) -> bool:
     return matches_gold(executed, item.gold_answer)
 
 
+def _evidence_subcategories(prediction: Prediction, item: EvalItem) -> set[str]:
+    """Why an answer failed evidence validation. These are kept apart: not every subcategory means the
+    answer contradicts its evidence (a quote may differ only in formatting, or cite the wrong passage)."""
+    import re as _re
+
+    from finsight.normalize import _squash, _squash_lenient, parse_figure
+
+    passages = {p.id: p.text for p in item.passages}
+    operands = {}
+    try:
+        operands = {o.name: o for o in AnswerOutput.model_validate_json(prediction.raw_output or "").operands}
+    except ValidationError:
+        pass
+    found: set[str] = set()
+    for issue in prediction.issues:
+        if "is not supported by passage" in issue:
+            match = _re.match(r"operand (\S+) \(", issue)
+            operand = operands.get(match.group(1)) if match else None
+            if operand is None:
+                found.add("operand not supported (details unavailable)")
+                continue
+            cited = passages.get(operand.passage_id, "")
+            if _squash(operand.original_text) in _squash(cited):
+                found.add("value or scale disagrees with the quote" if parse_figure(operand.original_text)
+                          else "quote is not a single figure")
+            elif _squash_lenient(operand.original_text) in _squash_lenient(cited):
+                found.add("quote formatting differs from the passage (e.g. added $ or commas)")
+            elif any(_squash(operand.original_text) in _squash(t) for pid, t in passages.items() if pid != operand.passage_id):
+                found.add("figure is in a different passage than the one cited")
+            else:
+                found.add("quoted text not found in the evidence")
+        elif "mixes units" in issue:
+            found.add("adds or subtracts mixed units")
+        elif "required period" in issue:
+            found.add("required period missing")
+        elif "stated answer" in issue:
+            found.add("stated answer disagrees with the executed program")
+        else:
+            found.add("calculation error")
+    return found
+
+
 def summarize(predictions: list[Prediction], items: list[EvalItem], timing: list[dict] | None = None) -> dict:
     by_id = {p.item_id: p for p in predictions}
     groups = {i.id: i.group for i in items}
@@ -196,7 +238,10 @@ def summarize(predictions: list[Prediction], items: list[EvalItem], timing: list
         "abstention_recall_unanswerable": ci(rate(unanswerable, lambda p: p.reason_code is ReasonCode.ABSTAIN_EVIDENCE_ABSENT)),
         "false_abstention_answerable": ci(rate(answerable, lambda p: p.reason_code is ReasonCode.ABSTAIN_EVIDENCE_ABSENT)),
         "invalid_output_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.MODEL_OUTPUT_INVALID)),
-        "contradiction_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.VALIDATION_CONTRADICTION)),
+        "evidence_validation_failure_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.VALIDATION_CONTRADICTION)),
+        "evidence_validation_subcategories": dict(sorted(Counter(
+            c for i in items if i.id in by_id and by_id[i.id].reason_code is ReasonCode.VALIDATION_CONTRADICTION
+            for c in _evidence_subcategories(by_id[i.id], i)).items())),
         "operational_failure_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.OPERATIONAL)),
         "reason_codes": dict(sorted(Counter(p.reason_code.value for p in predictions).items())),
         "diagnostic_lenient_quote_accuracy_answerable": ci(
@@ -231,12 +276,14 @@ def write_scorecard(out_dir: Path, items: list[EvalItem] | None = None) -> Path:
              f"- Settings: {json.dumps(config['settings'], sort_keys=True)}",
              f"- Tolerance: {config['tolerance']}", "", "| Metric | Mean | 95% CI (filing-clustered) | n |", "|---|---:|---|---:|"]
     for key in ("accuracy_answerable", "abstention_recall_unanswerable", "false_abstention_answerable",
-                "invalid_output_rate", "contradiction_rate", "operational_failure_rate",
+                "invalid_output_rate", "evidence_validation_failure_rate", "operational_failure_rate",
                 "diagnostic_lenient_quote_accuracy_answerable"):
         value = summary[key]
         if value:
             lines.append(f"| {key} | {value['mean']:.4f} | {value['ci95'][0]:.4f} – {value['ci95'][1]:.4f} | {value['n']} |")
     lines += ["", f"Reason codes: {json.dumps(summary['reason_codes'])}",
+              "Evidence-validation failures by subcategory (items; one item can have several): "
+              f"{json.dumps(summary['evidence_validation_subcategories'])}",
               f"Latency ms: {summary['latency_ms']} · TTFT ms: {summary['ttft_ms']} · tokens: {summary['tokens']} · cost USD: {summary['cost_usd']}",
               f"Throughput: {summary['throughput']} · server: {json.dumps(config.get('server'), sort_keys=True)}",
               f"Missing predictions: {summary['missing_predictions']} · truncated outputs: {summary['truncated_outputs']}", ""]

@@ -45,12 +45,14 @@ adapter weights within 0.74% relative L2.
 | Abstention recall (unanswerable) | 0.300 | 0.184–0.431 | 50 |
 | False abstention (answerable) | 0.020 | 0.000–0.046 | 200 |
 | Invalid output | 0.128 | 0.085–0.172 | 250 |
-| Contradiction with the evidence | 0.524 | 0.468–0.583 | 250 |
+| Evidence-validation failure | 0.524 | 0.468–0.583 | 250 |
 | Operational (9 outputs hit the 1,024-token cap) | 0.036 | 0.015–0.059 | 250 |
 
-Failure breakdown: of the unsupported operands, 68 cite the wrong passage, 43 quote text that is not verbatim in
-the evidence (mostly a `$` added to table cells that have none), 44 give a value or scale that disagrees with the
-quote; 40 items state an answer that disagrees with their own program; 29 pass every check but are wrong.
+Evidence-validation failures (131 items) by subcategory, counted per item (an item can have several): stated
+answer disagrees with the executed program 40; figure is in a different passage than the one cited 33; value or
+scale disagrees with the quote 28; quote formatting differs from the passage (added `$` or commas) 25; quoted text
+not found in the evidence 11; quote is not a single figure 2; mixed units 1. These are kept apart because not all
+of them mean the answer contradicts its evidence. Separately, 29 answers pass every check but are wrong.
 
 Latency and throughput (same server):
 
@@ -98,3 +100,17 @@ accounts for 2 points of the base model's failures. Headline scores always use t
 
 Checkpoint selection for the full run uses validation rows outside `val_shared_250` (360 available; the first
 200 after length filtering are used), so the items that compare tuned vs base never influence model selection.
+
+## Full fine-tune plan (approved 2026-11-07, frozen before training)
+
+- `--max-seq-len 4096 --max-steps 210 --save-steps 30 --eval-limit 200`, other settings at their defaults
+  (QLoRA r16/α32/dropout 0.05 on all 7 projections, lr 2e-4 cosine, warmup 3%, batch 1 × accumulation 16, seed 42,
+  thinking off), in a fresh output folder without `--resume`; `--resume` is only for recovering this same run, and
+  the trainer refuses it if the run's settings or data differ (`run_identity.json`).
+- Checkpoint selection: the checkpoint with the lowest validation loss on the 200 held-out validation rows
+  (outside `val_shared_250`), evaluated every 30 steps. Generated-answer accuracy is then measured once for the
+  selected adapter on the separate 250-question comparison set, with the base model re-run on the same server.
+- Time: the token-based estimate is about 1.4 h plus about 15 min of evaluation; the probe's 40–45 s per step on the
+  longest examples would mean up to about 2.6 h, so three hours are reserved.
+- Each session writes its time and GPU energy every 10 steps and at each save, so a killed session still counts
+  and totals are marked incomplete after any interruption.

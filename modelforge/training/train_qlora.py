@@ -142,6 +142,48 @@ def build_trainer(args: argparse.Namespace, tokenizer, train_rows: list[dict], e
     return trainer, {"model_class": model_class, "lora_targets": targets, "coverage": coverage}
 
 
+RUN_KEYS = ("model", "revision", "data", "max_seq_len", "epochs", "lr", "lora_r", "lora_alpha", "lora_dropout",
+            "batch_size", "grad_accum", "seed", "enable_thinking", "max_steps", "save_steps", "eval_steps",
+            "eval_limit", "eval_exclude", "health_check_after")
+
+
+def run_identity(args: argparse.Namespace, data_manifest: dict) -> dict:
+    """Everything that defines the experiment; a resumed session must match it exactly."""
+    identity = {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items() if k in RUN_KEYS}
+    identity.update(train_sha256=data_manifest["train"]["sha256"], val_sha256=data_manifest["val"]["sha256"],
+                    prompt_sha256=data_manifest.get("prompt_sha256"))
+    return identity
+
+
+def check_run_identity(out: Path, identity: dict, resume: bool) -> None:
+    """A fresh run needs an empty output folder; --resume only continues the same experiment."""
+    path = out / "run_identity.json"
+    has_checkpoints = latest_checkpoint(out / "checkpoints") is not None
+    if resume:
+        if path.exists():
+            previous = json.loads(path.read_text())
+            changed = sorted(k for k in set(previous) | set(identity) if previous.get(k) != identity.get(k))
+            if changed:
+                raise SystemExit(f"--resume refused: {out} holds a run with different settings: {changed}")
+        elif has_checkpoints:
+            raise SystemExit(f"--resume refused: {out} has checkpoints but no run_identity.json to verify them")
+    elif has_checkpoints or path.exists():
+        raise SystemExit(f"{out} already holds a run; use a fresh --out, or --resume to continue that same run")
+    out.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(identity, indent=1, sort_keys=True) + "\n")
+
+
+def session_totals(out: Path) -> dict:
+    """Sum time and energy over every session, including ones that were killed (last periodic update)."""
+    records = [json.loads(f.read_text()) for f in sorted((out / "sessions").glob("*.json"))]
+    energy = [r["gpu_energy_joules"] for r in records]
+    return {"sessions": len(records),
+            "wall_seconds": round(sum(r["wall_seconds"] for r in records), 1),
+            "gpu_energy_joules": round(sum(energy), 1) if records and all(e is not None for e in energy) else None,
+            "complete": bool(records) and all(r["status"] == "completed" for r in records),
+            "note": "an interrupted session counts up to its last update (every 10 optimizer steps and at each save)"}
+
+
 def latest_checkpoint(checkpoint_dir: Path) -> Path | None:
     """Newest checkpoint whose trainer_state.json exists (the Trainer writes it last)."""
     complete = [p for p in checkpoint_dir.glob("checkpoint-*") if (p / "trainer_state.json").exists()]
@@ -155,10 +197,10 @@ def main(argv: list[str] | None = None) -> int:
     from transformers import AutoTokenizer
 
     from modelforge.energy import GpuEnergyMeter
-    from modelforge.training.callbacks import AdapterHealthCallback, HashingCollator
+    from modelforge.training.callbacks import AdapterHealthCallback, HashingCollator, SessionRecorder
 
-    args.out.mkdir(parents=True, exist_ok=True)
     data_manifest = json.loads((args.data / "data_manifest.json").read_text())
+    check_run_identity(args.out, run_identity(args, data_manifest), args.resume)
     tokenizer = AutoTokenizer.from_pretrained(args.model, revision=args.revision)
     splits = load_splits(tokenizer, args.data, args.max_seq_len, args.enable_thinking)
     train_rows, eval_rows = splits["train"][0], splits["val"][0]
@@ -183,7 +225,11 @@ def main(argv: list[str] | None = None) -> int:
     started_at = time.strftime("%Y-%m-%dT%H:%M:%S%z")
     started = time.monotonic()  # the WSL wall clock can jump; durations use a monotonic clock
     with GpuEnergyMeter() as meter:
+        recorder = SessionRecorder(args.out / "sessions", meter, started_at, started,
+                                   str(resume_from) if resume_from else None)
+        trainer.add_callback(recorder)
         result = trainer.train(resume_from_checkpoint=str(resume_from) if resume_from else None)
+        recorder.write(trainer.state.global_step, "completed")
     reading = meter.reading()
     adapter_dir = args.out / "adapter"
     trainer.model.save_pretrained(adapter_dir)
@@ -205,16 +251,14 @@ def main(argv: list[str] | None = None) -> int:
         "gpu_energy_this_session": {"method": reading.method, "joules": reading.gpu_energy_joules, "notes": reading.notes,
                                     "scope": "GPU only (NVML); excludes CPU, memory, storage, cooling and PSU losses"},
         "adapter_sha256": sha256_dir(adapter_dir),
+        "checkpoint_selection": "lowest eval_loss on the held-out validation rows, evaluated every --save-steps "
+                                "(frozen before training); generated-answer accuracy is measured afterwards on "
+                                "the separate comparison set",
+        "all_sessions": session_totals(args.out),
     }
     (args.out / "training_record.json").write_text(json.dumps(record, indent=1, default=str) + "\n")
-    # One line per session, so time and energy across interruptions can be summed.
-    with (args.out / "sessions.jsonl").open("a") as handle:
-        handle.write(json.dumps({"started": started_at, "resumed_from": record["resumed_from"],
-                                 "global_step_end": record["global_step"],
-                                 "wall_seconds": record["wall_seconds_this_session"],
-                                 "gpu_energy_joules": reading.gpu_energy_joules, "energy_method": reading.method}) + "\n")
-    print(json.dumps({k: record[k] for k in ("adapter_sha256", "global_step", "peak_vram_gib",
-                                             "wall_seconds_this_session", "gpu_energy_this_session")}, indent=1))
+    print(json.dumps({k: record[k] for k in ("adapter_sha256", "global_step", "best_checkpoint", "peak_vram_gib",
+                                             "all_sessions")}, indent=1))
     return 0
 
 
