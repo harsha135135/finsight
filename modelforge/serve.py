@@ -22,6 +22,12 @@ import time
 from pathlib import Path
 
 
+# FlashInfer's top-k/top-p sampler needs prebuilt kernels or nvcc, neither of which is installed on the
+# WSL box; vLLM then fails at its startup sampling pass. Greedy decoding never uses top-k/top-p, and the
+# base and tuned models share the server, so the PyTorch sampler changes nothing in the comparison.
+SERVE_ENV = {"VLLM_USE_FLASHINFER_SAMPLER": "0"}
+
+
 def build_command(model: str, revision: str, *, port: int = 8000, max_model_len: int = 5120,
                   gpu_memory_utilization: float = 0.87, max_lora_rank: int = 16,
                   loras: dict[str, Path] | None = None) -> list[str]:
@@ -64,13 +70,14 @@ def serving_record(model: str, revision: str, command: list[str], loras: dict[st
     return {"model": model, "revision": revision, "command": command, "adapters": adapters,
             "tokenizer": tokenizer_fingerprint(tokenizer), "environment": environment(),
             "serving_precision": "bf16 base weights (adapters trained with a 4-bit NF4 base)",
+            "environment_variables": SERVE_ENV,
             "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
 
 
 def main(model: str, revision: str, loras: dict[str, Path], dry_run: bool = False, **options) -> int:
     command = build_command(model, revision, loras=loras, **options)
     if dry_run:
-        print(" ".join(command))
+        print(" ".join([f"{k}={v}" for k, v in SERVE_ENV.items()] + command))
         return 0
     missing = [str(p) for p in loras.values() if not (p / "adapter_config.json").exists()]
     if missing:
@@ -81,5 +88,6 @@ def main(model: str, revision: str, loras: dict[str, Path], dry_run: bool = Fals
     path = out / f"serve-{time.strftime('%Y%m%dT%H%M%S')}.json"
     path.write_text(json.dumps(record, indent=1, default=str) + "\n")
     print(f"serving record: {path}\n{' '.join(command)}", flush=True)
+    os.environ.update(SERVE_ENV)
     os.execvp(command[0], command)
     return 0  # not reached
