@@ -1,0 +1,325 @@
+{
+ "artifacts": {
+  "adapter": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v2a/adapter/adapter_model.safetensors",
+   "sha256": "6cad872374ba28980cb73d8f109fd5533ac9ddf91658b32063a4f0db23d97b8e"
+  },
+  "exposure": {
+   "path": "artifacts/runs/20261107-v2a-exposure.json",
+   "sha256": "661f34214dfd331d3a27e9b77074b2d31a96b2950a0329850e8445503a4f0e3b"
+  },
+  "training_record": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v2a/training_record.json",
+   "sha256": "e696f114ca80abb2dbe3678ae3078ff89912227401053f1a1e9931a6e2cda54a"
+  },
+  "v2a_diagnostics": {
+   "path": "artifacts/runs/20261107-v2dev-v2a/diagnostics.json",
+   "sha256": "2a4a909234d6c1ec378ea1053533eb69a827c0b5a0528ffe9c015283b49bacf0"
+  },
+  "vs_base": {
+   "path": "artifacts/runs/20261107-v2a-vs-base.json",
+   "sha256": "26b41526632f542498554c7f3ef4fdcf0ae486ff30ff3fe1cb6132128ad133ec"
+  },
+  "vs_haiku": {
+   "path": "artifacts/runs/20261107-v2a-vs-haiku.json",
+   "sha256": "089112680c20e197aec100896bded5ebe9ea172064578cee0a5106bc9639333a"
+  },
+  "vs_v1": {
+   "path": "artifacts/runs/20261107-v2a-vs-v1.json",
+   "sha256": "8f15e4e1a5a94d013757557c078183bc09c61784fd37faa5a60c8d06a404ff27"
+  }
+ },
+ "description": "Experiment (a): v2a on finqa-grouped-v2 val_dev_eval",
+ "facts": {
+  "asymmetry": "v1's selection touched 49 of 66 val_dev groups; v2a's selection (val_select) touched none",
+  "experiment": "(a) clean negatives at v1's mix; plan written before results in docs/experiment-a-plan.md",
+  "exposure_split_vs_v1": {
+   "exposed": {
+    "ci95": [
+     -0.085,
+     0.025
+    ],
+    "n": 218,
+    "v1": 0.546,
+    "v2a": 0.514,
+    "v2a_minus_v1": -0.032
+   },
+   "unexposed": {
+    "ci95": [
+     -0.12,
+     0.1
+    ],
+    "n": 36,
+    "v1": 0.528,
+    "v2a": 0.528,
+    "v2a_minus_v1": 0.0
+   }
+  },
+  "mix": "283 / 1,711 = 16.5% of examples; 19.8 per 100 answerable (v1: 285 / 1,713 = 16.6%; 20.0)",
+  "negative_quality": "rule-filtered (~93% on the hand-audited validation sample, in-sample); not hand-verified",
+  "serving": "default FinQA protocol (same command as the v1/base development runs)",
+  "training": {
+   "eval_excluded": 0,
+   "eval_losses": [
+    [
+     30,
+     0.07745997607707977
+    ],
+    [
+     60,
+     0.05375634878873825
+    ],
+    [
+     90,
+     0.04927663505077362
+    ],
+    [
+     120,
+     0.04728923365473747
+    ],
+    [
+     150,
+     0.046778399497270584
+    ],
+    [
+     180,
+     0.0459175743162632
+    ],
+    [
+     210,
+     0.046107884496450424
+    ]
+   ],
+   "eval_rows": 237,
+   "exported_adapter": "tensors identical to checkpoint-180 (file hash differs only in metadata)",
+   "runtime_s": 5403.9563,
+   "selected_checkpoint": "checkpoint-180 (lowest val_select eval loss 0.045918; step 210: 0.046108)",
+   "steps": 210,
+   "train_data_sha256": "e5e9e444b712a90f9e5b4bd70825500ab315ee5a308ff709f92aadb3aa2cb7ea"
+  },
+  "vs_base": {
+   "abstention_recall_unanswerable": {
+    "a": 0.5,
+    "a_minus_b": 0.1,
+    "b": 0.4,
+    "ci95": [
+     -0.0526,
+     0.2558
+    ],
+    "n": 40
+   },
+   "accuracy_answerable": {
+    "a": 0.5157,
+    "a_minus_b": 0.378,
+    "b": 0.1378,
+    "ci95": [
+     0.307,
+     0.4508
+    ],
+    "n": 254
+   },
+   "diagnostic_lenient_quote_accuracy_answerable": {
+    "a": 0.5157,
+    "a_minus_b": 0.3307,
+    "b": 0.185,
+    "ci95": [
+     0.2667,
+     0.3975
+    ],
+    "n": 254
+   },
+   "evidence_validation_failure_rate": {
+    "a": 0.1224,
+    "a_minus_b": -0.3231,
+    "b": 0.4456,
+    "ci95": [
+     -0.3915,
+     -0.2581
+    ],
+    "n": 294
+   },
+   "false_abstention_answerable": {
+    "a": 0.0118,
+    "a_minus_b": -0.0157,
+    "b": 0.0276,
+    "ci95": [
+     -0.0323,
+     -0.0035
+    ],
+    "n": 254
+   },
+   "invalid_output_rate": {
+    "a": 0.0068,
+    "a_minus_b": -0.1939,
+    "b": 0.2007,
+    "ci95": [
+     -0.2527,
+     -0.1343
+    ],
+    "n": 294
+   },
+   "operational_failure_rate": {
+    "a": 0.0,
+    "a_minus_b": -0.0102,
+    "b": 0.0102,
+    "ci95": [
+     -0.0228,
+     0.0
+    ],
+    "n": 294
+   }
+  },
+  "vs_haiku": {
+   "abstention_recall_unanswerable": {
+    "a": 0.5,
+    "a_minus_b": -0.4,
+    "b": 0.9,
+    "ci95": [
+     -0.5581,
+     -0.2432
+    ],
+    "n": 40
+   },
+   "accuracy_answerable": {
+    "a": 0.5157,
+    "a_minus_b": -0.0866,
+    "b": 0.6024,
+    "ci95": [
+     -0.1622,
+     -0.0095
+    ],
+    "n": 254
+   },
+   "diagnostic_lenient_quote_accuracy_answerable": {
+    "a": 0.5157,
+    "a_minus_b": -0.0945,
+    "b": 0.6102,
+    "ci95": [
+     -0.1706,
+     -0.02
+    ],
+    "n": 254
+   },
+   "evidence_validation_failure_rate": {
+    "a": 0.1224,
+    "a_minus_b": 0.0204,
+    "b": 0.102,
+    "ci95": [
+     -0.0362,
+     0.0754
+    ],
+    "n": 294
+   },
+   "false_abstention_answerable": {
+    "a": 0.0118,
+    "a_minus_b": -0.0669,
+    "b": 0.0787,
+    "ci95": [
+     -0.1082,
+     -0.0314
+    ],
+    "n": 254
+   },
+   "invalid_output_rate": {
+    "a": 0.0068,
+    "a_minus_b": -0.034,
+    "b": 0.0408,
+    "ci95": [
+     -0.0631,
+     -0.0077
+    ],
+    "n": 294
+   },
+   "operational_failure_rate": {
+    "a": 0.0,
+    "a_minus_b": 0.0,
+    "b": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n": 294
+   }
+  },
+  "vs_v1": {
+   "abstention_recall_unanswerable": {
+    "a": 0.5,
+    "a_minus_b": 0.2,
+    "b": 0.3,
+    "ci95": [
+     0.093,
+     0.3158
+    ],
+    "n": 40
+   },
+   "accuracy_answerable": {
+    "a": 0.5157,
+    "a_minus_b": -0.0276,
+    "b": 0.5433,
+    "ci95": [
+     -0.0783,
+     0.0252
+    ],
+    "n": 254
+   },
+   "diagnostic_lenient_quote_accuracy_answerable": {
+    "a": 0.5157,
+    "a_minus_b": -0.0276,
+    "b": 0.5433,
+    "ci95": [
+     -0.0783,
+     0.0252
+    ],
+    "n": 254
+   },
+   "evidence_validation_failure_rate": {
+    "a": 0.1224,
+    "a_minus_b": -0.0306,
+    "b": 0.1531,
+    "ci95": [
+     -0.0769,
+     0.0123
+    ],
+    "n": 294
+   },
+   "false_abstention_answerable": {
+    "a": 0.0118,
+    "a_minus_b": 0.0039,
+    "b": 0.0079,
+    "ci95": [
+     0.0,
+     0.013
+    ],
+    "n": 254
+   },
+   "invalid_output_rate": {
+    "a": 0.0068,
+    "a_minus_b": 0.0034,
+    "b": 0.0034,
+    "ci95": [
+     0.0,
+     0.0112
+    ],
+    "n": 294
+   },
+   "operational_failure_rate": {
+    "a": 0.0,
+    "a_minus_b": 0.0,
+    "b": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n": 294
+   }
+  }
+ },
+ "name": "qwen3-4b-finqa-v2a-v2dev",
+ "runs": {
+  "artifacts/runs/20261107-v2dev-v2a": {
+   "config_sha256": "170a86f1624d3289615443f2f13484fb16f415cbc68fb4ea3643ac2b24296b7b",
+   "predictions_sha256": "c8b6f7b63227c8bf16d6077c1a21f9a9a472e83c2ca061d8288ef85d9c48a5ad",
+   "scorecard_sha256": "45922d1f2657bea264890922ff327cf7d6d731d422ef614b5d3b7a8e324ba0b3"
+  }
+ }
+}

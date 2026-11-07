@@ -257,3 +257,29 @@ number from the program, as FinSight does, they are equal). The gap is abstentio
 unanswerable questions, at the cost of declining 8% of answerable ones; v1 declines 30% and 1%. Of Haiku's 12 invalid
 outputs, 6 break field limits that the model-facing schema omits (the same schema every model receives) and 6 are
 semantic (for example, "answered" without a value).
+
+## Experiment (a): clean negatives at v1's mix (v2a)
+
+Plan written before results: `docs/experiment-a-plan.md`. Same base, data (identical 1,428 answerable rows),
+hyperparameters, seed, length and steps as v1; the 283 negatives are filter-cleaned and all paired with their answerable
+originals (rule-based, about 93% precision on the hand-audited validation sample; not hand-verified). Selection: lowest
+eval loss on all 237 `val_select` rows chose checkpoint 180 (0.045918; step 210: 0.046108); the exported adapter's
+tensors are identical to checkpoint 180. Training 90 min on the RTX PC. Evaluated with the default FinQA serve command,
+one request at a time (record `evals/records/qwen3-4b-finqa-v2a-v2dev.json`).
+
+| Metric | v1 | v2a | v2a − v1 (95% CI) | Haiku | n |
+|---|---:|---:|---|---:|---:|
+| Accuracy (answerable) | 0.543 | 0.516 | −0.028 (−0.078, +0.025) | 0.602 | 254 |
+| Program accuracy (diagnostic) | 0.595 | 0.571 | −0.024 (−0.060, +0.015) | 0.602 | 254 |
+| **Abstention recall (verified negatives)** | 0.300 (12) | **0.500 (20)** | **+0.200 (+0.093, +0.316)** | 0.900 | 40 |
+| False abstention | 0.008 | 0.012 | +0.004 (+0.000, +0.013) | 0.079 | 254 |
+| Invalid output | 0.003 | 0.007 | +0.003 (+0.000, +0.011) | 0.041 | 294 |
+| Evidence-validation failure | 0.153 | 0.122 | −0.031 (−0.077, +0.012) | 0.102 | 294 |
+
+By v1's selection exposure (answerable items): groups v1's selection touched (218): v2a 0.514 vs v1 0.546 (−0.032,
+CI −0.085 to +0.025); untouched groups (36): 0.528 vs 0.528.
+
+Reading: cleaning the negatives, with nothing else changed, raised correct abstention from 12 to 20 of the 40 verified
+unanswerable questions without a measurable cost on answerable questions or in false abstention. It is one training
+run (one seed) evaluated on development data, and v2a remains 40 points behind Haiku on abstention. The next
+controlled comparison adds wrong-period negatives (separately, as planned).
