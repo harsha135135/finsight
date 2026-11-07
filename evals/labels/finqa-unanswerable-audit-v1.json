@@ -1,0 +1,751 @@
+{
+ "candidates": {
+  "AAP/2011/page_28.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the S&P 500 row is removed; the prose repeats only part of the table and lacks 65.70"
+  },
+  "AAPL/2014/page_38.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "PP&E net row removed; remaining text gives capex purchases, not PP&E net balances"
+  },
+  "AAPL/2014/page_38.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "PP&E net row removed; no other PP&E net balances remain"
+  },
+  "ABMD/2004/page_26.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the thereafter and total rows are removed; the yearly rows alone give neither"
+  },
+  "ABMD/2009/page_56.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the contractual-obligations row is removed; only operating leases remain and there is no total row"
+  },
+  "ABMD/2009/page_88.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the contingent payment amounts are removed; remaining sentences mention milestones without amounts"
+  },
+  "ADBE/2018/page_86.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "beginning and ending balances removed; movement rows give the change but not the 2016 base needed for a percentage"
+  },
+  "AES/2016/page_185.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "final answer 0.05 appears in text_2, text_14",
+    "needed literal 60 appears (possibly in another format) in table_3"
+   ],
+   "pool": "val_dev",
+   "reason": "the $3 million dividend requirement is removed; flagged 0.05 matches are unrelated (ownership %, $5 million adjustment)"
+  },
+  "AES/2016/page_185.pdf-4::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "total row removed but all component rows remain: 618+100+60+4=782 and 460+60+18=538"
+  },
+  "AES/2016/page_191.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "settlements row removed; no other settlement figures remain"
+  },
+  "AES/2017/page_157.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the $246 million remaining-authorisation sentence is removed"
+  },
+  "AES/2017/page_157.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 2710 appears (possibly in another format) in table_3"
+   ],
+   "pool": "val_select",
+   "reason": "the US SBU and eliminations rows are removed and there is no total row"
+  },
+  "AES/2017/page_175.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the receivable sentence with $86 million and $53 million is removed"
+  },
+  "ALLE/2016/page_43.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "all index rows are removed"
+  },
+  "AMT/2004/page_81.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "net = total minus accumulated amortization: 1,502,747-517,444 = 985,303 and 1,454,130-434,381 = 1,019,749"
+  },
+  "ANSS/2013/page_55.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the other-long-term-obligations row is removed and there is no total row"
+  },
+  "AON/2009/page_48.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "margin row removed but segment revenue and operating income rows remain: min 180/1345=0.134"
+  },
+  "AON/2014/page_47.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the total operating income sentence is removed; remaining tables are segment-level"
+  },
+  "BLK/2016/page_119.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the only sentence with the 2015 gain and tax amounts is removed"
+  },
+  "BLL/2007/page_35.pdf-1::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "October can be backed out from the remaining total row (705,292 shares) but the rounded average price gives 37.747 vs gold 37.754"
+  },
+  "BLL/2007/page_47.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "intermediate value (step 0) 4 appears in text_1",
+    "needed literal 2012 appears (possibly in another format) in text_0, text_3, text_5",
+    "needed literal 2008 appears (possibly in another format) in text_0, text_7, text_9"
+   ],
+   "pool": "val_dev",
+   "reason": "the $26 million per-year German plan payment is removed; remaining payments are for other plans; flags are year literals"
+  },
+  "C/2017/page_328.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the 2017 Citi value 193.5 is removed; the $100 base alone does not give the return"
+  },
+  "C/2017/page_328.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the 2017 row with both Citi and S&P 500 values is removed"
+  },
+  "CAT/2017/page_85.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the dealer-network country count is removed; remaining counts belong to other distributor networks"
+  },
+  "CAT/2017/page_85.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "guarantees and investments rows removed; the guarantees share cannot be separated from what remains"
+  },
+  "CNP/2010/page_31.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "Minnesota = total gas operations minus the other states: 246,891-179,402 = 67,489 and 3,263,224-2,456,867 = 806,357"
+  },
+  "DISCA/2012/page_39.pdf-3::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [
+    "needed literal 2 appears (possibly in another format) in text_4"
+   ],
+   "pool": "val_dev",
+   "reason": "total revenue can be estimated from the remaining international-networks share (1637/0.37), giving a different approximation than the gold"
+  },
+  "DRE/2009/page_56.pdf-1::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the exact line is removed but closely related basic and diluted lines remain with different values"
+  },
+  "DRE/2009/page_72.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the RSU compensation cost sentence is removed; no other RSU cost figures remain"
+  },
+  "ETFC/2014/page_26.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the E*TRADE return row is removed"
+  },
+  "ETR/2002/page_24.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the operating revenue figures are removed; remaining rows are MW, GWh and capacity factor"
+  },
+  "EW/2017/page_82.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "goodwill = total purchase price 185.7 minus the other allocation rows = 142.1; net price = 185.7-3.5 = 182.2"
+  },
+  "FIS/2007/page_91.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the ending and beginning balances remain: 23,743 - 11,825 = 11,918, exactly the gold"
+  },
+  "GPN/2009/page_70.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "all intangible and total-asset rows are removed; only net assets remain"
+  },
+  "HII/2014/page_69.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 8905 appears (possibly in another format) in table_2"
+   ],
+   "pool": "val_select",
+   "reason": "the 2013 total backlog = Ingalls 8,905 + Newport News 9,133 = 18,038 (Other is nil in 2013)"
+  },
+  "HII/2017/page_104.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "final answer -0.210526 appears in table_6",
+    "needed literal 15 appears (possibly in another format) in text_16, table_3"
+   ],
+   "pool": "val_dev",
+   "reason": "senior-note costs = total unamortized costs (26, 27) minus credit-facility costs (11, 8), all remaining"
+  },
+  "HII/2017/page_104.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "intermediate value (step 0) 3 appears in text_3"
+   ],
+   "pool": "val_dev",
+   "reason": "credit-facility costs = total unamortized costs (26, 27) minus senior-note costs (15, 19), all remaining"
+  },
+  "HII/2017/page_104.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the $16 million credit carry-forward deferred tax asset is removed; only the $3 million NOL figure remains"
+  },
+  "HOLX/2015/page_98.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 377.0 appears (possibly in another format) in table_0, table_2, table_3",
+    "needed literal 377.0 appears (possibly in another format) in table_0, table_2, table_3"
+   ],
+   "pool": "val_dev",
+   "reason": "the fiscal 2017 amount 365.6 is removed; 377.0 survives only in column headers"
+  },
+  "HWM/2016/page_40.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 34.50 appears (possibly in another format) in table_3"
+   ],
+   "pool": "val_dev",
+   "reason": "the first-quarter row (30.66) is removed; only the second quarter remains"
+  },
+  "ILMN/2007/page_78.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the pro forma revenue row is removed; remaining rows are other pro forma measures"
+  },
+  "IP/2005/page_19.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "final answer -117 appears in text_22"
+   ],
+   "pool": "val_select",
+   "reason": "a remaining sentence says segment operating profits were $117 million lower in 2005"
+  },
+  "IP/2007/page_31.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "European sales and the total sales row are removed; 5.2B minus North American 3.9B would include other regions"
+  },
+  "IP/2007/page_31.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the exact sales rows remain ($5,245M and $4,925M), so the change is computable (more precisely than the gold's 0.3)"
+  },
+  "IP/2007/page_75.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "purchase obligations and total rows removed; only lease obligations remain"
+  },
+  "IP/2007/page_75.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "lease obligations and total rows removed; only purchase obligations remain"
+  },
+  "IP/2012/page_93.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the lease and total rows are removed; only purchase obligations remain"
+  },
+  "IP/2012/page_93.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the rent expense sentence is removed"
+  },
+  "JPM/2007/page_147.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 20048 appears (possibly in another format) in text_15"
+   ],
+   "pool": "val_dev",
+   "reason": "retained interest and total rows removed; the $20.0 billion in text_15 is assets owned, a different measure"
+  },
+  "JPM/2007/page_147.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 20048 appears (possibly in another format) in text_15"
+   ],
+   "pool": "val_dev",
+   "reason": "third-party and total rows removed; the $20.0 billion assets figure is a different measure"
+  },
+  "JPM/2007/page_157.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "total additions = originations + purchases, both remaining: 2335+798=3133 and 1512+627=2139"
+  },
+  "JPM/2007/page_33.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "final answer 0.201993 appears in text_3, text_10, text_16"
+   ],
+   "pool": "val_dev",
+   "reason": "the investment banking fees row is removed; remaining text has no figures (flags match page numbers)"
+  },
+  "JPM/2013/page_209.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "both year-end derivative rows are removed; remaining text has no year-end values"
+  },
+  "LKQ/2010/page_84.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the rental expense sentence is removed; no other rental expense figures remain"
+  },
+  "LKQ/2010/page_84.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the 2014 row and the total row are removed, so neither can be rebuilt from the other years"
+  },
+  "LKQ/2018/page_83.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the change equals 2018 warranty expense minus claims (43,682 - 43,571 = 111), both remaining"
+  },
+  "LMT/2006/page_37.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the October and December rows are removed; the quarter total minus November leaves two unknowns"
+  },
+  "LMT/2006/page_90.pdf-3::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "final answer 6.39597 appears in text_4"
+   ],
+   "pool": "val_select",
+   "reason": "the 2008 and 2012-2016 rows are removed; the flag matches an unrelated $641 million liability"
+  },
+  "LMT/2010/page_42.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the capital expenditure sentence is removed; remaining cash-flow rows don't isolate capex"
+  },
+  "LMT/2010/page_42.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 3173 appears (possibly in another format) in text_11"
+   ],
+   "pool": "val_select",
+   "reason": "the 2010 operating cash flow and the $374 million increase are removed; only the 2009 value remains"
+  },
+  "LMT/2013/page_74.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 48 appears (possibly in another format) in text_11"
+   ],
+   "pool": "val_select",
+   "reason": "the 2011 severance breakdown is removed; remaining severance figures are for 2012 and 2013"
+  },
+  "MAS/2018/page_35.pdf-1::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "adjusted margins can be backed out through reported margins (about 0.0055) but not to the gold 0.006"
+  },
+  "MAS/2018/page_60.pdf-1::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [
+    "needed literal 5 appears (possibly in another format) in table_9"
+   ],
+   "pool": "val_dev",
+   "reason": "current assets can be backed out of the remaining total (271), which differs from the gold 273"
+  },
+  "MMM/2005/page_95.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 130 appears (possibly in another format) in text_4"
+   ],
+   "pool": "val_dev",
+   "reason": "the $7 million liability is removed; only the $130 million receivable survives in text"
+  },
+  "MRO/2015/page_18.pdf-2::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [
+    "needed literal 128 appears (possibly in another format) in table_2"
+   ],
+   "pool": "val_select",
+   "reason": "the 2018 total could be summed from the remaining rows, but the year-labelled header was removed"
+  },
+  "MS/2014/page_292.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 2008 appears (possibly in another format) in text_0, text_3, text_4",
+    "needed literal 1999 appears (possibly in another format) in text_9"
+   ],
+   "pool": "val_select",
+   "reason": "the IRS review years are removed; the remaining years are New York state and city audits"
+  },
+  "MSI/2006/page_61.pdf-4::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "final answer 349.5 appears in table_3"
+   ],
+   "pool": "val_dev",
+   "reason": "the rental expense sentence is removed; the flagged 349.5 is an unrelated lease-payment cell"
+  },
+  "MSI/2009/page_65.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the 32% share and the segment's $7.1 billion sales are removed; no consolidated sales figure remains"
+  },
+  "PM/2015/page_127.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the total is the sum of three components and the removed derivatives row (123, 63) is one of them"
+  },
+  "PM/2018/page_24.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the 2014 PMI value 97.90 is removed; the $100 base alone does not give the return"
+  },
+  "PNC/2009/page_41.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 1012 appears (possibly in another format) in table_6"
+   ],
+   "pool": "val_dev",
+   "reason": "the $107 million gain sentence is removed; the residential 1,012 alone does not give the ratio"
+  },
+  "PNC/2009/page_41.pdf-4::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 1301 appears (possibly in another format) in text_6"
+   ],
+   "pool": "val_dev",
+   "reason": "commercial total = grand total - residential - other (2539-1012-226 = 1301); fair value = 1301 - 251 = 1050"
+  },
+  "PNC/2009/page_46.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "intermediate value (step 0) 2 appears in text_4, text_12, text_22"
+   ],
+   "pool": "val_dev",
+   "reason": "the BBB/Baa row is removed along with AA/Aa, so the identity cannot recover it"
+  },
+  "PNC/2009/page_46.pdf-2::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 2 appears (possibly in another format) in text_4, text_12, text_22"
+   ],
+   "pool": "val_dev",
+   "reason": "BBB/Baa = 100% - AAA - AA - A: 100-14-50-34 = 2 and 100-19-6-72 = 3"
+  },
+  "PPG/2013/page_40.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "net R&D = total (505, 468) - depreciation (17, 15) = 488, 453, all remaining"
+  },
+  "RCL/2014/page_17.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the 2010 row is removed; remaining shares are for 2014"
+  },
+  "SNPS/2006/page_69.pdf-2::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the total price rebuilds to 15,704 from its components, but backed-out goodwill is 3.30 vs the stated 3.4"
+  },
+  "STZ/2006/page_68.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [
+    "needed literal 513782 appears (possibly in another format) in table_0, table_1, table_2"
+   ],
+   "pool": "val_dev",
+   "reason": "current liabilities = total liabilities (805,914) - long-term (494,995) = 310,919"
+  },
+  "STZ/2006/page_68.pdf-3::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "total assets = net assets + liabilities = 1,848,575; goodwill = total minus the other asset rows = 634,203"
+  },
+  "SWKS/2006/page_81.pdf-1::unanswerable": {
+   "decision": "derivable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the change rows are removed but the balances remain: -599 - (-786) = 187"
+  },
+  "UNP/2008/page_27.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "other revenues and total rows removed; the share cannot be rebuilt from what remains"
+  },
+  "UNP/2014/page_25.pdf-4::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "a remaining sentence states a different 'fuel surcharge increased 6%' that could be read as the answer (gold 7.7%)"
+  },
+  "UNP/2014/page_35.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the headquarters buyout amount and investing total are removed; the remaining $99 million buyout is a different item"
+  },
+  "V/2013/page_41.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the August and total rows are removed; July and September alone do not give either"
+  },
+  "VLO/2018/page_25.pdf-3::unanswerable": {
+   "decision": "ambiguous",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the total can be rebuilt from monthly shares x prices but only to within 0.002% of the gold"
+  },
+  "VTR/2007/page_47.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the outstanding-shares sentence and the December repurchase row are removed"
+  },
+  "VTR/2007/page_47.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_dev",
+   "reason": "the outstanding-shares sentence and the December repurchase row are removed"
+  },
+  "ZBH/2003/page_40.pdf-1::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 47.4 appears (possibly in another format) in text_4"
+   ],
+   "pool": "val_dev",
+   "reason": "the 2003 Americas margin 51.2% is removed; text keeps only 2002 and 2001"
+  },
+  "ZBH/2003/page_40.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [
+    "needed literal 19.5 appears (possibly in another format) in text_12"
+   ],
+   "pool": "val_dev",
+   "reason": "the 2003 Europe margin 26.3% is removed; text keeps 2002, 2001 and a fourth-quarter figure"
+  },
+  "ZBH/2017/page_71.pdf-2::unanswerable": {
+   "decision": "verified_unanswerable",
+   "flags": [],
+   "pool": "val_select",
+   "reason": "the defined contribution expense sentence is removed"
+  }
+ },
+ "generator": {
+  "builder_version": "3",
+  "name": "gold_passages_removed"
+ },
+ "partition": {
+  "seed": 20261107,
+  "val_dev_groups": [
+   "AAPL/2014",
+   "ADBE/2018",
+   "AES/2003",
+   "AES/2015",
+   "AES/2016",
+   "ALXN/2007",
+   "AMAT/2014",
+   "AON/2009",
+   "AON/2011",
+   "AOS/2004",
+   "APD/2014",
+   "APD/2019",
+   "APTV/2014",
+   "BLK/2016",
+   "BLL/2007",
+   "C/2010",
+   "C/2017",
+   "CAG/2008",
+   "CAT/2017",
+   "DISCA/2012",
+   "DRE/2009",
+   "DRE/2013",
+   "ETFC/2014",
+   "GS/2016",
+   "HIG/2008",
+   "HII/2017",
+   "HOLX/2010",
+   "HOLX/2015",
+   "HWM/2016",
+   "ILMN/2007",
+   "IP/2007",
+   "JKHY/2014",
+   "JPM/2007",
+   "JPM/2013",
+   "LKQ/2010",
+   "LKQ/2018",
+   "LMT/2017",
+   "MA/2008",
+   "MAS/2018",
+   "MMM/2005",
+   "MRO/2014",
+   "MS/2017",
+   "MSI/2006",
+   "MSI/2009",
+   "OKE/2012",
+   "PKG/2009",
+   "PM/2015",
+   "PM/2018",
+   "PNC/2009",
+   "PNC/2013",
+   "PNC/2016",
+   "PNC/2018",
+   "PPG/2013",
+   "RE/2017",
+   "STT/2008",
+   "STZ/2006",
+   "SWKS/2006",
+   "TSCO/2017",
+   "TSCO/2018",
+   "UNP/2008",
+   "UNP/2014",
+   "V/2013",
+   "VLO/2018",
+   "VNO/2012",
+   "VTR/2007",
+   "ZBH/2003"
+  ],
+  "val_select_groups": [
+   "AAP/2011",
+   "AAP/2012",
+   "AAPL/2008",
+   "ABMD/2004",
+   "ABMD/2009",
+   "AES/2017",
+   "ALLE/2016",
+   "AMT/2004",
+   "ANSS/2013",
+   "AON/2014",
+   "APD/2013",
+   "BDX/2019",
+   "BLK/2013",
+   "CDNS/2006",
+   "CDNS/2012",
+   "CME/2012",
+   "CNP/2010",
+   "DISH/2013",
+   "DVN/2007",
+   "ETFC/2013",
+   "ETR/2002",
+   "EW/2016",
+   "EW/2017",
+   "FIS/2007",
+   "FRT/2005",
+   "GIS/2012",
+   "GPN/2009",
+   "GPN/2017",
+   "HII/2014",
+   "HOLX/2012",
+   "IP/2005",
+   "IP/2012",
+   "IPG/2009",
+   "IPG/2015",
+   "KHC/2016",
+   "L/2015",
+   "LLY/2018",
+   "LMT/2005",
+   "LMT/2006",
+   "LMT/2010",
+   "LMT/2013",
+   "MO/2012",
+   "MRO/2009",
+   "MRO/2015",
+   "MS/2014",
+   "NKE/2016",
+   "NWS/2016",
+   "OKE/2008",
+   "PM/2014",
+   "PNC/2011",
+   "PPG/2011",
+   "RCL/2014",
+   "RE/2015",
+   "RSG/2017",
+   "SNPS/2006",
+   "SPGI/2015",
+   "SPGI/2018",
+   "SYY/2019",
+   "TROW/2010",
+   "UA/2009",
+   "UA/2015",
+   "UNP/2013",
+   "UPS/2006",
+   "VRTX/2003",
+   "ZBH/2017"
+  ]
+ },
+ "review_summary": "Every candidate was reviewed manually by reading the remaining passages against the question and gold program; flags ordered the review only. Model outputs were never consulted. Excluded: derivable (an alternative derivation exists, typically an accounting identity such as total minus components, a roll-forward, or shares summing to 100%) and ambiguous (approximately derivable, or a closely related figure remains).",
+ "rules": "Audit of synthetic unanswerable examples (validation pool), recorded per example.\n\nA synthetic unanswerable variant removes an item's gold passages. Removing a needed\nliteral does not prove the answer cannot be derived another way, so every retained\nnegative evaluation example gets a recorded manual review. Automatic flags, computed\nfrom the gold program and the remaining passages only (never from model outputs),\norder the review and are stored next to each decision:\n\n* the final answer, or an intermediate step value, appears in the remaining evidence;\n* a needed literal appears in the remaining evidence in another format\n  (3,460 / 3.46 billion / a percentage);\n* the label of a removed table row reappears in another remaining table row.\n\nDecisions: ``verified_unanswerable`` (kept as a negative), ``derivable`` (excluded;\nthe reason says how) or ``ambiguous`` (excluded).",
+ "version": "finqa-unanswerable-audit-v1"
+}
