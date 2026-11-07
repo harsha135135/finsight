@@ -63,6 +63,9 @@ markers = [
 # The Mac runs the app; the WSL2 GPU box runs training/serving. vLLM pins an older
 # FastAPI, so the two extras are installed in separate environments.
 conflicts = [[{ extra = "app" }, { extra = "gpu" }]]
+# uv-managed CPython on every machine: same build, and it ships the headers Triton needs to
+# compile its runtime helper (Ubuntu's system Python lacks Python.h without python3.12-dev).
+python-preference = "only-managed"
 environments = [
     "sys_platform == 'darwin' and platform_machine == 'arm64'",
     "sys_platform == 'linux' and platform_machine == 'x86_64'",
