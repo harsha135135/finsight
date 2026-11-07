@@ -23,7 +23,10 @@ ModelForge measures how much domain fine-tuning improves a local Qwen model, and
 
 | Research application | FastAPI (`/research-jobs`, status, report, evidence, cancel) over Postgres; a LangGraph worker with checkpoints on its dedicated session, ownership tokens and a supervisor for frozen workers; SEC EDGAR ingestion (filing by fiscal-year end, as-reported XBRL facts, stored originals); table-aware parsing and metric+period retrieval; the `finsight-report-v1` contract with per-finding validation; Qwen, Claude and recorded providers with one Postgres spend ledger. |
 
-Still to come: the real-filing demo run (needs `FINSIGHT_SEC_USER_AGENT`), FinanceBench in ModelForge, Docker packaging and CI. See `docs/` and the plan.
+| Demo on a real filing | 3M FY2018 10-K through the API and worker with local Qwen: revenue 32,765M, operating margin 22.0%, capex 1,577M, all agreeing with XBRL as reported; evidence gaps end as `insufficient_evidence` ([docs/demo-2026-11-07.md](docs/demo-2026-11-07.md)). |
+| Packaging | `docker compose up -d`: Postgres, migrations, API (127.0.0.1:8080), worker under a watchdog, supervisor; local Qwen via `host.docker.internal:8000`. CI workflow: pytest with Postgres, image build. |
+
+Still to come: FinanceBench in ModelForge, the Claude reference run (needs `ANTHROPIC_API_KEY` in `.env`), the watchlist scheduler. See `docs/` and the plan.
 
 ## Quick start (offline, no API key)
 
