@@ -1,0 +1,21 @@
+# FinSight services on the Mac. GPU inference stays on the PC, reached through the SSH tunnel
+# (containers use host.docker.internal:8000). Only Postgres for now; api and worker come later.
+name: finsight
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: finsight
+      POSTGRES_PASSWORD: finsight
+      POSTGRES_DB: finsight
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - finsight-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finsight -d finsight"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  finsight-db:

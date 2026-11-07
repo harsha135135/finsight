@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="FINSIGHT_", env_file=".env", extra="ignore")
 
     state_dir: Path = Path(".finsight")
-    database_url: str = "postgresql://finsight:finsight@localhost:5432/finsight"
+    database_url: str = "postgresql://finsight:finsight@127.0.0.1:54329/finsight"
     api_key: SecretStr | None = None
     sec_user_agent: str | None = Field(default=None, description="SEC requires 'Name contact@example.com'")
 
