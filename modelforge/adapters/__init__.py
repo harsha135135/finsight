@@ -2,19 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 from typing import Protocol
 
-from finsight.contracts import ModelAttempt
+from finsight.reasoning.base import Generation
 from modelforge.items import EvalItem
 
-
-@dataclass
-class Generation:
-    """Raw model text plus provider accounting. ``text`` is None when no output arrived."""
-
-    text: str | None
-    attempts: list[ModelAttempt] = field(default_factory=list)
+__all__ = ["Adapter", "Generation", "make_adapter"]
 
 
 class Adapter(Protocol):
@@ -34,4 +27,10 @@ def make_adapter(name: str, **options) -> Adapter:
     if name == "qwen":
         from modelforge.adapters.qwen import QwenAdapter
         return QwenAdapter(**options)
-    raise ValueError(f"unknown adapter {name!r}; choose gold, abstain or qwen")
+    if name == "claude":
+        from modelforge.adapters.claude import ClaudeAdapter
+        return ClaudeAdapter(**options)
+    if name == "recorded":
+        from modelforge.adapters.recorded import RecordedAdapter
+        return RecordedAdapter(**options)
+    raise ValueError(f"unknown adapter {name!r}; choose gold, abstain, qwen, claude or recorded")

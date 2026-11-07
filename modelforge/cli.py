@@ -42,7 +42,7 @@ def main(argv: list[str] | None = None) -> int:
     cs = sub.add_parser("calc-suite", help="execute FinQA gold programs (measures the calculator, not a model)")
     cs.add_argument("--revision", default=None)
     rp = sub.add_parser("run", help="evaluate an adapter on frozen manifest items")
-    rp.add_argument("--adapter", required=True, choices=["gold", "abstain", "qwen"])
+    rp.add_argument("--adapter", required=True, choices=["gold", "abstain", "qwen", "claude", "recorded"])
     rp.add_argument("--manifest", default="finqa-grouped")
     rp.add_argument("--selection", default="val_200", help="a manifest sample (e.g. val_200) or split (val, test)")
     rp.add_argument("--limit", type=int)
@@ -60,6 +60,11 @@ def main(argv: list[str] | None = None) -> int:
     cp = sub.add_parser("compare", help="paired comparison of two runs on the same items (A minus B)")
     cp.add_argument("run_a", type=Path)
     cp.add_argument("run_b", type=Path)
+    es = sub.add_parser("estimate", help="dry-run Claude cost estimate for a selection (no API calls)")
+    es.add_argument("--manifest", default="finqa-grouped-v2")
+    es.add_argument("--selection", default="val_dev_eval")
+    es.add_argument("--model", action="append", default=[])
+    es.add_argument("--batch", action="store_true")
     dg = sub.add_parser("diagnose", help="program accuracy and arithmetic consistency (diagnostics.json)")
     dg.add_argument("run_dir", type=Path)
     dg.add_argument("--baseline", type=Path)
@@ -126,6 +131,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "compare":
         from modelforge import runner
         print(json.dumps(runner.compare(args.run_a, args.run_b), indent=1))
+        return 0
+    if args.command == "estimate":
+        from modelforge import estimate
+        print(json.dumps(estimate.estimate(args.manifest, args.selection,
+                                           args.model or ["claude-haiku-5-5", "claude-sonnet-5-5"], batch=args.batch), indent=1))
         return 0
     if args.command == "diagnose":
         from modelforge import runner
