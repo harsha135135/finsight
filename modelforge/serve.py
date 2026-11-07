@@ -23,7 +23,7 @@ from pathlib import Path
 
 
 def build_command(model: str, revision: str, *, port: int = 8000, max_model_len: int = 5120,
-                  gpu_memory_utilization: float = 0.90, max_lora_rank: int = 16,
+                  gpu_memory_utilization: float = 0.87, max_lora_rank: int = 16,
                   loras: dict[str, Path] | None = None) -> list[str]:
     executable = shutil.which("vllm")
     base = [executable] if executable else [sys.executable, "-m", "vllm.entrypoints.cli.main"]

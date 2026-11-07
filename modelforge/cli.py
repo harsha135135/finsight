@@ -64,7 +64,8 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--lora", action="append", default=[], metavar="NAME=PATH")
     sv.add_argument("--port", type=int, default=8000)
     sv.add_argument("--max-model-len", type=int, default=5120)
-    sv.add_argument("--gpu-memory-utilization", type=float, default=0.90)
+    sv.add_argument("--gpu-memory-utilization", type=float, default=0.87,
+                    help="Windows keeps ~1.2 GiB of the 12 GiB card; 0.90 does not fit")
     sv.add_argument("--max-lora-rank", type=int, default=16)
     sv.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
