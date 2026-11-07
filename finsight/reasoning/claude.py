@@ -39,7 +39,10 @@ class ClaudeProvider:
         self.effort = effort
         self.max_tokens = max_tokens
         self.ledger = ledger
-        self.client = client or anthropic.Anthropic(max_retries=0)
+        if client is None:
+            from finsight.settings import anthropic_client
+            client = anthropic_client()
+        self.client = client
         self.settings = {"provider": "anthropic", "model": model, "effort": effort, "max_tokens": str(max_tokens),
                          "structured_output": "output_config.format json_schema", "fallbacks": "off",
                          "sampling": "server defaults (none sent)"}

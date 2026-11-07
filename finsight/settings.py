@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from pathlib import Path
 
-from pydantic import Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -15,6 +15,10 @@ class Settings(BaseSettings):
     state_dir: Path = Path(".finsight")
     database_url: str = "postgresql://finsight:finsight@127.0.0.1:54329/finsight"
     api_key: SecretStr | None = None
+    # Read from the environment or .env (pydantic-settings does not export .env to the process environment,
+    # where the SDK would look). Never logged.
+    anthropic_api_key: SecretStr | None = Field(
+        default=None, validation_alias=AliasChoices("ANTHROPIC_API_KEY", "FINSIGHT_ANTHROPIC_API_KEY"))
     sec_user_agent: str | None = Field(default=None, description="SEC requires 'Name contact@example.com'")
 
     # Claude spend guard: hard project-wide ceiling until the final evaluation is approved.
@@ -34,3 +38,11 @@ class Settings(BaseSettings):
 
 def get_settings() -> Settings:
     return Settings()
+
+
+def anthropic_client(**kwargs):
+    """The official SDK client with SDK retries off (FinSight's ledger decides what is retried)."""
+    import anthropic
+
+    key = get_settings().anthropic_api_key
+    return anthropic.Anthropic(api_key=key.get_secret_value() if key else None, max_retries=0, **kwargs)

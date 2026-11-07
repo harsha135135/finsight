@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from decimal import Decimal
 import sys
 from collections import Counter
 from datetime import datetime, timezone
@@ -65,6 +66,15 @@ def main(argv: list[str] | None = None) -> int:
     es.add_argument("--selection", default="val_dev_eval")
     es.add_argument("--model", action="append", default=[])
     es.add_argument("--batch", action="store_true")
+    cb = sub.add_parser("claude-batch", help="Claude reference run via the Message Batches API (paid; see module docs)")
+    cb.add_argument("step", choices=["plan", "count", "submit", "collect", "reconcile"])
+    cb.add_argument("--name", required=True)
+    cb.add_argument("--manifest", default="finqa-grouped-v2")
+    cb.add_argument("--selection", default="val_dev_eval")
+    cb.add_argument("--model", default="claude-haiku-5-5")
+    cb.add_argument("--effort", default="medium")
+    cb.add_argument("--run-cap", type=Decimal, default=None, help="USD ceiling for this run's worst case (count)")
+    cb.add_argument("--max-tokens", default="auto")
     dg = sub.add_parser("diagnose", help="program accuracy and arithmetic consistency (diagnostics.json)")
     dg.add_argument("run_dir", type=Path)
     dg.add_argument("--baseline", type=Path)
@@ -134,6 +144,27 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "compare":
         from modelforge import runner
         print(json.dumps(runner.compare(args.run_a, args.run_b), indent=1))
+        return 0
+    if args.command == "claude-batch":
+        from modelforge import claude_batch
+        if args.step == "plan":
+            print(json.dumps({k: v for k, v in claude_batch.plan(args.name, args.manifest, args.selection, args.model,
+                                                                  args.effort).items() if k != "requests"}, default=str, indent=1))
+            return 0
+        from finsight.settings import anthropic_client
+        client = anthropic_client()
+        if args.step == "count":
+            if args.run_cap is None:
+                parser.error("count needs --run-cap")
+            print(json.dumps(claude_batch.count(args.name, client, run_cap_usd=args.run_cap, max_tokens=args.max_tokens), indent=1))
+            return 0
+        from finsight.settings import get_settings
+        from finsight.spend import SpendLedger
+        from finsight.storage.db import connect
+        settings = get_settings()
+        ledger = SpendLedger(connect(settings.database_url, application_name="modelforge-claude-batch"), settings.spend_limit_usd)
+        step = {"submit": claude_batch.submit, "collect": claude_batch.collect, "reconcile": claude_batch.reconcile}[args.step]
+        print(json.dumps(step(args.name, client, ledger), default=str, indent=1))
         return 0
     if args.command == "estimate":
         from modelforge import estimate
