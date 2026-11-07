@@ -6,7 +6,8 @@
 | citation lookup | every cited passage was supplied |
 | figure matching | each quoted figure appears in its passage and normalizes to the operand |
 | source period | the figure sits under the requested period in the source (column header or sentence) |
-| units | additive steps do not mix units |
+| units | additive steps do not mix units; the finding's unit comes from its operands (a division of two
+  same-unit figures is a ratio), never from the model's label |
 | permitted literals | every financial quantity is a cited operand |
 | Decimal execution | the calculation executes exactly |
 | metric check | the operands are the requested metric (row label or sentence matches its synonyms) |
@@ -124,8 +125,24 @@ def validate_finding(finding: FindingOutput, supplied: dict[str, Passage]) -> Va
         return ValidatedFinding(**base, status="rejected", operands=operands, issues=[str(exc)])
     calculation = [{"op": s.op.value, "args": s.args, "value": format_value(v)} for s, v in zip(finding.program, results)]
     claims = [_claim(c, supplied, results[-1]) for c in finding.explanation]
-    return ValidatedFinding(**base, status="accepted", value=format_value(results[-1]), unit=finding.unit,
-                            operands=operands, calculation=calculation, claims=claims)
+    return ValidatedFinding(**base, status="accepted", value=format_value(results[-1]),
+                            unit=_result_unit(finding, by_name), operands=operands, calculation=calculation,
+                            claims=claims)
+
+
+def _result_unit(finding, by_name) -> str | None:
+    """Unit of the result, derived from the cited operands rather than the model's declared unit:
+    a division of two same-unit figures is a ratio; additive steps keep the operands' common unit;
+    anything else is left unlabelled (None) rather than guessed."""
+    units = {op.unit for op in finding.operands}
+    ops = {step.op.value for step in finding.program}
+    last = finding.program[-1] if finding.program else None
+    if last is not None and last.op.value == "divide":
+        named = [by_name[a] for a in last.args if a in by_name]
+        return "ratio" if len(named) == len(last.args) and len({op.unit for op in named}) == 1 else None
+    if len(units) == 1 and ops <= ADDITIVE:
+        return units.pop()
+    return None
 
 
 def _other_period_allowed(finding: FindingOutput, op) -> bool:

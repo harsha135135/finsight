@@ -24,7 +24,63 @@ METRICS: dict[str, dict] = {
     "net_income": {"terms": ["net income", "net earnings"], "concepts": ["NetIncomeLoss"]},
 }
 DERIVED = {"operating_margin": ("operating_income", "revenue")}
-_SECTION_BONUS = {"item_8": 1.0, "item_7": 0.5}
+_SECTION_BONUS = {"item_8": 1.0, "item_7": 0.5, "item_6": 0.5}
+# Tables that report a slice of the company (segments, geographies, quarters) or non-GAAP measures share row
+# labels with the consolidated statements; they rank below them.
+_SCOPED = re.compile(r"quarter|three months|six months|nine months|segment|business \(|% of consolidated|"
+                     r"non-gaap|geographic|united states|asia pacific|europe|latin america", re.I)
+_PERIOD_WORDS = re.compile(r"\b(?:years?|fiscal|ended|ending|as of|january|february|march|april|may|june|july|august|"
+                           r"september|october|november|december|\d{1,2})\b|[*,.:()\s]", re.I)
+_EXACT_EXTRA = {"net_income": re.compile(r"^net (?:income|earnings) attributable to (?!non)[\w .,&'-]+$")}
+
+
+def _cells(text: str) -> tuple[str, list[tuple[str, str]], str]:
+    body, _, meta = text.partition("  [table:")
+    parts = body.split(" | ")
+    cells = [(c.rpartition(": ")[0], c.rpartition(": ")[2]) for c in parts[1:]]
+    return parts[0].strip(), cells, meta
+
+
+def _norm_label(label: str) -> str:
+    value = label.lower()
+    value = re.sub(r"\((?:in )?(?:millions|thousands|billions)[^)]*\)|\([a-z&]{2,6}\)|[*\u2020\u2021]|\(\d\)", "", value)
+    value = re.sub(r"^total\s+", "", value.strip())
+    return " ".join(re.sub(r"[\s:,.]+$", "", value).split())
+
+
+def label_quality(text: str, metric: str, is_table: bool) -> str | None:
+    """'exact' when the row label is the metric itself, 'partial' when it only contains a metric term."""
+    terms = METRICS[metric]["terms"]
+    if not is_table:
+        return "partial" if label_matches(text, terms, False) else None
+    label = _norm_label(_cells(text)[0])
+    if label in terms or (metric in _EXACT_EXTRA and _EXACT_EXTRA[metric].match(label)):
+        return "exact"
+    return "partial" if label_matches(text, terms, True) else None
+
+
+def period_quality(text: str, year: int, is_table: bool) -> str | None:
+    """'clean' when a column header is just the fiscal year (e.g. "2018", "Years ended December 31, 2018"),
+    'qualified' when the header adds a scope (quarter, geography); None when no value is reported for the year."""
+    if not is_table:
+        return "clean" if period_matches(text, year, False) else None
+    found = None
+    for header, value in _cells(text)[1]:
+        if re.search(rf"\b{year}\b", header) and value.strip() and value.strip() not in ("—", "-", "$"):
+            if not _PERIOD_WORDS.sub("", header.replace(str(year), "")):
+                return "clean"
+            found = "qualified"
+    return found
+
+
+def _sentence_reports(text: str, terms: list[str], year: int) -> bool:
+    """Prose counts only when one sentence names the metric, the year and a figure."""
+    for sentence in re.split(r"(?<=[.;])\s+", text):
+        low = sentence.lower()
+        if (re.search(rf"\b{year}\b", low) and re.search(r"\$?\d[\d,]*(?:\.\d+)?\s*(?:billion|million|%)", low)
+                and any(re.search(rf"(?<![a-z]){re.escape(t)}(?![a-z])", low) for t in terms)):
+            return True
+    return False
 
 
 @dataclass
@@ -35,12 +91,30 @@ class Candidate:
     location: dict
     text: str
     rank: float
-    label_match: bool
-    period_match: bool
+    label: str | None                   # exact | partial | None
+    period: str | None                  # clean | qualified | None
+    scoped: bool = False
+    prose_reports: bool = False
+
+    @property
+    def is_table(self) -> bool:
+        return self.location.get("table") is not None
+
+    @property
+    def label_match(self) -> bool:
+        return self.label == "exact" if self.is_table else self.prose_reports
+
+    @property
+    def period_match(self) -> bool:
+        return self.period is not None
 
     @property
     def score(self) -> float:
-        return self.rank + 2.0 * self.label_match + 2.0 * self.period_match + _SECTION_BONUS.get(self.section, 0.0)
+        bonus = _SECTION_BONUS.get(self.section, 0.0)
+        if self.is_table:
+            return (min(self.rank, 1.0) + {"exact": 4.0, "partial": 1.0}.get(self.label, 0.0)
+                    + {"clean": 3.0, "qualified": 1.0}.get(self.period, 0.0) + bonus - 3.0 * self.scoped)
+        return min(self.rank, 1.0) + 2.0 * self.prose_reports + 0.5 * bonus
 
 
 @dataclass
@@ -88,15 +162,19 @@ def search(conn, document_ids: list[str], metric: str, year: int, limit: int = 1
     rows = conn.execute(
         f"WITH q AS (SELECT ({query}) AS query) SELECT p.id, p.document_id, p.section, p.location, p.text, "
         f"ts_rank_cd(p.tsv, q.query) AS rank FROM passages p, q WHERE p.document_id = ANY(%s) AND p.tsv @@ q.query "
-        f"ORDER BY rank DESC LIMIT 200", (*terms, document_ids)).fetchall()
+        f"ORDER BY rank DESC LIMIT 5000", (*terms, document_ids)).fetchall()
     candidates = []
     for row in rows:
         is_table = row["location"].get("table") is not None
+        _, _, meta = _cells(row["text"])
+        headers = " ".join(h for h, _ in _cells(row["text"])[1]) if is_table else ""
         candidates.append(Candidate(id=row["id"], document_id=row["document_id"], section=row["section"],
                                     location=row["location"], text=row["text"], rank=float(row["rank"]),
-                                    label_match=label_matches(row["text"], terms, is_table),
-                                    period_match=period_matches(row["text"], year, is_table)))
-    candidates.sort(key=lambda c: c.score, reverse=True)
+                                    label=label_quality(row["text"], metric, is_table),
+                                    period=period_quality(row["text"], year, is_table),
+                                    scoped=is_table and bool(_SCOPED.search(meta + " " + headers)),
+                                    prose_reports=not is_table and _sentence_reports(row["text"], terms, year)))
+    candidates.sort(key=lambda c: (c.score, -len(c.text)), reverse=True)
     top = candidates[:limit]
     if any(c.label_match and c.period_match for c in candidates):
         return Retrieval(metric, year, "found", top)

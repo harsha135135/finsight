@@ -14,6 +14,7 @@ class Generation:
 
     text: str | None
     attempts: list[ModelAttempt] = field(default_factory=list)
+    raw: str | None = None              # everything received, kept for audit even when unusable (e.g. truncated)
 
 
 class ModelProvider(Protocol):

@@ -57,3 +57,12 @@ def test_insufficient_evidence_is_its_own_finding():
     (missing,) = run(finding("net_income", [], status="insufficient_evidence", unit=None,
                              missing="the supplied passages do not report net income for FY2018"))
     assert missing.status == "insufficient_evidence" and "net income" in missing.issues[0]
+
+
+def test_unit_comes_from_the_operands_not_the_model_label():
+    # Seen on the real 3M filing: a model labelled revenue "ratio", which would render $32.8B as a percentage.
+    revenue, margin = run(finding("revenue", [op("revenue", SALES, "$ 32,765", "32765")], unit="ratio"),
+                          finding("operating_margin", [op("operating_income", OPINC, "7,207", "7207"),
+                                                       op("revenue", SALES, "32,765", "32765")],
+                                  [{"op": "divide", "args": ["operating_income", "revenue"]}], unit="USD"))
+    assert revenue.unit == "USD" and margin.unit == "ratio"

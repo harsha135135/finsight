@@ -25,7 +25,7 @@ from finsight.contracts import Passage, PassageLocation
 from finsight.contracts.report import REPORT_CONTRACT, ReportOutput
 from finsight.findings import validate_report, year_of
 from finsight.ingestion.html import PARSER_VERSION, parse_filing
-from finsight.ingestion.sec import SecSource
+from finsight.ingestion.sec import NoFilingError, SecSource
 from finsight.reasoning.base import ModelProvider
 from finsight.reasoning.prompt import PROMPT_VERSION, SYSTEM, report_schema, user_message
 from finsight.reporting import markdown
@@ -98,12 +98,18 @@ class ResearchStages:
             raise RuntimeError("SEC ingestion is not configured (set FINSIGHT_SEC_USER_AGENT with a contact email)")
         year = year_of(request["period"])
         metrics = request.get("metrics") or infer_metrics(request["question"])
-        if not metrics:
-            raise RuntimeError("the question names no supported metric")
+        unknown = [m for m in metrics if m not in METRICS and m not in DERIVED]
+        if not metrics or unknown:
+            supported = ", ".join(sorted([*METRICS, *DERIVED]))
+            return self._gap(request, metrics, f"the question asks for {', '.join(unknown) or 'no metric'} that FinSight "
+                                               f"can evidence from filings (supported: {supported})")
         cutoff = date.fromisoformat(request["cutoff_date"]) if request.get("cutoff_date") else None
-        cik = self.source.resolve_cik(request["company"])
-        filings, fye = self.source.filings(cik)
-        choice = SecSource.choose_annual(filings, year, fye, cutoff)
+        try:
+            cik = self.source.resolve_cik(request["company"])
+            filings, fye = self.source.filings(cik)
+            choice = SecSource.choose_annual(filings, year, fye, cutoff)
+        except NoFilingError as exc:
+            return self._gap(request, metrics, str(exc))
         document = self.source.fetch_document(choice.filing)
         html = Path(document["artifact_path"]).read_text(errors="replace")
         short = f"{choice.filing.accession}".replace("-", "")[-10:]
@@ -130,8 +136,16 @@ class ResearchStages:
                           "passages": [{"id": k, "text": v} for k, v in supplied.items()], "xbrl": xbrl,
                           "companyfacts_snapshot": snapshot})
 
+    @staticmethod
+    def _gap(request: dict, metrics: list[str], reason: str) -> dict:
+        """No filing or no supported metric: the job ends as insufficient evidence, with the reason."""
+        return {"company": request["company"], "period": request["period"], "metrics": metrics, "gap": reason,
+                "filing": {}, "evidence": {}, "passages": [], "xbrl": {}}
+
     # ------------------------------------------------------------------ analysis
     def analysis(self, request: dict, research: dict) -> dict:
+        if research.get("gap"):
+            return {"status": "gap", "reason": research["gap"]}
         requested = [(m, research["period"]) for m in research["metrics"]]
         missing = {m: e["reason"] for m, e in research["evidence"].items() if e["status"] == "missing"}
         if not research["passages"]:
@@ -139,8 +153,9 @@ class ResearchStages:
                 {"metric": m, "period": p, "status": "insufficient_evidence", "operands": [], "program": [], "unit": None,
                  "explanation": [], "missing": "no passage reports this metric"} for m, p in requested], "unresolved": []}}
         system = SYSTEM
-        user = user_message(research["company"], research["filing"], requested, research["passages"], missing)
-        schema = report_schema()
+        user = user_message(research["company"], research["filing"], requested, research["passages"], missing,
+                            research["evidence"])
+        schema = report_schema(research["metrics"], research["period"])
         error = None
         for attempt in (1, 2):
             prompt = user if error is None else f"{user}\n\nYour previous output was invalid ({error}). Return valid JSON."
@@ -172,16 +187,18 @@ class ResearchStages:
         for record in generation.attempts:
             self.conn.execute(
                 "INSERT INTO model_attempts (id, scope, job_id, stage, attempt, request_sha256, provider, model, status, "
-                "paid, usage, latency_ms, model_version, error) VALUES (gen_random_uuid(), 'finsight', %s, 'analysis', %s, "
-                "'unpaid', %s, %s, %s, false, %s, %s, %s, %s) ON CONFLICT (job_id, stage, attempt) DO NOTHING",
+                "paid, usage, latency_ms, model_version, stop_reason, response, error) VALUES (gen_random_uuid(), "
+                "'finsight', %s, 'analysis', %s, 'unpaid', %s, %s, %s, false, %s, %s, %s, %s, %s, %s) "
+                "ON CONFLICT (job_id, stage, attempt) DO NOTHING",
                 (self.job_id, attempt, self.provider.provider, self.provider.model,
                  "completed" if record.status == "ok" else "failed",
                  json.dumps({"input_tokens": record.input_tokens_uncached, "output_tokens": record.output_tokens}),
-                 record.latency_ms, record.served_model, record.error))
+                 record.latency_ms, record.served_model, record.status,
+                 json.dumps({"text": (generation.raw or generation.text or "")[:50_000]}), record.error))
 
     # ------------------------------------------------------------------ validation
     def validation(self, request: dict, analysis: dict, research: dict) -> dict:
-        carry = {k: research[k] for k in ("company", "period", "metrics", "filing", "evidence", "xbrl")}
+        carry = {k: research.get(k) for k in ("company", "period", "metrics", "filing", "evidence", "xbrl", "gap")}
         if analysis["status"] != "ok":
             return {"status": analysis["status"], "reason": analysis["reason"], "findings": [], "research": carry}
         ids = [p["id"] for p in research["passages"]]
@@ -203,6 +220,12 @@ class ResearchStages:
     def review(self, request: dict, validation: dict) -> dict:
         research = validation["research"]
         unresolved = []
+        if validation["status"] == "gap":
+            return {"outcome": "insufficient_evidence", "reason": validation["reason"], "unresolved": [validation["reason"]],
+                    "research": research,
+                    "findings": [{"metric": m, "period": research["period"], "status": "insufficient_evidence",
+                                  "issues": [validation["reason"]], "operands": [], "calculation": [], "claims": [],
+                                  "value": None, "unit": None, "checks": []} for m in research["metrics"]]}
         if validation["status"] != "ok":
             return {"outcome": "blocked" if validation["status"] == "blocked" else "failed",
                     "reason": validation.get("reason"), "findings": [], "unresolved": [validation.get("reason")],
@@ -212,7 +235,9 @@ class ResearchStages:
             f = dict(f, checks=[])
             if f["status"] == "accepted":
                 f["checks"], problems = self._xbrl_checks(f, research["xbrl"])
-                unresolved += problems
+                if problems:  # disagrees with XBRL as reported in the same filing: not accepted
+                    f["status"], f["issues"] = "rejected", [*f.get("issues", []), *problems]
+                    unresolved += [f"{f['metric']} {f['period']}: rejected ({'; '.join(problems)})"]
             elif f["status"] == "rejected":
                 unresolved.append(f"{f['metric']} {f['period']}: rejected ({'; '.join(f['issues'])})")
             else:

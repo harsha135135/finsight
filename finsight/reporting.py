@@ -27,11 +27,12 @@ def _amount(value: str | None, unit: str | None) -> str:
 
 def markdown(report: dict) -> str:
     filing = report["filing"]
-    lines = [f"# {_text(report['company'])}: {_text(report['period'])}", "",
-             f"Source: {_text(filing.get('form'))} accession {_text(filing.get('accession'))}, period ending "
-             f"{_text(filing.get('period_end'))}, filed {_text(filing.get('filing_date'))} "
-             f"([original]({filing.get('source_uri')}), sha256 `{str(filing.get('sha256'))[:12]}`, retrieved "
-             f"{_text(filing.get('retrieved_at'))})", "", "## Findings", "",
+    source = (f"Source: {_text(filing.get('form'))} accession {_text(filing.get('accession'))}, period ending "
+              f"{_text(filing.get('period_end'))}, filed {_text(filing.get('filing_date'))} "
+              f"([original]({filing.get('source_uri')}), sha256 `{str(filing.get('sha256'))[:12]}`, retrieved "
+              f"{_text(filing.get('retrieved_at'))}); amounts as reported in this filing"
+              if filing.get("accession") else "Source: no filing was used (see unresolved information)")
+    lines = [f"# {_text(report['company'])}: {_text(report['period'])}", "", source, "", "## Findings", "",
              "| Metric | Period | Value | Status |", "|---|---|---:|---|"]
     for f in report["findings"]:
         lines.append(f"| {_text(f['metric'])} | {_text(f['period'])} | {_text(_amount(f.get('value'), f.get('unit')))} | "

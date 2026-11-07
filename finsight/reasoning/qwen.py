@@ -103,4 +103,4 @@ class QwenProvider:
             latency_ms=int((time.perf_counter() - t0) * 1000), ttft_ms=ttft, estimated_cost_usd=None,
             started_at=started,
         )
-        return Generation(text="".join(parts) if status == "ok" else None, attempts=[attempt])
+        return Generation(text="".join(parts) if status == "ok" else None, attempts=[attempt], raw="".join(parts))

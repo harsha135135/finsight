@@ -40,7 +40,7 @@ class ScriptedAnalyst:
     def generate(self, system, user, schema, **kwargs):
         rows = dict(re.findall(r"^\[([^\]]+)\] ([^|\n]+) \|", user, re.M))
         find = lambda label: next((pid for pid, text in rows.items() if text.strip().lower().startswith(label)), None)
-        requested = re.findall(r"^- (\w+) for (FY\d{4})", user, re.M)
+        requested = re.findall(r"^## metric (\w+), period (FY\d{4})", user, re.M)
         findings = []
         for metric, period in requested:
             op = lambda name, pid, text, value: {"name": name, "passage_id": pid, "original_text": text, "value": value,
@@ -94,8 +94,38 @@ def test_demo_request_produces_a_cited_report_that_matches_xbrl(pg, tmp_path):
     assert "## Calculations and sources" in md and "0001558370-19-000470" in md and "22.0%" in md
 
 
-def test_unsupported_question_reports_insufficient_evidence(pg, tmp_path):
+def test_metric_missing_from_the_evidence_reports_insufficient_evidence(pg, tmp_path):
     status, report, _ = _run(pg, tmp_path, {"company": "MMM", "period": "FY2018", "metrics": ["net_income"],
                                             "question": "What was 3M's FY2018 net income?"})
     assert status["status"] == "insufficient_evidence"
     assert report["findings"][0]["status"] == "insufficient_evidence" and report["unresolved"]
+
+
+def test_unsupported_question_reports_insufficient_evidence_without_a_model_call(pg, tmp_path):
+    status, report, row = _run(pg, tmp_path, {"company": "MMM", "period": "FY2018", "metrics": [],
+                                              "question": "How many employees did 3M have in Antarctica in FY2018?"})
+    assert status["status"] == "insufficient_evidence"
+    assert "supported:" in report["unresolved"][0] and report["filing"] == {}
+    assert pg.execute("SELECT count(*) AS n FROM model_attempts WHERE job_id = %s", (status["id"],)).fetchone()["n"] == 0
+    assert "no filing was used" in Path(row["markdown_path"]).read_text()
+
+
+def test_period_without_a_filing_reports_insufficient_evidence(pg, tmp_path):
+    status, report, _ = _run(pg, tmp_path, {"company": "MMM", "period": "FY2031", "metrics": ["revenue"],
+                                            "question": "What was 3M's FY2031 revenue?"})
+    assert status["status"] == "insufficient_evidence" and "no 10-K for fiscal year 2031" in report["unresolved"][0]
+
+
+def test_figure_that_disagrees_with_xbrl_is_rejected(pg, tmp_path, monkeypatch):
+    import finsight.stages as stages
+    real = stages.annual_fact
+
+    def restated_revenue(facts, concepts, accession, end):
+        fact = real(facts, concepts, accession, end)
+        return {**fact, "value": fact["value"] + 1_000_000} if fact and fact["concept"] == "Revenues" else fact
+    monkeypatch.setattr(stages, "annual_fact", restated_revenue)
+    status, report, _ = _run(pg, tmp_path, {"company": "MMM", "period": "FY2018", "metrics": ["revenue", "capex"],
+                                            "question": "FY2018 revenue and capex"})
+    findings = {f["metric"]: f for f in report["findings"]}
+    assert findings["capex"]["status"] == "accepted" and status["status"] == "completed"
+    assert findings["revenue"]["status"] == "rejected" and "differs from XBRL" in " ".join(findings["revenue"]["issues"])

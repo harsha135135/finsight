@@ -39,6 +39,10 @@ class SourceError(RuntimeError):
     pass
 
 
+class NoFilingError(SourceError):
+    """The registrant has no filing for the requested period: an evidence gap, not an infrastructure failure."""
+
+
 def _check_url(url: str) -> None:
     parts = urlsplit(url)
     if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS:
@@ -150,7 +154,7 @@ class SecSource:
         for entry in tickers.values():
             if entry["ticker"].upper() == wanted or entry["title"].upper() == wanted:
                 return str(entry["cik_str"]).zfill(10)
-        raise SourceError(f"no SEC registrant matches {company!r}")
+        raise NoFilingError(f"no SEC registrant matches {company!r}")
 
     def submissions(self, cik: str) -> dict:
         return self.get_json(f"https://data.sec.gov/submissions/CIK{cik}.json")
@@ -182,7 +186,7 @@ class SecSource:
                    and abs((f.report_date - expected_end).days) <= 7]   # 52/53-week years end near the date
         originals = sorted((f for f in matches if not f.is_amendment), key=lambda f: f.filing_date)
         if not originals:
-            raise SourceError(f"no 10-K for fiscal year {fiscal_year} (period end ~{expected_end})"
+            raise NoFilingError(f"no 10-K for fiscal year {fiscal_year} (period end ~{expected_end})"
                               + (f" filed by {cutoff}" if cutoff else ""))
         return FilingChoice(filing=originals[0], amendments=[f for f in matches if f.is_amendment],
                             reason=f"original 10-K with report date {originals[0].report_date} for FY{fiscal_year}")

@@ -30,7 +30,8 @@ SERVE_ENV = {"VLLM_USE_FLASHINFER_SAMPLER": "0"}
 
 def build_command(model: str, revision: str, *, port: int = 8000, max_model_len: int = 5120,
                   gpu_memory_utilization: float = 0.87, max_lora_rank: int = 16,
-                  loras: dict[str, Path] | None = None) -> list[str]:
+                  loras: dict[str, Path] | None = None, compact_json: bool = False,
+                  reasoning_parser: str | None = None) -> list[str]:
     executable = shutil.which("vllm")
     base = [executable] if executable else [sys.executable, "-m", "vllm.entrypoints.cli.main"]
     command = base + [
@@ -40,6 +41,13 @@ def build_command(model: str, revision: str, *, port: int = 8000, max_model_len:
         "--seed", "0", "--generation-config", "vllm",
         "--enable-lora", "--max-lora-rank", str(max_lora_rank), "--max-loras", "1",
     ]
+    if compact_json:
+        # Server-wide in vLLM 0.33 (the per-request field is ignored): guided JSON without free whitespace, so a
+        # model cannot emit whitespace until max_tokens. Used for FinSight serving; FinQA runs keep the default
+        # protocol they were measured with.
+        command += ["--structured-outputs-config", '{"backend": "xgrammar", "disable_any_whitespace": true}']
+    if reasoning_parser:  # thinking requests: the JSON constraint applies after the reasoning block
+        command += ["--reasoning-parser", reasoning_parser]
     if loras:
         # One flag followed by every NAME=PATH: vLLM keeps only the last of repeated --lora-modules flags.
         command += ["--lora-modules", *(f"{name}={path}" for name, path in sorted(loras.items()))]

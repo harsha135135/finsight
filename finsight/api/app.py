@@ -35,6 +35,7 @@ class ModelChoice(BaseModel):
     provider: Literal["qwen", "claude", "recorded", "demo"]
     model: str | None = Field(default=None, max_length=200)
     max_tokens: int | None = Field(default=None, ge=1, le=64_000)
+    enable_thinking: bool = False       # local Qwen only: reason before the constrained JSON
 
 
 class ResearchRequest(BaseModel):
@@ -57,6 +58,7 @@ def resolve_model_config(choice: ModelChoice) -> dict:
                 "demo": {"model": "demo", "max_tokens": None}}[choice.provider]
     return {"provider": choice.provider, "model": choice.model or defaults["model"],
             "max_tokens": choice.max_tokens or defaults["max_tokens"], "base_url": defaults.get("base_url"),
+            "enable_thinking": choice.enable_thinking if choice.provider == "qwen" else None,
             "contract": CONTRACT_VERSION}
 
 

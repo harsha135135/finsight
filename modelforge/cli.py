@@ -85,6 +85,9 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--gpu-memory-utilization", type=float, default=0.87,
                     help="Windows keeps ~1.2 GiB of the 12 GiB card; 0.90 does not fit")
     sv.add_argument("--max-lora-rank", type=int, default=16)
+    sv.add_argument("--compact-json", action="store_true",
+                    help="guided JSON without free whitespace (FinSight serving; not the FinQA protocol)")
+    sv.add_argument("--reasoning-parser", default=None, help="e.g. qwen3 (FinSight thinking requests)")
     sv.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
@@ -157,7 +160,8 @@ def main(argv: list[str] | None = None) -> int:
         from modelforge import serve
         return serve.main(args.model, args.revision, serve.parse_loras(args.lora), dry_run=args.dry_run,
                           port=args.port, max_model_len=args.max_model_len,
-                          gpu_memory_utilization=args.gpu_memory_utilization, max_lora_rank=args.max_lora_rank)
+                          gpu_memory_utilization=args.gpu_memory_utilization, max_lora_rank=args.max_lora_rank,
+                          compact_json=args.compact_json, reasoning_parser=args.reasoning_parser)
     return 2
 
 

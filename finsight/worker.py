@@ -65,7 +65,8 @@ def build_stages(job: dict, conn, token: uuid.UUID, delays: dict | None = None) 
     if config["provider"] == "qwen":
         from finsight.reasoning.qwen import QwenProvider
         provider = QwenProvider(config["model"], config.get("base_url") or settings.qwen_base_url,
-                                max_tokens=config.get("max_tokens") or 2048)
+                                max_tokens=config.get("max_tokens") or 2048,
+                                enable_thinking=bool(config.get("enable_thinking")))
     elif config["provider"] == "claude":
         from finsight.reasoning.claude import ClaudeProvider
         from finsight.spend import SpendLedger
@@ -101,7 +102,8 @@ def run_job(conn, saver: PostgresSaver, job: dict, token: uuid.UUID, stages: Sta
         jobs.finish(conn, job["id"], token, "failed", f"{type(exc).__name__}: {exc}"[:500])
         return "failed"
     outcome = final["reporting"]["outcome"]
-    jobs.finish(conn, job["id"], token, outcome)
+    unresolved = final["reporting"].get("report", {}).get("unresolved") or []
+    jobs.finish(conn, job["id"], token, outcome, None if outcome == "completed" else "; ".join(unresolved)[:500] or None)
     return outcome
 
 
