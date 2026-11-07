@@ -60,6 +60,9 @@ def main(argv: list[str] | None = None) -> int:
     cp = sub.add_parser("compare", help="paired comparison of two runs on the same items (A minus B)")
     cp.add_argument("run_a", type=Path)
     cp.add_argument("run_b", type=Path)
+    rc = sub.add_parser("record", help="verify a frozen experiment record (artifact hashes, scorecard regeneration)")
+    rc.add_argument("action", choices=["verify"])
+    rc.add_argument("path", type=Path)
     sub.add_parser("probe", help="GPU, VRAM, telemetry and runtime checks (run on the GPU machine)")
     sv = sub.add_parser("serve", help="start vLLM on 127.0.0.1 with fixed, recorded settings (GPU machine)")
     sv.add_argument("--model", required=True)
@@ -114,6 +117,11 @@ def main(argv: list[str] | None = None) -> int:
         from modelforge import runner
         print(json.dumps(runner.compare(args.run_a, args.run_b), indent=1))
         return 0
+    if args.command == "record":
+        from modelforge import records
+        report = records.verify(args.path)
+        print(json.dumps(report, indent=1))
+        return 0 if report["passed"] else 1
     if args.command == "probe":
         from modelforge import probe
         return probe.main()

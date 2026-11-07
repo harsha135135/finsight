@@ -216,3 +216,13 @@ def test_evidence_subcategories_keep_formatting_apart_from_wrong_passages(finqa_
                             raw_output=output("5735", table.id),
                             issues=[f"operand v0 ('5735') is not supported by passage {table.id}"])
     assert _evidence_subcategories(formatting, item) == {"quote formatting differs from the passage (e.g. added $ or commas)"}
+
+
+def test_frozen_v1_record_still_verifies():
+    """v1 must stay reproducible: artifact hashes match and every scorecard regenerates byte-identically."""
+    from modelforge import records
+    record = Path("evals/records/qwen3-4b-finqa-v1.json")
+    if not Path("artifacts/runs/20261107-paired-tuned-val_shared_250").exists():
+        pytest.skip("v1 artifacts are not present on this machine")
+    report = records.verify(record)
+    assert report["passed"], report

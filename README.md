@@ -30,7 +30,7 @@ uv sync --extra app
 uv run pytest -q
 uv run modelforge calc-suite                      # downloads FinQA at a pinned commit
 uv run modelforge splits build && uv run modelforge splits verify
-uv run modelforge run --adapter gold --selection val_200    # harness upper bound
+uv run modelforge run --adapter gold --selection val_200    # gold-converter baseline
 ```
 
 GPU machine setup (Windows + WSL2 + SSH): [`docs/gpu-setup.md`](docs/gpu-setup.md).

@@ -88,7 +88,8 @@ Peak VRAM 4.39 GiB allocated / 5.41 GiB reserved; 1,321 tokens/s; keeps 1,710 of
 - Operand names had to start with a letter, but the model-facing schema drops patterns and the prompt never said
   so; FinQA's tokenized text (`$ 5.5 billion`) failed support checks for faithful quotes (`$5.5 billion`). Fixed in
   prompt `answer-v4` and the support check (spacing beside symbols ignored; spacing between digits kept);
-  training data rebuilt; gold upper bound unchanged at 0.905.
+  training data rebuilt; the gold-converter baseline stayed at 0.905. (This is a baseline, not a ceiling: the tuned
+  model later passed 3 of the 19 items the gold converter fails.)
 - Triton needed `Python.h` (Ubuntu's system Python lacks it): uv-managed Python everywhere.
 - vLLM: 0.90 GPU memory refused (Windows holds ~1.2 GiB) → 0.87; FlashInfer sampler needs nvcc → PyTorch sampler.
 - `conhost --headless` keep-alive launcher started nothing → hidden PowerShell `Start-Process`.
@@ -98,8 +99,12 @@ Secondary diagnostic, defined and committed before any fine-tuned run: accuracy 
 currency symbols and thousands separators. Base model: 0.150 (0.101–0.209) vs 0.130 strict, so quote formatting
 accounts for 2 points of the base model's failures. Headline scores always use the strict check.
 
-Checkpoint selection for the full run uses validation rows outside `val_shared_250` (360 available; the first
-200 after length filtering are used), so the items that compare tuned vs base never influence model selection.
+Checkpoint selection for the full run used validation rows outside `val_shared_250` (360 available; the first
+200 after length filtering). **Correction:** the exclusion matched exact item ids only. The 200 selection rows shared
+26 question families (an original and its `::unanswerable` variant on opposite sides) and 87 of their 100 filing
+groups with `val_shared_250`, so checkpoint selection was not independent of the comparison set. That the final
+checkpoint won does not show the overlap had no effect. v2 splits validation by filing group (see
+`evals/records/qwen3-4b-finqa-v1.json` and the v2 manifest).
 
 ## Full fine-tune plan (approved 2026-11-07, frozen before training)
 
@@ -145,7 +150,8 @@ Paired, filing-clustered 95% CIs (`modelforge compare`; runs `20261107-paired-{t
 Answerable items: 79 fixed by tuning, 2 broken, 23 correct in both, 96 wrong in both. The gain is not quote
 formatting (lenient accuracy moves almost as much as strict). Remaining evidence-validation failures in the tuned
 model are mostly "stated answer disagrees with the executed program" (31 items); only 1 of the 26 answerable
-mismatches states the gold answer, so this is wrong arithmetic in the stated answer, not recalled answers.
+mismatches states the gold answer. **Correction:** these mismatches show an inconsistency between the stated answer
+and the program; they do not rule out memorization, and arithmetic is not shown to be the only cause.
 
 Weakness: the tuned model answered 24 of the 50 unanswerable variants with outputs that pass validation. Two of
 those reproduce the original gold answer (the removed figure is derivable from the remaining evidence, a label flaw
@@ -155,3 +161,12 @@ validator cannot catch these, so abstention needs more or harder abstention trai
 Latency and throughput (same server): median 3.8 s vs 7.3 s, p95 4.5 s vs 12.3 s; output tokens 43.8k vs 101.9k
 for the 250 items (compact JSON with only the needed operands); decoding 46.5 vs 52.4 tokens/s (adapter compute
 about 11% per token); 0.27 vs 0.13 items/s at one request at a time.
+
+## Corrections (2026-11-07, after review)
+
+- 0.905 is the **gold-converter baseline** on these 200 answerable items, not an achievable-score ceiling; an earlier
+  "56% of what's achievable" statement in a status report is withdrawn. The result is 51.0% accuracy.
+- Checkpoint selection overlapped the comparison set (26 question families, 87 of 100 filing groups); see above.
+- Answer/program mismatches establish inconsistency only; memorization is not ruled out.
+- `val_shared_250` has guided decisions and is development data. v1 is frozen in
+  `evals/records/qwen3-4b-finqa-v1.json` (artifact hashes; `modelforge record verify` regenerates every scorecard).

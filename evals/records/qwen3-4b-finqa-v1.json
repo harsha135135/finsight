@@ -1,0 +1,150 @@
+{
+ "artifacts": {
+  "adapter": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v1/adapter",
+   "sha256": "5f1fafffd63e1dd644a8f7bf9782d75ea5876a0b024ee1f4692da6327f4498b0"
+  },
+  "checkpoint-150": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v1/checkpoints/checkpoint-150",
+   "sha256": "60b8dd64e7bfd4787461e995ea8e3fd71f3c5d52c4a3a29487efd3585d008fad"
+  },
+  "checkpoint-180": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v1/checkpoints/checkpoint-180",
+   "sha256": "49bfa1178fd2ce15cf16619bfa66967c8da976d55c8f43c0bd00bf623e516479"
+  },
+  "checkpoint-210": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v1/checkpoints/checkpoint-210",
+   "sha256": "8e4bb21e645dc023cfb3f18d3f539b3be5b15c7dcaa8e094dbf15304bb634224"
+  },
+  "paired_compare": {
+   "path": "artifacts/runs/20261107-paired-compare.json",
+   "sha256": "c95312f54175a729978aeb9f8c18605c372e52ab012c2e60ca3b2bbb93256d54"
+  },
+  "probe_3072": {
+   "path": "artifacts/probe/probe-20261107T064859.json",
+   "sha256": "362b1700642319005084a90b1b98e13cc5853b4e766ab840eaa7927f103a77e7"
+  },
+  "probe_4096": {
+   "path": "artifacts/probe/probe-20261107T083111.json",
+   "sha256": "4ea6185df3dbae554925291136b847668ac6205e407f4c0d1979347e33a99518"
+  },
+  "recovery_test_report": {
+   "path": "artifacts/recovery/20261107/report.json",
+   "sha256": "5024539c8c24510de6e7569f07cf7501aca59ec4a5e33d1959cb868c8007c69a"
+  },
+  "run_identity": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v1/run_identity.json",
+   "sha256": "6179b1b81b0764d84630efa462b0757eda4c2f1380fdfc61f5928f6115106587"
+  },
+  "serving_record_tuned": {
+   "path": "artifacts/serving/serve-20261107T102733.json",
+   "sha256": "1a99ab9b0ff5aae1b53b2cb105e3099fb60e570eaf8f1dae747e61fbf2c7a771"
+  },
+  "training_data_dir": {
+   "path": "artifacts/training/finqa-grouped-v1",
+   "sha256": "5c217e280a3d32c3908357bc1c0fefddfeb9547fabbafac2cd3778e7bdfe67a4"
+  },
+  "training_log": {
+   "path": "artifacts/train-qwen3-4b-finqa-v1.log",
+   "sha256": "0c4991d7d65157b2b821705ef4c8becc71c825bbe9a2cb967f6c4cc18fe86387"
+  },
+  "training_record": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v1/training_record.json",
+   "sha256": "8f2681999922840812b90ede75061c0a66f7cc1b7354f3f3c31fea2a1c7211da"
+  }
+ },
+ "description": "ModelForge v1: QLoRA on FinQA (finqa-grouped), evaluated on val_shared_250",
+ "facts": {
+  "adapter_sha256": "5f1fafffd63e1dd644a8f7bf9782d75ea5876a0b024ee1f4692da6327f4498b0",
+  "base_model": "Qwen/Qwen3-4B@1cfa9a7208912126459214e8b04321603b3df60c",
+  "checkpoint_selection": "lowest eval_loss on 200 validation rows; these rows shared 26 question families and 87 of 100 filing groups with val_shared_250 (exact-id exclusion only), so the selection was not independent of the comparison set",
+  "evaluation_commit": "3b44c050e5530eed25c2ba4d75e3a0f0efdb4eea",
+  "git_tag": "modelforge-v1",
+  "gold_converter_baseline": "0.905 on the 200 answerable items; not a ceiling (the tuned model passes 3 of the 19 items the gold converter fails)",
+  "headline_val_shared_250": {
+   "abstention_recall_unanswerable": {
+    "a": 0.32,
+    "a_minus_b": 0.06,
+    "b": 0.26,
+    "ci95": [
+     -0.06,
+     0.1731
+    ],
+    "n": 50
+   },
+   "accuracy_answerable": {
+    "a": 0.51,
+    "a_minus_b": 0.385,
+    "b": 0.125,
+    "ci95": [
+     0.3178,
+     0.4523
+    ],
+    "n": 200
+   }
+  },
+  "manifest": "finqa-grouped-comparison sha256 d1d548d0607048c33cd95481c567ab5d0982974e976207f7304148019bf1af6c",
+  "notes": "val_shared_250 guided development decisions and is development data; the FinQA test set was not run",
+  "prompt": "answer-v4 sha256 f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+  "selected_checkpoint": "artifacts/adapters/qwen3-4b-finqa-v1/checkpoints/checkpoint-210",
+  "training_build_commit": "e456670c66f6e92aba79070262f067c69a3b4366",
+  "training_commit": "e456670",
+  "training_data": {
+   "train": "a6a1027b36ec634492c83b266ec946edbdd3578599a2f6921d5cf32f9b4dca92",
+   "val": "813468a5163ac408f3e2c7ac483cdecd32bb9c8aee8848f0f411bacebda63527"
+  }
+ },
+ "name": "qwen3-4b-finqa-v1",
+ "runs": {
+  "artifacts/runs/20261107-loracheck-base-20": {
+   "config_sha256": "c5ae232d12c104f2e6e45ea1893b59f3ee4b015621a986293348e95900b86571",
+   "predictions_sha256": "0fc4e0d8aa689d9364ea44ab1710d2b4bd8fce1fd6e9a5ea27856c5fd122b24f",
+   "scorecard_sha256": "d2a457b96a434124131be1f04bd5a22d41b4f0a8d0e7b287bbd4b3c4935f5e44"
+  },
+  "artifacts/runs/20261107-loracheck-rec6-5": {
+   "config_sha256": "4cbc0a095203ef306dcf8773febd6c3bdd10c944e4e8da79362e8e771dae3fe7",
+   "predictions_sha256": "101d357bce8c351cb2aee9ad8f1f6285bc5073ce304f9d4fd5256358464757b6",
+   "scorecard_sha256": "5410f054d48e9f1b837dd584e3224941221a52d4a5370a01a7184643145f36b1"
+  },
+  "artifacts/runs/20261107-loracheck-zero-20": {
+   "config_sha256": "b574c440262d8798f6c6ee0a5ddf6c7e809649c9630225398f8d063faac7cc57",
+   "predictions_sha256": "7d730fc7823005d62cdc6af56ebc3cd29dec4059fc2af353109a7256d4a862f1",
+   "scorecard_sha256": "e956525808eb3d8fa89526c05e7416ac96093618a00833eb0db0047c98a04206"
+  },
+  "artifacts/runs/20261107-paired-base-val_shared_250": {
+   "config_sha256": "51156333fd74758365736a3fe0c03b5ee3fd533586c83d4d7192f604377b4ea5",
+   "predictions_sha256": "8b3f6da489c15c59e2f1e3051fa6161c3803f4d6ec5048b00188f0efc48d9ebb",
+   "scorecard_sha256": "db07fdeb2d2386442e25ccb63a2554d1556e5a79721b8e2fb9ccbaec147edd77"
+  },
+  "artifacts/runs/20261107-paired-tuned-val_shared_250": {
+   "config_sha256": "376e2989b575d659abb1a7f7b601cf532e486b357ad48ddbf01e167980c3a77f",
+   "predictions_sha256": "31f7c120dccba011bab0deadd55793800e45cce3aa246f62e1703f829ca9d281",
+   "scorecard_sha256": "1779147326f67722d83dda45b7d63e7540dd1ed43ed6ffed19f6c6f2eeb796e3"
+  },
+  "artifacts/runs/20261107-qwen3-4b-base-val_shared_250-mac-c1": {
+   "config_sha256": "080ed6678df3a358c42bdcd4adedd4b8d3bb1e66ddf6bd36c822ed2301fa3ced",
+   "predictions_sha256": "59defa3df5c20c759b75fd91fe6503000bf3b9edafcac9270a545352f642769b",
+   "scorecard_sha256": "3fafbd96f94436bcda6db07577e01a2e95986da7df5769c82f563a7f29f4b668"
+  },
+  "artifacts/runs/20261107-qwen3-4b-base-val_shared_250-pc-c1-first50": {
+   "config_sha256": "40b5466258c209e3710c8973c876b48eac67f422403384a1e7f83fbd08813802",
+   "predictions_sha256": "aa06e25a273949399ee1b8faef975d9b02f30aa6a84c748b6e652f08f6eca35e",
+   "scorecard_sha256": "cfe9e1ad50c061b04935fa3c79330d3a3662e3b011f30e43a77488bbfc878862"
+  },
+  "artifacts/runs/20261107-qwen3-4b-base-val_shared_250-pc-c8": {
+   "config_sha256": "ad7c2737ab07a7e4dffa24411fcd5ebc3b5d5a063ef9f3106fba895dcb57bd8e",
+   "predictions_sha256": "57676f80915fbbe724fef19b12dd3c718f098bd2547c8eb5404d96bd481196ab",
+   "scorecard_sha256": "46168b1432951b5543c18474b051b8bd79a99cac607eb22828ef01b14efe46e0"
+  },
+  "artifacts/runs/check-abstain": {
+   "config_sha256": "2eb54153d15a31b88604eb78bb49ceb837c837c7027578ee9f840e3b2b3f0db1",
+   "predictions_sha256": "037e904e8cbc07acaab3a0460b89a74a4021efbe26ae0c938ffd935d66710c52",
+   "scorecard_sha256": "0e37f0a51dafd54dc60ac07ebc843b27541185d19c2df4ade415d6fc89b1ab5f"
+  },
+  "artifacts/runs/check-gold": {
+   "config_sha256": "eebb9b3bdbbfd528ddb9e83737c52c2f4fe757e5b9a39da4378643da73075bd2",
+   "predictions_sha256": "392bb08031077ddfc5eb60a88a7101f37f8209a5d6dca6d84287716688a287b1",
+   "scorecard_sha256": "84950b7670463e3ae8aab365a95d47f65e453fcfca2830bd19e3c3d59577a69b"
+  }
+ }
+}
