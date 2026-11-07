@@ -4,6 +4,10 @@
    "path": "artifacts/runs/20261107-v2dev-compare.json",
    "sha256": "592b71bc471b501e17a0ff0284abb2b4477959dc7648bcaeeb7ecd9079d5eed3"
   },
+  "exposure": {
+   "path": "artifacts/runs/20261107-v2dev-exposure.json",
+   "sha256": "123e33a2100949257ed2318157ce9c2307511e8913141373bd1565e26f69ea26"
+  },
   "v1_diagnostics": {
    "path": "artifacts/runs/20261107-v2dev-v1/diagnostics.json",
    "sha256": "101d0f143604d8986f988ef5412f50c5fc84a29ee459b100d530a4f4ae50f565"
@@ -11,7 +15,39 @@
  },
  "description": "v1 and base on finqa-grouped-v2 val_dev_eval",
  "facts": {
-  "manifest": "finqa-grouped-v2/val_dev_eval (254 answerable + 40 hand-verified negatives; filing groups disjoint from selection, train and test)",
+  "claim": "54.3% on the corrected development set; not an independent confirmation on groups that never touched selection",
+  "exposure": {
+   "answerable_in_exposed_families": "96 of 254",
+   "exposed": {
+    "answerable_items": 218,
+    "base_accuracy": 0.133,
+    "ci95": [
+     0.34,
+     0.487
+    ],
+    "filing_groups": 49,
+    "v1_accuracy": 0.546,
+    "v1_minus_base": 0.413
+   },
+   "negatives_in_exposed_groups": "33 of 40",
+   "unexposed": {
+    "answerable_items": 36,
+    "base_accuracy": 0.167,
+    "ci95": [
+     0.22,
+     0.5
+    ],
+    "filing_groups": 17,
+    "v1_accuracy": 0.528,
+    "v1_minus_base": 0.361
+   },
+   "v1_selection_rows": {
+    "count": 200,
+    "filing_groups": 100,
+    "reconstruction": "first 200 rows of finqa-grouped-v1 val.jsonl not in finqa-grouped-comparison:val_shared_250; sha256 matches training_record eval_ids_sha256"
+   }
+  },
+  "manifest": "finqa-grouped-v2/val_dev_eval (254 answerable + 40 hand-verified negatives; disjoint from train, test and v2 val_select, but 49 of its 66 filing groups (218 of 254 answerable, 33 of 40 negatives) were in v1's original checkpoint-selection rows)",
   "metrics": {
    "abstention_recall_unanswerable": {
     "a": 0.3,

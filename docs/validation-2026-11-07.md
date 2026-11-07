@@ -198,9 +198,17 @@ is partial evidence: checkpoints 30–120 were deleted by `save_total_limit` and
 
 ## v1 vs base on the corrected development set (`finqa-grouped-v2/val_dev_eval`)
 
-254 answerable items and 40 hand-verified unanswerable items from 66 filing groups disjoint from checkpoint selection,
-train and test; one vLLM server serving both; one request at a time (record `evals/records/qwen3-4b-finqa-v1-v2dev.json`).
-`val_dev` guides development choices and is development data.
+254 answerable items and 40 hand-verified unanswerable items from 66 filing groups; one vLLM server serving both; one
+request at a time (record `evals/records/qwen3-4b-finqa-v1-v2dev.json`). `val_dev` guides development choices and is
+development data.
+
+**Exposure through v1's checkpoint selection.** `val_dev` is disjoint from train, test and the *new* `val_select`, but
+not from v1's history. v1's original selection rows (reconstructed: the first 200 rows of the v1 validation file not in
+`val_shared_250`; the id hash matches `eval_ids_sha256` in v1's training record) came from 100 filing groups. **49 of
+the 66 `val_dev` groups were among them, holding 218 of the 254 answerable items (96 share a question family with a
+selection row) and 33 of the 40 negatives.** Selection read validation loss on those rows to choose checkpoint 210;
+re-selecting on the new `val_select` does not erase that. The result below is therefore **"54.3% on the corrected
+development set"**, not an independent confirmation on groups that never touched selection.
 
 | Metric | Base | v1 | v1 − base (95% CI) | n |
 |---|---:|---:|---|---:|
@@ -212,5 +220,17 @@ train and test; one vLLM server serving both; one request at a time (record `eva
 | Invalid output | 0.201 | 0.003 | −0.197 (−0.257, −0.139) | 294 |
 | Evidence-validation failure | 0.446 | 0.153 | −0.292 (−0.367, −0.217) | 294 |
 
-107 answerable items fixed, 4 broken. Median latency 3.8 s vs 7.5 s (shorter outputs). The accuracy gain holds on
-clean, filing-disjoint data; abstention does not improve and may be worse (point estimate −10 points, CI includes 0).
+107 answerable items fixed, 4 broken. Median latency 3.8 s vs 7.5 s (shorter outputs). Abstention does not improve
+and may be worse (point estimate −10 points, CI includes 0).
+
+Descriptive split by exposure (`artifacts/runs/20261107-v2dev-exposure.json`; not a confirmation, the unexposed part is small):
+
+| Answerable items | n (groups) | Base | v1 | v1 − base (95% CI) |
+|---|---:|---:|---:|---|
+| In groups v1's selection touched | 218 (49) | 0.133 | 0.546 | +0.413 (+0.340, +0.487) |
+| In groups it did not touch | 36 (17) | 0.167 | 0.528 | +0.361 (+0.220, +0.500) |
+
+**Training mix, stated as counts.** v1's training pool had 285 abstentions and 1,428 answerable examples: 285 / 1,713 =
+16.6% of all examples, or 20.0 abstentions per 100 answerable ("a20" means the latter). The cleaned v2 pool
+(`finqa-grouped-v2-a20`) has 283 / 1,711 = 16.5%, or 19.8 per 100 answerable. Its train negatives passed the rule-based
+filter (about 93% precision on the hand-audited validation sample); they were not hand-verified.
