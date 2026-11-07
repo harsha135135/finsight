@@ -67,9 +67,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--eval-steps", type=int, default=None,
                         help="evaluation interval (default: same as --save-steps; 0 disables evaluation)")
     parser.add_argument("--eval-limit", type=int, default=None, help="evaluate on the first N validation examples")
-    parser.add_argument("--eval-exclude", default="finqa-grouped-comparison:val_shared_250",
-                        help="MANIFEST:SELECTION never used for evaluation loss or checkpoint choice, so the "
-                             "items that compare tuned vs base stay out of model selection ('' disables)")
+    parser.add_argument("--eval-exclude", default="finqa-grouped-v2:val_dev_eval",
+                        help="MANIFEST:SELECTION whose question families and filing groups never enter evaluation "
+                             "loss or checkpoint choice ('' disables)")
     parser.add_argument("--save-total-limit", type=int, default=3, help="0 keeps every checkpoint")
     parser.add_argument("--logging-steps", type=int, default=5)
     parser.add_argument("--resume", action="store_true", help="continue from the newest checkpoint in --out")
@@ -184,6 +184,26 @@ def session_totals(out: Path) -> dict:
             "note": "an interrupted session counts up to its last update (every 10 optimizer steps and at each save)"}
 
 
+def _row_family(row_id: str) -> str:
+    return row_id.split("::")[0]
+
+
+def _row_group(row_id: str) -> str:
+    return _row_family(row_id).rsplit("/", 1)[0]          # "AAPL/2014/page_38.pdf-2" -> "AAPL/2014"
+
+
+def exclude_related(rows: list[dict], spec: str) -> tuple[list[dict], int]:
+    """Drop rows sharing a question family or a filing group with MANIFEST:SELECTION (sample, slice or split)."""
+    from modelforge import splits as manifests
+    name, _, selection = spec.partition(":")
+    manifest = manifests.load(name)
+    ids = (manifest.get("samples", {}).get(selection) or manifest.get("slices", {}).get(selection)
+           or manifest["splits"].get(selection) or [])
+    families, groups = {_row_family(i) for i in ids}, {_row_group(i) for i in ids}
+    kept = [r for r in rows if _row_family(r["id"]) not in families and _row_group(r["id"]) not in groups]
+    return kept, len(rows) - len(kept)
+
+
 def latest_checkpoint(checkpoint_dir: Path) -> Path | None:
     """Newest checkpoint whose trainer_state.json exists (the Trainer writes it last)."""
     complete = [p for p in checkpoint_dir.glob("checkpoint-*") if (p / "trainer_state.json").exists()]
@@ -206,11 +226,7 @@ def main(argv: list[str] | None = None) -> int:
     train_rows, eval_rows = splits["train"][0], splits["val"][0]
     excluded = 0
     if args.eval_exclude:
-        from modelforge import splits as manifests
-        name, _, selection = args.eval_exclude.partition(":")
-        held_out = set(manifests.load(name)["samples"][selection])
-        excluded = sum(r["id"] in held_out for r in eval_rows)
-        eval_rows = [r for r in eval_rows if r["id"] not in held_out]
+        eval_rows, excluded = exclude_related(eval_rows, args.eval_exclude)
     if args.eval_limit:
         eval_rows = eval_rows[: args.eval_limit]
     eval_ids_sha256 = hashlib.sha256("\n".join(r["id"] for r in eval_rows).encode()).hexdigest()

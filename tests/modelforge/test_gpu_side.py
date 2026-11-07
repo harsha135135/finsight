@@ -267,3 +267,14 @@ def test_relabeled_v1_runs_exclude_exactly_the_unverified_negatives():
     assert all(labels[i]["decision"] != "verified_unanswerable" for i in config["relabel"]["excluded_items"])
     from modelforge import records
     assert records.verify(Path("evals/records/qwen3-4b-finqa-v1-relabeled-v1.json"))["passed"]
+
+
+def test_eval_exclusion_drops_whole_families_and_filing_groups():
+    from modelforge.training.train_qlora import exclude_related
+    manifest = splits.load("finqa-grouped-comparison")
+    held = manifest["samples"]["val_shared_250"]
+    one = held[0]
+    rows = [{"id": one}, {"id": one.split("::")[0] + "::unanswerable"},
+            {"id": one.split("::")[0].rsplit("/", 1)[0] + "/page_999.pdf-1"}, {"id": "ZZZ/1999/page_1.pdf-1"}]
+    kept, excluded = exclude_related(rows, "finqa-grouped-comparison:val_shared_250")
+    assert [r["id"] for r in kept] == ["ZZZ/1999/page_1.pdf-1"] and excluded == 3

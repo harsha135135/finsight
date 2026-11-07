@@ -58,3 +58,83 @@ def build(manifest_name: str = "finqa-grouped", out_dir: Path = Path("artifacts/
                          "unaligned_skipped": skipped, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
     (out_dir / "data_manifest.json").write_text(json.dumps(report, indent=1, sort_keys=True) + "\n")
     return report
+
+
+# ----------------------------------------------------------------------------- v2
+
+DATA_VERSION_V2 = "2"
+NEGATIVE_FILTER = ("drop a train variant if any automatic audit flag fires, or if a table row was removed while "
+                   "two or more numeric rows remain in the table (totals and components often rebuild it); "
+                   "on the 134 hand-audited validation variants this kept 27, of which 93% were verified "
+                   "unanswerable (in-sample estimate; unfiltered 65%)")
+
+
+def _numeric_rows(passages) -> int:
+    import re
+    return sum(1 for p in passages if p.id.startswith("table_") and len(re.findall(r"\d", p.text.split("  [columns")[0])) >= 3)
+
+
+def keep_train_negative(item, variant) -> bool:
+    from modelforge.audit import auto_flags
+    if auto_flags(item, variant):
+        return False
+    removed_table = any(pid.startswith("table_") for pid in item.gold_passage_ids)
+    return not (removed_table and _numeric_rows(variant.passages) >= 2)
+
+
+def build_v2(manifest_name: str = "finqa-grouped-v2", out_dir: Path = Path("artifacts/training/finqa-grouped-v2-a20"),
+             abstain_fraction: float = 0.2, seed: int = 20261106) -> dict:
+    """Training data v2: filtered train negatives paired with their answerable originals; selection rows
+    from val_select only (answerable items plus hand-verified negatives). val_dev and test are never read."""
+    manifest = splits.load(manifest_name)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    report: dict = {"data_version": DATA_VERSION_V2, "manifest": manifest_name, "manifest_sha256": manifest["sha256"],
+                    "prompt_version": prompts.PROMPT_VERSION, "prompt_sha256": prompts.fingerprint(), "seed": seed,
+                    "abstain_fraction": abstain_fraction, "negative_filter": NEGATIVE_FILTER,
+                    "sources": "FinQA gold programs aligned to cited evidence; train negatives filtered automatically and "
+                               "paired with their answerable originals; selection negatives hand-verified (audit file bound "
+                               "to the manifest)"}
+    rng = random.Random(seed)
+    train_items = splits.resolve_items(manifest, manifest["splits"]["train"])
+    answer, candidates, skipped, filtered = {}, [], 0, 0
+    for item in train_items:
+        target = gold_answer_output(item)
+        if target is None:
+            skipped += 1
+            continue
+        answer[item.id] = _example(item, target.model_dump_json(), "answer")
+        variant = splits.unanswerable_variant(item)
+        if variant is not None:
+            if keep_train_negative(item, variant):
+                candidates.append(variant)
+            else:
+                filtered += 1
+    rng.shuffle(candidates)
+    negatives = candidates[: int(len(answer) * abstain_fraction)]
+    rows = list(answer.values()) + [_example(v, json.dumps(ABSTAIN), "abstain") for v in negatives]
+    rng.shuffle(rows)
+    path = out_dir / "train.jsonl"
+    path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+    report["train"] = {"examples": len(rows), "answer": len(answer), "abstain": len(negatives),
+                       "negatives_available_after_filter": len(candidates), "negatives_filtered_out": filtered,
+                       "abstain_paired_with_answerable_original": all(v.id.split("::")[0] in answer for v in negatives),
+                       "unaligned_skipped": skipped, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    select_items = splits.resolve_items(manifest, manifest["splits"]["val_select"] + manifest["samples"]["val_select_unanswerable"])
+    val_rows, skipped = [], 0
+    for item in select_items:
+        if item.answerable:
+            target = gold_answer_output(item)
+            if target is None:
+                skipped += 1
+                continue
+            val_rows.append(_example(item, target.model_dump_json(), "answer"))
+        else:
+            val_rows.append(_example(item, json.dumps(ABSTAIN), "abstain"))
+    rng.shuffle(val_rows)
+    path = out_dir / "val.jsonl"
+    path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in val_rows), encoding="utf-8")
+    report["val"] = {"examples": len(val_rows), "answer": sum(r["kind"] == "answer" for r in val_rows),
+                     "abstain": sum(r["kind"] == "abstain" for r in val_rows), "unaligned_skipped": skipped,
+                     "source": "val_select only", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    (out_dir / "data_manifest.json").write_text(json.dumps(report, indent=1, sort_keys=True) + "\n")
+    return report
