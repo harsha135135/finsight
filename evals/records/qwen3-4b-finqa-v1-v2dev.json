@@ -1,0 +1,125 @@
+{
+ "artifacts": {
+  "compare": {
+   "path": "artifacts/runs/20261107-v2dev-compare.json",
+   "sha256": "592b71bc471b501e17a0ff0284abb2b4477959dc7648bcaeeb7ecd9079d5eed3"
+  },
+  "v1_diagnostics": {
+   "path": "artifacts/runs/20261107-v2dev-v1/diagnostics.json",
+   "sha256": "101d0f143604d8986f988ef5412f50c5fc84a29ee459b100d530a4f4ae50f565"
+  }
+ },
+ "description": "v1 and base on finqa-grouped-v2 val_dev_eval",
+ "facts": {
+  "manifest": "finqa-grouped-v2/val_dev_eval (254 answerable + 40 hand-verified negatives; filing groups disjoint from selection, train and test)",
+  "metrics": {
+   "abstention_recall_unanswerable": {
+    "a": 0.3,
+    "a_minus_b": -0.1,
+    "b": 0.4,
+    "ci95": [
+     -0.2308,
+     0.027
+    ],
+    "n": 40
+   },
+   "accuracy_answerable": {
+    "a": 0.5433,
+    "a_minus_b": 0.4055,
+    "b": 0.1378,
+    "ci95": [
+     0.3409,
+     0.4724
+    ],
+    "n": 254
+   },
+   "diagnostic_lenient_quote_accuracy_answerable": {
+    "a": 0.5433,
+    "a_minus_b": 0.3583,
+    "b": 0.185,
+    "ci95": [
+     0.2909,
+     0.4268
+    ],
+    "n": 254
+   },
+   "evidence_validation_failure_rate": {
+    "a": 0.1531,
+    "a_minus_b": -0.2925,
+    "b": 0.4456,
+    "ci95": [
+     -0.3675,
+     -0.2167
+    ],
+    "n": 294
+   },
+   "false_abstention_answerable": {
+    "a": 0.0079,
+    "a_minus_b": -0.0197,
+    "b": 0.0276,
+    "ci95": [
+     -0.0431,
+     -0.0035
+    ],
+    "n": 254
+   },
+   "invalid_output_rate": {
+    "a": 0.0034,
+    "a_minus_b": -0.1973,
+    "b": 0.2007,
+    "ci95": [
+     -0.2574,
+     -0.1387
+    ],
+    "n": 294
+   },
+   "operational_failure_rate": {
+    "a": 0.0,
+    "a_minus_b": -0.0102,
+    "b": 0.0102,
+    "ci95": [
+     -0.0228,
+     0.0
+    ],
+    "n": 294
+   }
+  },
+  "note": "val_dev guides development decisions and is development data",
+  "paired_program_accuracy": {
+   "a_minus_b": 0.4409,
+   "baseline": "artifacts/runs/20261107-v2dev-base",
+   "ci95": [
+    0.3755,
+    0.5063
+   ]
+  },
+  "program_accuracy_v1": {
+   "ci95": [
+    0.5342,
+    0.6541
+   ],
+   "mean": 0.5945,
+   "n": 254
+  },
+  "server": "one vLLM server serving base and v1; one request at a time from the Mac",
+  "transitions": {
+   "both_correct": 31,
+   "both_wrong": 112,
+   "broken_by_a": 4,
+   "fixed_by_a": 107
+  }
+ },
+ "name": "qwen3-4b-finqa-v1-v2dev",
+ "runs": {
+  "artifacts/runs/20261107-v2dev-base": {
+   "config_sha256": "8f7a77321e463e2ffbfebce6687435f5983a6d59a84c776b8827bc15f81e0486",
+   "predictions_sha256": "029b6d049183696f7b9a4e2e1acd6e88f909191e614d823141cc9bfc6f0aa4dd",
+   "scorecard_sha256": "9cd7fbcfe5f5e07c786aca187e8af7c676e4e0dd006f892623b42e98ee646146"
+  },
+  "artifacts/runs/20261107-v2dev-v1": {
+   "config_sha256": "ff09b055206b3df5b712a92d3beab948d4d4128fbcface4f9192b203251be199",
+   "predictions_sha256": "07e71b6e6085250acf81fd228f2e9135b0693a148680b0f045877906e6275e1b",
+   "scorecard_sha256": "06ecabff423e4ec6f37995e93079a1d40617f8c65950a1d3057daa3332fffb25"
+  }
+ }
+}

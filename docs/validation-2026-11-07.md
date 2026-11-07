@@ -195,3 +195,22 @@ Retained checkpoints re-evaluated on `val_select` rows from `finqa-grouped-v2` (
 from `val_dev`, `val_shared_250`'s groups and test; 22 hand-verified negatives; `modelforge.training.reselect`):
 checkpoint-150 0.045927, checkpoint-180 0.045493, **checkpoint-210 0.045468**: the same checkpoint is selected. This
 is partial evidence: checkpoints 30–120 were deleted by `save_total_limit` and cannot be compared.
+
+## v1 vs base on the corrected development set (`finqa-grouped-v2/val_dev_eval`)
+
+254 answerable items and 40 hand-verified unanswerable items from 66 filing groups disjoint from checkpoint selection,
+train and test; one vLLM server serving both; one request at a time (record `evals/records/qwen3-4b-finqa-v1-v2dev.json`).
+`val_dev` guides development choices and is development data.
+
+| Metric | Base | v1 | v1 − base (95% CI) | n |
+|---|---:|---:|---|---:|
+| **Accuracy (answerable)** | 0.138 | **0.543** | **+0.406 (+0.341, +0.472)** | 254 |
+| Accuracy, lenient quotes | 0.185 | 0.543 | +0.358 (+0.291, +0.427) | 254 |
+| Program accuracy (diagnostic) | — | 0.595 | +0.441 (+0.376, +0.506) paired | 254 |
+| Abstention recall (verified negatives) | 0.400 | 0.300 | −0.100 (−0.231, +0.027) | 40 |
+| False abstention | 0.028 | 0.008 | −0.020 (−0.043, −0.004) | 254 |
+| Invalid output | 0.201 | 0.003 | −0.197 (−0.257, −0.139) | 294 |
+| Evidence-validation failure | 0.446 | 0.153 | −0.292 (−0.367, −0.217) | 294 |
+
+107 answerable items fixed, 4 broken. Median latency 3.8 s vs 7.5 s (shorter outputs). The accuracy gain holds on
+clean, filing-disjoint data; abstention does not improve and may be worse (point estimate −10 points, CI includes 0).
