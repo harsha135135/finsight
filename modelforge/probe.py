@@ -28,7 +28,7 @@ PINNED_REVISIONS = {
     "Qwen/Qwen3.5-4B": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
 }
 GATES = {"peak_reserved_gib_max": 10.5, "projected_training_hours_max": 4.0}
-MIN_FREE_GIB = 10.5
+MIN_FREE_GIB = 9.0  # catches a running vLLM (~10 GiB) without tripping on Windows desktop use
 _VISION = ("visual", "vision")
 
 
