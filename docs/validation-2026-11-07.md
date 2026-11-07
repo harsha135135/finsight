@@ -64,6 +64,23 @@ Run agreement: two one-at-a-time runs (Mac, PC) agree on 98% of raw outputs and 
 concurrency 8 vs 1 changes 46% of raw outputs and 8% of outcomes (99.6% same correctness), so scored runs use
 one request at a time for every model.
 
+## Adapter serving check (vLLM 0.33 LoRA)
+
+- A 6-step adapter from the trainer (`rec6`) and a copy with every LoRA B matrix zeroed (`zero`, same rank-16
+  targets) both load in vLLM; adapters must follow a single `--lora-modules` flag.
+- `zero` vs the base model on the same server: identical raw output on 20/20 validation questions, so the adapter
+  path does not change answers by itself.
+- Registering adapters changes the base model's exact text relative to a server without them (35% identical raw
+  output, 90% identical outcome, 100% identical correctness on the same 20 questions). The tuned-vs-base comparison
+  therefore re-runs the base model on the same server instance that serves the tuned adapter.
+- The zero adapter's median latency was 9.2 s vs 8.5 s for the base on that server: adapter compute costs about 8%
+  at one request at a time, and is reported as part of the tuned model's latency.
+
+## Probe at a 4,096-token cap
+
+Peak VRAM 4.39 GiB allocated / 5.41 GiB reserved; 1,321 tokens/s; keeps 1,710 of 1,713 training examples
+(3 dropped) and every validation example; projected 1.37 h for 2 epochs; all gates passed.
+
 ## Issues found and fixed before the baseline
 
 - Operand names had to start with a letter, but the model-facing schema drops patterns and the prompt never said
