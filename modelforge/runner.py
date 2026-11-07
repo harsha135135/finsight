@@ -143,6 +143,28 @@ def _throughput(timing: list[dict], output_tokens: int) -> dict | None:
             "concurrency": sorted({t["concurrency"] for t in timing})}
 
 
+def _lenient_correct(prediction: Prediction, item: EvalItem) -> bool:
+    """Would this answer be correct if quotes could add or drop currency symbols and thousands separators?
+
+    A secondary diagnostic, defined before any fine-tuned run, to separate quote formatting from reasoning.
+    """
+    if prediction.correct:
+        return True
+    if not item.answerable or item.gold_answer is None or not prediction.raw_output:
+        return False
+    try:
+        output = AnswerOutput.model_validate_json(prediction.raw_output)
+    except ValidationError:
+        return False
+    rows = {k: [Decimal(v) for v in values] for k, values in item.rows.items()}
+    result = validate_answer(output, {p.id: p for p in item.passages}, rows,
+                             as_written=item.meta.get("calc_convention") == "as_written", lenient_quotes=True)
+    if result.reason_code is not ReasonCode.ANSWERED or result.answer is None:
+        return False
+    executed = result.answer == "yes" if result.answer in {"yes", "no"} else Decimal(result.answer)
+    return matches_gold(executed, item.gold_answer)
+
+
 def summarize(predictions: list[Prediction], items: list[EvalItem], timing: list[dict] | None = None) -> dict:
     by_id = {p.item_id: p for p in predictions}
     groups = {i.id: i.group for i in items}
@@ -177,6 +199,8 @@ def summarize(predictions: list[Prediction], items: list[EvalItem], timing: list
         "contradiction_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.VALIDATION_CONTRADICTION)),
         "operational_failure_rate": ci(rate(items, lambda p: p.reason_code is ReasonCode.OPERATIONAL)),
         "reason_codes": dict(sorted(Counter(p.reason_code.value for p in predictions).items())),
+        "diagnostic_lenient_quote_accuracy_answerable": ci(
+            {i.id: 1.0 if (i.id in by_id and _lenient_correct(by_id[i.id], i)) else 0.0 for i in answerable}),
         "diagnostic_percent_scale_errors": sum(
             1 for i in answerable if i.id in by_id and _percent_scale_error(by_id[i.id], i)),
         "truncated_outputs": sum(a.status == "truncated" for a in attempts),
@@ -207,7 +231,8 @@ def write_scorecard(out_dir: Path, items: list[EvalItem] | None = None) -> Path:
              f"- Settings: {json.dumps(config['settings'], sort_keys=True)}",
              f"- Tolerance: {config['tolerance']}", "", "| Metric | Mean | 95% CI (filing-clustered) | n |", "|---|---:|---|---:|"]
     for key in ("accuracy_answerable", "abstention_recall_unanswerable", "false_abstention_answerable",
-                "invalid_output_rate", "contradiction_rate", "operational_failure_rate"):
+                "invalid_output_rate", "contradiction_rate", "operational_failure_rate",
+                "diagnostic_lenient_quote_accuracy_answerable"):
         value = summary[key]
         if value:
             lines.append(f"| {key} | {value['mean']:.4f} | {value['ci95'][0]:.4f} – {value['ci95'][1]:.4f} | {value['n']} |")

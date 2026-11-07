@@ -19,6 +19,7 @@ GPU energy next to the adapter.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import time
 from pathlib import Path
@@ -66,6 +67,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--eval-steps", type=int, default=None,
                         help="evaluation interval (default: same as --save-steps; 0 disables evaluation)")
     parser.add_argument("--eval-limit", type=int, default=None, help="evaluate on the first N validation examples")
+    parser.add_argument("--eval-exclude", default="finqa-grouped-comparison:val_shared_250",
+                        help="MANIFEST:SELECTION never used for evaluation loss or checkpoint choice, so the "
+                             "items that compare tuned vs base stay out of model selection ('' disables)")
     parser.add_argument("--save-total-limit", type=int, default=3, help="0 keeps every checkpoint")
     parser.add_argument("--logging-steps", type=int, default=5)
     parser.add_argument("--resume", action="store_true", help="continue from the newest checkpoint in --out")
@@ -158,8 +162,16 @@ def main(argv: list[str] | None = None) -> int:
     tokenizer = AutoTokenizer.from_pretrained(args.model, revision=args.revision)
     splits = load_splits(tokenizer, args.data, args.max_seq_len, args.enable_thinking)
     train_rows, eval_rows = splits["train"][0], splits["val"][0]
+    excluded = 0
+    if args.eval_exclude:
+        from modelforge import splits as manifests
+        name, _, selection = args.eval_exclude.partition(":")
+        held_out = set(manifests.load(name)["samples"][selection])
+        excluded = sum(r["id"] in held_out for r in eval_rows)
+        eval_rows = [r for r in eval_rows if r["id"] not in held_out]
     if args.eval_limit:
         eval_rows = eval_rows[: args.eval_limit]
+    eval_ids_sha256 = hashlib.sha256("\n".join(r["id"] for r in eval_rows).encode()).hexdigest()
     health = AdapterHealthCallback(check_after=args.health_check_after, fail_fast=True)
     trainer, info = build_trainer(args, tokenizer, train_rows, eval_rows, callbacks=[health])
     if args.batch_hash_log:
@@ -183,6 +195,7 @@ def main(argv: list[str] | None = None) -> int:
         "tokenizer": tokenizer_fingerprint(tokenizer), "environment": environment(),
         "resumed_from": str(resume_from) if resume_from else None,
         "dataset_lengths": {s: meta for s, (_, meta) in splits.items()}, "eval_examples": len(eval_rows),
+        "eval_excluded_examples": excluded, "eval_ids_sha256": eval_ids_sha256,
         "adapter_health": health.report,
         "train_metrics": result.metrics, "log_history": trainer.state.log_history,
         "global_step": trainer.state.global_step, "best_checkpoint": trainer.state.best_model_checkpoint,

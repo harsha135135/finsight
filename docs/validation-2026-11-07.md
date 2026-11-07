@@ -75,5 +75,9 @@ one request at a time for every model.
 - `conhost --headless` keep-alive launcher started nothing → hidden PowerShell `Start-Process`.
 - The WSL clock jumps ~25 s; all durations use monotonic clocks.
 
-Open: a secondary "lenient quote" accuracy (ignoring added currency symbols) would show how much of any
-fine-tuning gain is formatting rather than reasoning.
+Secondary diagnostic, defined and committed before any fine-tuned run: accuracy if quotes may add or drop
+currency symbols and thousands separators. Base model: 0.150 (0.101–0.209) vs 0.130 strict, so quote formatting
+accounts for 2 points of the base model's failures. Headline scores always use the strict check.
+
+Checkpoint selection for the full run uses validation rows outside `val_shared_250` (360 available; the first
+200 after length filtering are used), so the items that compare tuned vs base never influence model selection.

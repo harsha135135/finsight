@@ -47,3 +47,14 @@ def test_spaces_between_digits_still_matter():
     from finsight.contracts import Scale
     from finsight.normalize import supports
     assert not supports("totals were 1 234 and 9", "1234", Decimal("1234"), Scale.UNITS)
+
+
+def test_lenient_quotes_are_diagnostic_only():
+    from decimal import Decimal
+    from finsight.contracts import Scale
+    from finsight.normalize import supports
+    table = "S&P 500 Index | 100.00 | 65.70 | 1,590"
+    assert not supports(table, "$65.70", Decimal("65.70"), Scale.UNITS)
+    assert supports(table, "$65.70", Decimal("65.70"), Scale.UNITS, lenient=True)
+    assert supports(table, "$1590", Decimal("1590"), Scale.UNITS, lenient=True)
+    assert not supports(table, "$66.70", Decimal("66.70"), Scale.UNITS, lenient=True)

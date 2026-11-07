@@ -84,7 +84,12 @@ def _squash(text: str) -> str:
     return re.sub(r"\s*([$€£¥%(),:;])\s*", r"\1", text)
 
 
-def supports(passage_text: str, original_text: str, value: Decimal, scale: Scale) -> bool:
+def _squash_lenient(text: str) -> str:
+    """Diagnostic only: also ignore currency symbols and thousands separators in quotes."""
+    return re.sub(r"(?<=\d),(?=\d{3})", "", re.sub(r"[$€£¥]", "", _squash(text)))
+
+
+def supports(passage_text: str, original_text: str, value: Decimal, scale: Scale, *, lenient: bool = False) -> bool:
     """Whether the cited passage contains ``original_text`` and it normalizes to the operand.
 
     The original text must appear in the passage (whitespace- and case-insensitive),
@@ -92,7 +97,8 @@ def supports(passage_text: str, original_text: str, value: Decimal, scale: Scale
     A figure written without a scale word may carry a scale stated elsewhere (for
     example a table heading "in millions"), so its raw number may match ``value`` directly.
     """
-    if _squash(original_text) not in _squash(passage_text):
+    squash = _squash_lenient if lenient else _squash
+    if squash(original_text) not in squash(passage_text):
         return False
     parsed = parse_figure(original_text)
     if parsed is None:

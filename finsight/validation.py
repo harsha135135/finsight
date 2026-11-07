@@ -74,11 +74,14 @@ def validate_answer(
     rows: Mapping[str, Sequence[Decimal]] | None = None,
     required_periods: Sequence[str] = (),
     as_written: bool = False,
+    lenient_quotes: bool = False,
 ) -> ResearchResult:
     """Validate a model answer against the passages actually supplied to it.
 
     ``as_written`` executes with figures exactly as written (FinQA's convention);
     otherwise operands are converted to base units using their declared scale.
+    ``lenient_quotes`` is for a secondary diagnostic only (quotes may add or drop currency
+    symbols and thousands separators); headline scores always use the strict check.
     """
     if output.abstain:
         if output.answer is not None or output.program:
@@ -112,7 +115,8 @@ def validate_answer(
 
     issues: list[str] = []
     for operand in operands:
-        if not supports(supplied[operand.passage_id].text, operand.original_text, operand.value, operand.scale):
+        if not supports(supplied[operand.passage_id].text, operand.original_text, operand.value, operand.scale,
+                        lenient=lenient_quotes):
             issues.append(f"operand {operand.name} ({operand.original_text!r}) is not supported by passage {operand.passage_id}")
 
     by_name = {o.name: o for o in operands}
