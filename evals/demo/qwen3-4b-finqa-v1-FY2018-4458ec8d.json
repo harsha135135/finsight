@@ -1,0 +1,154 @@
+{
+ "company": "3M CO",
+ "contract": "finsight-report-v1",
+ "filing": {
+  "accession": "0001558370-19-000470",
+  "amendments": [],
+  "filing_date": "2019-02-07",
+  "form": "10-K",
+  "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+  "period_end": "2018-12-31",
+  "reason": "original 10-K with report date 2018-12-31 for FY2018",
+  "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+  "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+  "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+ },
+ "findings": [
+  {
+   "calculation": [],
+   "checks": [
+    "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+   ],
+   "claims": [],
+   "issues": [],
+   "metric": "revenue",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 1,
+      "table": "170"
+     },
+     "name": "v0",
+     "original_text": "$ 32,765",
+     "passage_id": "7019000470:item_8:t170r1",
+     "period": "2018",
+     "scale": "millions",
+     "source_period": "2018",
+     "unit": "USD",
+     "value": "32765"
+    }
+   ],
+   "period": "FY2018",
+   "status": "accepted",
+   "unit": "USD",
+   "value": "32765000000"
+  },
+  {
+   "calculation": [
+    {
+     "args": [
+      "v0",
+      "v1"
+     ],
+     "op": "divide",
+     "value": "0.2199603235159468945521135358"
+    }
+   ],
+   "checks": [
+    "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+   ],
+   "claims": [],
+   "issues": [],
+   "metric": "operating_margin",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 8,
+      "table": "170"
+     },
+     "name": "v0",
+     "original_text": "7,207",
+     "passage_id": "7019000470:item_8:t170r8",
+     "period": "2018",
+     "scale": "millions",
+     "source_period": "2018",
+     "unit": "USD",
+     "value": "7207"
+    },
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 1,
+      "table": "170"
+     },
+     "name": "v1",
+     "original_text": "$ 32,765",
+     "passage_id": "7019000470:item_8:t170r1",
+     "period": "2018",
+     "scale": "millions",
+     "source_period": "2018",
+     "unit": "USD",
+     "value": "32765"
+    }
+   ],
+   "period": "FY2018",
+   "status": "accepted",
+   "unit": "ratio",
+   "value": "0.2199603235159468945521135358"
+  },
+  {
+   "calculation": [],
+   "checks": [
+    "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+   ],
+   "claims": [],
+   "issues": [],
+   "metric": "capex",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "175"
+     },
+     "name": "v0",
+     "original_text": "(1,577)",
+     "passage_id": "7019000470:item_8:t175r18",
+     "period": "2018",
+     "scale": "millions",
+     "source_period": "2018",
+     "unit": "USD",
+     "value": "-1577"
+    }
+   ],
+   "period": "FY2018",
+   "status": "accepted",
+   "unit": "USD",
+   "value": "-1577000000"
+  }
+ ],
+ "generated_at": "2026-11-07T15:11:25.345458+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 2048,
+  "model": "qwen3-4b-finqa-v1",
+  "provider": "qwen"
+ },
+ "outcome": "completed",
+ "period": "FY2018",
+ "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source.",
+ "unresolved": [],
+ "usage": {
+  "attempts": 1,
+  "cost_usd": "0",
+  "input_tokens": "2181",
+  "output_tokens": "386",
+  "unknown_outcomes": 0
+ }
+}

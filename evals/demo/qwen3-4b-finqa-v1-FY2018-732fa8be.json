@@ -1,0 +1,26 @@
+{
+ "company": "MMM",
+ "contract": "finsight-report-v1",
+ "filing": {},
+ "findings": [],
+ "generated_at": "2026-11-07T15:08:36.742697+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 2048,
+  "model": "qwen3-4b-finqa-v1",
+  "provider": "qwen"
+ },
+ "outcome": "insufficient_evidence",
+ "period": "FY2018",
+ "question": "How many employees did 3M have in Antarctica in FY2018?",
+ "unresolved": [
+  "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)"
+ ],
+ "usage": {
+  "attempts": 0,
+  "cost_usd": "0",
+  "input_tokens": "0",
+  "output_tokens": "0",
+  "unknown_outcomes": 0
+ }
+}

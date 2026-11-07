@@ -1,0 +1,71 @@
+{
+ "company": "3M CO",
+ "contract": "finsight-report-v1",
+ "filing": {
+  "accession": "0001558370-19-000470",
+  "amendments": [],
+  "filing_date": "2019-02-07",
+  "form": "10-K",
+  "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+  "period_end": "2018-12-31",
+  "reason": "original 10-K with report date 2018-12-31 for FY2018",
+  "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+  "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+  "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+ },
+ "findings": [
+  {
+   "calculation": [],
+   "checks": [
+    "XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000 (differs)"
+   ],
+   "claims": [],
+   "issues": [
+    "net_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000"
+   ],
+   "metric": "net_income",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 14,
+      "table": "170"
+     },
+     "name": "v0",
+     "original_text": "$ 5,349",
+     "passage_id": "7019000470:item_8:t170r14",
+     "period": "2018",
+     "scale": "thousands",
+     "source_period": "2018",
+     "unit": "USD",
+     "value": "5349"
+    }
+   ],
+   "period": "FY2018",
+   "status": "rejected",
+   "unit": "USD",
+   "value": "5349000"
+  }
+ ],
+ "generated_at": "2026-11-07T15:08:41.998915+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 2048,
+  "model": "qwen3-4b-finqa-v1",
+  "provider": "qwen"
+ },
+ "outcome": "failed",
+ "period": "FY2018",
+ "question": "What was 3M's FY2018 net income?",
+ "unresolved": [
+  "net_income FY2018: rejected (net_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000)"
+ ],
+ "usage": {
+  "attempts": 1,
+  "cost_usd": "0",
+  "input_tokens": "890",
+  "output_tokens": "111",
+  "unknown_outcomes": 0
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "company": "MMM",
+ "contract": "finsight-report-v1",
+ "filing": {},
+ "findings": [
+  {
+   "calculation": [],
+   "checks": [],
+   "claims": [],
+   "issues": [
+    "no 10-K for fiscal year 2031 (period end ~2031-12-31)"
+   ],
+   "metric": "revenue",
+   "operands": [],
+   "period": "FY2031",
+   "status": "insufficient_evidence",
+   "unit": null,
+   "value": null
+  }
+ ],
+ "generated_at": "2026-11-07T15:08:37.526004+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 2048,
+  "model": "qwen3-4b-finqa-v1",
+  "provider": "qwen"
+ },
+ "outcome": "insufficient_evidence",
+ "period": "FY2031",
+ "question": "What was 3M's FY2031 revenue?",
+ "unresolved": [
+  "no 10-K for fiscal year 2031 (period end ~2031-12-31)"
+ ],
+ "usage": {
+  "attempts": 0,
+  "cost_usd": "0",
+  "input_tokens": "0",
+  "output_tokens": "0",
+  "unknown_outcomes": 0
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "company": "3M CO",
+ "contract": "finsight-report-v1",
+ "filing": {
+  "accession": "0001558370-19-000470",
+  "amendments": [],
+  "filing_date": "2019-02-07",
+  "form": "10-K",
+  "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+  "period_end": "2018-12-31",
+  "reason": "original 10-K with report date 2018-12-31 for FY2018",
+  "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+  "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+  "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+ },
+ "findings": [],
+ "generated_at": "2026-11-07T15:12:23.611444+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 3500,
+  "model": "Qwen/Qwen3-4B",
+  "provider": "qwen"
+ },
+ "outcome": "failed",
+ "period": "FY2018",
+ "question": "What was 3M's FY2018 net income?",
+ "unresolved": [
+  "malformed model output after one repair: 1 validation error for ReportOutput"
+ ],
+ "usage": {
+  "attempts": 2,
+  "cost_usd": "0",
+  "input_tokens": "1789",
+  "output_tokens": "1067",
+  "unknown_outcomes": 0
+ }
+}
