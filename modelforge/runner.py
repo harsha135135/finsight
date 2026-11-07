@@ -9,7 +9,10 @@ from __future__ import annotations
 
 import json
 import subprocess
+import threading
+import time
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
@@ -23,7 +26,7 @@ from modelforge.adapters import Adapter
 from modelforge.datasets.finqa import matches_gold
 from modelforge.items import EvalItem
 
-SCORECARD_VERSION = "1"
+SCORECARD_VERSION = "2"
 
 
 def _commit() -> str:
@@ -65,7 +68,8 @@ def evaluate_item(item: EvalItem, adapter: Adapter) -> Prediction:
                       correct=correct, issues=result.issues, **base)
 
 
-def run(manifest_name: str, selection: str, adapter: Adapter, out_dir: Path, limit: int | None = None) -> Path:
+def run(manifest_name: str, selection: str, adapter: Adapter, out_dir: Path, limit: int | None = None,
+        concurrency: int = 1) -> Path:
     manifest = splits.load(manifest_name)
     ids = (manifest.get("samples", {}).get(selection) or manifest.get("slices", {}).get(selection)
            or manifest["splits"].get(selection))
@@ -84,25 +88,41 @@ def run(manifest_name: str, selection: str, adapter: Adapter, out_dir: Path, lim
         "adapter": adapter.config_id, "settings": adapter.settings, "prompt_version": prompts.PROMPT_VERSION,
         "prompt_sha256": prompts.fingerprint(), "commit": _commit(),
         "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold",
+        "concurrency": concurrency,
+        "server": adapter.server_info() if hasattr(adapter, "server_info") else None,
         "started_at": datetime.now(timezone.utc).isoformat(),
     }
     config_path = out_dir / "config.json"
     if config_path.exists() and done:
         previous = json.loads(config_path.read_text())
-        keys = ("manifest_sha256", "selection", "item_ids", "adapter", "settings", "prompt_sha256", "scorecard_version")
+        keys = ("manifest_sha256", "selection", "item_ids", "adapter", "settings", "prompt_sha256", "scorecard_version",
+                "concurrency", "server")
         changed = [k for k in keys if previous.get(k) != config.get(k)]
         if changed:
             raise ValueError(f"{out_dir} holds predictions from a different configuration ({', '.join(changed)}); "
                              "use a new output directory")
         config["started_at"] = previous.get("started_at", config["started_at"])
     config_path.write_text(json.dumps(config, indent=1) + "\n")
+    todo = [item for item in items if item.id not in done]
+    lock = threading.Lock()
+    session_start = time.monotonic()  # the WSL wall clock can jump; durations use a monotonic clock
     with predictions_path.open("a", encoding="utf-8") as handle:
-        for item in items:
-            if item.id in done:
-                continue
+        def work(item: EvalItem) -> None:
             prediction = evaluate_item(item, adapter)
-            handle.write(prediction.model_dump_json() + "\n")
-            handle.flush()
+            with lock:
+                handle.write(prediction.model_dump_json() + "\n")
+                handle.flush()
+        if concurrency <= 1:
+            for item in todo:
+                work(item)
+        else:
+            with ThreadPoolExecutor(max_workers=concurrency) as pool:
+                list(pool.map(work, todo))
+    if todo:
+        # Wall-clock per session, stored so the scorecard (and throughput) regenerates from saved files.
+        with (out_dir / "timing.jsonl").open("a") as timing:
+            timing.write(json.dumps({"items": len(todo), "seconds": round(time.monotonic() - session_start, 3),
+                                     "concurrency": concurrency}) + "\n")
     return write_scorecard(out_dir, items)
 
 
@@ -113,7 +133,17 @@ def _percent_scale_error(prediction: Prediction, item: EvalItem) -> bool:
     return matches_gold(Decimal(prediction.executed) / 100, item.gold_answer)
 
 
-def summarize(predictions: list[Prediction], items: list[EvalItem]) -> dict:
+def _throughput(timing: list[dict], output_tokens: int) -> dict | None:
+    seconds = sum(t["seconds"] for t in timing)
+    if not timing or seconds <= 0:
+        return None
+    items = sum(t["items"] for t in timing)
+    return {"items_per_second": round(items / seconds, 4), "output_tokens_per_second": round(output_tokens / seconds, 2),
+            "wall_seconds": round(seconds, 1), "sessions": len(timing),
+            "concurrency": sorted({t["concurrency"] for t in timing})}
+
+
+def summarize(predictions: list[Prediction], items: list[EvalItem], timing: list[dict] | None = None) -> dict:
     by_id = {p.item_id: p for p in predictions}
     groups = {i.id: i.group for i in items}
     answerable = [i for i in items if i.answerable]
@@ -154,6 +184,7 @@ def summarize(predictions: list[Prediction], items: list[EvalItem]) -> dict:
         "ttft_ms": {"p50": pct(ttfts, 0.5), "p95": pct(ttfts, 0.95)} if ttfts else None,
         "tokens": {"input": sum(a.input_tokens_uncached or 0 for a in attempts),
                    "output": sum(a.output_tokens or 0 for a in attempts)},
+        "throughput": _throughput(timing or [], sum(a.output_tokens or 0 for a in attempts)),
         "cost_usd": (str(sum(costs, Decimal(0))) if costs and all(c is not None for c in costs) else "unavailable"),
     }
 
@@ -165,7 +196,9 @@ def write_scorecard(out_dir: Path, items: list[EvalItem] | None = None) -> Path:
                    for line in (out_dir / "predictions.jsonl").read_text().splitlines() if line.strip()]
     if items is None:
         items = splits.resolve_items(splits.load(config["manifest"]), config["item_ids"])
-    summary = summarize(predictions, items)
+    timing_path = out_dir / "timing.jsonl"
+    timing = [json.loads(line) for line in timing_path.read_text().splitlines() if line.strip()] if timing_path.exists() else []
+    summary = summarize(predictions, items, timing)
     payload = {"config": {k: v for k, v in config.items() if k not in {"item_ids", "started_at"}}, "summary": summary}
     (out_dir / "scorecard.json").write_text(json.dumps(payload, indent=1, sort_keys=True) + "\n")
     lines = [f"# Scorecard: {config['adapter']} on {config['manifest']}/{config['selection']}", "",
@@ -180,8 +213,27 @@ def write_scorecard(out_dir: Path, items: list[EvalItem] | None = None) -> Path:
             lines.append(f"| {key} | {value['mean']:.4f} | {value['ci95'][0]:.4f} – {value['ci95'][1]:.4f} | {value['n']} |")
     lines += ["", f"Reason codes: {json.dumps(summary['reason_codes'])}",
               f"Latency ms: {summary['latency_ms']} · TTFT ms: {summary['ttft_ms']} · tokens: {summary['tokens']} · cost USD: {summary['cost_usd']}",
+              f"Throughput: {summary['throughput']} · server: {json.dumps(config.get('server'), sort_keys=True)}",
               f"Missing predictions: {summary['missing_predictions']} · truncated outputs: {summary['truncated_outputs']}", ""]
     path = out_dir / "scorecard.md"
     path.write_text("\n".join(lines))
     return path
 
+
+
+def agreement(run_a: Path, run_b: Path) -> dict:
+    """How often two runs of the same items agree (fresh reruns are measured, not assumed identical)."""
+    def load(run: Path) -> dict[str, Prediction]:
+        return {p.item_id: p for p in (Prediction.model_validate_json(line)
+                                       for line in (run / "predictions.jsonl").read_text().splitlines() if line.strip())}
+    a, b = load(run_a), load(run_b)
+    common = sorted(a.keys() & b.keys())
+    if not common:
+        return {"common_items": 0}
+    same_raw = [i for i in common if a[i].raw_output == b[i].raw_output]
+    same_outcome = [i for i in common if (a[i].reason_code, a[i].executed) == (b[i].reason_code, b[i].executed)]
+    same_correct = [i for i in common if a[i].correct == b[i].correct]
+    return {"common_items": len(common), "identical_raw_output": round(len(same_raw) / len(common), 4),
+            "identical_outcome": round(len(same_outcome) / len(common), 4),
+            "identical_correctness": round(len(same_correct) / len(common), 4),
+            "differing_items": sorted(set(common) - set(same_outcome))[:50]}

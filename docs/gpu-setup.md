@@ -1,85 +1,137 @@
 # GPU machine setup (Windows + RTX 4070 12 GB → WSL2 → SSH from the Mac)
 
-About 30–45 minutes the first time. The aim: from the Mac, `ssh gpu-box` lands in a WSL2 Ubuntu shell where `nvidia-smi` works.
+The route: **Mac → Windows OpenSSH (`gpu-box`) → WSL's own sshd on 127.0.0.1:2222 (`gpu-wsl`)**.
+`gpu-box` is interactive-only on this machine; `gpu-wsl` supports one-off commands, rsync and tunnels.
+Nothing listens on the LAN except the Windows sshd on port 22.
 
-## 1. Windows (PowerShell **as Administrator**)
+## 1. Windows
 
-1. Update the NVIDIA driver (GeForce Experience or nvidia.com). The Windows driver provides CUDA inside WSL. **Do not** install a Linux NVIDIA driver inside WSL.
-2. Install WSL2 with Ubuntu, then reboot and create your Linux user when prompted:
-   ```powershell
-   wsl --install -d Ubuntu-24.04
-   ```
-3. Give WSL enough memory. Create `C:\Users\<you>\.wslconfig` (adjust to your RAM; leave Windows at least 8 GB):
+1. Update the NVIDIA driver. The Windows driver provides CUDA inside WSL; **do not** install a Linux NVIDIA driver in WSL.
+2. `wsl --install -d Ubuntu-24.04`, then create the Linux user.
+3. `C:\Users\<you>\.wslconfig`:
    ```ini
    [wsl2]
    memory=24GB
    swap=16GB
+   localhostForwarding=true
    ```
-   Then run `wsl --shutdown` and reopen Ubuntu.
-4. Install the Windows OpenSSH server and make SSH sessions open the Ubuntu shell:
-   ```powershell
-   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-   Start-Service sshd
-   Set-Service -Name sshd -StartupType Automatic
-   New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\bash.exe" -PropertyType String -Force
-   ```
-   `bash.exe` starts your default WSL distro and accepts `-c`, which `rsync` and `ssh host 'command'` need.
-5. Add the Mac's public key. Copy the output of `cat ~/.ssh/id_ed25519.pub` on the Mac; create a key first with `ssh-keygen -t ed25519` if you don't have one. Then:
-   - **If your Windows account is an administrator** (the usual case), the key must go in the administrators file, with restricted permissions:
-     ```powershell
-     Add-Content -Path C:\ProgramData\ssh\administrators_authorized_keys -Value "ssh-ed25519 AAAA... you@mac"
-     icacls C:\ProgramData\ssh\administrators_authorized_keys /inheritance:r /grant "Administrators:F" /grant "SYSTEM:F"
-     ```
-   - **If it is a standard account:** put the key in `C:\Users\<you>\.ssh\authorized_keys` instead.
-6. Note the PC's LAN IP (`ipconfig`, the IPv4 address of your Wi-Fi or Ethernet adapter). In Power settings, set **Sleep: Never** while plugged in, so training isn't interrupted.
+4. Windows OpenSSH server with the Mac's key in `C:\ProgramData\ssh\administrators_authorized_keys` (admin accounts).
+   Its `DefaultShell` is `C:\Windows\System32\wsl.exe`. **Limitation found on 2026-11-07:** `wsl.exe` rejects `-c`,
+   so `ssh gpu-box 'cmd'` fails ("Invalid command line argument: -c") and rsync fails ("unexpected tag").
+   `bash.exe` (the usual workaround) is not installed with current WSL. Hence section 3.
+5. Power: Sleep and Hibernate on AC = Never. Pause Windows Update on training days.
 
-## 2. Inside Ubuntu (WSL2)
+## 2. Ubuntu (WSL2) basics
 
 ```bash
-nvidia-smi                        # must show the RTX 4070
-sudo apt update && sudo apt install -y rsync build-essential git
+nvidia-smi                        # in an interactive shell; SSH sessions need the full path below
+sudo apt update && sudo apt install -y rsync build-essential git tmux
 curl -LsSf https://astral.sh/uv/install.sh | sh
-df -h ~                           # want 60+ GB free (model downloads + checkpoints)
+```
+`/etc/wsl.conf` has `[boot] systemd=true`.
+
+## 3. sshd inside WSL (127.0.0.1:2222, keys only)
+
+```bash
+. /etc/os-release && echo "$VERSION_ID"      # 24.04: socket settings are generated from sshd_config
+sudo apt install -y openssh-server
+sudo tee /etc/ssh/sshd_config.d/10-finsight.conf >/dev/null <<'EOF'
+Port 2222
+ListenAddress 127.0.0.1
+PubkeyAuthentication yes
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PermitRootLogin no
+AllowUsers harsha13
+EOF
+install -d -m 700 ~/.ssh && echo '<mac public key>' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
+sudo install -d -m 755 /run/sshd && sudo sshd -t && echo CONFIG_OK
+sudo systemctl daemon-reload && sudo systemctl enable ssh.socket && sudo systemctl restart ssh.socket
+systemctl cat ssh.socket | grep ListenStream   # only 127.0.0.1:2222
+sudo ss -ltnp                                  # no 0.0.0.0 / [::] SSH listener
+sudo sshd -T | grep -Ei '^(port|listenaddress|passwordauthentication|kbdinteractiveauthentication|permitrootlogin|allowusers) '
 ```
 
-## 3. On the Mac
+## 4. Mac `~/.ssh/config`
 
-Add this to `~/.ssh/config`:
 ```
 Host gpu-box
-    HostName 192.168.x.y        # the PC's LAN IP
-    User <windows-username>
+    HostName 192.168.0.128
+    User ADMIN
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+    ServerAliveInterval 30
+
+Host gpu-wsl
+    HostName 127.0.0.1
+    Port 2222
+    User harsha13
+    ProxyJump gpu-box
+    HostKeyAlias gpu-wsl
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
     ServerAliveInterval 30
 ```
-Test: `ssh gpu-box 'uname -a && nvidia-smi --query-gpu=name,memory.total --format=csv'` should print a Linux kernel line and `NVIDIA GeForce RTX 4070, 12282 MiB`.
+Verified 2026-11-07: one-off commands, password login refused, rsync round trip with matching sha256
+(binary file, space in a folder name, unicode, symlink), and `ssh -L 8000:127.0.0.1:8000 gpu-wsl` tunnelling.
 
-**Then tell Claude the host alias is ready.** Everything below runs from the Mac.
+SSH sessions into WSL do not get `/usr/lib/wsl/lib` (nvidia-smi) or `~/.local/bin` (uv) on `PATH`; CUDA libraries
+still load through `ldconfig`. Remote commands therefore start with
+`export PATH=/usr/lib/wsl/lib:$HOME/.local/bin:$PATH`.
 
-## 4. What Claude will run (for reference)
+## 5. Keeping WSL running (required for unattended training)
+
+**Measured 2026-11-07:** WSL powered itself off (`systemd-poweroff` at 05:43:17 UTC) less than a minute after the
+last Ubuntu window closed, killing every tmux session. tmux, systemd services and `gpu-wsl` SSH sessions do **not**
+keep WSL alive; only a running `wsl.exe` process does. While WSL is stopped, `gpu-wsl` cannot connect
+(`kex_exchange_identification: Connection closed`); any `ssh gpu-box` session starts it again.
+
+Options, from simplest:
+1. **Leave one Ubuntu window open** (minimised) for the whole run. Closing it stops training within a minute.
+2. **A logon task that holds a hidden `wsl.exe`** (PowerShell as Administrator):
+   ```powershell
+   $action   = New-ScheduledTaskAction -Execute "C:\Windows\System32\conhost.exe" `
+               -Argument "--headless C:\Windows\System32\wsl.exe -d Ubuntu-24.04 --exec /bin/sleep infinity"
+   $trigger  = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME
+   $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries `
+               -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew
+   Register-ScheduledTask -TaskName "WSL keep-alive" -Action $action -Trigger $trigger -Settings $settings
+   Start-ScheduledTask -TaskName "WSL keep-alive"
+   ```
+   Remove with `Stop-ScheduledTask -TaskName "WSL keep-alive"; Unregister-ScheduledTask -TaskName "WSL keep-alive" -Confirm:$false`.
+   It needs the Windows user logged in; after a reboot without logon, WSL stays stopped and training resumes from the
+   last checkpoint by hand.
+
+Either way, verify before a long run: with every Ubuntu window and SSH session closed, the logger in
+`~/finsight-logs/persist.log` (one line a minute, started with `tmux -L finsight`) must show an unchanged boot
+time and no gaps for 30+ minutes. Checkpoints every 25 optimizer steps limit what any interruption costs.
+
+The Linux clock in this WSL install jumps by about 25 seconds every few seconds (journal: "Clock change detected").
+All durations in ModelForge use monotonic clocks; wall-clock timestamps are labels only.
+
+## 6. What Claude runs (from the Mac)
 
 ```bash
-# Sync code and frozen training data (no secrets, no virtualenv). GPU-side outputs
-# (adapters, checkpoints, probe reports, vLLM runs) are never deleted by a sync.
+R='export PATH=/usr/lib/wsl/lib:$HOME/.local/bin:$PATH; cd ~/developer/finsight'
 git rev-parse HEAD > BUILD_COMMIT
 rsync -az --delete --exclude .venv --exclude .git --exclude .legacy --exclude .aiagents --exclude .env \
-  --exclude 'artifacts/adapters/' --exclude 'artifacts/probe/' --exclude 'artifacts/runs/' --exclude '*.log' \
-  ./ gpu-box:~/finsight/
-ssh gpu-box 'cd ~/finsight && ~/.local/bin/uv sync --extra gpu'
+  --exclude 'artifacts/adapters/' --exclude 'artifacts/probe/' --exclude 'artifacts/runs/' \
+  --exclude 'artifacts/recovery/' --exclude 'artifacts/serving/' --exclude '*.log' ./ gpu-wsl:developer/finsight/
+ssh gpu-wsl "$R && uv sync --locked --extra gpu && uv run --extra gpu pytest -q"
 
-# 1) Probe: VRAM, telemetry, 4-bit loading, QLoRA step memory by sequence length
-ssh gpu-box 'cd ~/finsight && ~/.local/bin/uv run --extra gpu modelforge probe'
+# Probe (stop vLLM first): real optimizer steps at the intended length, eval timing, adapter health, energy
+ssh gpu-wsl "$R && uv run --extra gpu modelforge probe"
 
-# 2) Serve the unchanged baseline with vLLM, reached over an SSH tunnel (no open port)
-ssh gpu-box 'cd ~/finsight && nohup ~/.local/bin/uv run --extra gpu vllm serve Qwen/Qwen3.5-4B --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
-   --max-model-len 4096 --enable-lora --max-lora-rank 16 > vllm.log 2>&1 &'
-ssh -N -L 8000:localhost:8000 gpu-box &
-uv run modelforge run --adapter qwen --model Qwen/Qwen3.5-4B --label qwen35-4b-baseline --selection val_200
+# Serve on 127.0.0.1 only, in tmux; tunnel from the Mac
+ssh gpu-wsl "$R && tmux -L finsight new-session -d -s vllm 'uv run --extra gpu modelforge serve --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c 2>&1 | tee artifacts/serving/vllm.log'"
+ssh -N -L 8000:127.0.0.1:8000 gpu-wsl &
+uv run modelforge run --adapter qwen --model Qwen/Qwen3-4B --label qwen3-4b-base \
+  --manifest finqa-grouped-comparison --selection val_shared_250
 
-# 3) QLoRA fine-tune on the frozen train split, then serve the adapter on the same base
-ssh gpu-box 'cd ~/finsight && ~/.local/bin/uv run --extra gpu python -m modelforge.training.train_qlora \
-   --model Qwen/Qwen3.5-4B --revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen35-4b-finqa-v1'
+# Recovery test, then training in tmux (approval needed for the full run)
+ssh gpu-wsl "$R && uv run --extra gpu python -m modelforge.training.recovery_test --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c"
+ssh gpu-wsl "$R && tmux -L finsight new-session -d -s train 'uv run --extra gpu python -m modelforge.training.train_qlora --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c --data artifacts/training/finqa-grouped-v1 --out artifacts/adapters/qwen3-4b-finqa-v1 --resume 2>&1 | tee -a artifacts/train.log'"
 ```
 
-Notes:
-- If the vLLM server can't be reached through the tunnel, check that WSL's localhost forwarding is on (the default) or use `networkingMode=mirrored` in `.wslconfig` (Windows 11 22H2+).
-- GPU energy is measured with NVML and is **GPU-only**. The probe reports whether the energy counter works under your WSL install. If it doesn't, the value is reported as unavailable, never as zero. For whole-system electricity, a plug-in power meter is the only true measurement; otherwise we use a disclosed estimate.
+GPU energy is measured with NVML and is **GPU-only**. If the counter is unsupported under WSL, it is reported as
+unavailable, never as zero; whole-system electricity needs a plug-in meter or a disclosed estimate.

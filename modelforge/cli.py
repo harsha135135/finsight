@@ -37,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="modelforge", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     sp = sub.add_parser("splits", help="build or verify frozen manifests")
-    sp.add_argument("action", choices=["build", "verify"])
+    sp.add_argument("action", choices=["build", "verify", "build-comparison"])
     sp.add_argument("--name", default="finqa-grouped")
     cs = sub.add_parser("calc-suite", help="execute FinQA gold programs (measures the calculator, not a model)")
     cs.add_argument("--revision", default=None)
@@ -49,16 +49,33 @@ def main(argv: list[str] | None = None) -> int:
     rp.add_argument("--model", help="vLLM model or LoRA adapter name (qwen)")
     rp.add_argument("--label", help="config id recorded in the scorecard")
     rp.add_argument("--base-url", default="http://127.0.0.1:8000")
+    rp.add_argument("--max-tokens", type=int, default=1024, help="qwen: output cap (prompt + cap must fit max-model-len)")
+    rp.add_argument("--concurrency", type=int, default=1, help="parallel requests (1 for latency runs)")
     rp.add_argument("--out", type=Path)
     rep = sub.add_parser("report", help="regenerate a scorecard from stored predictions")
     rep.add_argument("run_dir", type=Path)
+    ag = sub.add_parser("agree", help="agreement between two runs over their common items")
+    ag.add_argument("run_a", type=Path)
+    ag.add_argument("run_b", type=Path)
     sub.add_parser("probe", help="GPU, VRAM, telemetry and runtime checks (run on the GPU machine)")
+    sv = sub.add_parser("serve", help="start vLLM on 127.0.0.1 with fixed, recorded settings (GPU machine)")
+    sv.add_argument("--model", required=True)
+    sv.add_argument("--revision", required=True)
+    sv.add_argument("--lora", action="append", default=[], metavar="NAME=PATH")
+    sv.add_argument("--port", type=int, default=8000)
+    sv.add_argument("--max-model-len", type=int, default=5120)
+    sv.add_argument("--gpu-memory-utilization", type=float, default=0.90)
+    sv.add_argument("--max-lora-rank", type=int, default=16)
+    sv.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
     if args.command == "splits":
         from modelforge import splits
         if args.action == "build":
             for path in splits.write(splits.build_finqa()):
+                print(path)
+        elif args.action == "build-comparison":
+            for path in splits.write([splits.build_comparison()]):
                 print(path)
         else:
             print(json.dumps(splits.verify(splits.load(args.name)), indent=1))
@@ -74,19 +91,29 @@ def main(argv: list[str] | None = None) -> int:
         if args.adapter == "qwen":
             if not args.model:
                 parser.error("--model is required for the qwen adapter")
-            options = {"model": args.model, "base_url": args.base_url, "label": args.label}
+            options = {"model": args.model, "base_url": args.base_url, "label": args.label,
+                       "max_tokens": args.max_tokens}
         adapter = make_adapter(args.adapter, **options)
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         out = args.out or ARTIFACTS / f"{stamp}-{adapter.config_id}-{args.selection}"
-        print(runner.run(args.manifest, args.selection, adapter, out, args.limit).read_text())
+        print(runner.run(args.manifest, args.selection, adapter, out, args.limit, args.concurrency).read_text())
         return 0
     if args.command == "report":
         from modelforge import runner
         print(runner.write_scorecard(args.run_dir).read_text())
         return 0
+    if args.command == "agree":
+        from modelforge import runner
+        print(json.dumps(runner.agreement(args.run_a, args.run_b), indent=1))
+        return 0
     if args.command == "probe":
         from modelforge import probe
         return probe.main()
+    if args.command == "serve":
+        from modelforge import serve
+        return serve.main(args.model, args.revision, serve.parse_loras(args.lora), dry_run=args.dry_run,
+                          port=args.port, max_model_len=args.max_model_len,
+                          gpu_memory_utilization=args.gpu_memory_utilization, max_lora_rank=args.max_lora_rank)
     return 2
 
 
