@@ -192,8 +192,56 @@ def resolve_items(manifest: dict, ids: Iterable[str]) -> list[EvalItem]:
     return [found[i] for i in wanted]
 
 
+COMPARISON_NAME = "finqa-grouped-comparison"
+
+
+def build_comparison(parent_name: str = "finqa-grouped", answerable_n: int = 250, unanswerable_n: int = 50,
+                     seed: int = 20261106) -> dict:
+    """Shared evaluation sets for comparing models, derived deterministically from the frozen parent.
+
+    Kept in its own manifest (recording the parent's sha256) so the parent and the
+    training data that references it stay unchanged. Built and committed before any
+    model is run on test items.
+    """
+    parent = load(parent_name)
+    samples = parent["samples"]
+    answerable = _sample(samples["test_300"], answerable_n, seed)
+    unanswerable = _sample(samples["unanswerable_test_100"], unanswerable_n, seed)
+    manifest = {
+        "name": COMPARISON_NAME, "dataset": parent["dataset"], "revision": parent["revision"],
+        "builder_version": BUILDER_VERSION, "parent": {"name": parent_name, "sha256": parent["sha256"]},
+        "rules": ("test_shared_300: every model (baseline Qwen, tuned Qwen, Claude) runs these same items; "
+                  f"{answerable_n} answerable items sampled from test_300 plus {unanswerable_n} declared unanswerable "
+                  "items sampled from unanswerable_test_100. test_expanded_1247: every official test item plus "
+                  "unanswerable_test_100, for the local models only; reported separately and never compared as an "
+                  "aggregate against test_shared_300. val_shared_250: val_200 plus unanswerable_val_50."),
+        "splits": {},
+        "samples": {
+            "test_shared_300": sorted(answerable + unanswerable),
+            "test_expanded_1247": sorted(parent["splits"]["test"] + samples["unanswerable_test_100"]),
+            "val_shared_250": sorted(samples["val_200"] + samples["unanswerable_val_50"]),
+        },
+        "declared_unanswerable": {
+            "test_shared_300": sorted(unanswerable),
+            "test_expanded_1247": sorted(samples["unanswerable_test_100"]),
+            "val_shared_250": sorted(samples["unanswerable_val_50"]),
+        },
+        "seed": seed,
+    }
+    manifest["sha256"] = canonical_hash(manifest)
+    return manifest
+
+
 def verify(manifest: dict) -> dict:
-    """Recompute leakage checks for a grouped manifest."""
+    """Recompute leakage checks for a grouped manifest, or parentage checks for a comparison manifest."""
+    if manifest["name"] == COMPARISON_NAME:
+        parent = load(manifest["parent"]["name"])
+        expanded = set(manifest["samples"]["test_expanded_1247"])
+        return {"name": manifest["name"], "parent_sha256_matches": parent["sha256"] == manifest["parent"]["sha256"],
+                "shared_within_expanded": set(manifest["samples"]["test_shared_300"]) <= expanded,
+                "sizes": {k: len(v) for k, v in manifest["samples"].items()},
+                "declared_unanswerable": {k: len(v) for k, v in manifest["declared_unanswerable"].items()},
+                "declared_match_variant_ids": all(i.endswith("::unanswerable") for v in manifest["declared_unanswerable"].values() for i in v)}
     if manifest["name"] == "finqa-official":
         return {"name": manifest["name"], "checked": "hash only (official split is not leakage-controlled)"}
     split_items = {s: resolve_items(manifest, ids) for s, ids in manifest["splits"].items()}
