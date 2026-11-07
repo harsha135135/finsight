@@ -21,7 +21,9 @@ ModelForge measures how much domain fine-tuning improves a local Qwen model, and
 | GPU workflow | Mac → WSL2 over SSH (verified commands, rsync and tunnels); probe, recovery test, vLLM serving on 127.0.0.1. See [`docs/gpu-setup.md`](docs/gpu-setup.md). |
 | Comparison sets | `finqa-grouped-comparison`: 300 shared test items (50 declared unanswerable) for all models, plus the expanded 1,247-item test set for local models only. Frozen before any test inference. |
 
-Still to come: Postgres-backed LangGraph runtime and worker, SEC ingestion, the Claude adapter, FastAPI, Docker, CI. See `docs/` and the plan.
+| Research application | FastAPI (`/research-jobs`, status, report, evidence, cancel) over Postgres; a LangGraph worker with checkpoints on its dedicated session, ownership tokens and a supervisor for frozen workers; SEC EDGAR ingestion (filing by fiscal-year end, as-reported XBRL facts, stored originals); table-aware parsing and metric+period retrieval; the `finsight-report-v1` contract with per-finding validation; Qwen, Claude and recorded providers with one Postgres spend ledger. |
+
+Still to come: the real-filing demo run (needs `FINSIGHT_SEC_USER_AGENT`), FinanceBench in ModelForge, Docker packaging and CI. See `docs/` and the plan.
 
 ## Quick start (offline, no API key)
 
