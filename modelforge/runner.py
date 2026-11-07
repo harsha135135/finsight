@@ -309,3 +309,45 @@ def agreement(run_a: Path, run_b: Path) -> dict:
             "identical_outcome": round(len(same_outcome) / len(common), 4),
             "identical_correctness": round(len(same_correct) / len(common), 4),
             "differing_items": sorted(set(common) - set(same_outcome))[:50]}
+
+
+def compare(run_a: Path, run_b: Path) -> dict:
+    """Paired comparison of two runs on the same items (A minus B), with filing-clustered 95% CIs.
+
+    Both runs must cover the same manifest items with the same prompt; metrics are recomputed from the
+    saved predictions, so the report regenerates exactly.
+    """
+    configs = [json.loads((run / "config.json").read_text()) for run in (run_a, run_b)]
+    for key in ("manifest_sha256", "item_ids", "prompt_sha256"):
+        if configs[0].get(key) != configs[1].get(key):
+            raise ValueError(f"runs differ in {key}; a paired comparison needs the same items and prompt")
+    items = splits.resolve_items(splits.load(configs[0]["manifest"]), configs[0]["item_ids"])
+    groups = {i.id: i.group for i in items}
+    runs = []
+    for run in (run_a, run_b):
+        runs.append({p.item_id: p for p in (Prediction.model_validate_json(line)
+                                            for line in (run / "predictions.jsonl").read_text().splitlines() if line.strip())})
+    answerable = [i for i in items if i.answerable]
+    unanswerable = [i for i in items if not i.answerable]
+    metrics = {
+        "accuracy_answerable": (answerable, lambda p, i: bool(p.correct)),
+        "diagnostic_lenient_quote_accuracy_answerable": (answerable, lambda p, i: _lenient_correct(p, i)),
+        "abstention_recall_unanswerable": (unanswerable, lambda p, i: p.reason_code is ReasonCode.ABSTAIN_EVIDENCE_ABSENT),
+        "false_abstention_answerable": (answerable, lambda p, i: p.reason_code is ReasonCode.ABSTAIN_EVIDENCE_ABSENT),
+        "invalid_output_rate": (items, lambda p, i: p.reason_code is ReasonCode.MODEL_OUTPUT_INVALID),
+        "evidence_validation_failure_rate": (items, lambda p, i: p.reason_code is ReasonCode.VALIDATION_CONTRADICTION),
+        "operational_failure_rate": (items, lambda p, i: p.reason_code is ReasonCode.OPERATIONAL),
+    }
+    result: dict = {"a": configs[0]["adapter"], "b": configs[1]["adapter"], "items": len(items), "metrics": {}}
+    for name, (subset, predicate) in metrics.items():
+        values = [{i.id: 1.0 if (i.id in run and predicate(run[i.id], i)) else 0.0 for i in subset} for run in runs]
+        mean_a = stats.cluster_bootstrap_mean(values[0], groups)[0] if subset else None
+        mean_b = stats.cluster_bootstrap_mean(values[1], groups)[0] if subset else None
+        diff, low, high = stats.paired_difference(values[0], values[1], groups) if subset else (None, None, None)
+        result["metrics"][name] = {"a": round(mean_a, 4), "b": round(mean_b, 4), "a_minus_b": round(diff, 4),
+                                   "ci95": [round(low, 4), round(high, 4)], "n": len(subset)}
+    flips = Counter((runs[1][i.id].correct, runs[0][i.id].correct) for i in answerable if i.id in runs[0] and i.id in runs[1])
+    result["answerable_correctness_transitions_b_to_a"] = {
+        "both_correct": flips[(True, True)], "fixed_by_a": flips[(False, True)],
+        "broken_by_a": flips[(True, False)], "both_wrong": flips[(False, False)]}
+    return result

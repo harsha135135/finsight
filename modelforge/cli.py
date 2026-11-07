@@ -57,6 +57,9 @@ def main(argv: list[str] | None = None) -> int:
     ag = sub.add_parser("agree", help="agreement between two runs over their common items")
     ag.add_argument("run_a", type=Path)
     ag.add_argument("run_b", type=Path)
+    cp = sub.add_parser("compare", help="paired comparison of two runs on the same items (A minus B)")
+    cp.add_argument("run_a", type=Path)
+    cp.add_argument("run_b", type=Path)
     sub.add_parser("probe", help="GPU, VRAM, telemetry and runtime checks (run on the GPU machine)")
     sv = sub.add_parser("serve", help="start vLLM on 127.0.0.1 with fixed, recorded settings (GPU machine)")
     sv.add_argument("--model", required=True)
@@ -106,6 +109,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "agree":
         from modelforge import runner
         print(json.dumps(runner.agreement(args.run_a, args.run_b), indent=1))
+        return 0
+    if args.command == "compare":
+        from modelforge import runner
+        print(json.dumps(runner.compare(args.run_a, args.run_b), indent=1))
         return 0
     if args.command == "probe":
         from modelforge import probe
