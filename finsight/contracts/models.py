@@ -94,7 +94,10 @@ class Document(Contract):
 
 
 class PassageLocation(Contract):
+    """Where a passage sits in its source: a PDF page or an HTML section, plus table and row."""
+
     page: int | None = Field(default=None, ge=1)
+    html_section: str | None = None
     table: str | None = None
     row: int | None = Field(default=None, ge=0)
 
