@@ -41,3 +41,16 @@ def migrate(conn: psycopg.Connection, directory: Path = MIGRATIONS) -> list[str]
             conn.execute("INSERT INTO schema_migrations (version, sha256) VALUES (%s, %s)", (path.stem, digest))
             applied_now.append(path.stem)
     return applied_now
+
+
+def main() -> int:
+    """`python -m finsight.storage.db`: apply pending migrations (the Compose `migrate` service)."""
+    from finsight.settings import get_settings
+
+    conn = connect(get_settings().database_url, application_name="finsight-migrate")
+    print("applied:", migrate(conn) or "none (up to date)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

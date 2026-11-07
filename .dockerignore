@@ -1,0 +1,15 @@
+.git
+.venv
+.env
+.env.*
+.legacy
+.aiagents
+.finsight
+.pytest_cache
+**/__pycache__
+artifacts
+data
+docs
+evals
+tests
+BUILD_COMMIT

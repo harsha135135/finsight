@@ -199,7 +199,8 @@ class SecSource:
             existing = self.conn.execute("SELECT * FROM documents WHERE source_uri = %s ORDER BY retrieved_at LIMIT 1",
                                          (filing.url,)).fetchone()
             if existing and Path(existing["artifact_path"]).exists():
-                return existing
+                if hashlib.sha256(Path(existing["artifact_path"]).read_bytes()).hexdigest() == existing["sha256"]:
+                    return existing
         body, final_url = self.get(filing.url, "document")
         digest = hashlib.sha256(body).hexdigest()
         directory = self.store / "sec" / filing.cik / filing.accession
@@ -216,8 +217,14 @@ class SecSource:
                   "parser_version": None}
         if self.conn is not None:
             columns = ", ".join(record)
-            self.conn.execute(f"INSERT INTO documents ({columns}) VALUES ({', '.join(['%s'] * len(record))}) "
-                              "ON CONFLICT DO NOTHING", tuple(record.values()))
+            # Same document from another environment (e.g. a container with its own store): point the row at
+            # this copy when the bytes are identical; a different sha256 for the same accession is an error.
+            row = self.conn.execute(
+                f"INSERT INTO documents ({columns}) VALUES ({', '.join(['%s'] * len(record))}) "
+                "ON CONFLICT (id) DO UPDATE SET artifact_path = EXCLUDED.artifact_path, retrieved_at = EXCLUDED.retrieved_at "
+                "WHERE documents.sha256 = EXCLUDED.sha256 RETURNING id", tuple(record.values())).fetchone()
+            if row is None:
+                raise SourceError(f"{filing.url}: content differs from the stored copy with the same accession")
         return record
 
     def company_facts_snapshot(self, cik: str) -> tuple[dict, dict]:

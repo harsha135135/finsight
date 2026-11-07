@@ -9,14 +9,34 @@ permissions:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.11', '3.12', '3.13', '3.14']
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: finsight
+          POSTGRES_PASSWORD: finsight
+          POSTGRES_DB: finsight_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U finsight -d finsight_test"
+          --health-interval 2s --health-timeout 3s --health-retries 30
+    env:
+      FINSIGHT_TEST_DATABASE_URL: postgresql://finsight:finsight@127.0.0.1:5432/finsight_test
+      UV_PYTHON_PREFERENCE: only-system
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: ${{ matrix.python-version }}
-      - run: python -m unittest discover -s tests -v
-      - run: python -m aiagents run examples/finance-demo.json
+          python-version: "3.12"
+      - run: python -m pip install uv==0.12.1
+      - run: uv sync --locked --extra app
+      # Offline: no paid API calls, no GPU; tests needing local v1 artifacts skip themselves.
+      - run: uv run pytest -q
+
+  image:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t finsight:ci .
+      - run: docker run --rm finsight:ci python -c "import finsight.api.app, finsight.worker, finsight.watchdog, finsight.supervisor"

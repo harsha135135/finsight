@@ -1,6 +1,23 @@
-# FinSight services on the Mac. GPU inference stays on the PC, reached through the SSH tunnel
-# (containers use host.docker.internal:8000). Only Postgres for now; api and worker come later.
+# FinSight on the Mac: Postgres, migrations, API, worker (under a watchdog) and supervisor.
+# GPU inference stays on the PC, reached through the Mac's SSH tunnel; containers use host.docker.internal:8000.
+# Secrets (FINSIGHT_API_KEY, FINSIGHT_SEC_USER_AGENT, ANTHROPIC_API_KEY) come from .env and are never baked in.
 name: finsight
+
+x-app: &app
+  image: finsight:dev
+  platform: linux/amd64   # the lockfile covers macOS arm64 and Linux x86_64 (as CI); Rosetta runs it on the Mac
+  env_file:
+    - path: .env
+      required: false
+  environment:
+    FINSIGHT_DATABASE_URL: postgresql://finsight:finsight@db:5432/finsight
+    FINSIGHT_QWEN_BASE_URL: http://host.docker.internal:8000
+  volumes:
+    - finsight-state:/app/.finsight
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  restart: unless-stopped
+
 services:
   db:
     image: postgres:17
@@ -17,5 +34,36 @@ services:
       interval: 2s
       timeout: 3s
       retries: 30
+
+  migrate:
+    <<: *app
+    build: .
+    restart: "no"
+    command: ["python", "-m", "finsight.storage.db"]
+    depends_on:
+      db: {condition: service_healthy}
+
+  api:
+    <<: *app
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  worker:
+    <<: *app
+    command: ["python", "-m", "finsight.watchdog", "--timeout", "30", "--",
+              "python", "-m", "finsight.worker", "--heartbeat", "5"]
+    stop_grace_period: 30s
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  supervisor:
+    <<: *app
+    command: ["python", "-m", "finsight.supervisor", "--timeout", "30"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
 volumes:
   finsight-db:
+  finsight-state:

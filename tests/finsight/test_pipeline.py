@@ -129,3 +129,25 @@ def test_figure_that_disagrees_with_xbrl_is_rejected(pg, tmp_path, monkeypatch):
     findings = {f["metric"]: f for f in report["findings"]}
     assert findings["capex"]["status"] == "accepted" and status["status"] == "completed"
     assert findings["revenue"]["status"] == "rejected" and "differs from XBRL" in " ".join(findings["revenue"]["issues"])
+
+
+def test_unreachable_model_server_fails_operationally_and_recovers(pg, tmp_path, monkeypatch):
+    state = {"up": False, "calls": 0}
+
+    def server_models(self):
+        if not state["up"]:
+            raise httpx.ConnectError("tunnel down")
+        return ["scripted"]
+    original = ScriptedAnalyst.generate
+
+    def counted(self, *args, **kwargs):
+        state["calls"] += 1
+        return original(self, *args, **kwargs)
+    monkeypatch.setattr(ScriptedAnalyst, "server_models", server_models, raising=False)
+    monkeypatch.setattr(ScriptedAnalyst, "generate", counted)
+    request = {"company": "MMM", "period": "FY2018", "metrics": ["revenue"], "question": "FY2018 revenue"}
+    down, _, _ = _run(pg, tmp_path, dict(request, question="FY2018 revenue (down)"))
+    assert down["status"] == "failed" and "model server unavailable" in down["outcome_reason"] and state["calls"] == 0
+    state["up"] = True
+    up, report, _ = _run(pg, tmp_path, dict(request, question="FY2018 revenue (up)"))
+    assert up["status"] == "completed" and report["findings"][0]["status"] == "accepted"

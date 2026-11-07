@@ -148,6 +148,15 @@ class ResearchStages:
             return {"status": "gap", "reason": research["gap"]}
         requested = [(m, research["period"]) for m in research["metrics"]]
         missing = {m: e["reason"] for m, e in research["evidence"].items() if e["status"] == "missing"}
+        served = getattr(self.provider, "server_models", None)
+        if served is not None and research["passages"]:  # local server reached through the tunnel: check first
+            try:
+                models = served()
+            except Exception as exc:  # unreachable: an operational failure; resubmit once the server is back
+                return {"status": "failed", "reason": f"model server unavailable ({type(exc).__name__}); "
+                                                      "resubmit when it is reachable"}
+            if self.provider.model not in models:
+                return {"status": "failed", "reason": f"model {self.provider.model} is not served (served: {models})"}
         if not research["passages"]:
             return {"status": "ok", "skipped_model": True, "output": {"findings": [
                 {"metric": m, "period": p, "status": "insufficient_evidence", "operands": [], "program": [], "unit": None,

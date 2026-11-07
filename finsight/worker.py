@@ -53,6 +53,19 @@ class Heartbeat(threading.Thread):
             conn.close()
 
 
+class LivenessFile(threading.Thread):
+    """Touches FINSIGHT_HEARTBEAT_FILE so the container's watchdog can kill a frozen worker."""
+
+    def __init__(self, path: str, interval: float = 5.0) -> None:
+        super().__init__(daemon=True)
+        self.path, self.interval = Path(path), interval
+
+    def run(self) -> None:
+        while True:
+            self.path.touch()
+            time.sleep(self.interval)
+
+
 def build_stages(job: dict, conn, token: uuid.UUID, delays: dict | None = None) -> Stages:
     """Stages for a job, from the model configuration frozen at admission."""
     from finsight.ingestion.sec import PostgresRateLimiter, SecSource
@@ -110,6 +123,8 @@ def run_job(conn, saver: PostgresSaver, job: dict, token: uuid.UUID, stages: Sta
 def serve(url: str, worker_id: str, stages, artifacts: Path, *, once: bool = False,
           poll: float = 1.0, heartbeat_interval: float = 5.0) -> int:
     """``stages`` is a Stages object, or a factory ``(job, conn, token) -> Stages``."""
+    if os.environ.get("FINSIGHT_HEARTBEAT_FILE"):
+        LivenessFile(os.environ["FINSIGHT_HEARTBEAT_FILE"], min(heartbeat_interval, 5.0)).start()
     conn = connect(url, application_name=f"finsight-worker:{worker_id}")
     saver = PostgresSaver(conn)
     saver.setup()
