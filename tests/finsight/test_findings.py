@@ -66,3 +66,14 @@ def test_unit_comes_from_the_operands_not_the_model_label():
                                                        op("revenue", SALES, "32,765", "32765")],
                                   [{"op": "divide", "args": ["operating_income", "revenue"]}], unit="USD"))
     assert revenue.unit == "USD" and margin.unit == "ratio"
+
+
+def test_declaring_other_years_does_not_pass_an_answer_with_no_figure_from_the_requested_year():
+    # Seen replaying wrong-period answers: both operands from other years, each declared, used to pass.
+    growth = finding("revenue", [op("revenue_2018", SALES, "32,765", "32765", period="FY2018"),
+                                 op("revenue_2017", SALES, "31,657", "31657", period="FY2017")],
+                     [{"op": "subtract", "args": ["revenue_2018", "revenue_2017"]}])
+    asked_absent_year = dict(growth, period="FY2016")
+    ok, wrong = run(growth, asked_absent_year)
+    assert ok.status == "accepted"                       # FY2018 present; the declared FY2017 operand is allowed
+    assert wrong.status == "rejected" and any("not 2016" in i for i in wrong.issues)

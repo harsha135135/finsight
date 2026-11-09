@@ -82,6 +82,11 @@ def validate_finding(finding: FindingOutput, supplied: dict[str, Passage]) -> Va
     if len(set(names)) != len(names):
         return ValidatedFinding(**base, status="rejected", issues=["duplicate operand names"])
     requested_year = year_of(finding.period)
+    # A second period is allowed only alongside a figure the source places in the requested year: otherwise an
+    # answer built entirely from other years would pass by declaring those years (seen in the wrong-period replay).
+    has_requested = requested_year is not None and any(
+        op.passage_id in supplied and source_period(supplied[op.passage_id], op.original_text) == str(requested_year)
+        for op in finding.operands)
     operands = []
     for op in finding.operands:
         passage = supplied[op.passage_id]
@@ -93,7 +98,7 @@ def validate_finding(finding: FindingOutput, supplied: dict[str, Passage]) -> Va
         if not supports(passage.text, op.original_text, value, op.scale):
             issues.append(f"operand {op.name} ({op.original_text!r}) is not supported by passage {op.passage_id}")
         found_period = source_period(passage, op.original_text)
-        if requested_year and str(requested_year) != found_period and not _other_period_allowed(finding, op):
+        if requested_year and str(requested_year) != found_period and not (has_requested and _other_period_allowed(finding, op)):
             issues.append(f"operand {op.name}: the source places {op.original_text!r} under "
                           f"{found_period or 'no identifiable period'}, not {requested_year}")
         operands.append(ValidatedOperand(name=op.name, passage_id=op.passage_id, original_text=op.original_text,
