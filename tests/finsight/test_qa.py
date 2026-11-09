@@ -39,9 +39,14 @@ def test_unplaceable_figure_is_unverified_strict_rejects_lenient_accepts():
     assert strict.status == "rejected" and lenient.status == "accepted" and lenient.period_unverified == 1
 
 
-def test_fiscal_year_named_by_its_start_year_uses_the_offset():
-    answer = qa(answer_type="numeric", operands=[op("rev", SALES, "32,765", "32765", period="FY2017")])
-    assert validate_qa(answer, SUPPLIED, {2017}, fiscal_offset=1).status == "accepted"
+def test_column_dates_map_to_fiscal_years_with_the_company_year_end():
+    from finsight.qa import fiscal_year
+    best_buy = (1, 28)                                                   # fiscal years end in late January
+    assert fiscal_year("January 28, 2023", best_buy) == 2023 and fiscal_year("July 29, 2023", best_buy) == 2024
+    assert fiscal_year("February 2, 2019", best_buy) == 2019             # 53-week year, within 7 days
+    assert fiscal_year("December 31, 2022", (6, 30)) == 2023             # Amcor: year ends June 30
+    assert fiscal_year("Years ended December 31 2018", (12, 31)) == 2018 and fiscal_year("2018") == 2018
+    assert fiscal_year("2018 versus 2017") is None
 
 
 def test_boolean_narrative_and_insufficient_evidence():
@@ -63,3 +68,4 @@ def test_requested_years_cover_financebench_phrasings():
     assert requested_years("quick ratio by Jun'23 close") == {2023}
     assert requested_years("Q2'23 operating margin") == {2023}
     assert requested_years("Does 3M maintain a stable trend of dividend distribution?") == set()
+    assert requested_years("the FY2017 - FY2019 3 year average") == {2017, 2018, 2019}

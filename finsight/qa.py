@@ -5,9 +5,10 @@ Period check per numeric operand, against the source (not the model's declaratio
               question names periods) it is one of the requested years
   reject      the source places the figure in a different year from the declaration or from every requested year
   unverified  the source cannot place the figure (no year in its column header or sentence)
-Strict mode rejects an answer with any unverified operand; lenient mode accepts it and counts it. Years are compared
-after the document's fiscal-year offset (a fiscal year named by the calendar year in which it starts, e.g. a year
-ending in January, has offset 1). At year granularity a quarter column and a year-to-date column are not told apart.
+Strict mode rejects an answer with any unverified operand; lenient mode accepts it and counts it. A column date is
+mapped to the company's fiscal year with its fiscal-year end (so "July 29, 2023" is FY2024 for a year ending in late
+January); companies that name a fiscal year by the calendar year in which it starts are not handled. At year
+granularity a quarter column and a year-to-date column are not told apart.
 """
 
 from __future__ import annotations
@@ -19,17 +20,62 @@ from finsight.calc import CalcError, execute, format_value
 from finsight.contracts import Passage
 from finsight.contracts.qa import ClaimCheck, OperandCheck, QAOutput, QAResult
 from finsight.contracts.report import PERMITTED_CONSTANTS
-from finsight.findings import source_period
 from finsight.normalize import _squash, supports
 
 _YEAR = re.compile(r"(?<!\d)((?:19|20)\d{2})(?!\d)")
 ADDITIVE = {"add", "subtract"}
 
 
+_MONTH = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
+_DATE = re.compile(r"(?i)\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2}),?\s+((?:19|20)\d{2})\b")
+
+
+def fiscal_year(text: str, fiscal_year_end: tuple[int, int] | None = None) -> int | None:
+    """The fiscal year a column header or sentence assigns: a full date is mapped with the company's fiscal-year end
+    (the year Y whose year-end, plus 7 days, is on or after the date); otherwise a single plain year."""
+    from datetime import date, timedelta
+
+    dates = {(int(y), _MONTH[m.lower()[:3]], int(d)) for m, d, y in _DATE.findall(text)}
+    if len(dates) == 1:
+        year, month, day = dates.pop()
+        if fiscal_year_end is None:
+            return year
+        fm, fd = fiscal_year_end
+        when = date(year, month, min(day, 28) if month == 2 else day)
+        for candidate in (year - 1, year, year + 1):
+            if when <= date(candidate, fm, min(fd, 28) if fm == 2 else fd) + timedelta(days=7):
+                return candidate
+        return None
+    years = {int(y) for y in _YEAR.findall(text)}
+    return years.pop() if len(years) == 1 else None
+
+
+def source_text(passage: Passage, original_text: str) -> str | None:
+    """The column header (table row) or the sentence (text) the source gives a quoted figure."""
+    quoted = _squash(original_text)
+    if not quoted:
+        return None
+    if passage.location.table is not None:
+        body = passage.text.split("  [")[0]
+        for segment in body.split(" | ")[1:]:
+            header, _, value = segment.rpartition(":")
+            if quoted in _squash(value) or _squash(value).endswith(quoted):
+                return header
+        return None
+    for sentence in re.split(r"(?<=[.;])\s+", passage.text):
+        if quoted in _squash(sentence):
+            return sentence
+    return None
+
+
 def requested_years(question: str) -> set[int]:
-    """Fiscal years a question asks about: 4-digit years, FY2023 / FY 2023 / FY23, Q22023 / Q2'23, Jun'23."""
+    """Fiscal years a question asks about: 4-digit years, FY2023 / FY 2023 / FY23, Q22023 / Q2'23, Jun'23, and
+    ranges such as FY2017 - FY2019 (expanded)."""
     text = question.replace("’", "'")
     years = {int(y) for y in _YEAR.findall(text)}
+    for a, b in re.findall(r"(?i)(?:fy\s?)?((?:19|20)\d{2})\s*(?:-|–|to|through)\s*(?:fy\s?)?((?:19|20)\d{2})", text):
+        if 0 < int(b) - int(a) <= 10:
+            years |= set(range(int(a), int(b) + 1))
     years |= {int(m) for m in re.findall(r"(?i)\bq[1-4]\s*'?((?:19|20)\d{2})\b", text)}
     years |= {2000 + int(m) for m in re.findall(r"(?i)\bfy\s?'?(\d{2})\b", text)}
     years |= {2000 + int(m) for m in re.findall(r"(?i)(?:\bq[1-4]|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s?'(\d{2})\b", text)}
@@ -62,7 +108,7 @@ def _result_unit(output: QAOutput) -> str | None:
 
 
 def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[int] | None = None, *,
-                fiscal_offset: int = 0, strict: bool = True) -> QAResult:
+                fiscal_year_end: tuple[int, int] | None = None, strict: bool = True) -> QAResult:
     requested = requested or set()
     kind = output.answer_type
     if kind == "insufficient_evidence":
@@ -90,8 +136,8 @@ def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[i
                 issues.append(f"operand {op.name} cites passage {op.passage_id} that was not supplied")
             elif not ok:
                 issues.append(f"operand {op.name} ({op.original_text!r}) is not supported by passage {op.passage_id}")
-            found = source_period(passage, op.original_text) if passage is not None else None
-            source = int(found) - fiscal_offset if found else None
+            header = source_text(passage, op.original_text) if passage is not None else None
+            source = fiscal_year(header, fiscal_year_end) if header else None
             declared = _YEAR.search(op.period) or re.search(r"(?i)fy\s?'?(\d{2})\b", op.period)
             declared_year = (int(declared.group(1)) if len(declared.group(1)) == 4 else 2000 + int(declared.group(1))) if declared else None
             if source is None:

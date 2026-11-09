@@ -1,0 +1,67 @@
+{
+ "rule": "fiscal year of a column date = the year Y whose fiscal-year end (month, day), plus 7 days, is on or after the date; every development 10-K names its fiscal year by the calendar year in which it ends",
+ "source": "cover pages of the development 10-Ks: 3M/Activision/Amazon/AmEx/Block/Boeing/Corning/Netflix/Pfizer Dec 31; Kraft Heinz Dec 28; Adobe Nov 27-Dec 2; Amcor Jun 30; Best Buy Jan 28-Feb 2; General Mills May 26-31; Walmart Jan 31; Foot Locker has only 8-Ks here (no period questions)",
+ "fiscal_year_end": {
+  "3M": [
+   12,
+   31
+  ],
+  "ACTIVISIONBLIZZARD": [
+   12,
+   31
+  ],
+  "ADOBE": [
+   12,
+   1
+  ],
+  "AMAZON": [
+   12,
+   31
+  ],
+  "AMCOR": [
+   6,
+   30
+  ],
+  "AMERICANEXPRESS": [
+   12,
+   31
+  ],
+  "BESTBUY": [
+   1,
+   28
+  ],
+  "BLOCK": [
+   12,
+   31
+  ],
+  "BOEING": [
+   12,
+   31
+  ],
+  "CORNING": [
+   12,
+   31
+  ],
+  "FOOTLOCKER": null,
+  "GENERALMILLS": [
+   5,
+   31
+  ],
+  "KRAFTHEINZ": [
+   12,
+   31
+  ],
+  "NETFLIX": [
+   12,
+   31
+  ],
+  "PFIZER": [
+   12,
+   31
+  ],
+  "WALMART": [
+   1,
+   31
+  ]
+ }
+}
