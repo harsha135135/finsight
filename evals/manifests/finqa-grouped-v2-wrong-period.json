@@ -3,9 +3,14 @@
  "base_sha256": "cbe78f1c576da01621597070d7d57595f4d6cdb3616c8b2aa728ada3e894c848",
  "builder_version": "3",
  "dataset": "finqa",
+ "excluded": [
+  "BLL/2007/page_35.pdf-4::period_shift",
+  "PNC/2009/page_41.pdf-1::period_shift",
+  "UNP/2008/page_79.pdf-1::period_shift"
+ ],
  "name": "finqa-grouped-v2-wrong-period",
  "revision": "0f16e2867befa6840783e58be38c9efb9229d742",
- "rules": "Secondary diagnostic: every val_dev answerable item the period-shift rule applies to.",
+ "rules": "Secondary diagnostic: every val_dev answerable item the period-shift rule applies to. Frozen after a manual review of every item; 3 excluded (review file bound by hash). Frozen before any scoring.",
  "samples": {
   "val_dev_wrong_period": [
    "AAPL/2014/page_38.pdf-2::period_shift",
@@ -54,7 +59,6 @@
    "BLL/2007/page_35.pdf-1::period_shift",
    "BLL/2007/page_35.pdf-2::period_shift",
    "BLL/2007/page_35.pdf-3::period_shift",
-   "BLL/2007/page_35.pdf-4::period_shift",
    "BLL/2007/page_47.pdf-2::period_shift",
    "BLL/2007/page_47.pdf-3::period_shift",
    "BLL/2007/page_47.pdf-4::period_shift",
@@ -154,7 +158,6 @@
    "PM/2018/page_24.pdf-2::period_shift",
    "PM/2018/page_24.pdf-3::period_shift",
    "PM/2018/page_31.pdf-2::period_shift",
-   "PNC/2009/page_41.pdf-1::period_shift",
    "PNC/2009/page_41.pdf-2::period_shift",
    "PNC/2009/page_41.pdf-3::period_shift",
    "PNC/2009/page_46.pdf-2::period_shift",
@@ -182,7 +185,6 @@
    "UNP/2008/page_77.pdf-1::period_shift",
    "UNP/2008/page_77.pdf-2::period_shift",
    "UNP/2008/page_77.pdf-3::period_shift",
-   "UNP/2008/page_79.pdf-1::period_shift",
    "UNP/2008/page_79.pdf-2::period_shift",
    "UNP/2008/page_79.pdf-3::period_shift",
    "UNP/2014/page_25.pdf-3::period_shift",
@@ -206,8 +208,13 @@
    "ZBH/2003/page_58.pdf-4::period_shift"
   ]
  },
- "sha256": "8afe7636a7c6ea2b82e01ccf645ecddad9f5a2ab6e92e3637f43962167968493",
+ "sha256": "3e21a39b0278798554a21f76cdc107c31427f6a7f3e27063632c6e821fb74038",
  "variant_generator": {
+  "audit": {
+   "path": "evals/labels/wrong-period-slice-review-v1.json",
+   "sha256": "39ece2493c26a4bd4533a4a0cf9bc29f06c92ac23e4600ac3404a7d18ef10e7e",
+   "version": "v1"
+  },
   "period_shift": "2",
   "rule": "an answerable question that names a year the evidence covers; that year is moved to one the evidence never mentions (2-4 years before or after every year in the question and evidence, direction seeded by the item id; absent as a 4-digit year and as FY/'YY forms); forecasting or hypothetical questions are skipped because they stay answerable for an absent year"
  }
