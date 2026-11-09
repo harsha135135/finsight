@@ -24,8 +24,9 @@ Operand years were read from FinQA's own column headers by cell position (indepe
 - Positive control (the same models' correct answers to the original questions): 75-83% of the fine-tuned models'
   correct answers are also rejected (base: 13 of 25), in every case because an operand has no declared period (the
   second year of a two-year question, or a figure in a sentence without a single year). FinQA-format outputs leave
-  operand periods empty; so on this format the validator catches wrong years but is not precise. In FinSight's own
-  contract the model declares periods (as in the 3M demo).
+  operand periods empty; so on this format the validator catches wrong years but is not precise. Rejecting every
+  wrong-year answer is not sufficient when the same replay rejects most correct answers; the positive and negative
+  controls are repeated with native-format outputs and source-checked periods (`docs/financebench-qa-plan.md`).
 
 ## 2. FinanceBench development: v2a vs v2b
 
@@ -55,7 +56,9 @@ by 10^3 or 10^6): 3-4 per run.
 11 partial, 97 incorrect (`evals/financebench/narrative-review-dev-v1.json`). One gold label is disputed (Pfizer
 "spinning off Upjohn as of Q2 2023"; that separation completed in 2020); excluding it changes no total.
 
-**Reading.** The FinQA-trained adapters do not carry over to FinanceBench in this contract: both answer few numeric
-questions correctly even with the evidence supplied, and v2b's abstention gains do not show up as a measurable
-difference here. In full-document mode, retrieval misses the gold page for over half the questions. These are
+**Reading.** The current FinQA-trained setup performs poorly on FinanceBench under its existing answer contract
+(answer-v4): both adapters answer few numeric questions correctly even with the evidence supplied, and v2b's abstention
+gains do not show up as a measurable difference here. This does not show that FinSight cannot work: the contract cannot
+express narrative answers, and base Qwen was not compared. A versioned FinanceBench contract and a base-model comparison
+follow (`docs/financebench-qa-plan.md`). In full-document mode, retrieval misses the gold page for over half the questions. These are
 development results, one run each.
