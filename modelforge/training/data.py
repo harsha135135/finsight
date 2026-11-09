@@ -138,3 +138,47 @@ def build_v2(manifest_name: str = "finqa-grouped-v2", out_dir: Path = Path("arti
                      "source": "val_select only", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
     (out_dir / "data_manifest.json").write_text(json.dumps(report, indent=1, sort_keys=True) + "\n")
     return report
+
+
+# ----------------------------------------------------------------------------- v2b
+
+DATA_VERSION_V2B = "2b"
+
+
+def build_v2b(manifest_name: str = "finqa-grouped-v2", base_dir: Path = Path("artifacts/training/finqa-grouped-v2-a20"),
+              out_dir: Path = Path("artifacts/training/finqa-grouped-v2b-p10"), per_100_answerable: int = 10,
+              seed: int = 20261109) -> dict:
+    """v2a's training rows unchanged, plus wrong-period negatives (splits.PERIOD_SHIFT_RULE) made from training
+    questions that are in v2a as answerable examples; the selection file is v2a's, byte for byte."""
+    manifest = splits.load(manifest_name)
+    base_train = (base_dir / "train.jsonl").read_bytes()
+    base_rows = [json.loads(line) for line in base_train.decode().splitlines() if line]
+    answer_ids = {r["id"] for r in base_rows if r["kind"] == "answer"}
+    items = splits.resolve_items(manifest, sorted(answer_ids))
+    candidates = [v for item in items if (v := splits.period_shift_variant(item)) is not None]
+    rng = random.Random(seed)
+    rng.shuffle(candidates)
+    chosen = candidates[: len(answer_ids) * per_100_answerable // 100]
+    rows = base_rows + [_example(v, json.dumps(ABSTAIN), "abstain") for v in chosen]
+    rng.shuffle(rows)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "train.jsonl"
+    path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+    (out_dir / "val.jsonl").write_bytes((base_dir / "val.jsonl").read_bytes())
+    base_manifest = json.loads((base_dir / "data_manifest.json").read_text())
+    clean = sum(r["kind"] == "abstain" for r in base_rows)
+    report = {**{k: base_manifest[k] for k in ("manifest", "manifest_sha256", "prompt_version", "prompt_sha256",
+                                                "negative_filter")},
+              "data_version": DATA_VERSION_V2B, "seed": seed, "base_data": str(base_dir),
+              "base_train_sha256": hashlib.sha256(base_train).hexdigest(),
+              "period_shift": {"version": splits.PERIOD_SHIFT_VERSION, "rule": splits.PERIOD_SHIFT_RULE,
+                               "per_100_answerable": per_100_answerable, "eligible": len(candidates),
+                               "chosen": len(chosen), "ids": sorted(v.id for v in chosen)},
+              "sources": base_manifest["sources"] + "; plus wrong-period negatives paired with their answerable originals",
+              "train": {"examples": len(rows), "answer": len(answer_ids), "abstain_clean": clean,
+                        "abstain_period_shift": len(chosen), "abstain": clean + len(chosen),
+                        "abstain_paired_with_answerable_original": all(v.id.split("::")[0] in answer_ids for v in chosen),
+                        "base_rows_unchanged": True, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()},
+              "val": {**base_manifest["val"], "copied_from": str(base_dir / "val.jsonl")}}
+    (out_dir / "data_manifest.json").write_text(json.dumps(report, indent=1, sort_keys=True) + "\n")
+    return report

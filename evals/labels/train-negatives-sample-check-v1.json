@@ -1,0 +1,52 @@
+{
+ "bound_data": {
+  "diagnostic_manifest": "evals/manifests/finqa-grouped-v2-wrong-period.json",
+  "period_shift_version": "2",
+  "v2b_train_sha256": "66e60794947a4bf0df3714c8631cd9f807c7d91f8c6b3e22e7cc56cf3dce97d4"
+ },
+ "date": "2026-11-09",
+ "name": "train-negatives-sample-check-v1",
+ "purpose": "pre-training check of both negative kinds for experiment v2b, as requested in review",
+ "reviewer": "manual reading (no model outputs consulted)",
+ "samples": {
+  "clean_negatives_v2a": {
+   "ambiguous": 2,
+   "ambiguous_items": {
+    "HUM/2018/page_129.pdf-3::unanswerable": "a remaining table of 2018 dividend payments may identify the share count",
+    "MA/2010/page_107.pdf-1::unanswerable": "remaining Level 3 roll-forward rows may rebuild the removed balances"
+   },
+   "n": 30,
+   "seed": 20261109,
+   "verified": 28,
+   "view": "question, gold program and values, removed evidence, and the 3 most related remaining passages (truncated): a partial view of the remaining evidence"
+  },
+  "period_shift_train_generator_v1": {
+   "ambiguous": 0,
+   "answerable": 1,
+   "n": 30,
+   "note": "BDX/2017/page_32.pdf-2 shifted the '2019s' apostrophe artifact (management's) instead of the period, leaving the question answerable; generator fixed (version 2) and the training set rebuilt",
+   "seed": 20261109,
+   "verified": 29
+  },
+  "period_shift_train_generator_v2": {
+   "also_noted": "some shifts change a named plan or instrument (e.g. '2009 global incentive plan') rather than a period; still unanswerable",
+   "ambiguous": 1,
+   "ambiguous_items": {
+    "RSG/2005/page_26.pdf-1::period_shift": "the question names the table row 'period month #1'; the row may still be identifiable despite the shifted date"
+   },
+   "n": 30,
+   "seed": 20261109,
+   "verified": 29,
+   "view": "original and shifted question plus every year present in the evidence; absence of the shifted year (4-digit and FY/'YY forms) is checked automatically"
+  },
+  "wrong_period_eval_slice": {
+   "ambiguous": 1,
+   "ambiguous_items": {
+    "BLL/2007/page_35.pdf-4::period_shift": "shifted clause not visible in the truncated view"
+   },
+   "n": 20,
+   "seed": 20261109,
+   "verified": 19
+  }
+ }
+}

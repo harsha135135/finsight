@@ -98,6 +98,43 @@ def unanswerable_variant(item: EvalItem) -> EvalItem | None:
     })
 
 
+PERIOD_SHIFT_VERSION = "2"   # v2: "2019s" (FinQA's encoding of an apostrophe, as in "management 2019s") is not a year
+PERIOD_SHIFT_RULE = ("an answerable question that names a year the evidence covers; that year is moved to one the "
+                     "evidence never mentions (2-4 years before or after every year in the question and evidence, "
+                     "direction seeded by the item id; absent as a 4-digit year and as FY/'YY forms); forecasting or "
+                     "hypothetical questions are skipped because they stay answerable for an absent year")
+_YEAR = re.compile(r"(?<!\d)(19[5-9]\d|20[0-4]\d)(?![\ds])")
+_HYPOTHETICAL = re.compile(r"\b(expect\w*|project\w*|forecast\w*|estimat\w*|if|assum\w*|would|will|next|trend|"
+                           r"continu\w*|predict\w*|anticipat\w*)\b", re.I)
+
+
+def period_shift_variant(item: EvalItem) -> EvalItem | None:
+    """Wrong-period negative: the question asks about a year the evidence does not cover (see PERIOD_SHIFT_RULE)."""
+    if not item.answerable or not item.gold_steps or _HYPOTHETICAL.search(item.question):
+        return None
+    text = " ".join(p.text for p in item.passages).lower()
+    evidence = {int(y) for y in _YEAR.findall(text)}
+    asked = sorted({int(y) for y in _YEAR.findall(item.question)})
+    covered = [y for y in asked if y in evidence]
+    if not covered:
+        return None
+    rng = random.Random(f"period-shift-v{PERIOD_SHIFT_VERSION}:{item.id}")
+    source = rng.choice(covered)
+    low, high = min(evidence | set(asked)), max(evidence | set(asked))
+    options = [y for y in (*(low - k for k in (2, 3, 4)), *(high + k for k in (2, 3, 4))) if 1990 <= y <= 2035]
+    rng.shuffle(options)
+    for target in options:
+        short = f"{target % 100:02d}"
+        if re.search(rf"(?<!\d){target}(?!\d)", text) or re.search(rf"(?:fy|')\s*{short}(?!\d)", text):
+            continue
+        return item.model_copy(update={
+            "id": f"{item.id}::period_shift", "question": re.sub(rf"(?<!\d){source}(?![\ds])", str(target), item.question),
+            "answerable": False, "gold_answer": None, "gold_steps": None, "gold_passage_ids": [],
+            "meta": {**item.meta, "variant": "period_shift", "shifted_from": str(source), "shifted_to": str(target),
+                     "period_shift_version": PERIOD_SHIFT_VERSION}})
+    return None
+
+
 def build_finqa(revision: str = finqa.REVISION, seed: int = 20261106) -> list[dict]:
     items = {split: list(finqa.iter_items(split, revision)) for split in finqa.SPLITS}
     official = {
@@ -238,6 +275,7 @@ def resolve_items(manifest: dict, ids: Iterable[str]) -> list[EvalItem]:
     _check_bound_audit(manifest)
     wanted = list(ids)
     base = {i.split("::")[0] for i in wanted}
+    wanted_set = set(wanted)
     found: dict[str, EvalItem] = {}
     for split in finqa.SPLITS:
         for item in finqa.iter_items(split, manifest["revision"]):
@@ -245,6 +283,8 @@ def resolve_items(manifest: dict, ids: Iterable[str]) -> list[EvalItem]:
                 found[item.id] = item
                 if (variant := unanswerable_variant(item)) is not None:
                     found[variant.id] = variant
+                if f"{item.id}::period_shift" in wanted_set and (shifted := period_shift_variant(item)) is not None:
+                    found[shifted.id] = shifted
     missing = [i for i in wanted if i not in found]
     if missing:
         raise KeyError(f"{len(missing)} manifest ids could not be rebuilt, e.g. {missing[:3]}")
@@ -336,3 +376,21 @@ def verify(manifest: dict) -> dict:
 
 def passages_for_prompt(passages: list[Passage]) -> str:
     return "\n".join(f"[{p.id}] {p.text}" for p in passages)
+
+
+WRONG_PERIOD_NAME = "finqa-grouped-v2-wrong-period"
+
+
+def build_wrong_period(base_name: str = V2_NAME) -> dict:
+    """Diagnostic slice (secondary): wrong-period versions of val_dev's answerable questions. Never used for
+    training or selection; the main development metric stays val_dev_eval."""
+    base = load(base_name)
+    items = resolve_items(base, base["splits"]["val_dev"])
+    ids = sorted(v.id for i in items if (v := period_shift_variant(i)) is not None)
+    manifest = {"name": WRONG_PERIOD_NAME, "dataset": base["dataset"], "revision": base["revision"],
+                "builder_version": BUILDER_VERSION, "base_manifest": base_name, "base_sha256": base["sha256"],
+                "variant_generator": {"period_shift": PERIOD_SHIFT_VERSION, "rule": PERIOD_SHIFT_RULE},
+                "rules": "Secondary diagnostic: every val_dev answerable item the period-shift rule applies to.",
+                "samples": {"val_dev_wrong_period": ids}}
+    manifest["sha256"] = canonical_hash(manifest)
+    return manifest

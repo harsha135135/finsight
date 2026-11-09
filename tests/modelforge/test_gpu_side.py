@@ -278,3 +278,21 @@ def test_eval_exclusion_drops_whole_families_and_filing_groups():
             {"id": one.split("::")[0].rsplit("/", 1)[0] + "/page_999.pdf-1"}, {"id": "ZZZ/1999/page_1.pdf-1"}]
     kept, excluded = exclude_related(rows, "finqa-grouped-comparison:val_shared_250")
     assert [r["id"] for r in kept] == ["ZZZ/1999/page_1.pdf-1"] and excluded == 3
+
+
+def test_period_shift_ignores_the_2019s_apostrophe_artifact_and_needs_an_absent_year():
+    from finsight.contracts import Passage, PassageLocation
+    from modelforge.items import EvalItem
+    from modelforge.splits import period_shift_variant
+    from finsight.contracts.models import CalculationStep
+    p = lambda i, t: Passage(id=i, document_id="d", section="s", location=PassageLocation(), start=0, end=len(t), text=t)
+    item = EvalItem(id="X/2018/page_1.pdf-1", dataset="finqa", group="X/2018",
+                    question="based on management 2019s discussion what was the tax expense in 2018",
+                    passages=[p("text_0", "management 2019s discussion and analysis"),
+                              p("table_0", "tax expense | 120 | 100  [columns:  | 2018 | 2017]")],
+                    gold_steps=[CalculationStep(op="add", args=["120", "0"])], gold_answer="120")
+    v = period_shift_variant(item)
+    assert v is not None and "2019s" in v.question and "2018" not in v.question.replace("2019s", "")
+    assert v.meta["shifted_from"] == "2018" and not v.answerable
+    hypothetical = item.model_copy(update={"question": "if the trend continues, what would the 2018 tax expense be?"})
+    assert period_shift_variant(hypothetical) is None
