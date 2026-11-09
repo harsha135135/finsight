@@ -280,6 +280,6 @@ By v1's selection exposure (answerable items): groups v1's selection touched (21
 CI −0.085 to +0.025); untouched groups (36): 0.528 vs 0.528.
 
 Reading: cleaning the negatives, with nothing else changed, raised correct abstention from 12 to 20 of the 40 verified
-unanswerable questions without a measurable cost on answerable questions or in false abstention. It is one training
+unanswerable questions. The answerable-accuracy change is not statistically clear (−2.8 points), which is not proof of no cost: the interval still allows a decline of up to 7.8 points. False abstention barely moved (+0.4 points). It is one training
 run (one seed) evaluated on development data, and v2a remains 40 points behind Haiku on abstention. The next
 controlled comparison adds wrong-period negatives (separately, as planned).
