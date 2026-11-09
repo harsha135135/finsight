@@ -210,3 +210,47 @@ def ingest_documents(conn, manifest: dict, pdf_record: dict, doc_names: list[str
                       datetime.now(timezone.utc), doc.split("_")[0], "pdf-1"))
         counts[doc] = store_passages(conn, parsed.passages)
     return counts
+
+
+def _chunks(text: str, limit: int = 700) -> list[str]:
+    out, current = [], []
+    for line in (ln.strip() for ln in text.splitlines()):
+        if not line:
+            continue
+        if current and sum(len(x) + 1 for x in current) + len(line) > limit:
+            out.append("\n".join(current))
+            current = []
+        current.append(line[:limit])
+    if current:
+        out.append("\n".join(current))
+    return out
+
+
+def eval_items(manifest: dict, mode: str, retrieval_path: Path = Path("evals/financebench/retrieval-dev-text-2.json")):
+    """EvalItems for the development questions. mode 'supplied': FinanceBench's annotated evidence text;
+    mode 'full_document': FinSight's extraction through the frozen retrieval results."""
+    from finsight.contracts import Passage, PassageLocation
+    from modelforge.items import EvalItem
+
+    retrieved = json.loads(retrieval_path.read_text())["questions"] if mode == "full_document" else {}
+    items = []
+    for q in dev_questions(manifest):
+        passages = []
+        if mode == "supplied":
+            for k, e in enumerate(q["evidence"]):
+                for n, chunk in enumerate(_chunks(e["evidence_text"])):
+                    passages.append(Passage(id=f"e{k}_c{n}", document_id=f"financebench:{q['doc_name']}", section=f"page_{e['evidence_page_num'] + 1}",
+                                            location=PassageLocation(page=e["evidence_page_num"] + 1), start=0, end=len(chunk), text=chunk))
+        elif mode == "full_document":
+            for n, r in enumerate(retrieved[q["financebench_id"]]["passages"]):
+                passages.append(Passage(id=f"r{n}", document_id=f"financebench:{q['doc_name']}", section=f"page_{r['page']}",
+                                        location=PassageLocation(page=r["page"]), start=0, end=len(r["text"]), text=r["text"]))
+        else:
+            raise ValueError(mode)
+        items.append(EvalItem(id=q["financebench_id"], dataset="financebench", group=q["company"], company=q["company"],
+                              year=str(manifest["documents"][q["doc_name"]]["doc_period"]), question=q["question"],
+                              passages=passages, answerable=True,
+                              meta={"calc_convention": "as_written", "mode": mode, "question_type": q["question_type"],
+                                    "doc_name": q["doc_name"],
+                                    "gold_pages": ",".join(str(e["evidence_page_num"] + 1) for e in q["evidence"])}))
+    return items

@@ -7,6 +7,7 @@ the denominator whatever its outcome.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import threading
@@ -124,6 +125,39 @@ def run(manifest_name: str, selection: str, adapter: Adapter, out_dir: Path, lim
             timing.write(json.dumps({"items": len(todo), "seconds": round(time.monotonic() - session_start, 3),
                                      "concurrency": concurrency}) + "\n")
     return write_scorecard(out_dir, items)
+
+
+def run_items(items: list[EvalItem], adapter: Adapter, out_dir: Path, label: str, extra: dict | None = None) -> Path:
+    """Run already-built items (e.g. FinanceBench) with the same validation as `run`; resumable. Scoring is done
+    by the dataset's own scorer, not the FinQA scorecard."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    predictions_path = out_dir / "predictions.jsonl"
+    done = set()
+    if predictions_path.exists():
+        done = {json.loads(line)["item_id"] for line in predictions_path.read_text().splitlines() if line.strip()}
+    config = {"selection": label, "item_ids": [i.id for i in items], "adapter": adapter.config_id,
+              "settings": adapter.settings, "prompt_version": prompts.PROMPT_VERSION, "prompt_sha256": prompts.fingerprint(),
+              "items_sha256": hashlib.sha256("".join(i.model_dump_json() for i in items).encode()).hexdigest(),
+              "commit": _commit(), "server": adapter.server_info() if hasattr(adapter, "server_info") else None,
+              "started_at": datetime.now(timezone.utc).isoformat(), **(extra or {})}
+    config_path = out_dir / "config.json"
+    if config_path.exists() and done:
+        previous = json.loads(config_path.read_text())
+        changed = [k for k in ("item_ids", "adapter", "settings", "prompt_sha256", "items_sha256", "server") if previous.get(k) != config.get(k)]
+        if changed:
+            raise ValueError(f"{out_dir} holds predictions from a different configuration ({', '.join(changed)})")
+        config["started_at"] = previous["started_at"]
+    config_path.write_text(json.dumps(config, indent=1) + "\n")
+    session_start = time.monotonic()
+    todo = [i for i in items if i.id not in done]
+    with predictions_path.open("a", encoding="utf-8") as handle:
+        for item in todo:
+            handle.write(evaluate_item(item, adapter).model_dump_json() + "\n")
+            handle.flush()
+    if todo:
+        with (out_dir / "timing.jsonl").open("a") as timing:
+            timing.write(json.dumps({"items": len(todo), "seconds": round(time.monotonic() - session_start, 3), "concurrency": 1}) + "\n")
+    return out_dir
 
 
 def _percent_scale_error(prediction: Prediction, item: EvalItem) -> bool:

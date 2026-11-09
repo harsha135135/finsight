@@ -1,0 +1,100 @@
+{
+ "artifacts": {
+  "extraction": {
+   "path": "evals/financebench/extraction-check-dev-v1.json",
+   "sha256": "c198be8a0f8280edb3242586def21479c3905dbf4da7f26a558efa6a385cf50d"
+  },
+  "retrieval": {
+   "path": "evals/financebench/retrieval-dev-text-2.json",
+   "sha256": "5e8f988dc578b0f13bb7830702152d724c4d0f30a6055c640c6671af536176b0"
+  },
+  "review": {
+   "path": "evals/financebench/narrative-review-dev-v1.json",
+   "sha256": "adb7644994e26509a5290ef99af9c7a9be8260392acd3b2361949bae70f3b01e"
+  },
+  "scores": {
+   "path": "artifacts/runs/20261109-fb-dev-scores.json",
+   "sha256": "2c9611d981107f58e595f1774a4d621dfe8acb638c6d967be434e63a84389354"
+  },
+  "wrong_period_analysis": {
+   "path": "artifacts/runs/20261109-wp-analysis.json",
+   "sha256": "d05c28321263b91f9fcfa53a81c420f93d2a0e38c91f1c3988987bb92edba19f"
+  },
+  "wrong_period_replay": {
+   "path": "artifacts/runs/20261109-wp-replay-breakdown.json",
+   "sha256": "3ca9f61ac9ab6887738ca84035f93995afc580f7badb906efe24cacef4e62fad"
+  }
+ },
+ "description": "FinanceBench development: v2a vs v2b, supplied evidence and full document",
+ "facts": {
+  "format_caused_rejections": "supplied mode: 2 (v2a) and 3 (v2b) numeric answers with a correct stated value were rejected because FinanceBench's evidence text splits figures such as '(155)' across lines",
+  "models": [
+   "qwen3-4b-finqa-v2a",
+   "qwen3-4b-finqa-v2b"
+  ],
+  "modes": {
+   "full_document": "pdf-1 extraction + text-2 retrieval (tuned on dev), frozen per question",
+   "supplied": "FinanceBench evidence_text"
+  },
+  "no_paid_calls": true,
+  "protocol": "answer-v4, as_written; vLLM default FinQA settings except --max-model-len 6144; one request at a time",
+  "scope": "financebench-v1 development half (75 questions, 16 companies); held-out never read",
+  "scores": {
+   "full_document/narrative": {
+    "a_minus_b": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n": 44
+   },
+   "full_document/numeric": {
+    "a_minus_b": 0.065,
+    "ci95": [
+     0.0,
+     0.152
+    ],
+    "n": 31
+   },
+   "supplied/narrative": {
+    "a_minus_b": 0.045,
+    "ci95": [
+     0.0,
+     0.094
+    ],
+    "n": 44
+   },
+   "supplied/numeric": {
+    "a_minus_b": -0.097,
+    "ci95": [
+     -0.219,
+     0.0
+    ],
+    "n": 31
+   }
+  }
+ },
+ "name": "financebench-dev-v2a-v2b",
+ "runs": {
+  "artifacts/runs/20261109-fb-dev-full_document-v2a": {
+   "config_sha256": "53d98ce818d3aca823e58008690d8bff9aaf58db63ebc0472363aa2a571fa4aa",
+   "predictions_sha256": "c6a693b82b028e40516480ceed657a3e7ac9488c38019187760ebe1f29239aff",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261109-fb-dev-full_document-v2b": {
+   "config_sha256": "43f9d0b4c65ba55db41ae74ec73e3d68684f359e4d69a6a884af1c5b1f193b85",
+   "predictions_sha256": "b952eec564ab09ee7598a12bf4ba5ba97f7fb3c802e05de7c6b56644127c9da4",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261109-fb-dev-supplied-v2a": {
+   "config_sha256": "27f4ef347ea7a722d5914717d03293a5b583545f257c6758ddc36bb752789a12",
+   "predictions_sha256": "ea38985c53ec687c4d34f6725ec40ffade24e1b62f7258107fcdadd47d9c5e3c",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261109-fb-dev-supplied-v2b": {
+   "config_sha256": "16c889e85eba9c0ea35c9df799838d2324ee6ca73617ee0ebba98a86a023f32f",
+   "predictions_sha256": "b79fc2393103e27e26e412cab745bc938b813f2e1f243144b7ee329ba8dd4efd",
+   "scorecard_sha256": null
+  }
+ }
+}
