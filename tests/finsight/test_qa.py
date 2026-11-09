@@ -69,3 +69,12 @@ def test_requested_years_cover_financebench_phrasings():
     assert requested_years("Q2'23 operating margin") == {2023}
     assert requested_years("Does 3M maintain a stable trend of dividend distribution?") == set()
     assert requested_years("the FY2017 - FY2019 3 year average") == {2017, 2018, 2019}
+
+
+def test_model_facing_schema_requires_the_evidence_each_answer_type_needs():
+    from finsight.reasoning.qa_prompt import qa_schema
+    branches = {b["properties"]["answer_type"]["const"]: b for b in qa_schema()["anyOf"]}
+    assert set(branches) == {"numeric", "boolean", "narrative", "insufficient_evidence"}
+    assert branches["numeric"]["properties"]["operands"]["minItems"] == 1
+    assert branches["boolean"]["properties"]["claims"]["minItems"] == 1 and branches["narrative"]["properties"]["claims"]["minItems"] == 1
+    assert branches["numeric"]["properties"]["operands"]["items"]["$ref"].endswith("QAOperand")

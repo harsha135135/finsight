@@ -7,7 +7,8 @@ narrative             at least one cited claim; every figure in a claim must be 
 insufficient_evidence the evidence does not answer the question; a reason, no operands
 
 Separate from the FinQA protocol ``answer-v4`` and the report contract ``finsight-report-v1`` (both unchanged).
-The model-facing schema is flat (``answer_type`` plus nullable fields) and lists the evidence before the answer type.
+The model-facing schema is flat (``answer_type`` plus nullable fields). The answer type comes first: with the
+evidence first, models emitted empty operand lists before deciding what they were answering (smoke test).
 """
 
 from __future__ import annotations
@@ -26,7 +27,7 @@ class QAOperand(Contract):
     name: Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9_]{0,63}$")]
     passage_id: Short
     original_text: Short
-    value: Annotated[str, StringConstraints(min_length=1, max_length=40)]
+    value: Annotated[str, StringConstraints(pattern=r"^-?[0-9]+(\.[0-9]+)?$", max_length=40)]
     scale: Scale
     unit: Annotated[str, StringConstraints(min_length=1, max_length=20)]
     period: Annotated[str, StringConstraints(min_length=2, max_length=40)]
@@ -38,11 +39,11 @@ class QAClaim(Contract):
 
 
 class QAOutput(Contract):
-    operands: list[QAOperand] = Field(default_factory=list, max_length=10)
-    program: list[CalculationStep] = Field(default_factory=list, max_length=10)
-    claims: list[QAClaim] = Field(default_factory=list, max_length=6)
     answer_type: Literal["numeric", "boolean", "narrative", "insufficient_evidence"]
     boolean: Literal["yes", "no"] | None = None
+    claims: list[QAClaim] = Field(default_factory=list, max_length=6)
+    operands: list[QAOperand] = Field(default_factory=list, max_length=10)
+    program: list[CalculationStep] = Field(default_factory=list, max_length=10)
     answer_unit: str | None = Field(default=None, max_length=40)
     missing: str | None = Field(default=None, max_length=1000)
 

@@ -49,3 +49,13 @@ unverified rate; FinanceBench's correct numeric answers serve as a second positi
 **Serving.** One vLLM server with v2a and v2b, `--compact-json`, `--max-model-len 6656`, thinking off for all three
 models, `max_tokens` 1,536, one request at a time. Over-length or truncated outputs count as operational failures.
 Order: smoke test on unscored inputs → native period controls → supplied (base, v2a, v2b) → full document.
+
+**Smoke tests before scoring (unscored FinQA training items and invented questions on the 3M 10-K; no FinanceBench
+development data).** Four interface fixes, all before any scored run: (1) with the evidence fields first, base Qwen
+emitted empty operand lists and then "numeric" → answer type first; (2) without array bounds, v2a/v2b listed passage ids
+until `max_tokens` → array bounds and string patterns kept in the model-facing schema, operand values must be plain
+numbers; (3) field order alone could not make base fill both claims and operands → the model-facing schema is a union with
+one branch per answer type, each requiring its evidence (numeric ≥1 operand; boolean yes/no + ≥1 claim; narrative ≥1
+claim; insufficient evidence a reason); every branch parses as the flat `QAOutput`. Prompt `finsight-qa-v1.4`. After the
+fixes, all smoke outputs from all three models parse, none truncated, every type emitted. Observed and left as measured
+behaviour: v2a/v2b write claims in their FinQA template ("The answer is yes.").
