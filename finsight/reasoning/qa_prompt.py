@@ -79,3 +79,19 @@ def user_message(question: str, passages: list) -> str:
     lines += [f"[{p.id}] (page {p.location.page}) {p.text}" if getattr(p.location, "page", None) else f"[{p.id}] {p.text}"
               for p in passages]
     return "\n".join(lines)
+
+
+def claude_schema() -> dict:
+    """The same per-type union for Claude's structured outputs, which do not accept '$defs' inside 'anyOf' or
+    'maxItems': references are inlined and array maxima dropped (minimum counts and patterns are kept)."""
+    schema = qa_schema()
+
+    def inline(node):
+        if isinstance(node, dict):
+            if "$ref" in node:
+                return inline(schema["$defs"][node["$ref"].split("/")[-1]])
+            return {k: inline(v) for k, v in node.items() if k not in ("$defs", "maxItems")}
+        if isinstance(node, list):
+            return [inline(v) for v in node]
+        return node
+    return inline(schema)
