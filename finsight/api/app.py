@@ -52,6 +52,8 @@ class ResearchRequest(BaseModel):
 def resolve_model_config(choice: ModelChoice) -> dict:
     """Freeze the full model configuration at admission (later setting changes do not affect the job)."""
     settings = get_settings()
+    if choice.provider == "claude" and not settings.allow_claude:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Claude is disabled (paid calls); set FINSIGHT_ALLOW_CLAUDE=true to enable it")
     defaults = {"qwen": {"model": "Qwen/Qwen3-4B", "base_url": settings.qwen_base_url, "max_tokens": 1024},
                 "claude": {"model": settings.model_analyze, "max_tokens": settings.max_tokens_default},
                 "recorded": {"model": "fixtures", "max_tokens": None},
@@ -147,6 +149,9 @@ def create_app(database_url: str | None = None, api_key: str | None = None) -> F
             raise HTTPException(status.HTTP_404_NOT_FOUND, "job not found")
         return {"id": str(job_id), "status": row["status"], "cancel_requested": True}
 
+    # ------------------------------------------------------------------ dashboard
+    from finsight.api.dashboard import register
+    register(app, pool, authorized)
     return app
 
 

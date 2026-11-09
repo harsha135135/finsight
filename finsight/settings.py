@@ -35,6 +35,10 @@ class Settings(BaseSettings):
 
     qwen_base_url: str = "http://127.0.0.1:8000"
 
+    # Dashboard and watcher
+    allow_claude: bool = False          # Claude stays off in the dashboard unless explicitly enabled (paid calls)
+    watcher_model: str | None = None    # local model for auto-analysis of new filings; None = no auto-analysis
+
 
 def get_settings() -> Settings:
     return Settings()

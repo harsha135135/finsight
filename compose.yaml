@@ -65,6 +65,14 @@ services:
     depends_on:
       migrate: {condition: service_completed_successfully}
 
+  # Polls SEC EDGAR for watchlist companies; records each filing once. Auto-analysis of new 10-Ks only when
+  # FINSIGHT_WATCHER_MODEL names a local model (unset = off).
+  watcher:
+    <<: *app
+    command: ["python", "-m", "finsight.watcher", "--interval", "900"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
 volumes:
   finsight-db:
   finsight-state:
