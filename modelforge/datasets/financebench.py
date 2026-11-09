@@ -109,3 +109,73 @@ def build_manifest(finqa_train_ids: list[str]) -> dict:
     }
     manifest["sha256"] = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
     return manifest
+
+
+def _git_blob_sha1(body: bytes) -> str:
+    return hashlib.sha1(b"blob %d\0" % len(body) + body).hexdigest()  # noqa: S324 (git object id, not security)
+
+
+def download_pdfs(manifest: dict, revision: str = REVISION) -> dict:
+    """Fetch the original PDFs the manifest uses, verify each against the pinned commit's git blob id, and keep
+    a record (sha256, size, status) next to them. Failures are recorded, never skipped silently."""
+    out = data_dir(revision) / "pdfs"
+    out.mkdir(parents=True, exist_ok=True)
+    tree_url = f"https://api.github.com/repos/{REPO}/git/trees/{revision}?recursive=1"
+    with urllib.request.urlopen(tree_url, timeout=60) as response:  # noqa: S310 (fixed https URL)
+        tree = {e["path"]: e for e in json.loads(response.read())["tree"]}
+    record_path = data_dir(revision) / "pdfs.json"
+    record = json.loads(record_path.read_text()) if record_path.exists() else {}
+    for doc in sorted(manifest["documents"]):
+        entry = tree.get(f"pdfs/{doc}.pdf")
+        path = out / f"{doc}.pdf"
+        if entry is None:
+            record[doc] = {"status": "missing_at_revision"}
+            continue
+        if path.exists() and _git_blob_sha1(path.read_bytes()) == entry["sha"]:
+            body = path.read_bytes()
+        else:
+            try:
+                url = f"https://raw.githubusercontent.com/{REPO}/{revision}/pdfs/{doc}.pdf"
+                with urllib.request.urlopen(url, timeout=300) as response:  # noqa: S310
+                    body = response.read()
+            except OSError as exc:
+                record[doc] = {"status": "download_failed", "error": f"{type(exc).__name__}: {exc}"[:300]}
+                continue
+            if _git_blob_sha1(body) != entry["sha"]:
+                record[doc] = {"status": "hash_mismatch", "expected_git_blob": entry["sha"]}
+                continue
+            path.write_bytes(body)
+        record[doc] = {"status": "ok", "bytes": len(body), "sha256": hashlib.sha256(body).hexdigest(),
+                       "git_blob_sha1": entry["sha"], "path": str(path)}
+        record_path.write_text(json.dumps(record, indent=1, sort_keys=True) + "\n")
+    record_path.write_text(json.dumps(record, indent=1, sort_keys=True) + "\n")
+    return record
+
+
+def parse_corpus(pdf_record: dict) -> dict:
+    """Parse every downloaded original with the PDF parser; per-document statistics and failures are recorded
+    (bound to each file's sha256 and the parser version)."""
+    from finsight.ingestion.pdf import PARSER_VERSION, parse_pdf
+
+    report = {"parser_version": PARSER_VERSION, "revision": REVISION, "documents": {}}
+    for doc, entry in sorted(pdf_record.items()):
+        if entry.get("status") != "ok":
+            report["documents"][doc] = {"status": f"not_parsed ({entry.get('status')})"}
+            continue
+        try:
+            parsed = parse_pdf(Path(entry["path"]), f"financebench:{doc}", doc)
+        except Exception as exc:  # recorded, never silently skipped
+            report["documents"][doc] = {"status": "parse_failed", "error": f"{type(exc).__name__}: {exc}"[:300],
+                                        "sha256": entry["sha256"]}
+            continue
+        report["documents"][doc] = {"status": "ok", "sha256": entry["sha256"], "pages": parsed.pages,
+                                    "empty_pages": len(parsed.empty_pages), "passages": len(parsed.passages),
+                                    "chars": parsed.chars}
+    docs = report["documents"].values()
+    report["summary"] = {"documents": len(report["documents"]), "parsed": sum(d["status"] == "ok" for d in docs),
+                         "pages": sum(d.get("pages", 0) for d in docs),
+                         "empty_pages": sum(d.get("empty_pages", 0) for d in docs),
+                         "documents_mostly_without_text": sorted(
+                             k for k, d in report["documents"].items()
+                             if d.get("pages") and d["empty_pages"] > d["pages"] / 2)}
+    return report

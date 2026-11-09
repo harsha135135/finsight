@@ -817,6 +817,7 @@ app = [
     { name = "langgraph-checkpoint-postgres" },
     { name = "psycopg", extra = ["binary"], marker = "extra == 'extra-8-finsight-app'" },
     { name = "psycopg-pool" },
+    { name = "pypdfium2" },
     { name = "uvicorn" },
 ]
 gpu = [
@@ -851,6 +852,7 @@ requires-dist = [
     { name = "psycopg-pool", marker = "extra == 'app'", specifier = ">=3.2" },
     { name = "pydantic", specifier = ">=2.14" },
     { name = "pydantic-settings", specifier = ">=2.16" },
+    { name = "pypdfium2", marker = "extra == 'app'", specifier = ">=4.30" },
     { name = "torch", marker = "sys_platform == 'linux' and extra == 'gpu'", specifier = "==2.14.0" },
     { name = "transformers", marker = "sys_platform == 'linux' and extra == 'gpu'", specifier = ">=5.16.1,<5.21" },
     { name = "trl", marker = "sys_platform == 'linux' and extra == 'gpu'", specifier = ">=1.17.1" },
@@ -2914,6 +2916,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ca/49/98da271686e00676f41b1197ba5431ddc341b96d8efb68ea9d68e2b0d870/pynvvideocodec-2.0.4-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:b59cec7a1a3f78fad13fead78cad8b6d9686827f9ff4477080245457675a01d0", size = 43176147, upload-time = "2026-05-27T04:04:08.297Z" },
     { url = "https://files.pythonhosted.org/packages/46/d6/8475720d4f0f8fc9e852e0092b308643b71f24d9495ba3bd03c38b16c28d/pynvvideocodec-2.0.4-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:fcb06ef6ef24ee33b8f34950696a4e01636f2d8cdb96c407cd692931d049ac3d", size = 43176124, upload-time = "2026-05-27T04:06:26.415Z" },
     { url = "https://files.pythonhosted.org/packages/a7/ce/3062bf51bc0d98a344b9ed229a40535f6f1d309fc9ffaf34719b67ed3e21/pynvvideocodec-2.0.4-cp314-cp314-manylinux_2_28_x86_64.whl", hash = "sha256:d9ec06f47bca7b20a6e8234afaf596699c57a477be292613d676802e7e808ed2", size = 43174764, upload-time = "2026-05-27T04:08:19.02Z" },
+]
+
+[[package]]
+name = "pypdfium2"
+version = "5.15.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7c/17/5845ffd945c8b2783b04d16000daf83658e37a8efb91d692cb6e3c99b040/pypdfium2-5.15.1.tar.gz", hash = "sha256:b4656a0efce21be7f2429038ce3fbb417644565fc50858e65aaed23801f33d42", size = 696113, upload-time = "2026-11-07T17:54:07.265Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/33/c6/9d118ffda2612d65471ccc598c1a0fc4c17222c751fba47f0351d5ba580c/pypdfium2-5.15.1-py3-none-macosx_13_0_arm64.whl", hash = "sha256:8cb84f21ed36428ecf483e136ccbe71fc258ee730eae87d69baa3e178e56c8d6", size = 3710594, upload-time = "2026-11-07T17:53:32.212Z" },
+    { url = "https://files.pythonhosted.org/packages/13/2d/ce96360c120a1c20213deef6c8df127aaead5e86360aa370d148bd3514df/pypdfium2-5.15.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e479df7f9260865554f301889bf1afcdf9aaf5e2ad98c69797a2ebaa1c5e3a3b", size = 4020615, upload-time = "2026-11-07T17:53:43.201Z" },
+    { url = "https://files.pythonhosted.org/packages/1f/ba/fee881eff06b3ab8ecc5cb1b0ae779083ec7d3450b7d14e79314b2fd7b77/pypdfium2-5.15.1-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:b69b8b8edcc490ce5a9fba10d3aedd0a45f017f1c0e05651c6e9ead6f153256b", size = 5193286, upload-time = "2026-11-07T17:53:59.056Z" },
+    { url = "https://files.pythonhosted.org/packages/17/33/5d1f9796d61fb2a82183349c7c36717ce84c98a5ff931ed594b57f39590d/pypdfium2-5.15.1-py3-none-pyemscripten_2026_0_wasm32.whl", hash = "sha256:c9adfded14ba72d10e6cfc399fbf657b2738bfb9d1540266e1a4c61caba7a033", size = 2695252, upload-time = "2026-11-07T17:54:00.971Z" },
 ]
 
 [[package]]

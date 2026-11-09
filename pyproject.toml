@@ -27,6 +27,7 @@ app = [
     "langchain-anthropic>=1.7.10",
     "psycopg[binary]>=3.3.8",
     "psycopg-pool>=3.2",
+    "pypdfium2>=4.30",
 ]
 
 # Fine-tuning and serving on the Linux/WSL2 GPU machine only. Training and serving share

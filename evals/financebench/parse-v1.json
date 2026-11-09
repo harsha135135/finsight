@@ -1,0 +1,686 @@
+{
+ "documents": {
+  "3M_2018_10K": {
+   "chars": 579535,
+   "empty_pages": 0,
+   "pages": 160,
+   "passages": 968,
+   "sha256": "faf10c53fc6f1a8aa346ec3db79145e3ae6fbb3753c8064924e174d0a973934d",
+   "status": "ok"
+  },
+  "3M_2022_10K": {
+   "chars": 923070,
+   "empty_pages": 0,
+   "pages": 252,
+   "passages": 1557,
+   "sha256": "d5cf549543a24b04228fd2af979ff2ca94cf64fb008a789340cb9117fbcfde5d",
+   "status": "ok"
+  },
+  "3M_2023Q2_10Q": {
+   "chars": 351742,
+   "empty_pages": 0,
+   "pages": 92,
+   "passages": 592,
+   "sha256": "3e66115793459f42185feeeab4e7f07dd27ab6dd465d0694ce415e861029cf93",
+   "status": "ok"
+  },
+  "ACTIVISIONBLIZZARD_2019_10K": {
+   "chars": 624787,
+   "empty_pages": 0,
+   "pages": 198,
+   "passages": 1067,
+   "sha256": "017f1bbc1e37f2945a41fa2b5cf39d822e1e9d435a2c2b9c6b1cc76cd114a2df",
+   "status": "ok"
+  },
+  "ADOBE_2015_10K": {
+   "chars": 470630,
+   "empty_pages": 0,
+   "pages": 116,
+   "passages": 783,
+   "sha256": "f9ddba652f19e20752d98b1b4cedcebcb1a9a6d11dd23ab2e2f00f009a164c24",
+   "status": "ok"
+  },
+  "ADOBE_2016_10K": {
+   "chars": 410233,
+   "empty_pages": 0,
+   "pages": 112,
+   "passages": 681,
+   "sha256": "655153cdaed14d7093e98ff75595bf850a0d2299fa851ccf5b344ebc2d5038ae",
+   "status": "ok"
+  },
+  "ADOBE_2017_10K": {
+   "chars": 396696,
+   "empty_pages": 0,
+   "pages": 107,
+   "passages": 658,
+   "sha256": "ace32580369138998de84a0d0e24943766aa8374a17b823fdfae980b9c1458bd",
+   "status": "ok"
+  },
+  "ADOBE_2022_10K": {
+   "chars": 369417,
+   "empty_pages": 0,
+   "pages": 99,
+   "passages": 617,
+   "sha256": "ce8c716abac26bfa38ae6b71d703112852c8591a4bb19f7c1177beb1dfc87ad2",
+   "status": "ok"
+  },
+  "AES_2022_10K": {
+   "chars": 931813,
+   "empty_pages": 2,
+   "pages": 257,
+   "passages": 1555,
+   "sha256": "9c5de2227534c4d6bf3d805f635bad5d82eddf8e4183a85a3d1311b48b50291d",
+   "status": "ok"
+  },
+  "AMAZON_2017_10K": {
+   "chars": 292151,
+   "empty_pages": 0,
+   "pages": 85,
+   "passages": 498,
+   "sha256": "f8af08ff6c4147351ec3a6e5e2c74e104678ce68fb0d6d476b1e43f685c09a3f",
+   "status": "ok"
+  },
+  "AMAZON_2019_10K": {
+   "chars": 278721,
+   "empty_pages": 0,
+   "pages": 83,
+   "passages": 473,
+   "sha256": "d7df8c6cf3e351a8d68c7473be4159723d545260a32dbc82a8dd11c254c5584a",
+   "status": "ok"
+  },
+  "AMCOR_2020_10K": {
+   "chars": 554462,
+   "empty_pages": 10,
+   "pages": 195,
+   "passages": 876,
+   "sha256": "da158d5c68835374bcc52205663aa7653af1c2a6b31b09ab775c6e02a40da026",
+   "status": "ok"
+  },
+  "AMCOR_2022_8K_dated-2022-07-01": {
+   "chars": 23876,
+   "empty_pages": 0,
+   "pages": 9,
+   "passages": 42,
+   "sha256": "1de32e72c265486469f3b1c7cbfbe064a27055e60f7b43a81439986dda9025ad",
+   "status": "ok"
+  },
+  "AMCOR_2023Q2_10Q": {
+   "chars": 122374,
+   "empty_pages": 0,
+   "pages": 57,
+   "passages": 212,
+   "sha256": "71c39c3f338fc81a99e128e8e871e265818657670a7d29a62c454c905f94524c",
+   "status": "ok"
+  },
+  "AMCOR_2023Q4_EARNINGS": {
+   "chars": 42471,
+   "empty_pages": 0,
+   "pages": 14,
+   "passages": 72,
+   "sha256": "d155b7808e78167831648f476b7e3578e2d98645dee30862bbef4ff50fa24bf4",
+   "status": "ok"
+  },
+  "AMCOR_2023_10K": {
+   "chars": 482704,
+   "empty_pages": 0,
+   "pages": 156,
+   "passages": 824,
+   "sha256": "84d7a0291a12f4e68352750dccda3754c78eefdf06e0b5462046357a1ed53332",
+   "status": "ok"
+  },
+  "AMD_2015_10K": {
+   "chars": 752548,
+   "empty_pages": 0,
+   "pages": 215,
+   "passages": 1279,
+   "sha256": "105fff1c4af84a3d974b0f3fa224122e782aedca60fa3609f2789c80549dd8f6",
+   "status": "ok"
+  },
+  "AMD_2022_10K": {
+   "chars": 412286,
+   "empty_pages": 0,
+   "pages": 121,
+   "passages": 705,
+   "sha256": "a3bd74088fae0ad4aa03d04998a1f4c64fd0b3c693841601b0ac49b46cf5c1f4",
+   "status": "ok"
+  },
+  "AMERICANEXPRESS_2022_10K": {
+   "chars": 818717,
+   "empty_pages": 0,
+   "pages": 260,
+   "passages": 1391,
+   "sha256": "d3bbc7ab23d6160e07eab50a359e4d68c40efff9fde3baa168e7c40e06f568e6",
+   "status": "ok"
+  },
+  "AMERICANWATERWORKS_2020_10K": {
+   "chars": 611652,
+   "empty_pages": 0,
+   "pages": 152,
+   "passages": 1032,
+   "sha256": "6b43f1ed70b67c06483d28f8054270d597bce8507f298af2b1b6d9356d728602",
+   "status": "ok"
+  },
+  "AMERICANWATERWORKS_2021_10K": {
+   "chars": 669265,
+   "empty_pages": 4,
+   "pages": 181,
+   "passages": 1162,
+   "sha256": "701528ae6d14a77229468a829ee18f01ed439d5be012d0a915d2683335051029",
+   "status": "ok"
+  },
+  "AMERICANWATERWORKS_2022_10K": {
+   "chars": 1010171,
+   "empty_pages": 0,
+   "pages": 306,
+   "passages": 1721,
+   "sha256": "aea336531f1f8b10ecee1dd61066aab29794504f1f4a1407c857bd1e20d7da40",
+   "status": "ok"
+  },
+  "BESTBUY_2017_10K": {
+   "chars": 344423,
+   "empty_pages": 1,
+   "pages": 109,
+   "passages": 589,
+   "sha256": "4570187fa697f252e08c8f99c409446fbcde05b08358851d34d4cb1c8bd1cec8",
+   "status": "ok"
+  },
+  "BESTBUY_2019_10K": {
+   "chars": 351784,
+   "empty_pages": 2,
+   "pages": 107,
+   "passages": 605,
+   "sha256": "d3228e9acd2ce498b97a9d2cb99c2330b9a04687b7947908646d205b3eadf30d",
+   "status": "ok"
+  },
+  "BESTBUY_2023_10K": {
+   "chars": 291081,
+   "empty_pages": 0,
+   "pages": 75,
+   "passages": 490,
+   "sha256": "7ca465d31a08be29e8c08d756644d33d818c7254a1215720f265227005cda696",
+   "status": "ok"
+  },
+  "BESTBUY_2024Q2_10Q": {
+   "chars": 94791,
+   "empty_pages": 0,
+   "pages": 30,
+   "passages": 160,
+   "sha256": "cf9efb922bdd28d726d7e1605c5fa1f263dda72e033989e3bc9ee3a3bb356c03",
+   "status": "ok"
+  },
+  "BLOCK_2016_10K": {
+   "chars": 376516,
+   "empty_pages": 0,
+   "pages": 121,
+   "passages": 646,
+   "sha256": "5ef866a19b1110dcdbd1b0bc3c513a04e3d05322384c754cf394ad63f9af8191",
+   "status": "ok"
+  },
+  "BLOCK_2020_10K": {
+   "chars": 531858,
+   "empty_pages": 0,
+   "pages": 158,
+   "passages": 909,
+   "sha256": "c19a9fb25db3270e3a908c202855f4a54f000a06bf19a8b284331810228646fe",
+   "status": "ok"
+  },
+  "BOEING_2018_10K": {
+   "chars": 371315,
+   "empty_pages": 0,
+   "pages": 136,
+   "passages": 641,
+   "sha256": "6f1ace34b3b01778ad7d92d43ccd2f76513d5159ef48fbc07b510296cf2d07dc",
+   "status": "ok"
+  },
+  "BOEING_2022_10K": {
+   "chars": 506875,
+   "empty_pages": 1,
+   "pages": 190,
+   "passages": 877,
+   "sha256": "09285ff7ee737d3302977104aa05cc53c9dfb0161f3461a89b583dc38b9f2ab6",
+   "status": "ok"
+  },
+  "COCACOLA_2017_10K": {
+   "chars": 733943,
+   "empty_pages": 0,
+   "pages": 197,
+   "passages": 1234,
+   "sha256": "b57c75cf20916904f31c6aa7644d6c110f019adf7c76782c7d0ede7b95c65ac1",
+   "status": "ok"
+  },
+  "COCACOLA_2021_10K": {
+   "chars": 689885,
+   "empty_pages": 0,
+   "pages": 183,
+   "passages": 1166,
+   "sha256": "46a7059b9da795cd1ea9862d5b4f82a21e9b72e799351927a11f5cb4c528b592",
+   "status": "ok"
+  },
+  "COCACOLA_2022_10K": {
+   "chars": 667487,
+   "empty_pages": 0,
+   "pages": 183,
+   "passages": 1134,
+   "sha256": "9f91bb914d94d014cfca96e1021c932d5476d8b8ac2a933767bac4c438fd7a71",
+   "status": "ok"
+  },
+  "CORNING_2020_10K": {
+   "chars": 410763,
+   "empty_pages": 0,
+   "pages": 138,
+   "passages": 707,
+   "sha256": "ef471ab9ff6067f117977df6df8b4b5007066286b733981475ac2ccf48d91e59",
+   "status": "ok"
+  },
+  "CORNING_2021_10K": {
+   "chars": 404993,
+   "empty_pages": 0,
+   "pages": 125,
+   "passages": 692,
+   "sha256": "8023fac91ad417f996b692c506ee0e097effd091e698275288e4126cb8a2020e",
+   "status": "ok"
+  },
+  "CORNING_2022_10K": {
+   "chars": 476192,
+   "empty_pages": 0,
+   "pages": 159,
+   "passages": 812,
+   "sha256": "a63f102f045826b38ad21a606c33710f62932646fd7c0f1852ce411a4397a3ee",
+   "status": "ok"
+  },
+  "COSTCO_2021_10K": {
+   "chars": 220869,
+   "empty_pages": 0,
+   "pages": 76,
+   "passages": 379,
+   "sha256": "29e05b3862cf6ffa6cfda34ac82a9fa0fe76b67338c5924da3325c2ee3b08748",
+   "status": "ok"
+  },
+  "CVSHEALTH_2018_10K": {
+   "chars": 1421199,
+   "empty_pages": 2,
+   "pages": 392,
+   "passages": 2376,
+   "sha256": "bdc800e3f52a3e1d7a79c0973af3e94122fa08a76e335ea8305df60a09e1a0dc",
+   "status": "ok"
+  },
+  "CVSHEALTH_2022_10K": {
+   "chars": 851663,
+   "empty_pages": 1,
+   "pages": 213,
+   "passages": 1434,
+   "sha256": "183c196a41793cd50002ff6b88f8c6d32e4fcb1117ab490a732414e1208cda8f",
+   "status": "ok"
+  },
+  "FOOTLOCKER_2022_8K_dated-2022-05-20": {
+   "chars": 6456,
+   "empty_pages": 0,
+   "pages": 4,
+   "passages": 11,
+   "sha256": "865f22331a5943a85e53e38d1753addbeb6c42270853cddd0abc73ab23d150e9",
+   "status": "ok"
+  },
+  "FOOTLOCKER_2022_8K_dated_2022-08-19": {
+   "chars": 83714,
+   "empty_pages": 0,
+   "pages": 31,
+   "passages": 143,
+   "sha256": "70fd2d5bfc6955424196b372a5273ffbc74d2f0153f291e10e73edc37962a14e",
+   "status": "ok"
+  },
+  "GENERALMILLS_2019_10K": {
+   "chars": 426088,
+   "empty_pages": 0,
+   "pages": 140,
+   "passages": 733,
+   "sha256": "e8120ce31b22136e15c14115cdfbf3ddc548e58f15b6febc350c422a4c12d9db",
+   "status": "ok"
+  },
+  "GENERALMILLS_2020_10K": {
+   "chars": 427426,
+   "empty_pages": 0,
+   "pages": 127,
+   "passages": 718,
+   "sha256": "626dd53f9b52e5895b7a7073e1c491008769970609c10e2f6cf8247ed85d6fae",
+   "status": "ok"
+  },
+  "GENERALMILLS_2022_10K": {
+   "chars": 400688,
+   "empty_pages": 8,
+   "pages": 127,
+   "passages": 685,
+   "sha256": "27f2cc507ffc056de3b679d124d51b80bd043ce7b8e867c59e2cdfe1d2ea5de3",
+   "status": "ok"
+  },
+  "JOHNSON_JOHNSON_2022Q4_EARNINGS": {
+   "chars": 46456,
+   "empty_pages": 0,
+   "pages": 24,
+   "passages": 78,
+   "sha256": "7ae6bf6f9a998d19e23fd796b58b0f2015085c74712253b78fb90174c12436a7",
+   "status": "ok"
+  },
+  "JOHNSON_JOHNSON_2022_10K": {
+   "chars": 519062,
+   "empty_pages": 0,
+   "pages": 151,
+   "passages": 876,
+   "sha256": "dba7d6cc97734abd6dcbc1a6a34f82b5d228e60d0a1a32425a90404fd4d3e290",
+   "status": "ok"
+  },
+  "JOHNSON_JOHNSON_2023Q2_EARNINGS": {
+   "chars": 45101,
+   "empty_pages": 0,
+   "pages": 24,
+   "passages": 79,
+   "sha256": "db1f3419d309440e644dc3cdfbb74758e67734dd181e5dbabc7479d0ab92d026",
+   "status": "ok"
+  },
+  "JOHNSON_JOHNSON_2023_8K_dated-2023-08-30": {
+   "chars": 55436,
+   "empty_pages": 0,
+   "pages": 27,
+   "passages": 100,
+   "sha256": "0601a4b9f15e4400ced1b2ccb81c309cb66844fbac6b975a76dc490501bea95a",
+   "status": "ok"
+  },
+  "JPMORGAN_2021Q1_10Q": {
+   "chars": 581891,
+   "empty_pages": 0,
+   "pages": 179,
+   "passages": 958,
+   "sha256": "62518c05b02265dc13ca257d9ec0be0aec4449dad53db0c77d93444e7e2cfe97",
+   "status": "ok"
+  },
+  "JPMORGAN_2022Q2_10Q": {
+   "chars": 618245,
+   "empty_pages": 0,
+   "pages": 197,
+   "passages": 1015,
+   "sha256": "7d715f552d4eeb6b2a1ea8ae02237b5767306907e761270ac23d74ac5b7e44b5",
+   "status": "ok"
+  },
+  "JPMORGAN_2022_10K": {
+   "chars": 1509253,
+   "empty_pages": 0,
+   "pages": 382,
+   "passages": 2453,
+   "sha256": "c269899950f36edfa496e3c8447a51d86d0a206442a96dc24dcd9317d55b957c",
+   "status": "ok"
+  },
+  "JPMORGAN_2023Q2_10Q": {
+   "chars": 707287,
+   "empty_pages": 0,
+   "pages": 217,
+   "passages": 1153,
+   "sha256": "eef2d9c1fdb5dc82be48166487a9e451c8544aec932a01fb06309ea7cd7122f5",
+   "status": "ok"
+  },
+  "KRAFTHEINZ_2019_10K": {
+   "chars": 545044,
+   "empty_pages": 0,
+   "pages": 152,
+   "passages": 917,
+   "sha256": "df1340e7b002e5f412d4c9073292d0f48a2988fd347d5a4f44d017b9680fbae2",
+   "status": "ok"
+  },
+  "LOCKHEEDMARTIN_2020_10K": {
+   "chars": 522200,
+   "empty_pages": 0,
+   "pages": 132,
+   "passages": 890,
+   "sha256": "1e68051a649270779fc5cb68806612a28d7d81288ed75dd37aa1858717bf55a0",
+   "status": "ok"
+  },
+  "LOCKHEEDMARTIN_2021_10K": {
+   "chars": 534227,
+   "empty_pages": 0,
+   "pages": 136,
+   "passages": 903,
+   "sha256": "d2486265fedea887bcc621f0b2dbb9670e66fe05203e1378b8e650c9564732fb",
+   "status": "ok"
+  },
+  "LOCKHEEDMARTIN_2022_10K": {
+   "chars": 512579,
+   "empty_pages": 0,
+   "pages": 130,
+   "passages": 859,
+   "sha256": "9a2317300d0f1e2623ba291fe9ec38fc779c1d1ad989dcfe6f862b77435c6923",
+   "status": "ok"
+  },
+  "MGMRESORTS_2018_10K": {
+   "chars": 667700,
+   "empty_pages": 1,
+   "pages": 188,
+   "passages": 1135,
+   "sha256": "1b540737f91716aaa23b062499e6cab9c51d258e151f37eb8c65646bb588a0da",
+   "status": "ok"
+  },
+  "MGMRESORTS_2020_10K": {
+   "chars": 578130,
+   "empty_pages": 0,
+   "pages": 150,
+   "passages": 977,
+   "sha256": "98a9a55baf838309d16a730fd63efbcd146be1911b61abb3658b1774f360b099",
+   "status": "ok"
+  },
+  "MGMRESORTS_2022Q4_EARNINGS": {
+   "chars": 46200,
+   "empty_pages": 0,
+   "pages": 15,
+   "passages": 78,
+   "sha256": "fe9126b17c3656e50d53741b13cb5fb233d4adaf922e4d84072b1d5e564fbfbd",
+   "status": "ok"
+  },
+  "MGMRESORTS_2022_10K": {
+   "chars": 698015,
+   "empty_pages": 0,
+   "pages": 220,
+   "passages": 1194,
+   "sha256": "130b96c1309c97aaedcabee2fa5d5421e54491e618273bd33c3b1aeddad323ec",
+   "status": "ok"
+  },
+  "MGMRESORTS_2023Q2_10Q": {
+   "chars": 172614,
+   "empty_pages": 0,
+   "pages": 62,
+   "passages": 297,
+   "sha256": "09c02fd40073570ae0826d707674154a9cd55a895e94096a82fcf0a4447ea64d",
+   "status": "ok"
+  },
+  "MICROSOFT_2016_10K": {
+   "chars": 394596,
+   "empty_pages": 0,
+   "pages": 121,
+   "passages": 678,
+   "sha256": "f3555bd5ea1802770cc8f2a7ca766392e16fe6504f18688db681d852029404dc",
+   "status": "ok"
+  },
+  "MICROSOFT_2023_10K": {
+   "chars": 345645,
+   "empty_pages": 1,
+   "pages": 116,
+   "passages": 590,
+   "sha256": "e534af371c824aab19b8d01f8bc0e9d1e0a3fb418a33119c5224a53d20a0d37b",
+   "status": "ok"
+  },
+  "NETFLIX_2015_10K": {
+   "chars": 231679,
+   "empty_pages": 0,
+   "pages": 72,
+   "passages": 396,
+   "sha256": "b22ca874ef08f383bd0b1071677d44f4a242af668f855f00dc9c6d4ac94148e2",
+   "status": "ok"
+  },
+  "NETFLIX_2017_10K": {
+   "chars": 234986,
+   "empty_pages": 0,
+   "pages": 73,
+   "passages": 399,
+   "sha256": "981a69bba010dd1709c74ccec9ca26c61635c02a4f22b76345d26021e88077d6",
+   "status": "ok"
+  },
+  "NIKE_2018_10K": {
+   "chars": 393528,
+   "empty_pages": 0,
+   "pages": 97,
+   "passages": 667,
+   "sha256": "31de66f1e37cabf1785e0ffa66955bf003bf2a9dcf3f4ebe93732d063b7b6ebe",
+   "status": "ok"
+  },
+  "NIKE_2019_10K": {
+   "chars": 369754,
+   "empty_pages": 0,
+   "pages": 104,
+   "passages": 630,
+   "sha256": "7dbdf1bcbf37dd6d6e694ce95bcb23cd6943d08cc9cd1e5ee9832ed8f7eebdc6",
+   "status": "ok"
+  },
+  "NIKE_2021_10K": {
+   "chars": 401189,
+   "empty_pages": 0,
+   "pages": 109,
+   "passages": 676,
+   "sha256": "73b54e5e0b1b0b33e51ac314f6d9a9db0bcc286269feb24a3445a5f1ff0f7789",
+   "status": "ok"
+  },
+  "NIKE_2023_10K": {
+   "chars": 369339,
+   "empty_pages": 0,
+   "pages": 106,
+   "passages": 621,
+   "sha256": "51f5a0fc6ede20de4f5cfdeae8791a57bdd65c95db2ceb263eb120696ff90172",
+   "status": "ok"
+  },
+  "PAYPAL_2022_10K": {
+   "chars": 480438,
+   "empty_pages": 0,
+   "pages": 134,
+   "passages": 815,
+   "sha256": "0c1dd6cd170261c6bd778de382a211a56a3bb1e009a429246370c97fa0defab3",
+   "status": "ok"
+  },
+  "PEPSICO_2021_10K": {
+   "chars": 1112601,
+   "empty_pages": 0,
+   "pages": 549,
+   "passages": 1962,
+   "sha256": "f2c7cf1969c7f6dfc8c0596824e1d6b3cc70f662ee2dd06be84bb27af5635364",
+   "status": "ok"
+  },
+  "PEPSICO_2022_10K": {
+   "chars": 1170841,
+   "empty_pages": 0,
+   "pages": 503,
+   "passages": 2034,
+   "sha256": "7d8a9f3374e429c58f101319e2da8a0e601a89859e1e4f6854163dd5f8ce6b47",
+   "status": "ok"
+  },
+  "PEPSICO_2023Q1_EARNINGS": {
+   "chars": 35032,
+   "empty_pages": 0,
+   "pages": 16,
+   "passages": 61,
+   "sha256": "a705483ea6c548a2f67c421bc24ced391a6beb8487600b44b54e9ae2aca1f31c",
+   "status": "ok"
+  },
+  "PEPSICO_2023_8K_dated-2023-05-05": {
+   "chars": 6119,
+   "empty_pages": 0,
+   "pages": 5,
+   "passages": 11,
+   "sha256": "e8591d6f83d810a0f9edfc540a1a21aa6269a6de4c756b5eb808d5dbbea330ed",
+   "status": "ok"
+  },
+  "PEPSICO_2023_8K_dated-2023-05-30": {
+   "chars": 527509,
+   "empty_pages": 0,
+   "pages": 172,
+   "passages": 917,
+   "sha256": "8e8f99f270b065e105636f54b2684f4c4170b3fc80845ae2f393bf66f3291d2c",
+   "status": "ok"
+  },
+  "PFIZER_2021_10K": {
+   "chars": 691222,
+   "empty_pages": 0,
+   "pages": 143,
+   "passages": 1186,
+   "sha256": "ff3307d5f633c5dbe59a976f5ff5e086af04ba5a5135f2b6411c89538a22a665",
+   "status": "ok"
+  },
+  "Pfizer_2023Q2_10Q": {
+   "chars": 269645,
+   "empty_pages": 1,
+   "pages": 72,
+   "passages": 455,
+   "sha256": "bf6c059a1dd71bd56581c94bce650bd85b56de2f4d0a25b45f05804a8bd6684d",
+   "status": "ok"
+  },
+  "ULTABEAUTY_2023Q4_EARNINGS": {
+   "chars": 19127,
+   "empty_pages": 0,
+   "pages": 9,
+   "passages": 31,
+   "sha256": "c7df6210a627042e231c9579982648a43f3ff8b630b4020540330c2a85e0d781",
+   "status": "ok"
+  },
+  "ULTABEAUTY_2023_10K": {
+   "chars": 315591,
+   "empty_pages": 0,
+   "pages": 105,
+   "passages": 535,
+   "sha256": "cdf2ebcfbc2eb9ecf880126d38b186cac1f683dae5bcb50cad15176bfc449ff4",
+   "status": "ok"
+  },
+  "VERIZON_2021_10K": {
+   "chars": 479479,
+   "empty_pages": 0,
+   "pages": 120,
+   "passages": 800,
+   "sha256": "f7fcb508f920e3df9a07bc858a6d9f0d3cd1e976a46efe72375c9ffb983822ac",
+   "status": "ok"
+  },
+  "VERIZON_2022_10K": {
+   "chars": 479117,
+   "empty_pages": 0,
+   "pages": 124,
+   "passages": 796,
+   "sha256": "403d7346e8a059472863d1789527f16e5127a61c2f6c4429012e6227f27576d7",
+   "status": "ok"
+  },
+  "WALMART_2018_10K": {
+   "chars": 935423,
+   "empty_pages": 1,
+   "pages": 304,
+   "passages": 1589,
+   "sha256": "661512df698c895a4a5ab3d4ab879fd8ffc8f17a9038e27bcb208401982b6c15",
+   "status": "ok"
+  },
+  "WALMART_2019_10K": {
+   "chars": 447792,
+   "empty_pages": 29,
+   "pages": 155,
+   "passages": 678,
+   "sha256": "f1d1b052c2b68c5d68e3575de7069dc47914f03abb02771d2629b10bf7d9e377",
+   "status": "ok"
+  },
+  "WALMART_2020_10K": {
+   "chars": 589287,
+   "empty_pages": 1,
+   "pages": 170,
+   "passages": 1000,
+   "sha256": "0f9e2ebc9432caef54fe932ec91ccc6fea3eac89f370073462ae002eabb71a34",
+   "status": "ok"
+  }
+ },
+ "parser_version": "pdf-1",
+ "revision": "cc39aeb4afdf33909ee1412188bf89035950c2eb",
+ "summary": {
+  "documents": 84,
+  "documents_mostly_without_text": [],
+  "empty_pages": 65,
+  "pages": 12013,
+  "parsed": 84,
+  "seconds": 29.3
+ }
+}
