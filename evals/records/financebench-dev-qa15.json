@@ -1,0 +1,323 @@
+{
+ "artifacts": {
+  "controls": {
+   "path": "artifacts/runs/20261110-qa-controls-summary.json",
+   "sha256": "f40bbb87f39d18d8fc23323e63c172166bdc657101f1d93923cdd1ba7ca2a2fd"
+  },
+  "gold": {
+   "path": "evals/financebench/gold-dev-v1.json",
+   "sha256": "a5af0fd65be4c15a0b9729a5878974212f18e0fe99906bfe40e976aecdc1ac7d"
+  },
+  "period_real": {
+   "path": "artifacts/runs/20261110-qa15-period-positive.json",
+   "sha256": "6040eaa67b8d89474d7743a0d91c024ef76cee2370bed464dc15293b55e7d8e5"
+  },
+  "retrieval": {
+   "path": "evals/financebench/retrieval-dev-pdf2-text-2.json",
+   "sha256": "b08e16479288ce172392b37fa574980bdf4d9d9b6c805eaa83afc6c8a41fc860"
+  },
+  "review": {
+   "path": "evals/financebench/narrative-review-dev-qa15-v1.json",
+   "sha256": "23c028b8d33077e94fcff383a5d588ce71613c45edee512eb9da8f235aa746b3"
+  },
+  "scores": {
+   "path": "artifacts/runs/20261110-qa15-scores.json",
+   "sha256": "d419f5e4899bcc82d4652c2d8234934cd64b8cec7c8bc1aa6d79e4f84af369b6"
+  }
+ },
+ "description": "FinanceBench development under finsight-qa-v1.5 and native period controls",
+ "facts": {
+  "contract": "finsight-qa-v1.5",
+  "interface_correction": "v1.4 confounded by colon passage ids, step references and constants; v1.5 rerun on FinanceBench only (post hoc; held-out gives the honest number)",
+  "period_controls": {
+   "base": {
+    "corrected_rule": {
+     "negative": {
+      "numeric_passed": 7,
+      "numeric_rejected": 35,
+      "numeric_unverified": 129
+     },
+     "positive": {
+      "correct_passed": 5,
+      "correct_unverified": 4,
+      "wrong_passed": 30,
+      "wrong_rejected": 7,
+      "wrong_unverified": 142
+     }
+    },
+    "frozen_rule": {
+     "negative": {
+      "answered_boolean": 1,
+      "insufficient_evidence": 21,
+      "numeric_period_passed": 8,
+      "numeric_period_rejected": 33,
+      "numeric_period_unverified": 130
+     },
+     "positive": {
+      "answered_boolean": 1,
+      "correct_period_passed": 5,
+      "correct_period_unverified": 4,
+      "insufficient_evidence": 4,
+      "wrong_period_passed": 31,
+      "wrong_period_rejected": 6,
+      "wrong_period_unverified": 142
+     },
+     "run": "20261110-qa-controls-base"
+    }
+   },
+   "v2a": {
+    "corrected_rule": {
+     "negative": {
+      "numeric_passed": 2,
+      "numeric_rejected": 87,
+      "numeric_unverified": 73
+     },
+     "positive": {
+      "correct_passed": 56,
+      "correct_unverified": 32,
+      "wrong_passed": 23,
+      "wrong_rejected": 13,
+      "wrong_unverified": 64
+     }
+    },
+    "frozen_rule": {
+     "negative": {
+      "answered_boolean": 1,
+      "insufficient_evidence": 30,
+      "numeric_period_passed": 11,
+      "numeric_period_rejected": 78,
+      "numeric_period_unverified": 73
+     },
+     "positive": {
+      "answered_boolean": 1,
+      "correct_period_passed": 57,
+      "correct_period_unverified": 32,
+      "insufficient_evidence": 4,
+      "wrong_period_passed": 23,
+      "wrong_period_rejected": 12,
+      "wrong_period_unverified": 64
+     },
+     "run": "20261110-qa-controls-v2a"
+    }
+   },
+   "v2b": {
+    "corrected_rule": {
+     "negative": {
+      "numeric_passed": 1,
+      "numeric_rejected": 24,
+      "numeric_unverified": 27
+     },
+     "positive": {
+      "correct_passed": 55,
+      "correct_unverified": 32,
+      "wrong_passed": 29,
+      "wrong_rejected": 11,
+      "wrong_unverified": 56
+     }
+    },
+    "frozen_rule": {
+     "negative": {
+      "answered_boolean": 1,
+      "insufficient_evidence": 140,
+      "numeric_period_passed": 4,
+      "numeric_period_rejected": 21,
+      "numeric_period_unverified": 27
+     },
+     "positive": {
+      "answered_boolean": 3,
+      "correct_period_passed": 56,
+      "correct_period_unverified": 32,
+      "insufficient_evidence": 7,
+      "wrong_period_passed": 29,
+      "wrong_period_rejected": 10,
+      "wrong_period_unverified": 56
+     },
+     "run": "20261110-qa-controls-v2b"
+    }
+   }
+  },
+  "period_real_filings": {
+   "full/base": {
+    "unverified": 1
+   },
+   "full/v2a": {
+    "passed": 1,
+    "unverified": 2
+   },
+   "full/v2b": {
+    "unverified": 2
+   },
+   "supplied/base": {
+    "passed": 9,
+    "unverified": 3
+   },
+   "supplied/v2a": {
+    "passed": 8,
+    "unverified": 3
+   },
+   "supplied/v2b": {
+    "passed": 3,
+    "unverified": 4
+   }
+  },
+  "scope": "financebench-v1 development half; held-out not read; no Claude calls",
+  "scores": {
+   "full/boolean": {
+    "v2a": {
+     "a_minus_b": -0.25,
+     "ci95": [
+      -0.5,
+      0.0
+     ],
+     "n": 20
+    },
+    "v2b": {
+     "a_minus_b": 0.05,
+     "ci95": [
+      -0.19,
+      0.263
+     ],
+     "n": 20
+    }
+   },
+   "full/narrative": {
+    "v2a": {
+     "a_minus_b": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "n": 22
+    },
+    "v2b": {
+     "a_minus_b": -0.045,
+     "ci95": [
+      -0.15,
+      0.0
+     ],
+     "n": 22
+    }
+   },
+   "full/numeric": {
+    "v2a": {
+     "a_minus_b": 0.061,
+     "ci95": [
+      0.0,
+      0.154
+     ],
+     "n": 33
+    },
+    "v2b": {
+     "a_minus_b": 0.03,
+     "ci95": [
+      0.0,
+      0.095
+     ],
+     "n": 33
+    }
+   },
+   "supplied/boolean": {
+    "v2a": {
+     "a_minus_b": -0.2,
+     "ci95": [
+      -0.526,
+      0.083
+     ],
+     "n": 20
+    },
+    "v2b": {
+     "a_minus_b": 0.0,
+     "ci95": [
+      -0.25,
+      0.273
+     ],
+     "n": 20
+    }
+   },
+   "supplied/narrative": {
+    "v2a": {
+     "a_minus_b": -0.091,
+     "ci95": [
+      -0.333,
+      0.125
+     ],
+     "n": 22
+    },
+    "v2b": {
+     "a_minus_b": -0.182,
+     "ci95": [
+      -0.5,
+      0.0
+     ],
+     "n": 22
+    }
+   },
+   "supplied/numeric": {
+    "v2a": {
+     "a_minus_b": -0.03,
+     "ci95": [
+      -0.185,
+      0.091
+     ],
+     "n": 33
+    },
+    "v2b": {
+     "a_minus_b": -0.152,
+     "ci95": [
+      -0.357,
+      0.0
+     ],
+     "n": 33
+    }
+   }
+  }
+ },
+ "name": "financebench-dev-qa15",
+ "runs": {
+  "artifacts/runs/20261110-qa-controls-base": {
+   "config_sha256": "2156c029ac0b3955b801b2bf21f69c7766913ed9abae67d9aa09268b49f9e009",
+   "predictions_sha256": "67cab89f55994b8b4785b45da896045726b544d392e168bb9736f70e8ec37dee",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa-controls-v2a": {
+   "config_sha256": "8c95f719b827d1051376e3ae83cc1f04f7b61258c40e6718b2f1882869bc88a4",
+   "predictions_sha256": "49f2ae02ac785e8b6d4b6da782d910ce3d2e273b3a608c6b99e42cac57d5165d",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa-controls-v2b": {
+   "config_sha256": "3ca40bd1bcb76dd1c848ce6494b124c0aeab9e8dad6222b1d8e31535240767a1",
+   "predictions_sha256": "eb147b4fbff9954280113e7719515bb2240f03151747fe923151682a16750a03",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa15-fb-full-base": {
+   "config_sha256": "1efd568ac21a372e8a7d323081350f13926c5b5b8b473bbcb2b2eedac8759e1b",
+   "predictions_sha256": "2f377594a4f094ea7b294d5d4f616910877196a4e7426ac7aaef01c027725ac2",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa15-fb-full-v2a": {
+   "config_sha256": "d7f699ba66e9b3cb15ce7a8359accb38fb91ad110817ec8e2a61592f46318f41",
+   "predictions_sha256": "d064798c237dbfd013a7d3a875c41fa73c5ee59c4200c1c6677b7c6189bb69e6",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa15-fb-full-v2b": {
+   "config_sha256": "a09c35ac36e89cd55bc1839534a033fce7023243efe5502185ba698e382fdf48",
+   "predictions_sha256": "a0b147e02c7dee214df3cb7544a468a98f6037c5dad3bd8c68fce14f61754594",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa15-fb-supplied-base": {
+   "config_sha256": "43c8251619936460b7ce3d88babaeeea214179de96c864b5ecb3ed4a9c2cb80d",
+   "predictions_sha256": "f3bd2f9cde91dbefd9cd2cb93facc7d567c56c00bf923a85d07ac80a34dcc4ab",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa15-fb-supplied-v2a": {
+   "config_sha256": "d28f10015722e52c9affbe7070cfedf6b60755b2175dc46b69a857eb15530f60",
+   "predictions_sha256": "e22d4d228919cf23bd4cfde52d867900cac187311aa135fbd91be127bd75f03f",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa15-fb-supplied-v2b": {
+   "config_sha256": "f952c24d2b7e818cae53b8767e73bd600feb92c3cde4833dba15013634708c2a",
+   "predictions_sha256": "eff4d931e66bfa6b07cf201962f21bbe896819700826bd8a6b0a276b88d09740",
+   "scorecard_sha256": null
+  }
+ }
+}
