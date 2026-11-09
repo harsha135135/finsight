@@ -181,3 +181,61 @@ def search(conn, document_ids: list[str], metric: str, year: int, limit: int = 1
     reason = ("no passage mentions the metric" if not candidates else
               f"passages mention the metric but none reports it for {year}")
     return Retrieval(metric, year, "missing", top, reason)
+
+
+# ----------------------------------------------------------------------------- general questions
+
+TEXT_SEARCH_VERSION = "text-1"
+_QUERY_WORD = re.compile(r"[a-z][a-z0-9]{2,}|(?:19|20)\d{2}")
+
+
+def query_terms(question: str) -> list[str]:
+    """Words from a free-text question for an OR full-text query (FY2018 -> 2018; English stop words are dropped
+    by Postgres)."""
+    text = re.sub(r"\bfy\s?((?:19|20)\d{2})\b", r"\1", question.lower())
+    seen: list[str] = []
+    for word in _QUERY_WORD.findall(text):
+        if word not in seen:
+            seen.append(word)
+    return seen
+
+
+# text-2 (tuned on FinanceBench development questions; the held-out half gives the honest recall)
+TEXT_SEARCH_V2 = "text-2"
+INSTRUCTION_WORDS = {"give", "response", "question", "relying", "details", "shown", "answer", "using", "primarily",
+                     "information", "assume", "public", "equities", "analyst", "following", "based", "what", "which",
+                     "company", "much", "many", "calculate", "round", "decimal", "places", "reported", "provide",
+                     "fiscal", "year", "amount", "usd", "millions", "billions", "thousands",
+                     "units", "help", "please", "between", "rely", "basis", "according", "describe", "shows", "data"}
+EXPANSIONS = {"capex": ["purchases", "property", "plant", "equipment"], "capital": ["purchases", "property", "plant", "equipment"],
+              "revenue": ["sales", "revenues"], "revenues": ["sales"], "sales": ["revenue", "revenues"],
+              "cogs": ["cost", "sales"], "ebitda": ["depreciation", "amortization", "operating", "income"],
+              "margin": ["income", "sales"], "profitability": ["income", "margin"], "liquidity": ["cash", "current", "assets", "liabilities"],
+              "leverage": ["debt", "equity"], "dividend": ["dividends", "paid"], "dividends": ["paid"],
+              "inventory": ["inventories"], "inventories": ["inventory"], "receivable": ["receivables"], "payable": ["payables"]}
+
+
+def search_text(conn, document_ids: list[str], question: str, *, limit: int = 10, char_budget: int = 8000,
+                version: str = "text-2") -> list[dict]:
+    """General retrieval for any question within the given documents (single-document setting): Postgres full-text
+    OR query over the question's words, ranked by cover density; top passages up to ``limit`` and ``char_budget``.
+    text-1 uses every word; text-2 (tuned on FinanceBench development questions) drops instruction words and adds a
+    few financial synonyms."""
+    terms = query_terms(question)
+    if version == "text-2":
+        terms = [t for t in terms if t not in INSTRUCTION_WORDS]
+        terms += [x for t in list(terms) for x in EXPANSIONS.get(t, []) if x not in terms]
+    if not terms:
+        return []
+    rows = conn.execute(
+        "WITH q AS (SELECT to_tsquery('english', %s) AS query) SELECT p.id, p.document_id, p.section, p.location, p.text, "
+        "p.start_offset, p.end_offset, ts_rank_cd(p.tsv, q.query) AS rank FROM passages p, q "
+        "WHERE p.document_id = ANY(%s) AND p.tsv @@ q.query ORDER BY rank DESC, p.id LIMIT 200",
+        (" | ".join(terms), document_ids)).fetchall()
+    chosen, used = [], 0
+    for row in rows:
+        if len(chosen) >= limit or used + len(row["text"]) > char_budget:
+            continue
+        chosen.append(dict(row))
+        used += len(row["text"])
+    return chosen

@@ -1,0 +1,987 @@
+{
+ "summary": {
+  "parser_version": "pdf-1",
+  "evidence_pages": 92,
+  "page_index_rule": "page = evidence_page_num + 1 (0-based index; 92/92 verified by text overlap)",
+  "empty_in_ours": 0,
+  "number_recall_mean": 0.999,
+  "pages_number_recall_below_0.9": [],
+  "evidence_span_numbers_found_below_1": [
+   [
+    "BLOCK_2016_10K",
+    68,
+    0.971
+   ]
+  ],
+  "word_jaccard_below_0.8": [
+   [
+    "BESTBUY_2017_10K",
+    56,
+    0.289
+   ],
+   [
+    "BESTBUY_2019_10K",
+    52,
+    0.277
+   ],
+   [
+    "BLOCK_2016_10K",
+    68,
+    0.124
+   ],
+   [
+    "BLOCK_2020_10K",
+    86,
+    0.202
+   ],
+   [
+    "BLOCK_2020_10K",
+    90,
+    0.112
+   ],
+   [
+    "CORNING_2020_10K",
+    70,
+    0.21
+   ],
+   [
+    "CORNING_2020_10K",
+    72,
+    0.165
+   ],
+   [
+    "CORNING_2021_10K",
+    65,
+    0.17
+   ],
+   [
+    "WALMART_2019_10K",
+    48,
+    0.523
+   ]
+  ],
+  "note_low_word_overlap": "the 9 low word-overlap pages have near-complete number recall; FinanceBench's page text drops the spaces between words ('Loansheldforsale') while pdf-1 keeps labels and figures on one line ('Loans held for sale 42,144 604'): a defect in the reference text, not in the extraction"
+ },
+ "pages": [
+  {
+   "q": "financebench_id_03029",
+   "doc": "3M_2018_10K",
+   "page": 60,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 97,
+   "word_jaccard": 0.99,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04672",
+   "doc": "3M_2018_10K",
+   "page": 58,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 78,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00499",
+   "doc": "3M_2022_10K",
+   "page": 48,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 59,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00499",
+   "doc": "3M_2022_10K",
+   "page": 50,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 85,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00499",
+   "doc": "3M_2022_10K",
+   "page": 52,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 96,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01226",
+   "doc": "3M_2022_10K",
+   "page": 27,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 21,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01865",
+   "doc": "3M_2022_10K",
+   "page": 25,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 82,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00807",
+   "doc": "3M_2023Q2_10Q",
+   "page": 5,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 87,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00941",
+   "doc": "3M_2023Q2_10Q",
+   "page": 1,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 29,
+   "word_jaccard": 0.976,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01858",
+   "doc": "3M_2023Q2_10Q",
+   "page": 62,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 48,
+   "word_jaccard": 0.994,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02987",
+   "doc": "ACTIVISIONBLIZZARD_2019_10K",
+   "page": 69,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 61,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02987",
+   "doc": "ACTIVISIONBLIZZARD_2019_10K",
+   "page": 70,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 68,
+   "word_jaccard": 0.97,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_07966",
+   "doc": "ACTIVISIONBLIZZARD_2019_10K",
+   "page": 70,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 68,
+   "word_jaccard": 0.97,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_07966",
+   "doc": "ACTIVISIONBLIZZARD_2019_10K",
+   "page": 73,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 79,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04735",
+   "doc": "ADOBE_2015_10K",
+   "page": 59,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 75,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04735",
+   "doc": "ADOBE_2015_10K",
+   "page": 63,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 122,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_07507",
+   "doc": "ADOBE_2016_10K",
+   "page": 62,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 87,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_03856",
+   "doc": "ADOBE_2017_10K",
+   "page": 57,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 67,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_03856",
+   "doc": "ADOBE_2017_10K",
+   "page": 61,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 108,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00438",
+   "doc": "ADOBE_2022_10K",
+   "page": 54,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 79,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00591",
+   "doc": "ADOBE_2022_10K",
+   "page": 57,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 93,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_06655",
+   "doc": "AMAZON_2017_10K",
+   "page": 38,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 72,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_06655",
+   "doc": "AMAZON_2017_10K",
+   "page": 40,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 48,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_08135",
+   "doc": "AMAZON_2017_10K",
+   "page": 38,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 72,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_08286",
+   "doc": "AMAZON_2019_10K",
+   "page": 38,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 72,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_03882",
+   "doc": "AMCOR_2020_10K",
+   "page": 50,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 83,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01935",
+   "doc": "AMCOR_2022_8K_dated-2022-07-01",
+   "page": 2,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 29,
+   "word_jaccard": 0.973,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00799",
+   "doc": "AMCOR_2023_10K",
+   "page": 52,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 83,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01079",
+   "doc": "AMCOR_2023_10K",
+   "page": 64,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 24,
+   "word_jaccard": 0.994,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01148",
+   "doc": "AMCOR_2023_10K",
+   "page": 5,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 7,
+   "word_jaccard": 0.991,
+   "evidence_span_numbers_found": null
+  },
+  {
+   "q": "financebench_id_00684",
+   "doc": "AMCOR_2023_10K",
+   "page": 50,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 57,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01936",
+   "doc": "AMCOR_2023Q2_10Q",
+   "page": 15,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 14,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01928",
+   "doc": "AMCOR_2023Q4_EARNINGS",
+   "page": 12,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 66,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01930",
+   "doc": "AMCOR_2023Q4_EARNINGS",
+   "page": 10,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 16,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00476",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 1,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 26,
+   "word_jaccard": 0.983,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01028",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 155,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 40,
+   "word_jaccard": 0.976,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00723",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 96,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 109,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00720",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 96,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 109,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01351",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 44,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 110,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01964",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 98,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 78,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01981",
+   "doc": "AMERICANEXPRESS_2022_10K",
+   "page": 45,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 19,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02608",
+   "doc": "BESTBUY_2017_10K",
+   "page": 56,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 64,
+   "word_jaccard": 0.289,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04417",
+   "doc": "BESTBUY_2019_10K",
+   "page": 52,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 67,
+   "word_jaccard": 0.277,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00685",
+   "doc": "BESTBUY_2023_10K",
+   "page": 40,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 51,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01077",
+   "doc": "BESTBUY_2023_10K",
+   "page": 51,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 20,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01275",
+   "doc": "BESTBUY_2023_10K",
+   "page": 42,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 83,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00288",
+   "doc": "BESTBUY_2024Q2_10Q",
+   "page": 20,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 63,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00460",
+   "doc": "BESTBUY_2024Q2_10Q",
+   "page": 17,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 83,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01902",
+   "doc": "BESTBUY_2024Q2_10Q",
+   "page": 18,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 51,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04660",
+   "doc": "BLOCK_2016_10K",
+   "page": 68,
+   "empty_in_ours": false,
+   "number_recall": 0.971,
+   "their_numbers": 70,
+   "word_jaccard": 0.124,
+   "evidence_span_numbers_found": 0.971
+  },
+  {
+   "q": "financebench_id_03838",
+   "doc": "BLOCK_2020_10K",
+   "page": 86,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 88,
+   "word_jaccard": 0.202,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_07661",
+   "doc": "BLOCK_2020_10K",
+   "page": 90,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 120,
+   "word_jaccard": 0.112,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10285",
+   "doc": "BOEING_2018_10K",
+   "page": 52,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 78,
+   "word_jaccard": 0.912,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00517",
+   "doc": "BOEING_2022_10K",
+   "page": 62,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 68,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01091",
+   "doc": "BOEING_2022_10K",
+   "page": 113,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 20,
+   "word_jaccard": 0.991,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00678",
+   "doc": "BOEING_2022_10K",
+   "page": 55,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 67,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01290",
+   "doc": "BOEING_2022_10K",
+   "page": 8,
+   "empty_in_ours": false,
+   "number_recall": null,
+   "their_numbers": 0,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": null
+  },
+  {
+   "q": "financebench_id_01290",
+   "doc": "BOEING_2022_10K",
+   "page": 10,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 2,
+   "word_jaccard": 0.991,
+   "evidence_span_numbers_found": null
+  },
+  {
+   "q": "financebench_id_01290",
+   "doc": "BOEING_2022_10K",
+   "page": 14,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 3,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00464",
+   "doc": "BOEING_2022_10K",
+   "page": 8,
+   "empty_in_ours": false,
+   "number_recall": null,
+   "their_numbers": 0,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": null
+  },
+  {
+   "q": "financebench_id_00494",
+   "doc": "BOEING_2022_10K",
+   "page": 9,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 12,
+   "word_jaccard": 0.992,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00585",
+   "doc": "BOEING_2022_10K",
+   "page": 55,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 67,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10130",
+   "doc": "CORNING_2020_10K",
+   "page": 70,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 56,
+   "word_jaccard": 0.21,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10130",
+   "doc": "CORNING_2020_10K",
+   "page": 72,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 77,
+   "word_jaccard": 0.165,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02981",
+   "doc": "CORNING_2021_10K",
+   "page": 65,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 63,
+   "word_jaccard": 0.17,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_01346",
+   "doc": "CORNING_2022_10K",
+   "page": 24,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 55,
+   "word_jaccard": 0.992,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00005",
+   "doc": "CORNING_2022_10K",
+   "page": 60,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 73,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00839",
+   "doc": "FOOTLOCKER_2022_8K_dated_2022-08-19",
+   "page": 2,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 32,
+   "word_jaccard": 0.979,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00822",
+   "doc": "FOOTLOCKER_2022_8K_dated-2022-05-20",
+   "page": 2,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 50,
+   "word_jaccard": 0.992,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04103",
+   "doc": "GENERALMILLS_2019_10K",
+   "page": 53,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 53,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04103",
+   "doc": "GENERALMILLS_2019_10K",
+   "page": 55,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 64,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_03471",
+   "doc": "GENERALMILLS_2020_10K",
+   "page": 50,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 64,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04854",
+   "doc": "GENERALMILLS_2020_10K",
+   "page": 52,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 111,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10136",
+   "doc": "GENERALMILLS_2022_10K",
+   "page": 45,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 54,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10136",
+   "doc": "GENERALMILLS_2022_10K",
+   "page": 49,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 112,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10499",
+   "doc": "KRAFTHEINZ_2019_10K",
+   "page": 50,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 54,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_10499",
+   "doc": "KRAFTHEINZ_2019_10K",
+   "page": 52,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 76,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04458",
+   "doc": "NETFLIX_2015_10K",
+   "page": 40,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 50,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04458",
+   "doc": "NETFLIX_2015_10K",
+   "page": 42,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 110,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_03282",
+   "doc": "NETFLIX_2017_10K",
+   "page": 45,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 52,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00302",
+   "doc": "PFIZER_2021_10K",
+   "page": 59,
+   "empty_in_ours": false,
+   "number_recall": 0.956,
+   "their_numbers": 91,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00702",
+   "doc": "PFIZER_2021_10K",
+   "page": 57,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 72,
+   "word_jaccard": 0.859,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02416",
+   "doc": "PFIZER_2021_10K",
+   "page": 70,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 18,
+   "word_jaccard": 0.991,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02416",
+   "doc": "PFIZER_2021_10K",
+   "page": 71,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 48,
+   "word_jaccard": 0.976,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00283",
+   "doc": "Pfizer_2023Q2_10Q",
+   "page": 41,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 10,
+   "word_jaccard": 0.975,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_00724",
+   "doc": "Pfizer_2023Q2_10Q",
+   "page": 38,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 84,
+   "word_jaccard": 0.975,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_02419",
+   "doc": "Pfizer_2023Q2_10Q",
+   "page": 41,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 10,
+   "word_jaccard": 0.975,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_06247",
+   "doc": "WALMART_2018_10K",
+   "page": 57,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 66,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_06247",
+   "doc": "WALMART_2018_10K",
+   "page": 59,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 66,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_04784",
+   "doc": "WALMART_2019_10K",
+   "page": 48,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 67,
+   "word_jaccard": 0.523,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_06741",
+   "doc": "WALMART_2020_10K",
+   "page": 51,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 68,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  },
+  {
+   "q": "financebench_id_06741",
+   "doc": "WALMART_2020_10K",
+   "page": 56,
+   "empty_in_ours": false,
+   "number_recall": 1.0,
+   "their_numbers": 98,
+   "word_jaccard": 1.0,
+   "evidence_span_numbers_found": 1.0
+  }
+ ]
+}

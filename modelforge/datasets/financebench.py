@@ -179,3 +179,34 @@ def parse_corpus(pdf_record: dict) -> dict:
                              k for k, d in report["documents"].items()
                              if d.get("pages") and d["empty_pages"] > d["pages"] / 2)}
     return report
+
+
+def dev_questions(manifest: dict) -> list[dict]:
+    """The development questions only; held-out ids and companies are asserted out."""
+    questions, _ = load()
+    dev_ids, held_ids = set(manifest["samples"]["dev"]), set(manifest["samples"]["held_out"])
+    dev = [q for q in questions if q["financebench_id"] in dev_ids]
+    assert len(dev) == len(dev_ids) and not any(q["financebench_id"] in held_ids for q in dev)
+    assert {q["company"] for q in dev} <= set(manifest["companies"]["dev"])
+    return dev
+
+
+def ingest_documents(conn, manifest: dict, pdf_record: dict, doc_names: list[str]) -> dict:
+    """Parse and store the given (development) documents as FinSight passages; returns passages per document."""
+    from datetime import datetime, timezone
+
+    from finsight.ingestion.pdf import parse_pdf
+    from finsight.retrieval.search import store_passages
+
+    allowed = {q["doc_name"] for q in dev_questions(manifest)}
+    counts = {}
+    for doc in doc_names:
+        assert doc in allowed, f"{doc} is not a development document"
+        entry = pdf_record[doc]
+        parsed = parse_pdf(Path(entry["path"]), f"financebench:{doc}", doc)
+        conn.execute("INSERT INTO documents (id, source_uri, sha256, artifact_path, retrieved_at, company, parser_version) "
+                     "VALUES (%s, %s, %s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING",
+                     (f"financebench:{doc}", manifest["documents"][doc]["doc_link"], entry["sha256"], entry["path"],
+                      datetime.now(timezone.utc), doc.split("_")[0], "pdf-1"))
+        counts[doc] = store_passages(conn, parsed.passages)
+    return counts
