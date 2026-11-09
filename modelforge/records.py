@@ -30,6 +30,8 @@ def regenerate_matches(run_dir: Path) -> dict:
     """Regenerate a run's scorecard in a temporary copy and compare bytes with the stored files."""
     from modelforge.runner import write_scorecard
 
+    if not any((run_dir / name).exists() for name in SCORECARD_FILES):
+        return {}  # e.g. FinanceBench runs: scored by modelforge.financebench_score, hashed with the record
     with tempfile.TemporaryDirectory() as tmp:
         copy = Path(tmp) / run_dir.name
         shutil.copytree(run_dir, copy)
