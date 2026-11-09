@@ -20,6 +20,10 @@ from finsight.calc import CalcError, execute, format_value
 from finsight.contracts import Passage
 from finsight.contracts.qa import ClaimCheck, OperandCheck, QAOutput, QAResult
 from finsight.contracts.report import PERMITTED_CONSTANTS
+
+# finsight-qa-v1.5: counts used by standard formulas (averages over 2-5 periods, months, day counts) are allowed;
+# financial quantities must still be cited operands. finsight-report-v1 keeps PERMITTED_CONSTANTS unchanged.
+QA_CONSTANTS = PERMITTED_CONSTANTS | {__import__('decimal').Decimal(n) for n in (2, 3, 4, 5, 12, 360, 365)}
 from finsight.normalize import _squash, supports
 
 _YEAR = re.compile(r"(?<!\d)((?:19|20)\d{2})(?!\d)")
@@ -70,10 +74,10 @@ def source_text(passage: Passage, original_text: str) -> str | None:
 
 def requested_years(question: str) -> set[int]:
     """Fiscal years a question asks about: 4-digit years, FY2023 / FY 2023 / FY23, Q22023 / Q2'23, Jun'23, and
-    ranges such as FY2017 - FY2019 (expanded)."""
+    ranges such as FY2017 - FY2019 (expanded; 'from 2012 to 2018' is two endpoints, not a range)."""
     text = question.replace("’", "'")
     years = {int(y) for y in _YEAR.findall(text)}
-    for a, b in re.findall(r"(?i)(?:fy\s?)?((?:19|20)\d{2})\s*(?:-|–|to|through)\s*(?:fy\s?)?((?:19|20)\d{2})", text):
+    for a, b in re.findall(r"(?i)(?:fy\s?)?((?:19|20)\d{2})\s*(?:-|–|through)\s*(?:fy\s?)?((?:19|20)\d{2})", text):
         if 0 < int(b) - int(a) <= 10:
             years |= set(range(int(a), int(b) + 1))
     years |= {int(m) for m in re.findall(r"(?i)\bq[1-4]\s*'?((?:19|20)\d{2})\b", text)}
@@ -164,7 +168,7 @@ def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[i
                 except InvalidOperation:
                     issues.append(f"step {index} argument {arg!r} is not an operand, step reference or constant")
                     continue
-                if literal not in PERMITTED_CONSTANTS:
+                if literal not in QA_CONSTANTS:
                     issues.append(f"step {index} uses literal {arg}: financial quantities must be cited operands")
         unverified = sum(o.period == "unverified" for o in operands)
         if strict and unverified:

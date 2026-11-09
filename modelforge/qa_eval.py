@@ -38,8 +38,11 @@ def financebench_items(manifest: dict, mode: str, conn=None,
             passages = [_passage(dict(r)) for r in rows]
         else:
             passages = [_passage(r) for r in retrieved[q["financebench_id"]]["passages"]]
+        # finsight-qa-v1.5: short ids (p1, p2, ...) in the prompt; FinQA-trained models shortened long ids with colons
+        aliases = {f"p{n + 1}": p.id for n, p in enumerate(passages)}
+        passages = [p.model_copy(update={"id": f"p{n + 1}"}) for n, p in enumerate(passages)]
         items.append({"id": q["financebench_id"], "question": q["question"], "company": q["company"], "doc": q["doc_name"],
-                      "passages": [p.model_dump(mode="json") for p in passages]})
+                      "passages": [p.model_dump(mode="json") for p in passages], "passage_aliases": aliases})
     return items
 
 
