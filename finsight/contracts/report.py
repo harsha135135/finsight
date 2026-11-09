@@ -26,7 +26,7 @@ class EvidenceOperand(Contract):
     name: Identifier
     passage_id: Annotated[str, StringConstraints(min_length=1, max_length=200)]
     original_text: Annotated[str, StringConstraints(min_length=1, max_length=200)]
-    value: Annotated[str, StringConstraints(min_length=1, max_length=40)]
+    value: Annotated[str, StringConstraints(pattern=r"^-?[0-9]+(\.[0-9]+)?$", max_length=40)]   # v1.2: plain number (models left it empty)
     scale: Scale
     unit: Annotated[str, StringConstraints(min_length=1, max_length=20)]
     period: Annotated[str, StringConstraints(min_length=2, max_length=32)]

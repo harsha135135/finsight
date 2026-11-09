@@ -162,9 +162,13 @@ class ResearchStages:
                 {"metric": m, "period": p, "status": "insufficient_evidence", "operands": [], "program": [], "unit": None,
                  "explanation": [], "missing": "no passage reports this metric"} for m, p in requested], "unresolved": []}}
         system = SYSTEM
-        user = user_message(research["company"], research["filing"], requested, research["passages"], missing,
-                            research["evidence"])
-        schema = report_schema(research["metrics"], research["period"])
+        # v1.2: short passage ids in the prompt (models cut long ids containing colons), mapped back before validation
+        aliases = {f"p{n + 1}": p["id"] for n, p in enumerate(research["passages"])}
+        short = {real: alias for alias, real in aliases.items()}
+        evidence = {m: {**e, "passage_ids": [short.get(i, i) for i in e["passage_ids"]]} for m, e in research["evidence"].items()}
+        user = user_message(research["company"], research["filing"], requested,
+                            [{"id": short[p["id"]], "text": p["text"]} for p in research["passages"]], missing, evidence)
+        schema = report_schema(research["metrics"], research["period"], for_claude=self.provider.provider == "anthropic")
         error = None
         for attempt in (1, 2):
             prompt = user if error is None else f"{user}\n\nYour previous output was invalid ({error}). Return valid JSON."
@@ -179,8 +183,13 @@ class ResearchStages:
                     return {"status": "failed", "reason": "model outcome unknown; not resent automatically"}
                 return {"status": "failed", "reason": f"model call failed ({status})"}
             try:
-                output = ReportOutput.model_validate_json(generation.text)
-                return {"status": "ok", "output": output.model_dump(mode="json"), "attempts": attempt,
+                output = ReportOutput.model_validate_json(generation.text).model_dump(mode="json")
+                for finding in output["findings"]:
+                    for op in finding["operands"]:
+                        op["passage_id"] = aliases.get(op["passage_id"], op["passage_id"])
+                    for claim in finding["explanation"]:
+                        claim["passage_ids"] = [aliases.get(i, i) for i in claim["passage_ids"]]
+                return {"status": "ok", "output": output, "attempts": attempt,
                         "prompt_version": PROMPT_VERSION}
             except ValueError as exc:
                 error = str(exc).splitlines()[0][:300]
