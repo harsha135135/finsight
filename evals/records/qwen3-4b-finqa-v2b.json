@@ -1,0 +1,521 @@
+{
+ "artifacts": {
+  "adapter": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v2b/adapter/adapter_model.safetensors",
+   "sha256": "e4406e6af19bf2929352e63d595aebcb68b57326e104aea2b957660110638b71"
+  },
+  "exposure": {
+   "path": "artifacts/runs/20261109-v2b-exposure.json",
+   "sha256": "e6a61184c45fd2fbb7156934b17e0d67ac6dbfb818f99215ac5cff123aff0d4d"
+  },
+  "training_record": {
+   "path": "artifacts/adapters/qwen3-4b-finqa-v2b/training_record.json",
+   "sha256": "acd631eca766f88a205773a621c7750911dd3f00950db01a4a8104cf5853c63a"
+  },
+  "vs_base": {
+   "path": "artifacts/runs/20261109-v2b-vs-base.json",
+   "sha256": "d60ed0b0f58f2275e36d89ab2d5ed34970346ac9851b25f39992a3151f56c4ba"
+  },
+  "vs_haiku": {
+   "path": "artifacts/runs/20261109-v2b-vs-haiku.json",
+   "sha256": "58b9abcd99987752349d914540552a5a06c9e5623d4913863497aacb2e3794a8"
+  },
+  "vs_v1": {
+   "path": "artifacts/runs/20261109-v2b-vs-v1.json",
+   "sha256": "0acd6861940dbeaae0587b2b46c21dd8cdf510e299fd88973927de8b341a97c0"
+  },
+  "vs_v2a": {
+   "path": "artifacts/runs/20261109-v2b-vs-v2a.json",
+   "sha256": "90af3093bf99089720909081d5f74ba78800af59a278b24261a6f8d439430153"
+  },
+  "wp_summary": {
+   "path": "artifacts/runs/20261109-wp-summary.json",
+   "sha256": "303e3a0b05a19ed2cf97fca29500d2915069860ff05fc055e83059ba67b31b38"
+  },
+  "wp_v2a-vs-v1": {
+   "path": "artifacts/runs/20261109-wp-v2a-vs-v1.json",
+   "sha256": "cd16452f62bc5a18c56ae4cb057e99406581d6fb74b67f663fa9088efdd71647"
+  },
+  "wp_v2b-vs-base": {
+   "path": "artifacts/runs/20261109-wp-v2b-vs-base.json",
+   "sha256": "871ac7be2b2edbb080df00753ebce0156bd921fb48de28b88aa2f74972da736e"
+  },
+  "wp_v2b-vs-v1": {
+   "path": "artifacts/runs/20261109-wp-v2b-vs-v1.json",
+   "sha256": "1a434dc33d3ea2d1d0bb69244362ee091f0c152539f9011434de7042e6080a6a"
+  },
+  "wp_v2b-vs-v2a": {
+   "path": "artifacts/runs/20261109-wp-v2b-vs-v2a.json",
+   "sha256": "bb643351ce079fd755380d03875efac2cd7a147b3920440acfd18985c6d11961"
+  }
+ },
+ "description": "Experiment (b): v2b on val_dev_eval and the wrong-period slice",
+ "facts": {
+  "experiment": "(b) v2a + wrong-period negatives; plan written before training in docs/experiment-b-plan.md",
+  "exposure_split": {
+   "exposed": {
+    "n": 218,
+    "v1": 0.546,
+    "v2a": 0.514,
+    "v2b": 0.532,
+    "v2b_minus_v1": [
+     -0.014,
+     -0.057,
+     0.033
+    ],
+    "v2b_minus_v2a": [
+     0.018,
+     -0.027,
+     0.062
+    ]
+   },
+   "unexposed": {
+    "n": 36,
+    "v1": 0.528,
+    "v2a": 0.528,
+    "v2b": 0.528,
+    "v2b_minus_v1": [
+     0.0,
+     -0.083,
+     0.075
+    ],
+    "v2b_minus_v2a": [
+     0.0,
+     -0.07,
+     0.08
+    ]
+   }
+  },
+  "haiku": "reused (original 294 questions only); no new Claude calls",
+  "mix": "425 / 1,853 = 22.9% negatives (283 clean + 142 wrong-period); 29.8 per 100 answerable; 210 steps = ~1.81 epochs vs v2a ~1.96",
+  "serving": "default FinQA protocol; one server with v1, v2a and v2b adapters",
+  "training": {
+   "eval_excluded": 0,
+   "eval_ids_sha256": "9e8f7ce34c88a4820d54511086de601cd632c2d39c472591856b46fa1938ce7c",
+   "eval_losses": [
+    [
+     30,
+     0.06894027441740036
+    ],
+    [
+     60,
+     0.058081887662410736
+    ],
+    [
+     90,
+     0.04931880906224251
+    ],
+    [
+     120,
+     0.047867752611637115
+    ],
+    [
+     150,
+     0.0474395677447319
+    ],
+    [
+     180,
+     0.045936133712530136
+    ],
+    [
+     210,
+     0.04573129862546921
+    ]
+   ],
+   "eval_rows": 237,
+   "exported_adapter": "tensors identical to checkpoint-210",
+   "runtime_s": 5382.2683,
+   "selected_checkpoint": "checkpoint-210 (lowest val_select eval loss 0.045731; step 180: 0.045936)",
+   "steps": 210,
+   "train_data_sha256": "66e60794947a4bf0df3714c8631cd9f807c7d91f8c6b3e22e7cc56cf3dce97d4"
+  },
+  "validator_fix": "finsight.validation._consistent no longer raises on figures beyond Decimal precision (crashed the base run at item 182); all earlier records re-verified byte-identical",
+  "vs": {
+   "base": {
+    "abstention_recall_unanswerable": {
+     "a": 0.45,
+     "a_minus_b": 0.05,
+     "b": 0.4,
+     "ci95": [
+      -0.1136,
+      0.2286
+     ],
+     "n": 40
+    },
+    "accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": 0.3937,
+     "b": 0.1378,
+     "ci95": [
+      0.3255,
+      0.4604
+     ],
+     "n": 254
+    },
+    "diagnostic_lenient_quote_accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": 0.3465,
+     "b": 0.185,
+     "ci95": [
+      0.2822,
+      0.412
+     ],
+     "n": 254
+    },
+    "evidence_validation_failure_rate": {
+     "a": 0.1395,
+     "a_minus_b": -0.3061,
+     "b": 0.4456,
+     "ci95": [
+      -0.3806,
+      -0.2281
+     ],
+     "n": 294
+    },
+    "false_abstention_answerable": {
+     "a": 0.0354,
+     "a_minus_b": 0.0079,
+     "b": 0.0276,
+     "ci95": [
+      -0.0216,
+      0.0345
+     ],
+     "n": 254
+    },
+    "invalid_output_rate": {
+     "a": 0.0034,
+     "a_minus_b": -0.1973,
+     "b": 0.2007,
+     "ci95": [
+      -0.2572,
+      -0.1375
+     ],
+     "n": 294
+    },
+    "operational_failure_rate": {
+     "a": 0.0,
+     "a_minus_b": -0.0102,
+     "b": 0.0102,
+     "ci95": [
+      -0.0228,
+      0.0
+     ],
+     "n": 294
+    }
+   },
+   "haiku": {
+    "abstention_recall_unanswerable": {
+     "a": 0.45,
+     "a_minus_b": -0.45,
+     "b": 0.9,
+     "ci95": [
+      -0.6098,
+      -0.2647
+     ],
+     "n": 40
+    },
+    "accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": -0.0709,
+     "b": 0.6024,
+     "ci95": [
+      -0.1489,
+      0.0081
+     ],
+     "n": 254
+    },
+    "diagnostic_lenient_quote_accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": -0.0787,
+     "b": 0.6102,
+     "ci95": [
+      -0.1556,
+      0.0
+     ],
+     "n": 254
+    },
+    "evidence_validation_failure_rate": {
+     "a": 0.1395,
+     "a_minus_b": 0.0374,
+     "b": 0.102,
+     "ci95": [
+      -0.0127,
+      0.0912
+     ],
+     "n": 294
+    },
+    "false_abstention_answerable": {
+     "a": 0.0354,
+     "a_minus_b": -0.0433,
+     "b": 0.0787,
+     "ci95": [
+      -0.085,
+      -0.0039
+     ],
+     "n": 254
+    },
+    "invalid_output_rate": {
+     "a": 0.0034,
+     "a_minus_b": -0.0374,
+     "b": 0.0408,
+     "ci95": [
+      -0.0655,
+      -0.0137
+     ],
+     "n": 294
+    },
+    "operational_failure_rate": {
+     "a": 0.0,
+     "a_minus_b": 0.0,
+     "b": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "n": 294
+    }
+   },
+   "v1": {
+    "abstention_recall_unanswerable": {
+     "a": 0.45,
+     "a_minus_b": 0.15,
+     "b": 0.3,
+     "ci95": [
+      0.0,
+      0.3243
+     ],
+     "n": 40
+    },
+    "accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": -0.0118,
+     "b": 0.5433,
+     "ci95": [
+      -0.048,
+      0.0305
+     ],
+     "n": 254
+    },
+    "diagnostic_lenient_quote_accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": -0.0118,
+     "b": 0.5433,
+     "ci95": [
+      -0.048,
+      0.0305
+     ],
+     "n": 254
+    },
+    "evidence_validation_failure_rate": {
+     "a": 0.1395,
+     "a_minus_b": -0.0136,
+     "b": 0.1531,
+     "ci95": [
+      -0.0471,
+      0.0202
+     ],
+     "n": 294
+    },
+    "false_abstention_answerable": {
+     "a": 0.0354,
+     "a_minus_b": 0.0276,
+     "b": 0.0079,
+     "ci95": [
+      0.0079,
+      0.0496
+     ],
+     "n": 254
+    },
+    "invalid_output_rate": {
+     "a": 0.0034,
+     "a_minus_b": 0.0,
+     "b": 0.0034,
+     "ci95": [
+      -0.0102,
+      0.0103
+     ],
+     "n": 294
+    },
+    "operational_failure_rate": {
+     "a": 0.0,
+     "a_minus_b": 0.0,
+     "b": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "n": 294
+    }
+   },
+   "v2a": {
+    "abstention_recall_unanswerable": {
+     "a": 0.45,
+     "a_minus_b": -0.05,
+     "b": 0.5,
+     "ci95": [
+      -0.186,
+      0.1176
+     ],
+     "n": 40
+    },
+    "accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": 0.0157,
+     "b": 0.5157,
+     "ci95": [
+      -0.0231,
+      0.055
+     ],
+     "n": 254
+    },
+    "diagnostic_lenient_quote_accuracy_answerable": {
+     "a": 0.5315,
+     "a_minus_b": 0.0157,
+     "b": 0.5157,
+     "ci95": [
+      -0.0231,
+      0.055
+     ],
+     "n": 254
+    },
+    "evidence_validation_failure_rate": {
+     "a": 0.1395,
+     "a_minus_b": 0.017,
+     "b": 0.1224,
+     "ci95": [
+      -0.0211,
+      0.0592
+     ],
+     "n": 294
+    },
+    "false_abstention_answerable": {
+     "a": 0.0354,
+     "a_minus_b": 0.0236,
+     "b": 0.0118,
+     "ci95": [
+      0.0,
+      0.0464
+     ],
+     "n": 254
+    },
+    "invalid_output_rate": {
+     "a": 0.0034,
+     "a_minus_b": -0.0034,
+     "b": 0.0068,
+     "ci95": [
+      -0.011,
+      0.0
+     ],
+     "n": 294
+    },
+    "operational_failure_rate": {
+     "a": 0.0,
+     "a_minus_b": 0.0,
+     "b": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "n": 294
+    }
+   }
+  },
+  "wrong_period_slice": {
+   "manifest": "finqa-grouped-v2-wrong-period (193 items, frozen before scoring)",
+   "paired": {
+    "v2a-vs-v1": {
+     "a": 0.1762,
+     "a_minus_b": 0.0518,
+     "b": 0.1244,
+     "ci95": [
+      0.0102,
+      0.0994
+     ],
+     "n": 193
+    },
+    "v2b-vs-base": {
+     "a": 0.6839,
+     "a_minus_b": 0.5285,
+     "b": 0.1554,
+     "ci95": [
+      0.4278,
+      0.6316
+     ],
+     "n": 193
+    },
+    "v2b-vs-v1": {
+     "a": 0.6839,
+     "a_minus_b": 0.5596,
+     "b": 0.1244,
+     "ci95": [
+      0.4752,
+      0.6485
+     ],
+     "n": 193
+    },
+    "v2b-vs-v2a": {
+     "a": 0.6839,
+     "a_minus_b": 0.5078,
+     "b": 0.1762,
+     "ci95": [
+      0.4141,
+      0.6034
+     ],
+     "n": 193
+    }
+   },
+   "reason_codes": {
+    "base": {
+     "ABSTAIN_EVIDENCE_ABSENT": 30,
+     "ANSWERED": 34,
+     "MODEL_OUTPUT_INVALID": 39,
+     "OPERATIONAL": 1,
+     "VALIDATION_CONTRADICTION": 89
+    },
+    "v1": {
+     "ABSTAIN_EVIDENCE_ABSENT": 24,
+     "ANSWERED": 145,
+     "VALIDATION_CONTRADICTION": 24
+    },
+    "v2a": {
+     "ABSTAIN_EVIDENCE_ABSENT": 34,
+     "ANSWERED": 138,
+     "VALIDATION_CONTRADICTION": 21
+    },
+    "v2b": {
+     "ABSTAIN_EVIDENCE_ABSENT": 132,
+     "ANSWERED": 50,
+     "VALIDATION_CONTRADICTION": 11
+    }
+   }
+  }
+ },
+ "name": "qwen3-4b-finqa-v2b",
+ "runs": {
+  "artifacts/runs/20261109-v2dev-v2b": {
+   "config_sha256": "efb9435b8406500fa72baf5d0338484a74b56248282143aeda8bc665e171666e",
+   "predictions_sha256": "9c9ea72dac9abdd6ef53dccf90653c9a81ed36daab807035a301d8a15cc548e6",
+   "scorecard_sha256": "42e421da864ceebb2665aa8509f3935ce9d4768eeac48af49a3eca257a5ed57a"
+  },
+  "artifacts/runs/20261109-wp-base": {
+   "config_sha256": "5bfc2cf7a178929d49863ae703f6447a33863493faed29f4dad3122746300f5f",
+   "predictions_sha256": "08ba34b92b3296caef1eb13a03dbcb2a7beef1ee9a9a81e779b51995a504a2ff",
+   "scorecard_sha256": "c5743fe8b7376ce467d4663bb569bb0639d4de12a83b64bdffc46409f3336069"
+  },
+  "artifacts/runs/20261109-wp-v1": {
+   "config_sha256": "9b2d0ae0b133e6bd4cbb2e96c066fc9f8f60b9b73b9a52a46e7181bd0b6b0b6d",
+   "predictions_sha256": "dca1f39f59a756664635a339d1918b13ef417cf49697c8c5ad1b95e65dd15c8a",
+   "scorecard_sha256": "a51ccbd345a2bff7f0420546f3e27877cc831b33139e4828dd27323bea2db7c5"
+  },
+  "artifacts/runs/20261109-wp-v2a": {
+   "config_sha256": "35f918a7553cd2ce31dc51d0a37fb5da986a6e91c8ee3e8966936cbbe0fec244",
+   "predictions_sha256": "bbaa9661c5800a18bd0ee56548f043f9c766bd395d9a769faf0c176d8ad40cd7",
+   "scorecard_sha256": "f32086b9e3ba8fd4f86155baa37e6481d0fe755b1e96b173e32d98edfa7e3952"
+  },
+  "artifacts/runs/20261109-wp-v2b": {
+   "config_sha256": "732b8fcde8df3064f6f09369d3e999a4278bfa87385871f33c672ab75d92e8ea",
+   "predictions_sha256": "fb59bb7fe6a03d7c43f589fc6e7d967491218da76baab273724935e249ff64bb",
+   "scorecard_sha256": "f3301cd54ad047ef71baece87364e9e96ae94da376e06b79be075767bb80cca5"
+  }
+ }
+}

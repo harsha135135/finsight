@@ -340,6 +340,9 @@ def compare(run_a: Path, run_b: Path) -> dict:
     }
     result: dict = {"a": configs[0]["adapter"], "b": configs[1]["adapter"], "items": len(items), "metrics": {}}
     for name, (subset, predicate) in metrics.items():
+        if not subset:  # e.g. an all-unanswerable slice has no answerable metrics
+            result["metrics"][name] = {"a": None, "b": None, "a_minus_b": None, "ci95": None, "n": 0}
+            continue
         values = [{i.id: 1.0 if (i.id in run and predicate(run[i.id], i)) else 0.0 for i in subset} for run in runs]
         mean_a = stats.cluster_bootstrap_mean(values[0], groups)[0] if subset else None
         mean_b = stats.cluster_bootstrap_mean(values[1], groups)[0] if subset else None

@@ -40,3 +40,11 @@ def test_settings_load_with_defaults():
     from finsight.settings import Settings
     settings = Settings(_env_file=None)
     assert str(settings.spend_limit_usd) == "2.00" and settings.database_url.endswith(":54329/finsight")
+
+
+def test_consistency_check_does_not_crash_on_figures_beyond_decimal_precision():
+    from decimal import Decimal
+    from finsight.validation import _consistent
+    assert _consistent(Decimal("1.12345"), Decimal("1e40"), None) is False
+    assert _consistent(Decimal("NaN"), Decimal("5"), None) is False
+    assert _consistent(Decimal("5.0"), Decimal("5.04"), None) is True

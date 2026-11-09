@@ -56,11 +56,18 @@ def _consistent(stated: Decimal | bool, executed: Decimal | bool, answer_unit: s
     candidates = [executed]
     if answer_unit and (match := _ANSWER_SCALE.search(answer_unit)):
         candidates.append(executed / Scale(match.group(1).lower() + "s").multiplier)
+    if not stated.is_finite():
+        return False
     for target in candidates:
+        if not target.is_finite():
+            continue
         exponent = stated.as_tuple().exponent
         decimals = -exponent if isinstance(exponent, int) and exponent < 0 else 0
-        if round(target, decimals) == stated:
-            return True
+        try:
+            if round(target, decimals) == stated:
+                return True
+        except InvalidOperation:  # beyond Decimal precision (an absurd model figure): use the relative check only
+            pass
         if target != 0 and abs((stated - target) / target) <= CONSISTENCY_REL_TOL:
             return True
         if target == 0 and stated == 0:

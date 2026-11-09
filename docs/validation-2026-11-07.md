@@ -283,3 +283,50 @@ Reading: cleaning the negatives, with nothing else changed, raised correct abste
 unanswerable questions. The answerable-accuracy change is not statistically clear (−2.8 points), which is not proof of no cost: the interval still allows a decline of up to 7.8 points. False abstention barely moved (+0.4 points). It is one training
 run (one seed) evaluated on development data, and v2a remains 40 points behind Haiku on abstention. The next
 controlled comparison adds wrong-period negatives (separately, as planned).
+
+## Experiment (b): v2a plus wrong-period negatives (v2b), 2026-11-09
+
+Plan written before training: `docs/experiment-b-plan.md`. v2a's training rows unchanged plus 142 wrong-period
+negatives (22.9% negatives vs 16.5%; same 210 steps, so ~8% fewer passes over the answerable rows). Selection: lowest
+eval loss on the same 237 `val_select` rows (identical id hash) chose checkpoint 210 (0.045731; step 180: 0.045936);
+exported adapter identical to checkpoint 210. 90 min on the RTX 4070. Same serve protocol; record
+`evals/records/qwen3-4b-finqa-v2b.json`. No Claude calls: Haiku's earlier run is reused for the 294 questions only.
+
+**Primary: the 294 development questions**
+
+| Metric | v1 | v2a | v2b | v2b − v2a (95% CI) | Haiku | n |
+|---|---:|---:|---:|---|---:|---:|
+| Accuracy (answerable) | 0.543 | 0.516 | 0.531 | +0.016 (−0.023, +0.055) | 0.602 | 254 |
+| Correct abstention (verified negatives) | 0.300 | 0.500 | 0.450 | −0.050 (−0.186, +0.118) | 0.900 | 40 |
+| False abstention | 0.008 | 0.012 | 0.035 | +0.024 (+0.000, +0.046) | 0.079 | 254 |
+| Invalid output | 0.003 | 0.007 | 0.003 | −0.003 (−0.011, +0.000) | 0.041 | 294 |
+
+v2b vs v1: accuracy −0.012 (−0.048, +0.030); correct abstention +0.150 (+0.000, +0.324); false abstention +0.028
+(+0.008, +0.050). Answerable questions in groups v1's selection never touched (36): v1, v2a and v2b all 0.528.
+
+**Secondary: wrong-period robustness** (`finqa-grouped-v2-wrong-period`, 193 items, every item read and the list
+frozen before scoring). v2b was trained on this kind of negative and the others were not, so this measures whether
+the behaviour was learned.
+
+| Model | Correct abstention | Answered anyway | Contradicted by validator | Invalid |
+|---|---:|---:|---:|---:|
+| base | 30 (0.155) | 34 | 89 | 39 (+1 operational) |
+| v1 | 24 (0.124) | 145 | 24 | 0 |
+| v2a | 34 (0.176) | 138 | 21 | 0 |
+| **v2b** | **132 (0.684)** | 50 | 11 | 0 |
+
+Paired: v2b − v2a +0.508 (+0.414, +0.603); v2b − v1 +0.560 (+0.475, +0.648); v2a − v1 +0.052 (+0.010, +0.099).
+"Answered anyway" means a figure from another year was used and passed the FinQA validator, which checks citations
+and arithmetic but not the question's year (FinSight's `finsight-report-v1` period check reads the source header and
+would reject these).
+
+**Reading.** Wrong-period negatives taught the behaviour they target: v2b declines most questions about an absent
+year, where v1 and v2a answer them with another year's figures. On the original verified negatives (removed
+evidence) v2b is not distinguishable from v2a (45% vs 50%, wide interval), and it declines somewhat more answerable
+questions (3.5% vs 1.2%, interval just touching zero). Answerable accuracy shows no statistically clear change
+(interval −2.3 to +5.5 points vs v2a). Haiku still leads on removed-evidence abstention by about 45 points. One run per
+configuration, development data.
+
+**Fixes found during this run.** `finsight.validation` crashed on a figure beyond Decimal precision (the base run
+stopped at item 182; resumed after the fix); every earlier record re-verified byte-identical. `modelforge compare`
+now handles a slice without answerable items.
