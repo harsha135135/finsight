@@ -78,3 +78,16 @@ def test_watcher_records_a_baseline_then_each_new_filing_once_and_analysis_is_id
         a = client.post("/filings/0000066740-99-000001/analyze", json={"model": "qwen-test"}, headers=KEY).json()
         b = client.post("/filings/0000066740-99-000001/analyze", json={"model": "qwen-test"}, headers=KEY).json()
         assert a["id"] == b["id"] == second["jobs"][0]                                    # idempotent per accession + metrics
+
+
+def test_insights_endpoints_explain_a_missing_fred_key(pg, monkeypatch):
+    monkeypatch.delenv("FINSIGHT_FRED_API_KEY", raising=False)
+    monkeypatch.delenv("FRED_API_KEY", raising=False)
+    import finsight.api.dashboard as dash
+    from finsight.settings import Settings
+    monkeypatch.setattr(dash, "get_settings", lambda: Settings(_env_file=None, fred_api_key=None))
+    with _client() as client:
+        catalog = client.get("/market/catalog", headers=KEY).json()
+        assert catalog["configured"] is False and any(s["key"] == "wti" for s in catalog["series"])
+        missing = client.get("/insights/commodity/wti", headers=KEY)
+        assert missing.status_code == 503 and "FINSIGHT_FRED_API_KEY" in missing.json()["detail"]

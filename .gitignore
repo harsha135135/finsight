@@ -16,3 +16,6 @@ artifacts/
 !.env.example
 .DS_Store
 BUILD_COMMIT
+
+# generated FinSight briefs (finsight brief --out reports/...)
+reports/

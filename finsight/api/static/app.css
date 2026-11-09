@@ -56,3 +56,15 @@ dialog { border: 1px solid var(--line); border-radius: 10px; background: var(--c
 dialog input { width: 100%; margin: 8px 0 14px; }
 a { color: var(--accent); }
 @media (max-width: 600px) { .top, .tabs { padding-left: 16px; padding-right: 16px; } .card { padding: 14px; } }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.kpi .big { font-size: 24px; font-weight: 700; margin: 4px 0; font-variant-numeric: tabular-nums; }
+.kpi .delta.up { color: var(--ok); } .kpi .delta.down { color: var(--bad); } .kpi .meta { color: var(--muted); font-size: 12px; }
+.insight-list { margin: 0; padding-left: 18px; } .insight-list li { margin: 6px 0; } .insight-list .src { color: var(--muted); font-size: 12px; }
+.rangebar { height: 6px; background: var(--chip); border-radius: 3px; position: relative; margin: 8px 0 2px; }
+.rangebar span { position: absolute; top: -3px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); transform: translateX(-6px); }
+.chart .line2 { fill: none; stroke: var(--warn); stroke-width: 2; stroke-dasharray: 4 3; }
+.notice { border-left: 3px solid var(--warn); padding: 8px 12px; background: var(--chip); border-radius: 0 6px 6px 0; }
+select[multiple] { min-width: 220px; }

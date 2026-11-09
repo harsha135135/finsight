@@ -297,4 +297,109 @@ function showTab(name) {
 }
 document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
 
-getKey().then(() => { refreshStatus(); loadModels(); setInterval(refreshStatus, 15000); });
+getKey().then(() => { refreshStatus(); loadModels(); loadCatalog(); setInterval(refreshStatus, 15000); });
+
+// ------------------------------------------------------------------ insights
+const pctText = (v) => (v === null || v === undefined ? "—" : `${v >= 0 ? "+" : ""}${(v * 100).toFixed(1)}%`);
+
+async function loadCatalog() {
+  try {
+    const { series, configured } = await api("/market/catalog");
+    $("#series-select").replaceChildren(...series.map((s) => el("option", { value: s.key, text: `${s.title} (${s.unit})`, ...(["wti", "copper"].includes(s.key) ? { selected: "" } : {}) })));
+    state.fredConfigured = configured;
+  } catch (e) { state.fredConfigured = false; }
+}
+
+function kpi(label, big, delta, meta) {
+  return el("div", { class: "kpi" }, el("div", { class: "label", text: label }), el("div", { class: "big", text: big }),
+    delta !== null && delta !== undefined ? el("div", { class: `delta ${delta >= 0 ? "up" : "down"}`, text: `${pctText(delta)} year over year` }) : null,
+    el("div", { class: "meta", text: meta }));
+}
+
+function lineChart(title, series, { ratio = false, subtitle = "", second = null } = {}) {
+  const card = el("div", { class: "card chart" }, el("h2", { text: title }), subtitle ? el("p", { class: "muted", text: subtitle }) : null);
+  const pts = series.filter((p) => p.value !== null && p.value !== undefined);
+  if (pts.length < 2) { card.append(el("p", { class: "muted", text: "Not enough data." })); return card; }
+  const all = pts.map((p) => p.value).concat(second ? second.map((p) => p.value) : []);
+  const W = 360, H = 190, L = 54, R = 10, T = 12, B = 26;
+  let lo = Math.min(...all), hi = Math.max(...all); if (hi === lo) hi = lo + 1;
+  const n = Math.max(pts.length, second ? second.length : 0);
+  const x = (i, len) => L + (i * (W - L - R)) / Math.max(1, len - 1);
+  const y = (v) => T + (H - T - B) * (1 - (v - lo) / (hi - lo));
+  const ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("role", "img"); svg.setAttribute("aria-label", title);
+  const add = (tag, attrs, text) => { const node = document.createElementNS(ns, tag); for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v); if (text) node.textContent = text; svg.append(node); return node; };
+  for (const v of [lo, hi]) add("text", { x: 4, y: y(v) + 4 }, ratio ? `${(v * 100).toFixed(0)}%` : Math.abs(v) >= 1e6 ? money(v) : v.toFixed(2));
+  add("polyline", { points: pts.map((p, i) => `${x(i, pts.length)},${y(p.value)}`).join(" "), class: "line" });
+  if (second) add("polyline", { points: second.map((p, i) => `${x(i, second.length)},${y(p.value)}`).join(" "), class: "line2" });
+  if (pts.length <= 16) pts.forEach((p, i) => {
+    const dot = add("circle", { cx: x(i, pts.length), cy: y(p.value), r: 3.5, class: `dot${p.derived ? " restated" : ""}` });
+    const tip = document.createElementNS(ns, "title"); tip.textContent = `${p.label}: ${ratio ? (p.value * 100).toFixed(1) + "%" : money(p.value)}${p.derived ? " (derived)" : ""}`; dot.append(tip);
+  });
+  add("text", { x: L, y: H - 6 }, pts[0].label); add("text", { x: W - R - 62, y: H - 6 }, pts[pts.length - 1].label);
+  card.append(svg); return card;
+}
+
+function insightList(insights) {
+  return el("ul", { class: "insight-list" }, ...insights.map((i) => el("li", {}, el("span", { text: i.text }), " ",
+    el("span", { class: "src", text: `· as of ${i.as_of} · ${i.sources.map((s) => s.accession ? `${s.form || ""} ${s.accession}` : s.series_id ? `FRED ${s.series_id}` : "").join(", ")}` }))));
+}
+
+$("#insights-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.target, box = $("#insights");
+  const ticker = form.ticker.value.trim().toUpperCase();
+  const keys = [...form.series.selectedOptions].map((o) => o.value);
+  box.replaceChildren(el("p", { class: "muted", text: "Building insights from SEC and FRED…" }));
+  const parts = [];
+  let company = null;
+  if (ticker) {
+    try {
+      const pack = await api(`/insights/company/${encodeURIComponent(ticker)}`);
+      company = pack.company;
+      const m = company.metrics, rev = m.revenue, oi = m.operating_income, capex = m.capex;
+      const margins = rev && oi ? rev.quarters.map((q) => { const o = oi.quarters.find((x) => x.end === q.end); return o && q.value ? { label: q.end, value: o.value / q.value, derived: q.derived || o.derived } : null; }).filter(Boolean) : [];
+      const kpis = el("div", { class: "kpis" },
+        rev && rev.latest ? kpi("Quarterly revenue", money(rev.latest.value), rev.year_ago_same_filing ? (rev.latest.value - rev.year_ago_same_filing.value) / Math.abs(rev.year_ago_same_filing.value) : null, `quarter ended ${rev.latest.end}`) : null,
+        rev && rev.ttm ? kpi("Trailing 12 months revenue", money(rev.ttm), null, `to ${rev.ttm_quarters[rev.ttm_quarters.length - 1]}`) : null,
+        margins.length ? kpi("Operating margin", `${(margins[margins.length - 1].value * 100).toFixed(1)}%`, null, `quarter ended ${margins[margins.length - 1].label}`) : null,
+        capex ? kpi("Capital expenditure (YTD)", money(capex.latest_period.value), capex.year_ago_same_filing ? (capex.latest_period.value - capex.year_ago_same_filing.value) / Math.abs(capex.year_ago_same_filing.value) : null, `${Math.round(capex.latest_period.days / 30.4)} months to ${capex.latest_period.end}`) : null);
+      parts.push(el("div", { class: "card" }, el("h2", { text: `${company.name} (${company.ticker})` }),
+        el("p", { class: "muted", text: `${company.industry || ""} · fiscal year ends ${company.fiscal_year_end || "n/a"} · ${company.basis}` })), kpis,
+        el("div", { class: "charts" },
+          rev ? lineChart("Quarterly revenue", rev.quarters.map((q) => ({ label: q.end, value: q.value, derived: q.derived })), { subtitle: "Orange points: fourth quarter derived (full year minus nine months)" }) : null,
+          margins.length ? lineChart("Quarterly operating margin", margins, { ratio: true }) : null),
+        el("div", { class: "card" }, el("h2", { text: "Company insights" }), insightList(company.insights)));
+    } catch (e) { parts.push(el("p", { class: "error", text: `Company: ${e.message}` })); }
+  }
+  if (keys.length && !state.fredConfigured) {
+    parts.push(el("p", { class: "notice", text: "Market data needs a free FRED API key: add FINSIGHT_FRED_API_KEY=... to .env and restart the API." }));
+  } else if (keys.length) {
+    const cards = [];
+    for (const key of keys) {
+      try {
+        const c = await api(`/insights/commodity/${key}`);
+        const a = c.analytics;
+        const series = c.observations.map(([d, v]) => ({ label: d, value: v }));
+        const card = lineChart(`${a.title}`, series.slice(-520), { subtitle: `${a.unit} · ${a.freshness}` });
+        card.append(el("div", { class: "kpis" }, kpi("Latest", a.latest.value.toLocaleString(undefined, { maximumFractionDigits: 2 }), a.change_1y ? a.change_1y.pct : null, `${a.latest.date} (${a.age_days} days old)`),
+          kpi("1 month", pctText(a.change_1m && a.change_1m.pct), null, "change"), kpi("3 months", pctText(a.change_3m && a.change_3m.pct), null, "change")));
+        if (a.range_52w.position !== null) card.append(el("div", { class: "muted", text: `52-week range ${a.range_52w.low.toFixed(2)} – ${a.range_52w.high.toFixed(2)}` }), (() => { const mark = el("span"); mark.style.left = `${(a.range_52w.position * 100).toFixed(0)}%`; return el("div", { class: "rangebar" }, mark); })());  // CSP: no style attributes
+        card.append(el("p", { text: c.insight.text }));
+        cards.push(card);
+        if (company && company.metrics.revenue) {
+          const quarters = company.metrics.revenue.quarters;
+          const avg = quarters.map((q) => { const start = new Date(new Date(q.end) - 91 * 864e5); const vals = c.observations.filter(([d]) => new Date(d) > start && new Date(d) <= new Date(q.end)).map(([, v]) => v); return vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : null; });
+          const pairs = quarters.map((q, i) => ({ q, a: avg[i] })).filter((p) => p.a !== null);
+          if (pairs.length >= 3) {
+            const r0 = pairs[0].q.value, a0 = pairs[0].a;
+            cards.push(lineChart(`${company.ticker} revenue vs ${a.title} (indexed)`, pairs.map((p) => ({ label: p.q.end, value: p.q.value / r0 * 100 })), { subtitle: "Solid: revenue; dashed: quarterly average price. Co-movement only, not causation.", second: pairs.map((p) => ({ label: p.q.end, value: p.a / a0 * 100 })) }));
+          }
+        }
+      } catch (e) { cards.push(el("p", { class: "error", text: `${key}: ${e.message}` })); }
+    }
+    parts.push(el("div", { class: "charts" }, ...cards));
+  }
+  box.replaceChildren(...parts);
+});
+

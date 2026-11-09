@@ -150,8 +150,9 @@ def create_app(database_url: str | None = None, api_key: str | None = None) -> F
         return {"id": str(job_id), "status": row["status"], "cancel_requested": True}
 
     # ------------------------------------------------------------------ dashboard
-    from finsight.api.dashboard import register
+    from finsight.api.dashboard import register, register_insights
     register(app, pool, authorized)
+    register_insights(app, pool, authorized)
     return app
 
 

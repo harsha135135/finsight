@@ -211,3 +211,40 @@ def register(app, pool, authorized) -> None:
                             report_date=row["report_date"], primary_document=row["primary_document"])
             job = create_analysis(conn, row["ticker"], filing, request.model, list(request.metrics))
         return {"id": str(job["id"]), "status": job["status"]}
+
+
+def register_insights(app, pool, authorized) -> None:
+    """Insights endpoints: the same context pack the CLI and the Claude skill use."""
+    from finsight.insights import build_pack, commodity_insight, company_pack
+    from finsight.market import CATALOG, FredSource, MarketError, analytics
+    settings = get_settings()
+
+    def fred():
+        return FredSource(settings.fred_api_key.get_secret_value() if settings.fred_api_key else None, settings.state_dir / "artifacts")
+
+    @app.get("/market/catalog", dependencies=[Depends(authorized)])
+    def catalog() -> dict:
+        return {"series": [{"key": k, "series_id": s, "title": t, "unit": u} for k, (s, t, u) in CATALOG.items()],
+                "configured": bool(settings.fred_api_key)}
+
+    @app.get("/insights/commodity/{key}", dependencies=[Depends(authorized)])
+    def commodity(key: str) -> dict:
+        try:
+            series = fred().series(key)
+        except MarketError as exc:
+            raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE if "not set" in str(exc) else status.HTTP_404_NOT_FOUND, str(exc)) from exc
+        a = analytics(series)
+        return {"analytics": a, "insight": commodity_insight(a) if a.get("available") else None,
+                "observations": [[d.isoformat(), v] for d, v in series.observations[-520:]]}
+
+    @app.get("/insights/company/{ticker}", dependencies=[Depends(authorized)])
+    def company(ticker: str) -> dict:
+        from finsight.ingestion.sec import PostgresRateLimiter, SecSource, SourceError
+        if not settings.sec_user_agent:
+            raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "FINSIGHT_SEC_USER_AGENT is not set")
+        with pool.connection() as conn:
+            source = SecSource(settings.sec_user_agent, settings.state_dir / "artifacts", conn=conn, rate_limiter=PostgresRateLimiter(conn))
+            try:
+                return build_pack(company_pack(source, ticker), [])
+            except SourceError as exc:
+                raise HTTPException(status.HTTP_404_NOT_FOUND, str(exc)) from exc

@@ -13,14 +13,25 @@
 </header>
 
 <nav class="tabs" role="tablist">
-  <button role="tab" data-tab="research" class="active">Research</button>
+  <button role="tab" data-tab="insights" class="active">Insights</button>
+  <button role="tab" data-tab="research">Research</button>
   <button role="tab" data-tab="companies">Company trends</button>
   <button role="tab" data-tab="watchlist">Watchlist &amp; new filings</button>
   <button role="tab" data-tab="jobs">Jobs</button>
 </nav>
 
 <main>
-  <section id="tab-research" class="tab active">
+  <section id="tab-insights" class="tab active">
+    <form id="insights-form" class="card inline-form">
+      <label>Company (ticker)<input name="ticker" value="MMM" maxlength="10" autocomplete="off"></label>
+      <label>Markets<select name="series" id="series-select" multiple size="4"></select></label>
+      <button type="submit" class="primary">Build insights</button>
+      <p class="hint">Company figures from SEC filings (as originally reported); market series from FRED. Every statement shows its source and date. Not investment advice.</p>
+    </form>
+    <div id="insights"></div>
+  </section>
+
+  <section id="tab-research" class="tab">
     <form id="research-form" class="card form-grid">
       <h2>New analysis</h2>
       <label>Company (ticker)<input name="company" required maxlength="10" placeholder="MMM" autocomplete="off"></label>

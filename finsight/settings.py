@@ -35,6 +35,9 @@ class Settings(BaseSettings):
 
     qwen_base_url: str = "http://127.0.0.1:8000"
 
+    fred_api_key: SecretStr | None = Field(
+        default=None, validation_alias=AliasChoices("FINSIGHT_FRED_API_KEY", "FRED_API_KEY"))   # free key; never logged
+
     # Dashboard and watcher
     allow_claude: bool = False          # Claude stays off in the dashboard unless explicitly enabled (paid calls)
     watcher_model: str | None = None    # local model for auto-analysis of new filings; None = no auto-analysis
