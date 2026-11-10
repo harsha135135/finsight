@@ -117,3 +117,10 @@ def test_date_day_number_no_longer_rejects_a_supported_claim():
     out = qa(answer_type="boolean", boolean="yes", claims=[{"text": "Assets were 9,912 million at December 31, 2022.", "passage_ids": ["p1"]}])
     assert validate_qa(out, {"p1": passage}, claim_policy="v1.6").status == "rejected"
     assert validate_qa(out, {"p1": passage}, claim_policy="v1.7").status == "accepted"
+
+
+def test_month_prefixed_words_are_not_dates():
+    from finsight.qa import claim_numbers
+    assert claim_numbers("operating margin 22% and sales decreased 12 percent", "v1.7") == ["22", "12"]
+    assert claim_numbers("declined 5 points; market 30 share; junior 4", "v1.7") == ["5", "30", "4"]
+    assert claim_numbers("Dec. 31, 2022 and September 30 and May 31 and Sept 30", "v1.7") == ["2022"]

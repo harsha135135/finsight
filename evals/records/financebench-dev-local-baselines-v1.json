@@ -27,6 +27,12 @@
  },
  "description": "Gemma 4 E4B (QAT w4a16) vs base Qwen3-4B on FinanceBench dev, supplied evidence; base Qwen full-document with text-3 retrieval",
  "facts": {
+  "code_sha256": {
+   "finsight/qa.py": "849b2b0cf725213742d2d7c5274cd862f2d09786f8503c0a21db6e3c851b9cb8",
+   "finsight/retrieval/search.py": "25f02de4a89bcb6d02ad33e990c487d6dafc1fb683c397fdf3162df2bf25aef9",
+   "modelforge/fb_retrieval.py": "c6f3fd9fe676fec4c56641542922d1dd48fb0cd550c205a675e9442b5f10319e",
+   "modelforge/qa_score.py": "eccee985c390ad422e23a74e971237b87d95d337f063452a1e03ff281e60610f"
+  },
   "development_data": true,
   "scoring_version": "v1.7",
   "sealed": true

@@ -14,6 +14,11 @@ Saved development outputs were rescored, not regenerated. The frozen v1.6 number
 
 Not changed: a dash ("—") is still not accepted as the figure zero; derived figures stated in prose still fail the claim check.
 
+Fix after review: the first v1.7 date pattern matched any word beginning with a month prefix ("margin 22%", "decreased
+12"), which would have exempted ordinary figures. It now matches only real month names and abbreviations ("Dec.",
+"September", "Sept"), and tests check that "margin 22%", "decreased 12", "declined 5" and "market 30" are still
+checked. Rescoring with the corrected pattern changed no table, transition or control result on the development data.
+
 ## Effect of each step (changes in acceptance, by correctness)
 
 | Step | Correct newly accepted | Incorrect newly accepted | Where |

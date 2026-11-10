@@ -49,6 +49,10 @@
    }
   }
  },
+ "code_sha256": {
+  "finsight/retrieval/search.py": "25f02de4a89bcb6d02ad33e990c487d6dafc1fb683c397fdf3162df2bf25aef9",
+  "modelforge/fb_retrieval.py": "c6f3fd9fe676fec4c56641542922d1dd48fb0cd550c205a675e9442b5f10319e"
+ },
  "configs": {
   "pdf-2+text-2": {
    "breakdown": {

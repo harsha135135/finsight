@@ -139,7 +139,7 @@
  },
  "date": "2026-11-10",
  "name": "financebench-dev-rescore-v1.7",
- "note": "saved outputs rescored, not regenerated; v1.6 numbers stay recorded; development data",
+ "note": "saved outputs rescored, not regenerated; v1.6 numbers stay recorded; development data; date exemption restricted to real month names (fix after review)",
  "tables": {
   "full/base": {
    "boolean": {

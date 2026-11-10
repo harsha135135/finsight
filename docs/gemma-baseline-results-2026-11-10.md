@@ -29,12 +29,14 @@ model for the sealed run.
 - It declined 9 numeric questions.
 - It wrote malformed passage ids 21 times (e.g. `)[p6]`).
 
-So the gap is mostly substantive, not an artifact of the answer format. This is a practical deployment comparison
+The interface (short passage ids, the reference format, the permitted constants) was refined on Qwen-family outputs,
+so this contract is not neutral ground; Gemma's malformed ids show some of that cost. Most failures are substantive,
+though: only 1 of the 15 narrative-typed answers states the figure. This is a practical deployment comparison
 (different family, size and quantization), not a controlled test of architecture.
 
 **Feasibility.** Without offload, the weights filled the card. With offload, vLLM 0.33's compiler failed on Gemma 4.
 Offload plus eager mode loaded; that is a disclosed deviation and the cause of the high latency.
 
 **Answer to the question this baseline was set up for.** The FinanceBench limits are not specific to our Qwen setup.
-The other current local model in the same size class does worse under the same contract. With the right evidence
+The other current local model in the same size class does worse, under an interface refined on Qwen outputs. With the right evidence
 supplied, the stronger model (Haiku: 28 of 33 under v1.7) is what changes the result.

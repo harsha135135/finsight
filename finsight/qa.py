@@ -91,7 +91,8 @@ def requested_years(question: str) -> set[int]:
 # financial figures: the day in a calendar date ("December 31, 2022", "May 31") and numbered references to a
 # document part ("Item 9.01", "Note 6", "Exhibit 21.1"). Only digits inside such a span are exempt.
 CLAIM_POLICIES = ("v1.6", "parse", "v1.7")
-_MONTH_NAME = r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?"
+_MONTH_NAME = (r"(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|"
+               r"oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\b\.?")   # whole month names or abbreviations only
 _REFERENCE_SPANS = re.compile(
     rf"(?i)\b{_MONTH_NAME}\s+\d{{1,2}}(?:st|nd|rd|th)?\b(?!\.\d)(?!,\d)"                          # date: month name + day
     r"|\b(?:item|note|part|exhibit|section|schedule|rule)\s+\d+[a-z]?(?:\.\d+)*\b(?![\d,]*\s*%)")   # document reference

@@ -10,7 +10,7 @@
   },
   "rescore": {
    "path": "evals/financebench/rescore-dev-v1.7.json",
-   "sha256": "58b5c8652554dc5eb51c30cea688bf070c540027c1283153f9d636ef36ca0162"
+   "sha256": "f1e97839d11c449a30126c7cac545fb17fe903bca779f1a8f40f9ba2e6666452"
   },
   "review_haiku": {
    "path": "evals/financebench/narrative-review-dev-haiku-v1.json",
@@ -23,6 +23,12 @@
  },
  "description": "FinanceBench development trust tables regenerated under v1.6 (frozen) and v1.7 (parsing fix, gold-unit fix, reference exemptions)",
  "facts": {
+  "code_sha256": {
+   "finsight/qa.py": "849b2b0cf725213742d2d7c5274cd862f2d09786f8503c0a21db6e3c851b9cb8",
+   "finsight/retrieval/search.py": "25f02de4a89bcb6d02ad33e990c487d6dafc1fb683c397fdf3162df2bf25aef9",
+   "modelforge/fb_retrieval.py": "c6f3fd9fe676fec4c56641542922d1dd48fb0cd550c205a675e9442b5f10319e",
+   "modelforge/qa_score.py": "eccee985c390ad422e23a74e971237b87d95d337f063452a1e03ff281e60610f"
+  },
   "note": "saved outputs rescored; development data",
   "sealed": true,
   "versions": {
