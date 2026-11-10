@@ -3,6 +3,9 @@ import os
 import pytest
 
 TEST_DB = os.environ.get("FINSIGHT_TEST_DATABASE_URL")
+# An in-process worker that loses authority raises (with a traceback naming the test) instead of os._exit(3), which
+# would end the whole pytest run without saying where. Subprocess workers in test_worker keep the real exit.
+os.environ.setdefault("FINSIGHT_WORKER_RAISE_ON_LOST", "1")
 
 
 @pytest.fixture

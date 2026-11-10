@@ -21,7 +21,7 @@ MODEL = {"provider": "demo", "model": "demo"}
 
 
 def _worker(tmp_path: Path, *extra: str) -> subprocess.Popen:
-    env = {**os.environ, "FINSIGHT_STATE_DIR": str(tmp_path)}
+    env = {**{k: v for k, v in os.environ.items() if k != "FINSIGHT_WORKER_RAISE_ON_LOST"}, "FINSIGHT_STATE_DIR": str(tmp_path)}
     return subprocess.Popen([sys.executable, "-m", "finsight.worker", "--once", "--database-url", TEST_DB,
                              "--heartbeat", "0.3", *extra], env=env)
 

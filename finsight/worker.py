@@ -165,6 +165,8 @@ def serve(url: str, worker_id: str, stages, artifacts: Path, *, once: bool = Fal
         except (jobs.OwnershipLost, psycopg.OperationalError, psycopg.InterfaceError) as exc:
             print(f"worker {worker_id}: lost authority over job {job['id']} ({type(exc).__name__}); exiting",
                   file=sys.stderr, flush=True)
+            if os.environ.get("FINSIGHT_WORKER_RAISE_ON_LOST"):    # tests only: surface a traceback instead of killing pytest
+                raise
             os._exit(LOST_AUTHORITY_EXIT)  # never reconnect and continue writing
         finally:
             beat.stop_event.set()
