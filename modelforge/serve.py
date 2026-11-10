@@ -14,6 +14,7 @@ written before vLLM starts.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import shutil
@@ -31,7 +32,8 @@ SERVE_ENV = {"VLLM_USE_FLASHINFER_SAMPLER": "0"}
 def build_command(model: str, revision: str, *, port: int = 8000, max_model_len: int = 5120,
                   gpu_memory_utilization: float = 0.87, max_lora_rank: int = 16,
                   loras: dict[str, Path] | None = None, compact_json: bool = False,
-                  reasoning_parser: str | None = None) -> list[str]:
+                  reasoning_parser: str | None = None, lora: bool = True, language_model_only: bool = False,
+                  limit_mm_per_prompt: str | None = None, cpu_offload_gb: float | None = None) -> list[str]:
     executable = shutil.which("vllm")
     base = [executable] if executable else [sys.executable, "-m", "vllm.entrypoints.cli.main"]
     command = base + [
@@ -39,8 +41,17 @@ def build_command(model: str, revision: str, *, port: int = 8000, max_model_len:
         "--host", "127.0.0.1", "--port", str(port), "--dtype", "bfloat16",
         "--max-model-len", str(max_model_len), "--gpu-memory-utilization", str(gpu_memory_utilization),
         "--seed", "0", "--generation-config", "vllm",
-        "--enable-lora", "--max-lora-rank", str(max_lora_rank), "--max-loras", "1",
     ]
+    if lora:
+        command += ["--enable-lora", "--max-lora-rank", str(max_lora_rank), "--max-loras", "1"]
+    elif loras:
+        raise ValueError("adapters need LoRA enabled")
+    if language_model_only:   # multimodal checkpoints (e.g. Gemma 4): load only the text model
+        command += ["--language-model-only"]
+    if limit_mm_per_prompt:
+        command += ["--limit-mm-per-prompt", limit_mm_per_prompt]
+    if cpu_offload_gb:
+        command += ["--cpu-offload-gb", str(cpu_offload_gb)]
     if compact_json:
         # Server-wide in vLLM 0.33 (the per-request field is ignored): guided JSON without free whitespace, so a
         # model cannot emit whitespace until max_tokens. Used for FinSight serving; FinQA runs keep the default
@@ -64,6 +75,20 @@ def parse_loras(values: list[str]) -> dict[str, Path]:
     return loras
 
 
+def precision(model: str, revision: str, adapters: bool) -> str:
+    """Weights as served: the checkpoint's quantization config if it has one, otherwise bf16."""
+    try:
+        from huggingface_hub import hf_hub_download
+
+        config = json.loads(Path(hf_hub_download(model, "config.json", revision=revision)).read_text())
+    except Exception:  # noqa: BLE001  (recorded as unknown, never guessed)
+        return "unknown"
+    quant = config.get("quantization_config") or (config.get("text_config") or {}).get("quantization_config")
+    if quant:
+        return f"{quant.get('quant_method', 'quantized')} ({quant.get('format') or quant.get('config_groups', {}) and 'config groups' or 'see config'})"
+    return "bf16 base weights (adapters trained with a 4-bit NF4 base)" if adapters else "bf16"
+
+
 def serving_record(model: str, revision: str, command: list[str], loras: dict[str, Path]) -> dict:
     from transformers import AutoTokenizer
 
@@ -76,9 +101,11 @@ def serving_record(model: str, revision: str, command: list[str], loras: dict[st
                           "training_record_adapter_sha256": (json.loads(training.read_text()).get("adapter_sha256")
                                                              if training.exists() else None)}
     tokenizer = AutoTokenizer.from_pretrained(model, revision=revision)
+    template = getattr(tokenizer, "chat_template", None) or ""
     return {"model": model, "revision": revision, "command": command, "adapters": adapters,
             "tokenizer": tokenizer_fingerprint(tokenizer), "environment": environment(),
-            "serving_precision": "bf16 base weights (adapters trained with a 4-bit NF4 base)",
+            "chat_template_sha256": hashlib.sha256(template.encode()).hexdigest() if template else None,
+            "serving_precision": precision(model, revision, bool(loras)),
             "environment_variables": SERVE_ENV,
             "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
 

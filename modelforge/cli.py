@@ -98,6 +98,10 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--compact-json", action="store_true",
                     help="guided JSON without free whitespace (FinSight serving; not the FinQA protocol)")
     sv.add_argument("--reasoning-parser", default=None, help="e.g. qwen3 (FinSight thinking requests)")
+    sv.add_argument("--no-lora", action="store_true", help="serve without LoRA (models compared without adapters)")
+    sv.add_argument("--language-model-only", action="store_true", help="multimodal checkpoints: load the text model only")
+    sv.add_argument("--limit-mm-per-prompt", default=None, help='e.g. \'{"image": 0, "audio": 0}\'')
+    sv.add_argument("--cpu-offload-gb", type=float, default=None, help="offload this many GB of weights to CPU (recorded)")
     sv.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
@@ -192,7 +196,9 @@ def main(argv: list[str] | None = None) -> int:
         return serve.main(args.model, args.revision, serve.parse_loras(args.lora), dry_run=args.dry_run,
                           port=args.port, max_model_len=args.max_model_len,
                           gpu_memory_utilization=args.gpu_memory_utilization, max_lora_rank=args.max_lora_rank,
-                          compact_json=args.compact_json, reasoning_parser=args.reasoning_parser)
+                          compact_json=args.compact_json, reasoning_parser=args.reasoning_parser,
+                          lora=not args.no_lora, language_model_only=args.language_model_only,
+                          limit_mm_per_prompt=args.limit_mm_per_prompt, cpu_offload_gb=args.cpu_offload_gb)
     return 2
 
 
