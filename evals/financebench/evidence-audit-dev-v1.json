@@ -1,0 +1,1506 @@
+{
+ "date": "2026-11-10",
+ "name": "financebench-evidence-audit-dev-v1",
+ "questions": {
+  "financebench_id_00005": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Trade accounts receivable, net of doubtful accounts - $40 and $42",
+     "text": "1,721"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Inventories (Note 5)",
+     "text": "2,904"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Other current assets (Notes 10 and 14)",
+     "text": "1,157"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Accounts payable",
+     "text": "1,804"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Other accrued liabilities (Notes 10 and 13)",
+     "text": "3,147"
+    }
+   ]
+  },
+  "financebench_id_00283": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "We expect to incur costs of approximately $700 million in connection with separating Upjohn, of which approximately 90% has been incurred since inception"
+    }
+   ]
+  },
+  "financebench_id_00288": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Cash and cash equivalents",
+     "text": "1,093 $"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Cash and cash equivalents",
+     "text": "1,874 $"
+    }
+   ]
+  },
+  "financebench_id_00302": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Property, plant and equipment",
+     "text": "14,882"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Property, plant and equipment",
+     "text": "13,745"
+    }
+   ]
+  },
+  "financebench_id_00438": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Subscription",
+     "text": "16,388 $"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Subscription",
+     "text": "14,573 $"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Operating income",
+     "text": "6,098"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Operating income",
+     "text": "5,802"
+    }
+   ]
+  },
+  "financebench_id_00460": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "computing and mobile phones, partially offset by comparable sales growth in gaming. Online revenue of $2.8 billion and $5.5 billion in the second quarter and"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "first six months of fiscal 2024 decreased 7.1% and 9.7% on a comparable basis, respectively. These decreases in revenue were primarily due to the reasons"
+    }
+   ]
+  },
+  "financebench_id_00464": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "airline industry has been cyclical and very competitive and has experienced significant profit swings and constant challenges to be more cost"
+    }
+   ]
+  },
+  "financebench_id_00476": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Securities registered pursuant to Section 12(b) of the Act:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Securities registered pursuant to section 12(g) of the Act: None"
+    }
+   ]
+  },
+  "financebench_id_00494": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "commercial aircraft programs. The 787 program is currently producing at low rates and we expect to gradually increase to 5 per month in 2023."
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Production of the 777X is currently paused and is expected to resume in 2023. The 737 program has experienced operational and supply chain"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "challenges stabilizing production at 31 per month. We plan to gradually increase 737 production rates based on market demand and supply"
+    }
+   ]
+  },
+  "financebench_id_00499": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Years ended December 31"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "34,229 $"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "35,355 $"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "32,184"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "At December 31"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Cash and cash equivalents",
+     "text": "3,655 $"
+    }
+   ]
+  },
+  "financebench_id_00517": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Commercial Airplanes",
+     "text": "$25,867"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Defense, Space & Security",
+     "text": "23,162"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Global Services",
+     "text": "17,611"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total revenues",
+     "text": "$66,608"
+    }
+   ]
+  },
+  "financebench_id_00585": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Loss before income taxes",
+     "text": "(5,022)"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Loss before income taxes",
+     "text": "(5,033)"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Income tax (expense)/benefit",
+     "text": "(31)"
+    }
+   ]
+  },
+  "financebench_id_00591": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Net income",
+     "text": "4,756"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net income",
+     "text": "4,822"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net cash provided by operating activities",
+     "text": "7,838"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net cash provided by operating activities",
+     "text": "7,230"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Purchases of property and equipment",
+     "text": "(442)"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Purchases of property and equipment",
+     "text": "(348)"
+    }
+   ]
+  },
+  "financebench_id_00678": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Total revenues",
+     "text": "66,608"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total revenues",
+     "text": "62,286"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total costs and expenses",
+     "text": "3,502"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total costs and expenses",
+     "text": "3,017"
+    }
+   ]
+  },
+  "financebench_id_00684": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "14,694"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "14,544"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Gross profit",
+     "text": "2,725"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Gross profit",
+     "text": "2,820"
+    }
+   ]
+  },
+  "financebench_id_00685": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Revenue",
+     "text": "46,298"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Revenue",
+     "text": "51,761"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Gross profit",
+     "text": "9,912"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Gross profit",
+     "text": "11,640"
+    }
+   ]
+  },
+  "financebench_id_00702": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "(Gain) on completion of Consumer Healthcare JV transaction"
+    }
+   ]
+  },
+  "financebench_id_00720": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Year Ended December 31 (Millions, except per share amounts)"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Discount revenue",
+     "text": "30,739"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Discount revenue",
+     "text": "24,563"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "19,435"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net card fees",
+     "text": "6,070"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net card fees",
+     "text": "5,195"
+    }
+   ]
+  },
+  "financebench_id_00723": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Year Ended December 31 (Millions, except per share amounts)"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Discount revenue",
+     "text": "30,739"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Discount revenue",
+     "text": "24,563"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "19,435"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net card fees",
+     "text": "6,070"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net card fees",
+     "text": "5,195"
+    }
+   ]
+  },
+  "financebench_id_00724": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Developed Rest of World"
+    }
+   ]
+  },
+  "financebench_id_00799": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Raw materials and supplies",
+     "text": "1,114"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Work in process and finished goods",
+     "text": "1,221"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Work in process and finished goods",
+     "text": "1,325"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total current assets",
+     "text": "5,308"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total current assets",
+     "text": "5,853"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total current liabilities",
+     "text": "4,476"
+    }
+   ]
+  },
+  "financebench_id_00807": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Total inventories",
+     "text": "5,280"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total current assets",
+     "text": "15,754"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Total current liabilities",
+     "text": "10,936"
+    }
+   ]
+  },
+  "financebench_id_00822": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Votes Against"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Richard A. Johnson"
+    }
+   ]
+  },
+  "financebench_id_00839": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "On August 19, 2022, Foot Locker, Inc. (the Company), issued a press release announcing that, as part of a planned succession process, Richard"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Chair and Chief Executive Officer of Ulta Beauty, Inc., has been appointed President and Chief Executive Officer and a member of the Companys Board"
+    }
+   ]
+  },
+  "financebench_id_00941": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "1.500% Notes due 2026"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "1.750% Notes due 2030"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "1.500% Notes due 2031"
+    }
+   ]
+  },
+  "financebench_id_01028": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "United States"
+    }
+   ]
+  },
+  "financebench_id_01077": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Current Health Ltd."
+    },
+    {
+     "kind": "evidence_line",
+     "text": "In fiscal 2022, we acquired all of the outstanding shares of Current Health Ltd. (Current Health), a care-at-home technology platform, on November 2, 2021, for"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "net cash consideration of $389 million. The acquired assets included $351 million of goodwill that was assigned to our Best Buy Health reporting unit and was"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Two Peaks, LLC d/b/a Yardbird Furniture"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "In fiscal 2022, we acquired all of the outstanding shares of Two Peaks, LLC d/b/a Yardbird Furniture (Yardbird), a direct-to-consumer outdoor furniture company,"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "on November 4, 2021, for net cash consideration of $79 million. The acquired assets included $47 million of goodwill that was assigned to our Best Buy Domestic"
+    }
+   ]
+  },
+  "financebench_id_01079": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "On August 1, 2022, the Company completed the acquisition of 100% equity interest in a Czech Republic company that operates a world-class"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "On March 17, 2023, the Company completed the acquisition of 100% equity interest in a medical device packaging manufacturing site in"
+    }
+   ]
+  },
+  "financebench_id_01091": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Multiple legal actions have been filed against us as a result of the October 29, 2018 accident of Lion Air Flight 610 and the March 10, 2019"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "accident of Ethiopian Airlines Flight 302."
+    }
+   ]
+  },
+  "financebench_id_01148": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Today, we are a global leader in developing and producing responsible"
+    }
+   ]
+  },
+  "financebench_id_01226": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "litigation primarily related to steps toward resolving Combat Arms Earplugs litigation (discussed in Note 16) resulting in a 2022 second quarter pre-tax charge of approximately"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "$1.2 billion, certain impairment costs related to exiting PFAS manufacturing (see Note 15), costs related to exiting Russia (see Note 15), divestiture-related restructuring"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "charges (see Note 5), and continued investment in key growth initiatives. These increases were partially offset by restructuring benefits and ongoing general 3M cost"
+    }
+   ]
+  },
+  "financebench_id_01275": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Operating activities"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Adjustments to reconcile net earnings to total cash provided by operating activities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Total cash provided by operating activities"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Total cash used in investing activities"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Total cash used in financing activities"
+    }
+   ]
+  },
+  "financebench_id_01290": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "In 2022, 40% of our revenues were earned pursuant to U.S. government contracts"
+    }
+   ]
+  },
+  "financebench_id_01346": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Effective tax rate"
+    }
+   ]
+  },
+  "financebench_id_01351": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Effective tax rate",
+     "text": "21.6 %"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Effective tax rate",
+     "text": "24.6 %"
+    }
+   ]
+  },
+  "financebench_id_01858": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "This marked the 65th consecutive"
+    }
+   ]
+  },
+  "financebench_id_01865": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Consumer",
+     "text": "(0.9)"
+    }
+   ]
+  },
+  "financebench_id_01902": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Consumer Electronics: The 5.7% comparable sales decline was driven primarily by home theater, partially offset by comparable sales growth in"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Entertainment: The 9.0% comparable sales growth was driven primarily by gaming, partially offset by comparable sales declines in virtual reality and"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Services: The 7.6% comparable sales growth was driven primarily by the cumulative growth in our paid membership base"
+    }
+   ]
+  },
+  "financebench_id_01928": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Adjusted EBITDA, EBIT, Net income and EPS",
+     "text": "2,018"
+    }
+   ]
+  },
+  "financebench_id_01930": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Three Months Ended June 30"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Twelve Months Ended June 30"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales fiscal year 2023",
+     "text": "2,777"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales fiscal year 2023",
+     "text": "3,673"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales fiscal year 2023",
+     "text": "11,154"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales fiscal year 2023",
+     "text": "3,540"
+    }
+   ]
+  },
+  "financebench_id_01935": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "On June 30, 2022, Amcor Finance (USA), Inc. (the Former Issuer) and Amcor Flexibles North America, Inc. (the Substitute Issuer),"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "each a wholly-owned subsidiary of Amcor plc (the Company), entered into a (i) Second Supplemental Indenture (the Second Supplemental"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "date, the 2016 Indenture and, together with the Second Supplemental Indenture, the 2016 Indenture), among the Former Issuer, the"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Guaranteed Senior Notes due 2026 (the 2026 Notes) and (b) 4.500% Guaranteed Senior Notes due 2028 (the 2028 Notes and, together with"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "the 2026 Notes, the Existing Notes) and (ii) First Supplemental Indenture (the First Supplemental Indenture and, together with the Second"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Supplemental Indenture, the Supplemental Indentures) with the Trustee with respect to the Indenture, dated as of June 13, 2019 (as amended"
+    }
+   ]
+  },
+  "financebench_id_01936": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Cash paid",
+     "text": "(16)"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Cash paid",
+     "text": "(25)"
+    }
+   ]
+  },
+  "financebench_id_01964": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Customer deposits"
+    }
+   ]
+  },
+  "financebench_id_01981": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Net card fees increased 17 percent year over-year, as new card acquisitions reached record levels in 2022 and Card Member"
+    }
+   ]
+  },
+  "financebench_id_02416": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "therapies targeting cancer immune evasion pathways and specific cell targeting approaches, for a price of $18.50 per share in cash, for total consideration of $2.0 billion, net of cash"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "acquired. At the acquisition date, we recorded a $2.1 billion charge representing an acquired IPR&D asset with no alternative future use in Research and development expenses, of"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "which the $2.0 billion net cash consideration is presented as a cash outflow from operating activities. In connection with this acquisition, we recorded $256 million of assets acquired"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "primarily consisting of cash and investments. Liabilities assumed were approximately $81 million."
+    },
+    {
+     "kind": "evidence_line",
+     "text": "medicines to treat cancer and other diseases of high unmet need, for $48 per share in cash. The total fair value of the consideration transferred was $11.2 billion ($10.9 billion, net of"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "cash acquired). In addition, $157 million in payments to Array employees for the fair value of previously unvested stock options was recognized as post-closing compensation expense"
+    }
+   ]
+  },
+  "financebench_id_02419": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "We expect to incur costs of approximately $700 million in connection with separating Upjohn, of which approximately 90% has been incurred since inception"
+    }
+   ]
+  },
+  "financebench_id_02608": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Revenue",
+     "value": "40,339",
+     "year": 2015
+    },
+    {
+     "kind": "table_value",
+     "label": "Revenue",
+     "value": "39,528",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Revenue",
+     "value": "39,403",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Net earnings attributable to Best Buy Co",
+     "value": "1,233",
+     "year": 2015
+    },
+    {
+     "kind": "table_value",
+     "label": "Net earnings attributable to Best Buy Co",
+     "value": "897",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Net earnings attributable to Best Buy Co",
+     "value": "1,228",
+     "year": 2017
+    }
+   ]
+  },
+  "financebench_id_02981": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Operating\u00c2\u00a0income",
+     "value": "1,306",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Operating\u00c2\u00a0income",
+     "value": "509",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Operating\u00c2\u00a0income",
+     "value": "2,112",
+     "year": 2021
+    },
+    {
+     "kind": "table_value",
+     "label": "Net\u00c2\u00a0sales",
+     "value": "11,503",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Net\u00c2\u00a0sales",
+     "value": "11,303",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Net\u00c2\u00a0sales",
+     "value": "14,082",
+     "year": 2021
+    }
+   ]
+  },
+  "financebench_id_02987": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Total net revenues",
+     "value": "7,500",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Total net revenues",
+     "value": "6,489",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Property and equipment, net",
+     "value": "282",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Property and equipment, net",
+     "value": "253",
+     "year": 2019
+    }
+   ]
+  },
+  "financebench_id_03029": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Purchases of property, plant and equipment (PP&E)",
+     "value": "(1,577)",
+     "year": 2018
+    }
+   ]
+  },
+  "financebench_id_03282": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Total current liabilities",
+     "value": "5,466,312",
+     "year": 2017
+    }
+   ]
+  },
+  "financebench_id_03471": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Total current liabilities",
+     "value": "7,491.5",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Total current assets",
+     "value": "5,121.3",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_03838": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Total net revenue",
+     "value": "4,713,500",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Total net revenue",
+     "value": "9,497,578",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_03856": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Current liabilities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Total current liabilities"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Cash flows from operating activities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Adjustments to reconcile net income to net cash provided by operating activities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Changes in operating assets and liabilities, net of acquired assets and"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Net cash provided by operating activities"
+    }
+   ]
+  },
+  "financebench_id_03882": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Trade receivables, net",
+     "value": "1,615.9",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_04103": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Cost of sales",
+     "value": "10,304.8",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost of sales",
+     "value": "11,108.4",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Net sales",
+     "value": "15,740.4",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Net sales",
+     "value": "16,865.2",
+     "year": 2019
+    }
+   ]
+  },
+  "financebench_id_04417": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Merchandise inventories",
+     "value": "5,409",
+     "year": 2019
+    }
+   ]
+  },
+  "financebench_id_04458": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Depreciation and amortization of property, equipment and int",
+     "value": "62,283",
+     "year": 2015
+    },
+    {
+     "kind": "table_value",
+     "label": "Operating income",
+     "value": "305,826",
+     "year": 2015
+    },
+    {
+     "kind": "table_value",
+     "label": "Revenues",
+     "value": "6,779,511",
+     "year": 2015
+    }
+   ]
+  },
+  "financebench_id_04660": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Total current liabilities",
+     "value": "577,464",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Total current assets",
+     "value": "1,001,425",
+     "year": 2016
+    }
+   ]
+  },
+  "financebench_id_04672": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Property, plant and equipment \u00e2\u0080\u0094 net",
+     "value": "8,738",
+     "year": 2018
+    }
+   ]
+  },
+  "financebench_id_04735": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Current liabilities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Total current liabilities...................................................................................................................."
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Cash flows from operating activities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Adjustments to reconcile net income to net cash provided by operating activities:"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Changes in operating assets and liabilities, net of acquired assets and"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Net cash provided by operating activities........................................................."
+    }
+   ]
+  },
+  "financebench_id_04784": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "510,329"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Net sales",
+     "text": "495,761"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "481,317"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Membership and other income",
+     "text": "4,076"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Membership and other income",
+     "text": "4,582"
+    },
+    {
+     "kind": "evidence_line",
+     "label": "Membership and other income",
+     "text": "4,556"
+    }
+   ]
+  },
+  "financebench_id_04854": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Net cash provided by operating activities",
+     "value": "3,676.2",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Purchases of land, buildings, and equipment",
+     "value": "(460.8)",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_06247": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Accounts payable",
+     "value": "41,433",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Accounts payable",
+     "value": "46,092",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories",
+     "value": "43,046",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories",
+     "value": "43,783",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost of sales",
+     "value": "361,256",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost of sales",
+     "value": "373,396",
+     "year": 2018
+    }
+   ]
+  },
+  "financebench_id_06655": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Accounts payable",
+     "value": "25,309",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Accounts payable",
+     "value": "34,616",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories",
+     "value": "11,461",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories",
+     "value": "16,047",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost of sales",
+     "value": "88,265",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost of sales",
+     "value": "111,934",
+     "year": 2017
+    }
+   ]
+  },
+  "financebench_id_06741": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Depreciation and amortization",
+     "value": "10,529",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Depreciation and amortization",
+     "value": "10,678",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Depreciation and amortization",
+     "value": "10,987",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Operating income",
+     "value": "20,437",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Operating income",
+     "value": "21,957",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Operating income",
+     "value": "20,568",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Total revenues",
+     "value": "500,343",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Total revenues",
+     "value": "514,405",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Total revenues",
+     "value": "523,964",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_07507": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "Operating income"
+    }
+   ]
+  },
+  "financebench_id_07661": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Net cash provided by operating activities",
+     "value": "381,603",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_07966": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Capital expenditures",
+     "value": "(155)",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Capital expenditures",
+     "value": "(131)",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Capital expenditures",
+     "value": "(116)",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Total net revenues",
+     "value": "7,017",
+     "year": 2017
+    },
+    {
+     "kind": "table_value",
+     "label": "Total net revenues",
+     "value": "7,500",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Total net revenues",
+     "value": "6,489",
+     "year": 2019
+    }
+   ]
+  },
+  "financebench_id_08135": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Total net sales",
+     "value": "135,987",
+     "year": 2016
+    },
+    {
+     "kind": "table_value",
+     "label": "Total net sales",
+     "value": "177,866",
+     "year": 2017
+    }
+   ]
+  },
+  "financebench_id_08286": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Net income",
+     "value": "201",
+     "year": 2019
+    }
+   ]
+  },
+  "financebench_id_10130": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Accounts\u00c2\u00a0payable",
+     "value": "1,587",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Accounts\u00c2\u00a0payable",
+     "value": "1,174",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories, net (Note 6)",
+     "value": "2,320",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories, net (Note 6)",
+     "value": "2,438",
+     "year": 2020
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost\u00c2\u00a0of\u00c2\u00a0sales",
+     "value": "7,468",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost\u00c2\u00a0of\u00c2\u00a0sales",
+     "value": "7,772",
+     "year": 2020
+    }
+   ]
+  },
+  "financebench_id_10136": {
+   "needles": [
+    {
+     "kind": "evidence_line",
+     "text": "GENERAL MILLS, INC. AND SUBSIDIARIES"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Earnings before income taxes and after-tax earnings from joint ventures"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Net earnings, including earnings attributable to redeemable and"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Net earnings attributable to redeemable and noncontrolling interests"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "Net earnings attributable to General Mills"
+    },
+    {
+     "kind": "evidence_line",
+     "text": "GENERAL MILLS, INC. AND SUBSIDIARIES"
+    }
+   ]
+  },
+  "financebench_id_10285": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Property, plant and equipment, net",
+     "value": "12,645",
+     "year": 2018
+    }
+   ]
+  },
+  "financebench_id_10499": {
+   "needles": [
+    {
+     "kind": "table_value",
+     "label": "Cost of products sold",
+     "value": "17,347",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Cost of products sold",
+     "value": "16,830",
+     "year": 2019
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories",
+     "value": "2,667",
+     "year": 2018
+    },
+    {
+     "kind": "table_value",
+     "label": "Inventories",
+     "value": "2,721",
+     "year": 2019
+    }
+   ]
+  }
+ },
+ "rule": "modelforge.fb_retrieval.evidence_needles / needle_reached (fixed before any retrieval change is measured)",
+ "sanity": {
+  "gold_evidence_reaches_needles": {
+   "complete": 75,
+   "no_needles": 0,
+   "none": 0,
+   "partial": 0
+  }
+ },
+ "sources": {
+  "alignment": "evals/financebench/alignment-audit-dev-v1.json",
+  "questions": "FinanceBench gold evidence and answers (development only)"
+ },
+ "split": "dev"
+}

@@ -1,0 +1,533 @@
+{
+ "breakdown": {
+  "doc:<=100 pages": {
+   "all": 14,
+   "none": 11,
+   "some": 0
+  },
+  "doc:>100 pages": {
+   "all": 11,
+   "none": 34,
+   "some": 5
+  },
+  "gold:multi-page": {
+   "all": 1,
+   "none": 9,
+   "some": 5
+  },
+  "gold:single-page": {
+   "all": 24,
+   "none": 36,
+   "some": 0
+  },
+  "type:domain-relevant": {
+   "all": 4,
+   "none": 19,
+   "some": 0
+  },
+  "type:metrics-generated": {
+   "all": 8,
+   "none": 16,
+   "some": 5
+  },
+  "type:novel-generated": {
+   "all": 13,
+   "none": 10,
+   "some": 0
+  }
+ },
+ "date": "2026-11-10",
+ "evidence_coverage": {
+  "evidence": {
+   "complete": 18,
+   "no_needles": 0,
+   "none": 46,
+   "partial": 11
+  },
+  "pages_vs_evidence": {
+   "pages all / evidence complete": 11,
+   "pages all / evidence none": 11,
+   "pages all / evidence partial": 3,
+   "pages none / evidence complete": 6,
+   "pages none / evidence none": 34,
+   "pages none / evidence partial": 5,
+   "pages some / evidence complete": 1,
+   "pages some / evidence none": 1,
+   "pages some / evidence partial": 3
+  },
+  "questions": {
+   "financebench_id_00005": {
+    "evidence": "none",
+    "needles": 5,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00283": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00288": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_00302": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00438": {
+    "evidence": "partial",
+    "needles": 4,
+    "pages": "all",
+    "reached": 2
+   },
+   "financebench_id_00460": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_00464": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00476": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00494": {
+    "evidence": "complete",
+    "needles": 3,
+    "pages": "all",
+    "reached": 3
+   },
+   "financebench_id_00499": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00517": {
+    "evidence": "none",
+    "needles": 4,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00585": {
+    "evidence": "partial",
+    "needles": 3,
+    "pages": "none",
+    "reached": 1
+   },
+   "financebench_id_00591": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00678": {
+    "evidence": "none",
+    "needles": 4,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00684": {
+    "evidence": "none",
+    "needles": 4,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00685": {
+    "evidence": "none",
+    "needles": 4,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00702": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00720": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00723": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00724": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_00799": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_00807": {
+    "evidence": "partial",
+    "needles": 3,
+    "pages": "all",
+    "reached": 2
+   },
+   "financebench_id_00822": {
+    "evidence": "complete",
+    "needles": 2,
+    "pages": "all",
+    "reached": 2
+   },
+   "financebench_id_00839": {
+    "evidence": "partial",
+    "needles": 2,
+    "pages": "none",
+    "reached": 1
+   },
+   "financebench_id_00941": {
+    "evidence": "complete",
+    "needles": 3,
+    "pages": "all",
+    "reached": 3
+   },
+   "financebench_id_01028": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "none",
+    "reached": 1
+   },
+   "financebench_id_01077": {
+    "evidence": "partial",
+    "needles": 6,
+    "pages": "none",
+    "reached": 1
+   },
+   "financebench_id_01079": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_01091": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_01148": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_01226": {
+    "evidence": "none",
+    "needles": 3,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_01275": {
+    "evidence": "complete",
+    "needles": 5,
+    "pages": "none",
+    "reached": 5
+   },
+   "financebench_id_01290": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_01346": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "none",
+    "reached": 1
+   },
+   "financebench_id_01351": {
+    "evidence": "complete",
+    "needles": 2,
+    "pages": "none",
+    "reached": 2
+   },
+   "financebench_id_01858": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "all",
+    "reached": 1
+   },
+   "financebench_id_01865": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_01902": {
+    "evidence": "partial",
+    "needles": 3,
+    "pages": "all",
+    "reached": 1
+   },
+   "financebench_id_01928": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "all",
+    "reached": 1
+   },
+   "financebench_id_01930": {
+    "evidence": "complete",
+    "needles": 6,
+    "pages": "all",
+    "reached": 6
+   },
+   "financebench_id_01935": {
+    "evidence": "complete",
+    "needles": 6,
+    "pages": "all",
+    "reached": 6
+   },
+   "financebench_id_01936": {
+    "evidence": "complete",
+    "needles": 2,
+    "pages": "all",
+    "reached": 2
+   },
+   "financebench_id_01964": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_01981": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_02416": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_02419": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_02608": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_02981": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_02987": {
+    "evidence": "partial",
+    "needles": 4,
+    "pages": "none",
+    "reached": 2
+   },
+   "financebench_id_03029": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_03282": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_03471": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_03838": {
+    "evidence": "complete",
+    "needles": 2,
+    "pages": "none",
+    "reached": 2
+   },
+   "financebench_id_03856": {
+    "evidence": "complete",
+    "needles": 6,
+    "pages": "all",
+    "reached": 6
+   },
+   "financebench_id_03882": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_04103": {
+    "evidence": "partial",
+    "needles": 4,
+    "pages": "some",
+    "reached": 1
+   },
+   "financebench_id_04417": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_04458": {
+    "evidence": "none",
+    "needles": 3,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_04660": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_04672": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_04735": {
+    "evidence": "partial",
+    "needles": 6,
+    "pages": "some",
+    "reached": 5
+   },
+   "financebench_id_04784": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_04854": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_06247": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_06655": {
+    "evidence": "partial",
+    "needles": 6,
+    "pages": "none",
+    "reached": 2
+   },
+   "financebench_id_06741": {
+    "evidence": "none",
+    "needles": 9,
+    "pages": "some",
+    "reached": 0
+   },
+   "financebench_id_07507": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "all",
+    "reached": 1
+   },
+   "financebench_id_07661": {
+    "evidence": "none",
+    "needles": 1,
+    "pages": "all",
+    "reached": 0
+   },
+   "financebench_id_07966": {
+    "evidence": "partial",
+    "needles": 6,
+    "pages": "some",
+    "reached": 2
+   },
+   "financebench_id_08135": {
+    "evidence": "none",
+    "needles": 2,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_08286": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "none",
+    "reached": 1
+   },
+   "financebench_id_10130": {
+    "evidence": "none",
+    "needles": 6,
+    "pages": "none",
+    "reached": 0
+   },
+   "financebench_id_10136": {
+    "evidence": "complete",
+    "needles": 6,
+    "pages": "some",
+    "reached": 6
+   },
+   "financebench_id_10285": {
+    "evidence": "complete",
+    "needles": 1,
+    "pages": "all",
+    "reached": 1
+   },
+   "financebench_id_10499": {
+    "evidence": "none",
+    "needles": 4,
+    "pages": "none",
+    "reached": 0
+   }
+  }
+ },
+ "name": "financebench-dev-retrieval-baseline-text2",
+ "page_coverage": {
+  "all": 25,
+  "none": 45,
+  "some": 5
+ },
+ "regeneration": {
+  "coverage_a": {
+   "all": 25,
+   "none": 45,
+   "some": 5
+  },
+  "coverage_b": {
+   "all": 25,
+   "none": 45,
+   "some": 5
+  },
+  "identical_passage_lists": 75,
+  "ingestion": "40/40 development PDFs re-parse to the stored pdf-2 passages (ids and text)",
+  "questions": 75,
+  "questions_equal": true
+ }
+}
