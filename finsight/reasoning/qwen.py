@@ -25,7 +25,8 @@ class QwenProvider:
 
     def __init__(self, model: str, base_url: str = "http://127.0.0.1:8000", *, label: str | None = None,
                  max_tokens: int = 1024, enable_thinking: bool = False, timeout: float = 300.0,
-                 transport: httpx.BaseTransport | None = None) -> None:
+                 transport: httpx.BaseTransport | None = None, family: str = "qwen",
+                 chat_template_kwargs: dict | None = None) -> None:
         self.model = model
         self.base_url = base_url.rstrip("/")
         self.max_tokens = max_tokens
@@ -33,9 +34,16 @@ class QwenProvider:
         self.config_id = label or f"qwen-{model.replace('/', '_')}"
         self.sampling = {"temperature": 0, "top_p": 1, "top_k": -1, "min_p": 0, "presence_penalty": 0,
                          "frequency_penalty": 0, "repetition_penalty": 1, "seed": 0, "n": 1}
+        # Qwen's template takes enable_thinking; other families get only the template kwargs given explicitly (for
+        # Gemma 4, thinking stays off when its thinking trigger is not requested; verified from the rendered prompt).
+        self.family = family
+        self.template_kwargs = {"enable_thinking": enable_thinking} if family == "qwen" else dict(chat_template_kwargs or {})
         self.settings = {"provider": "qwen", "runtime": "vllm", "model": model, "max_tokens": str(max_tokens),
                          "enable_thinking": str(enable_thinking).lower(), "decoding": "greedy, guided JSON schema",
                          "sampling": json.dumps(self.sampling, sort_keys=True)}
+        if family != "qwen":
+            self.settings.update(provider="vllm", family=family, enable_thinking="not requested",
+                                 chat_template_kwargs=json.dumps(self.template_kwargs, sort_keys=True))
         self.client = httpx.Client(base_url=self.base_url, timeout=timeout, transport=transport)
 
     def server_info(self) -> dict:
@@ -62,8 +70,9 @@ class QwenProvider:
             "stream": True,
             "stream_options": {"include_usage": True},
             "response_format": {"type": "json_schema", "json_schema": {"name": "answer", "schema": schema, "strict": True}},
-            "chat_template_kwargs": {"enable_thinking": self.enable_thinking},
         }
+        if self.template_kwargs:
+            body["chat_template_kwargs"] = self.template_kwargs
         started = datetime.now(timezone.utc)
         t0 = time.perf_counter()
         ttft = None

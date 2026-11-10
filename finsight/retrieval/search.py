@@ -215,23 +215,91 @@ EXPANSIONS = {"capex": ["purchases", "property", "plant", "equipment"], "capital
               "inventory": ["inventories"], "inventories": ["inventory"], "receivable": ["receivables"], "payable": ["payables"]}
 
 
+# text-3 (one design pass from the development failure analysis; text-2 stays as it was):
+#  * the document's own company name is dropped from the query (in a single-document search it only pulls in exhibit
+#    and subsidiary-list pages), and so are the standard FinanceBench instruction tails ("If ... is not a useful
+#    metric for a company like this, then state that and explain why");
+#  * FY20 / FY'21 / Q2 FY2023 / Q22023 normalise to years;
+#  * a few more finance synonyms; "working capital" no longer expands to capital expenditure;
+#  * the rank is length-normalised (ts_rank_cd flag 1), so short table rows compete with long prose chunks;
+#  * pages that are exhibit indexes or subsidiary lists are ranked down (x0.2).
+TEXT_SEARCH_V3 = "text-3"
+INSTRUCTION_WORDS_V3 = INSTRUCTION_WORDS | {"useful", "metric", "metrics", "explain", "state", "like", "relevant", "then",
+                                            "whether", "answer", "addressing", "address", "terms", "close", "value",
+                                            "calculation", "formula", "statement", "statements", "sheet"}
+_TAIL = re.compile(r"(?i)\bif\b[^.?]*\b(?:not|isn't)\b[^.?]*\b(?:useful|relevant|meaningful)\b[^.?]*[.?]?")
+PHRASES_V3 = {"working capital": ["current", "assets", "liabilities"],
+              "quick ratio": ["current", "assets", "inventories", "liabilities"],
+              "current ratio": ["current", "assets", "liabilities"],
+              "free cash flow": ["operating", "activities", "purchases", "property", "plant", "equipment"],
+              "operating margin": ["operating", "income", "net", "sales"],
+              "gross margin": ["gross", "profit", "cost", "sales"],
+              "effective tax rate": ["provision", "income", "taxes", "before"],
+              "return on assets": ["net", "income", "total", "assets"],
+              "days payable": ["accounts", "payable", "cost", "sales"],
+              "cash conversion": ["operating", "activities", "net", "income"]}
+EXPANSIONS_V3 = {**{k: v for k, v in EXPANSIONS.items() if k != "capital"},
+                 "capital": ["expenditures", "purchases", "property", "plant", "equipment"],
+                 "ppne": ["property", "plant", "equipment", "net"], "ppe": ["property", "plant", "equipment"],
+                 "fcf": ["operating", "activities", "purchases", "property", "plant", "equipment"],
+                 "cfo": ["operating", "activities"], "roa": ["net", "income", "total", "assets"],
+                 "dpo": ["accounts", "payable", "cost", "sales"], "assets": ["total"], "liabilities": ["total"]}
+_HUB_PATTERNS = ["%subsidiaries of%", "%exhibit index%", "%index to exhibits%", "%jurisdiction of%organization%",
+                 "%list of subsidiaries%", "%significant subsidiaries%"]
+
+
+def query_terms_v3(question: str, company: str | None = None) -> list[str]:
+    text = _TAIL.sub(" ", question)
+    low = text.lower()
+    low = re.sub(r"\bfy\s?'?(\d{2})\b", lambda m: f"20{m.group(1)}", low)
+    low = re.sub(r"\bq[1-4]\s*(?:fy\s?)?'?((?:19|20)\d{2})\b", r"\1", low)
+    low = re.sub(r"\bq[1-4]\s*'(\d{2})\b", lambda m: f"20{m.group(1)}", low)
+    drop = set(INSTRUCTION_WORDS_V3)
+    if company:
+        drop |= {w for w in re.findall(r"[a-z0-9]+", company.lower()) if len(w) >= 2}
+    terms = [t for t in query_terms(low) if t not in drop]
+    lowered = " ".join(low.split())
+    for phrase, extra in PHRASES_V3.items():
+        if phrase in lowered:
+            if phrase == "working capital":
+                terms = [t for t in terms if t not in ("working", "capital")]
+            terms += [x for x in extra if x not in terms]
+    terms += [x for t in list(terms) for x in EXPANSIONS_V3.get(t, [])]
+    return list(dict.fromkeys(terms))
+
+
+def _hub_pages(conn, document_ids: list[str]) -> set[tuple[str, int]]:
+    rows = conn.execute("SELECT DISTINCT document_id, (location->>'page')::int AS page FROM passages "
+                        "WHERE document_id = ANY(%s) AND location->>'page' IS NOT NULL AND text ILIKE ANY(%s)",
+                        (document_ids, _HUB_PATTERNS)).fetchall()
+    return {(r["document_id"], r["page"]) for r in rows}
+
+
 def search_text(conn, document_ids: list[str], question: str, *, limit: int = 10, char_budget: int = 8000,
-                version: str = "text-2") -> list[dict]:
+                version: str = "text-2", company: str | None = None) -> list[dict]:
     """General retrieval for any question within the given documents (single-document setting): Postgres full-text
     OR query over the question's words, ranked by cover density; top passages up to ``limit`` and ``char_budget``.
     text-1 uses every word; text-2 (tuned on FinanceBench development questions) drops instruction words and adds a
     few financial synonyms."""
+    if version not in ("text-1", "text-2", "text-3"):
+        raise ValueError(f"unknown text search version {version!r}")
     terms = query_terms(question)
     if version == "text-2":
         terms = [t for t in terms if t not in INSTRUCTION_WORDS]
         terms += [x for t in list(terms) for x in EXPANSIONS.get(t, []) if x not in terms]
+    elif version == "text-3":
+        terms = query_terms_v3(question, company)
     if not terms:
         return []
+    normalization = 1 if version == "text-3" else 0
     rows = conn.execute(
         "WITH q AS (SELECT to_tsquery('english', %s) AS query) SELECT p.id, p.document_id, p.section, p.location, p.text, "
-        "p.start_offset, p.end_offset, ts_rank_cd(p.tsv, q.query) AS rank FROM passages p, q "
+        "p.start_offset, p.end_offset, ts_rank_cd(p.tsv, q.query, %s) AS rank FROM passages p, q "
         "WHERE p.document_id = ANY(%s) AND p.tsv @@ q.query ORDER BY rank DESC, p.id LIMIT 200",
-        (" | ".join(terms), document_ids)).fetchall()
+        (" | ".join(terms), normalization, document_ids)).fetchall()
+    if version == "text-3":
+        hubs = _hub_pages(conn, document_ids)
+        rows = sorted(rows, key=lambda r: (-(r["rank"] * (0.2 if (r["document_id"], (r["location"] or {}).get("page")) in hubs else 1.0)), r["id"]))
     chosen, used = [], 0
     for row in rows:
         if len(chosen) >= limit or used + len(row["text"]) > char_budget:

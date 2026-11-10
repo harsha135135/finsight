@@ -27,3 +27,22 @@ def test_needles_from_gold_evidence_lines():
     needles = R.evidence_needles(q, None)
     assert [n["text"] for n in needles] == ["15,754", "5,280", "10,936"]
     assert needles[0]["label"] == "Total current assets"
+
+
+def test_text3_query_drops_company_and_instruction_tail_and_normalises_years():
+    from finsight.retrieval.search import query_terms_v3
+    terms = query_terms_v3("Does Corning have positive working capital based on FY2022 data? If working capital is not a useful "
+                           "or relevant metric for a company like this, then please state that and explain why.", "Corning CORNING")
+    assert "corning" not in terms and "useful" not in terms and "explain" not in terms
+    assert "2022" in terms and {"current", "assets", "liabilities"} <= set(terms)
+    assert "purchases" not in terms                     # working capital is not capital expenditure
+    assert len(terms) == len(set(terms))
+    assert "2021" in query_terms_v3("revenue in FY21", None)
+    assert "2023" in query_terms_v3("inventory in Q2 FY2023", None) and "2023" in query_terms_v3("Q2'23 margin", None)
+
+
+def test_statement_title_detection():
+    from finsight.ingestion.pdf import statement_title
+    assert statement_title(["Table of Contents", "Consolidated Statements of Cash Flows"]) == "Consolidated Statements Of Cash Flows"
+    assert statement_title(["SQUARE, INC.", "CONSOLIDATED", "BALANCE", "SHEETS"]) == "Consolidated Balance Sheets"
+    assert statement_title(["Results of operations", "Net sales"]) is None

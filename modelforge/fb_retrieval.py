@@ -71,6 +71,11 @@ def page_coverage(retrieved_pages: set[int], gold_pages: list[int]) -> str:
     return "all" if hit == set(gold_pages) else "some" if hit else "none"
 
 
+def company_name(question: dict) -> str:
+    """The document's company as FinanceBench names it, plus the document name's company token."""
+    return f"{question['company']} {question['doc_name'].split('_')[0]}"
+
+
 def gold_pages(question: dict) -> list[int]:
     return sorted({e["evidence_page_num"] + 1 for e in question["evidence"]})
 
@@ -80,7 +85,7 @@ def retrieve(conn, questions: list[dict], version: str, parser: str = "pdf-2", *
     out = {}
     for q in questions:
         rows = search_text(conn, [document_id(q["doc_name"], parser)], q["question"], limit=limit,
-                           char_budget=char_budget, version=version)
+                           char_budget=char_budget, version=version, company=company_name(q) if version == "text-3" else None)
         passages = [{"id": r["id"], "page": r["location"]["page"], "row": r["location"].get("row"),
                      "table": r["location"].get("table"), "text": r["text"],
                      "sha256": hashlib.sha256(r["text"].encode()).hexdigest()} for r in rows]

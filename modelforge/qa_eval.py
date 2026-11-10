@@ -24,12 +24,15 @@ def _passage(row: dict) -> Passage:
 
 
 def financebench_items(manifest: dict, mode: str, conn=None,
-                       retrieval_path: Path = Path("evals/financebench/retrieval-dev-pdf2-text-2.json")) -> list[dict]:
+                       retrieval_path: Path = Path("evals/financebench/retrieval-dev-pdf2-text-2.json"),
+                       questions: list[dict] | None = None) -> list[dict]:
+    """Items for the given questions (default: the development questions). Supplied mode: the gold evidence pages as
+    pdf-2 passages; full-document mode: the passages a frozen retrieval file handed to the model."""
     from modelforge.datasets import financebench as fb
 
     retrieved = json.loads(retrieval_path.read_text())["questions"] if mode == "full_document" else {}
     items = []
-    for q in fb.dev_questions(manifest):
+    for q in (questions if questions is not None else fb.dev_questions(manifest)):
         if mode == "supplied":
             pages = [e["evidence_page_num"] + 1 for e in q["evidence"]]
             rows = conn.execute("SELECT id, document_id, section, location, text, start_offset, end_offset FROM passages "
@@ -64,14 +67,27 @@ def finqa_control_items() -> list[dict]:
     return items
 
 
-def run(items: list[dict], provider, out_dir: Path, label: str) -> Path:
+def _git_commit() -> dict:
+    import subprocess
+
+    try:
+        commit = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+        dirty = bool(subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], capture_output=True, text=True).stdout.strip())
+        return {"commit": commit, "dirty": dirty}
+    except (OSError, subprocess.CalledProcessError):
+        return {"commit": None, "dirty": None}
+
+
+def run(items: list[dict], provider, out_dir: Path, label: str, serving: dict | None = None) -> Path:
+    """Resumable run. ``serving`` records what the client cannot see (serve flags, checkpoint revision, quantization,
+    GPU); the git commit, per-item latency and time to first token, and the wall time are recorded too."""
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "items.jsonl").write_text("".join(json.dumps(i) + "\n" for i in items))
     config = {"label": label, "contract": "finsight-qa-v1", "prompt_version": QA_PROMPT_VERSION,
               "schema_sha256": hashlib.sha256(json.dumps(qa_schema(), sort_keys=True).encode()).hexdigest(),
               "items_sha256": hashlib.sha256((out_dir / "items.jsonl").read_bytes()).hexdigest(),
               "model": provider.model, "settings": provider.settings, "server": provider.server_info(),
-              "started_at": datetime.now(timezone.utc).isoformat()}
+              "git": _git_commit(), "serving": serving, "started_at": datetime.now(timezone.utc).isoformat()}
     config_path, preds_path = out_dir / "config.json", out_dir / "predictions.jsonl"
     done = {json.loads(l)["item_id"] for l in preds_path.read_text().splitlines()} if preds_path.exists() else set()
     if done and config_path.exists():
@@ -93,6 +109,10 @@ def run(items: list[dict], provider, out_dir: Path, label: str) -> Path:
                                      "status": attempt.status if attempt else "error", "error": attempt.error if attempt else None,
                                      "latency_ms": attempt.latency_ms if attempt else int((time.monotonic() - t0) * 1000),
                                      "input_tokens": attempt.input_tokens_uncached if attempt else None,
-                                     "output_tokens": attempt.output_tokens if attempt else None}) + "\n")
+                                     "output_tokens": attempt.output_tokens if attempt else None,
+                                     "ttft_ms": attempt.ttft_ms if attempt else None}) + "\n")
             handle.flush()
+    config = json.loads(config_path.read_text())
+    config["finished_at"] = datetime.now(timezone.utc).isoformat()
+    config_path.write_text(json.dumps(config, indent=1) + "\n")
     return out_dir

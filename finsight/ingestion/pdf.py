@@ -126,7 +126,25 @@ def table_rows(lines: list[str]) -> list[tuple[int, str] | tuple[int, None]]:
     return out
 
 
-def parse_pdf_v2(path: Path, document_id: str, doc_short: str) -> PdfParse:
+_STATEMENT = re.compile(r"(?i)\b(consolidated\s+)?(balance\s+sheets?|statements?\s+of\s+(?:consolidated\s+)?(?:cash\s+flows?|operations|income|"
+                        r"earnings|comprehensive\s+(?:income|loss|earnings)|financial\s+(?:position|condition)|"
+                        r"(?:stockholders|shareholders|shareowners)[’']?\s+equity))\b")
+
+
+def statement_title(lines: list[str]) -> str | None:
+    """The financial statement a page presents, from its first lines (e.g. 'Consolidated Balance Sheets')."""
+    head = " ".join(lines[:8])
+    m = _STATEMENT.search(head)
+    return " ".join(m.group(0).split()).title() if m else None
+
+
+def parse_pdf_v3(path: Path, document_id: str, doc_short: str) -> PdfParse:
+    """pdf-3: pdf-2 plus the page's statement title on each table row ('[Consolidated Balance Sheets] label | 2018: v
+    ...'), so a question naming the statement can find its rows. Text chunks are unchanged."""
+    return parse_pdf_v2(path, document_id, doc_short, label_statements=True)
+
+
+def parse_pdf_v2(path: Path, document_id: str, doc_short: str, *, label_statements: bool = False) -> PdfParse:
     """pdf-2: like pdf-1, but numeric table rows under a year/date header become row passages
     ('label | 2018: v | 2017: v  [table: pN]') that FinSight's period checks can read; other lines become text chunks."""
     result = PdfParse()
@@ -147,6 +165,7 @@ def parse_pdf_v2(path: Path, document_id: str, doc_short: str) -> PdfParse:
                 result.empty_pages.append(page_no)
                 continue
             rows = dict(table_rows(lines))
+            title = statement_title(lines) if label_statements else None
             chunk: list[str] = []
             counters = {"c": 0, "r": 0}
 
@@ -169,7 +188,7 @@ def parse_pdf_v2(path: Path, document_id: str, doc_short: str) -> PdfParse:
                     if chunk:
                         emit("\n".join(chunk), row=False)
                         chunk = []
-                    emit(row, row=True)
+                    emit(f"[{title}] {row}" if title else row, row=True)
                     continue
                 if chunk and sum(len(x) + 1 for x in chunk) + len(line) > MAX_CHARS:
                     emit("\n".join(chunk), row=False)

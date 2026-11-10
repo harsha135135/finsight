@@ -1,0 +1,212 @@
+{
+ "audit": "evals/financebench/evidence-audit-dev-v1.json",
+ "configs": {
+  "pdf-2+text-2": {
+   "breakdown": {
+    "doc:<=100 pages": {
+     "all": 14,
+     "none": 11,
+     "some": 0
+    },
+    "doc:>100 pages": {
+     "all": 11,
+     "none": 34,
+     "some": 5
+    },
+    "gold:multi-page": {
+     "all": 1,
+     "none": 9,
+     "some": 5
+    },
+    "gold:single-page": {
+     "all": 24,
+     "none": 36,
+     "some": 0
+    },
+    "type:domain-relevant": {
+     "all": 4,
+     "none": 19,
+     "some": 0
+    },
+    "type:metrics-generated": {
+     "all": 8,
+     "none": 16,
+     "some": 5
+    },
+    "type:novel-generated": {
+     "all": 13,
+     "none": 10,
+     "some": 0
+    }
+   },
+   "evidence": {
+    "complete": 18,
+    "no_needles": 0,
+    "none": 46,
+    "partial": 11
+   },
+   "file_sha256": null,
+   "needles": 239,
+   "needles_reached": 70,
+   "page_coverage": {
+    "all": 25,
+    "none": 45,
+    "some": 5
+   },
+   "page_recall": {
+    "all_gold_pages": 0.333,
+    "any_gold_page": 0.4
+   },
+   "pages_vs_evidence": {
+    "pages all / evidence complete": 11,
+    "pages all / evidence none": 11,
+    "pages all / evidence partial": 3,
+    "pages none / evidence complete": 6,
+    "pages none / evidence none": 34,
+    "pages none / evidence partial": 5,
+    "pages some / evidence complete": 1,
+    "pages some / evidence none": 1,
+    "pages some / evidence partial": 3
+   }
+  },
+  "pdf-2+text-3": {
+   "breakdown": {
+    "doc:<=100 pages": {
+     "all": 15,
+     "none": 8,
+     "some": 2
+    },
+    "doc:>100 pages": {
+     "all": 19,
+     "none": 27,
+     "some": 4
+    },
+    "gold:multi-page": {
+     "all": 1,
+     "none": 8,
+     "some": 6
+    },
+    "gold:single-page": {
+     "all": 33,
+     "none": 27,
+     "some": 0
+    },
+    "type:domain-relevant": {
+     "all": 12,
+     "none": 11,
+     "some": 0
+    },
+    "type:metrics-generated": {
+     "all": 10,
+     "none": 13,
+     "some": 6
+    },
+    "type:novel-generated": {
+     "all": 12,
+     "none": 11,
+     "some": 0
+    }
+   },
+   "evidence": {
+    "complete": 26,
+    "no_needles": 0,
+    "none": 32,
+    "partial": 17
+   },
+   "file_sha256": "0515e4c1e9945d9dbf49ff6874c98d04309ebe892623951fcbf3f4295a61e281",
+   "needles": 239,
+   "needles_reached": 97,
+   "page_coverage": {
+    "all": 34,
+    "none": 35,
+    "some": 6
+   },
+   "page_recall": {
+    "all_gold_pages": 0.453,
+    "any_gold_page": 0.533
+   },
+   "pages_vs_evidence": {
+    "pages all / evidence complete": 20,
+    "pages all / evidence none": 6,
+    "pages all / evidence partial": 8,
+    "pages none / evidence complete": 5,
+    "pages none / evidence none": 25,
+    "pages none / evidence partial": 5,
+    "pages some / evidence complete": 1,
+    "pages some / evidence none": 1,
+    "pages some / evidence partial": 4
+   }
+  },
+  "pdf-3+text-3": {
+   "breakdown": {
+    "doc:<=100 pages": {
+     "all": 15,
+     "none": 8,
+     "some": 2
+    },
+    "doc:>100 pages": {
+     "all": 21,
+     "none": 25,
+     "some": 4
+    },
+    "gold:multi-page": {
+     "all": 1,
+     "none": 8,
+     "some": 6
+    },
+    "gold:single-page": {
+     "all": 35,
+     "none": 25,
+     "some": 0
+    },
+    "type:domain-relevant": {
+     "all": 12,
+     "none": 11,
+     "some": 0
+    },
+    "type:metrics-generated": {
+     "all": 11,
+     "none": 12,
+     "some": 6
+    },
+    "type:novel-generated": {
+     "all": 13,
+     "none": 10,
+     "some": 0
+    }
+   },
+   "evidence": {
+    "complete": 28,
+    "no_needles": 0,
+    "none": 33,
+    "partial": 14
+   },
+   "file_sha256": "12714d5ceaf52cb15191e71900cb01f518e3db3d04b07fb53cb03d285d356838",
+   "needles": 239,
+   "needles_reached": 96,
+   "page_coverage": {
+    "all": 36,
+    "none": 33,
+    "some": 6
+   },
+   "page_recall": {
+    "all_gold_pages": 0.48,
+    "any_gold_page": 0.56
+   },
+   "pages_vs_evidence": {
+    "pages all / evidence complete": 24,
+    "pages all / evidence none": 6,
+    "pages all / evidence partial": 6,
+    "pages none / evidence complete": 3,
+    "pages none / evidence none": 26,
+    "pages none / evidence partial": 4,
+    "pages some / evidence complete": 1,
+    "pages some / evidence none": 1,
+    "pages some / evidence partial": 4
+   }
+  }
+ },
+ "date": "2026-11-10",
+ "decision": "adopt pdf-2+text-3: improves page coverage (all 25->34, any 0.40->0.53) and evidence coverage (complete 18->26, none 46->32, needles 70->97 of 239) with no category worse by more than one question. pdf-3 (statement titles on table rows, a parser change) was the one revision: pages all 34->36 but evidence needles 97->96 (complete +2, none +1); not adopted, the simpler configuration is kept. Development data: tuned on these 75 questions.",
+ "name": "financebench-dev-retrieval-comparison"
+}
