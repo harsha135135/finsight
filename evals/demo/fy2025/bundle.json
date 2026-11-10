@@ -1,0 +1,3983 @@
+{
+ "bundle": "finsight-demo-bundle-v1",
+ "jobs": [
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0000066740-26-000014",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0000066740-26-000014/mmm-20251231.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2026-02-03",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2025-12-31",
+     "retrieved_at": "2026-11-09 20:46:19.503685+00:00",
+     "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+     "size_bytes": 4113721,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-09 20:46:17.209752+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "qwen3-4b-finqa-v1",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:46:18.126038+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:46:21.048586+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261109T204620898108Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-09T20:46:20.898108+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "4026000014:item_8:t35r18",
+         "4026000014:item_8:p574",
+         "4026000014:item_8:p377",
+         "4026000014:item_7:p105"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "net_income": {
+        "passage_ids": [
+         "4026000014:item_8:t67r4",
+         "4026000014:item_8:t31r19",
+         "4026000014:item_8:t32r2",
+         "4026000014:item_8:t34r11"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "4026000014:item_8:t31r9",
+         "4026000014:item_8:t51r4",
+         "4026000014:item_7:t13r6",
+         "4026000014:item_7:t20r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "4026000014:item_8:t31r2",
+         "4026000014:item_7:t19r2",
+         "4026000014:item_7:t20r2",
+         "4026000014:item_7:t9r2"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0000066740-26-000014",
+       "amendments": [],
+       "filing_date": "2026-02-03",
+       "form": "10-K",
+       "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+       "period_end": "2025-12-31",
+       "reason": "original 10-K with report date 2025-12-31 for FY2025",
+       "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+       "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+      },
+      "fiscal_year": 2025,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex",
+       "net_income"
+      ],
+      "passages": [
+       {
+        "id": "4026000014:item_8:t31r2",
+        "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t19r2",
+        "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t20r2",
+        "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t9r2",
+        "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r9",
+        "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t51r4",
+        "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t13r6",
+        "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+       },
+       {
+        "id": "4026000014:item_7:t20r7",
+        "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t35r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:p574",
+        "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+       },
+       {
+        "id": "4026000014:item_8:p377",
+        "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+       },
+       {
+        "id": "4026000014:item_7:p105",
+        "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+       },
+       {
+        "id": "4026000014:item_8:t67r4",
+        "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r19",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t32r2",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t34r11",
+        "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+       }
+      ],
+      "period": "FY2025",
+      "xbrl": {
+       "capex": {
+        "accession": "0000066740-26-000014",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 910000000
+       },
+       "net_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "NetIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 3250000000
+       },
+       "operating_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "OperatingIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 4629000000
+       },
+       "revenue": {
+        "accession": "0000066740-26-000014",
+        "concept": "Revenues",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 24948000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-09 20:47:04.578223+00:00",
+     "detail": {
+      "reason": "model output truncated",
+      "status": "blocked"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-09 20:47:04.583776+00:00",
+     "detail": {
+      "findings": [],
+      "reason": "model output truncated",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "status": "blocked"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-09 20:47:04.587360+00:00",
+     "detail": {
+      "findings": [],
+      "outcome": "blocked",
+      "reason": "model output truncated",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "unresolved": [
+       "model output truncated"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-09 20:47:04.595330+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2025\n\nSource: 10-K accession 0000066740-26-000014, period ending 2025-12-31, filed 2026-02-03 ([original](https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm), sha256 `6f90b2e24893`, retrieved 2026-11-09T20:46:19.503685+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- model output truncated\n\n## Run\n\n- Outcome: blocked\n- Model: qwen qwen3-4b-finqa-v1 (contract finsight-report-v1)\n- Generated: 2026-11-09T20:47:04.591674+00:00\n- Usage: \\{'attempts': 1, 'input\\_tokens': '2773', 'output\\_tokens': '2048', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "blocked",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "findings": [],
+       "generated_at": "2026-11-09T20:47:04.591674+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "qwen3-4b-finqa-v1",
+        "provider": "qwen"
+       },
+       "outcome": "blocked",
+       "period": "FY2025",
+       "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+       "unresolved": [
+        "model output truncated"
+       ],
+       "usage": {
+        "attempts": 1,
+        "cost_usd": "0",
+        "input_tokens": "2773",
+        "output_tokens": "2048",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "f67c5ca1120ea8e3a1557612838d79ac479767ab9a326b3e3679dd28fe9cefa6"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-09 20:47:04.599780+00:00",
+     "detail": {
+      "reason": "model output truncated",
+      "status": "blocked"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-09 20:46:17.206993+00:00",
+    "finished_at": "2026-11-09 20:47:04.599780+00:00",
+    "id": "9188c40e-1c00-497c-b091-57d9a6a63e92",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "qwen3-4b-finqa-v1",
+     "provider": "qwen"
+    },
+    "outcome_reason": "model output truncated",
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [
+      "revenue",
+      "operating_margin",
+      "capex",
+      "net_income"
+     ],
+     "period": "FY2025",
+     "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K."
+    },
+    "stage": null,
+    "status": "blocked",
+    "updated_at": "2026-11-09 20:47:04.599780+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-09 20:47:04.574747+00:00",
+     "error": null,
+     "latency_ms": 43496,
+     "model": "qwen3-4b-finqa-v1",
+     "model_version": "qwen3-4b-finqa-v1",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"4026000014\",\"original_text\":\"$ 24,948\",\"value\":\"24948\",\"scale\":\"units\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[{\"text\":\"The answer is 24948.\",\"passage_ids\":[\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"4026000014\",\"402"
+     },
+     "stage": "analysis",
+     "status": "failed",
+     "stop_reason": "truncated",
+     "usage": {
+      "input_tokens": 2773,
+      "output_tokens": 2048
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 124400,
+     "id": "4026000014:item_7:p105",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 123887,
+     "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 101187,
+     "id": "4026000014:item_7:t13r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "13"
+     },
+     "section": "item_7",
+     "start_offset": 101087,
+     "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 114163,
+     "id": "4026000014:item_7:t19r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "19"
+     },
+     "section": "item_7",
+     "start_offset": 114070,
+     "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118261,
+     "id": "4026000014:item_7:t20r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118168,
+     "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118648,
+     "id": "4026000014:item_7:t20r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118531,
+     "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 93442,
+     "id": "4026000014:item_7:t9r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "9"
+     },
+     "section": "item_7",
+     "start_offset": 93253,
+     "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 448141,
+     "id": "4026000014:item_8:p377",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 446823,
+     "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 533679,
+     "id": "4026000014:item_8:p574",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 532943,
+     "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 194840,
+     "id": "4026000014:item_8:t31r19",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 19,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 194613,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 191188,
+     "id": "4026000014:item_8:t31r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 190986,
+     "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 192483,
+     "id": "4026000014:item_8:t31r9",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 9,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 192273,
+     "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 197183,
+     "id": "4026000014:item_8:t32r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "32"
+     },
+     "section": "item_8",
+     "start_offset": 196942,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 207202,
+     "id": "4026000014:item_8:t34r11",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 11,
+      "table": "34"
+     },
+     "section": "item_8",
+     "start_offset": 207000,
+     "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 214138,
+     "id": "4026000014:item_8:t35r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "35"
+     },
+     "section": "item_8",
+     "start_offset": 213901,
+     "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 262380,
+     "id": "4026000014:item_8:t51r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "51"
+     },
+     "section": "item_8",
+     "start_offset": 262177,
+     "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 297883,
+     "id": "4026000014:item_8:t67r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "67"
+     },
+     "section": "item_8",
+     "start_offset": 297705,
+     "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-09 20:47:04.594167+00:00",
+    "json_path": ".finsight/artifacts/reports/9188c40e-1c00-497c-b091-57d9a6a63e92/4337ab91-40ee-4929-b734-cee1228844b2/report.json",
+    "markdown_path": ".finsight/artifacts/reports/9188c40e-1c00-497c-b091-57d9a6a63e92/4337ab91-40ee-4929-b734-cee1228844b2/report.md",
+    "sha256": "f67c5ca1120ea8e3a1557612838d79ac479767ab9a326b3e3679dd28fe9cefa6"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0000066740-26-000014",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0000066740-26-000014/mmm-20251231.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2026-02-03",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2025-12-31",
+     "retrieved_at": "2026-11-09 20:46:19.503685+00:00",
+     "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+     "size_bytes": 4113721,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-09 20:49:32.328624+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "qwen3-4b-finqa-v1",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:49:32.548882+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:49:35.206506+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261109T204935066590Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-09T20:49:35.066590+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "4026000014:item_8:t35r18",
+         "4026000014:item_8:p574",
+         "4026000014:item_8:p377",
+         "4026000014:item_7:p105"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "net_income": {
+        "passage_ids": [
+         "4026000014:item_8:t67r4",
+         "4026000014:item_8:t31r19",
+         "4026000014:item_8:t32r2",
+         "4026000014:item_8:t34r11"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "4026000014:item_8:t31r9",
+         "4026000014:item_8:t51r4",
+         "4026000014:item_7:t13r6",
+         "4026000014:item_7:t20r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "4026000014:item_8:t31r2",
+         "4026000014:item_7:t19r2",
+         "4026000014:item_7:t20r2",
+         "4026000014:item_7:t9r2"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0000066740-26-000014",
+       "amendments": [],
+       "filing_date": "2026-02-03",
+       "form": "10-K",
+       "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+       "period_end": "2025-12-31",
+       "reason": "original 10-K with report date 2025-12-31 for FY2025",
+       "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+       "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+      },
+      "fiscal_year": 2025,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex",
+       "net_income"
+      ],
+      "passages": [
+       {
+        "id": "4026000014:item_8:t31r2",
+        "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t19r2",
+        "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t20r2",
+        "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t9r2",
+        "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r9",
+        "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t51r4",
+        "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t13r6",
+        "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+       },
+       {
+        "id": "4026000014:item_7:t20r7",
+        "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t35r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:p574",
+        "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+       },
+       {
+        "id": "4026000014:item_8:p377",
+        "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+       },
+       {
+        "id": "4026000014:item_7:p105",
+        "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+       },
+       {
+        "id": "4026000014:item_8:t67r4",
+        "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r19",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t32r2",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t34r11",
+        "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+       }
+      ],
+      "period": "FY2025",
+      "xbrl": {
+       "capex": {
+        "accession": "0000066740-26-000014",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 910000000
+       },
+       "net_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "NetIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 3250000000
+       },
+       "operating_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "OperatingIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 4629000000
+       },
+       "revenue": {
+        "accession": "0000066740-26-000014",
+        "concept": "Revenues",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 24948000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-09 20:49:44.693289+00:00",
+     "detail": {
+      "attempts": 1,
+      "output": {
+       "findings": [
+        {
+         "explanation": [],
+         "metric": "revenue",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "$ 24,948",
+           "passage_id": "4026000014:item_8:t31r2",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "unit": "USD",
+           "value": "24948"
+          }
+         ],
+         "period": "FY2025",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        },
+        {
+         "explanation": [],
+         "metric": "operating_margin",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "4,629",
+           "passage_id": "4026000014:item_8:t31r9",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "unit": "USD",
+           "value": "4629"
+          },
+          {
+           "name": "v1",
+           "original_text": "$ 24,948",
+           "passage_id": "4026000014:item_8:t31r2",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "unit": "USD",
+           "value": "24948"
+          }
+         ],
+         "period": "FY2025",
+         "program": [
+          {
+           "args": [
+            "v0",
+            "v1"
+           ],
+           "op": "divide"
+          }
+         ],
+         "status": "answered",
+         "unit": "ratio"
+        },
+        {
+         "explanation": [],
+         "metric": "capex",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "(910)",
+           "passage_id": "4026000014:item_8:t35r18",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "unit": "USD",
+           "value": "-910"
+          }
+         ],
+         "period": "FY2025",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        },
+        {
+         "explanation": [],
+         "metric": "net_income",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "$ 3,250",
+           "passage_id": "4026000014:item_8:t67r4",
+           "period": "2025",
+           "scale": "units",
+           "unit": "USD",
+           "value": "3250"
+          }
+         ],
+         "period": "FY2025",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        }
+       ],
+       "unresolved": []
+      },
+      "prompt_version": "finsight-report-v1.2",
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-09 20:49:44.704279+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 2,
+           "table": "31"
+          },
+          "name": "v0",
+          "original_text": "$ 24,948",
+          "passage_id": "4026000014:item_8:t31r2",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "24948"
+         }
+        ],
+        "period": "FY2025",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "24948"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "v0",
+           "v1"
+          ],
+          "op": "divide",
+          "value": "0.1855459355459355459355459355"
+         }
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 9,
+           "table": "31"
+          },
+          "name": "v0",
+          "original_text": "4,629",
+          "passage_id": "4026000014:item_8:t31r9",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "4629"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 2,
+           "table": "31"
+          },
+          "name": "v1",
+          "original_text": "$ 24,948",
+          "passage_id": "4026000014:item_8:t31r2",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "24948"
+         }
+        ],
+        "period": "FY2025",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.1855459355459355459355459355"
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "35"
+          },
+          "name": "v0",
+          "original_text": "(910)",
+          "passage_id": "4026000014:item_8:t35r18",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "-910"
+         }
+        ],
+        "period": "FY2025",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-910"
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "net_income",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 4,
+           "table": "67"
+          },
+          "name": "v0",
+          "original_text": "$ 3,250",
+          "passage_id": "4026000014:item_8:t67r4",
+          "period": "2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "3250"
+         }
+        ],
+        "period": "FY2025",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "3250"
+       }
+      ],
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-09 20:49:44.711556+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL Revenues as reported in 0000066740-26-000014: 24948000000 (differs)"
+        ],
+        "claims": [],
+        "issues": [
+         "revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000"
+        ],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 2,
+           "table": "31"
+          },
+          "name": "v0",
+          "original_text": "$ 24,948",
+          "passage_id": "4026000014:item_8:t31r2",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "24948"
+         }
+        ],
+        "period": "FY2025",
+        "status": "rejected",
+        "unit": "USD",
+        "value": "24948"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "v0",
+           "v1"
+          ],
+          "op": "divide",
+          "value": "0.1855459355459355459355459355"
+         }
+        ],
+        "checks": [
+         "XBRL OperatingIncomeLoss / Revenues = 0.1855 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 9,
+           "table": "31"
+          },
+          "name": "v0",
+          "original_text": "4,629",
+          "passage_id": "4026000014:item_8:t31r9",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "4629"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 2,
+           "table": "31"
+          },
+          "name": "v1",
+          "original_text": "$ 24,948",
+          "passage_id": "4026000014:item_8:t31r2",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "24948"
+         }
+        ],
+        "period": "FY2025",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.1855459355459355459355459355"
+       },
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000 (differs)"
+        ],
+        "claims": [],
+        "issues": [
+         "capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000"
+        ],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "35"
+          },
+          "name": "v0",
+          "original_text": "(910)",
+          "passage_id": "4026000014:item_8:t35r18",
+          "period": "Years ended December 31, 2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "-910"
+         }
+        ],
+        "period": "FY2025",
+        "status": "rejected",
+        "unit": "USD",
+        "value": "-910"
+       },
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000 (differs)"
+        ],
+        "claims": [],
+        "issues": [
+         "net_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000"
+        ],
+        "metric": "net_income",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 4,
+           "table": "67"
+          },
+          "name": "v0",
+          "original_text": "$ 3,250",
+          "passage_id": "4026000014:item_8:t67r4",
+          "period": "2025",
+          "scale": "units",
+          "source_period": "2025",
+          "unit": "USD",
+          "value": "3250"
+         }
+        ],
+        "period": "FY2025",
+        "status": "rejected",
+        "unit": "USD",
+        "value": "3250"
+       }
+      ],
+      "outcome": "completed",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "unresolved": [
+       "revenue FY2025: rejected (revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000)",
+       "capex FY2025: rejected (capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000)",
+       "net_income FY2025: rejected (net_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000)"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-09 20:49:44.718260+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2025\n\nSource: 10-K accession 0000066740-26-000014, period ending 2025-12-31, filed 2026-02-03 ([original](https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm), sha256 `6f90b2e24893`, retrieved 2026-11-09T20:46:19.503685+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| revenue | FY2025 | 24,948 USD | rejected |\n| operating\\_margin | FY2025 | 18.6% | accepted |\n| capex | FY2025 | -910 USD | rejected |\n| net\\_income | FY2025 | 3,250 USD | rejected |\n\n## Calculations and sources\n\n**operating\\_margin (FY2025)**\n- v0 = 4,629 (units, 2025) from passage `4026000014:item_8:t31r9`\n- v1 = $ 24,948 (units, 2025) from passage `4026000014:item_8:t31r2`\n- divide(v0, v1) = 0.1855459355459355459355459355\n- check: XBRL OperatingIncomeLoss / Revenues = 0.1855 \\(agrees\\)\n\n## Unresolved and missing information\n\n- revenue FY2025: rejected \\(revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000\\)\n- capex FY2025: rejected \\(capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000\\)\n- net\\_income FY2025: rejected \\(net\\_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000\\)\n\n## Run\n\n- Outcome: completed\n- Model: qwen qwen3-4b-finqa-v1 (contract finsight-report-v1)\n- Generated: 2026-11-09T20:49:44.715385+00:00\n- Usage: \\{'attempts': 1, 'input\\_tokens': '2460', 'output\\_tokens': '423', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "completed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL Revenues as reported in 0000066740-26-000014: 24948000000 (differs)"
+         ],
+         "claims": [],
+         "issues": [
+          "revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000"
+         ],
+         "metric": "revenue",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 2,
+            "table": "31"
+           },
+           "name": "v0",
+           "original_text": "$ 24,948",
+           "passage_id": "4026000014:item_8:t31r2",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "source_period": "2025",
+           "unit": "USD",
+           "value": "24948"
+          }
+         ],
+         "period": "FY2025",
+         "status": "rejected",
+         "unit": "USD",
+         "value": "24948"
+        },
+        {
+         "calculation": [
+          {
+           "args": [
+            "v0",
+            "v1"
+           ],
+           "op": "divide",
+           "value": "0.1855459355459355459355459355"
+          }
+         ],
+         "checks": [
+          "XBRL OperatingIncomeLoss / Revenues = 0.1855 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "operating_margin",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 9,
+            "table": "31"
+           },
+           "name": "v0",
+           "original_text": "4,629",
+           "passage_id": "4026000014:item_8:t31r9",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "source_period": "2025",
+           "unit": "USD",
+           "value": "4629"
+          },
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 2,
+            "table": "31"
+           },
+           "name": "v1",
+           "original_text": "$ 24,948",
+           "passage_id": "4026000014:item_8:t31r2",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "source_period": "2025",
+           "unit": "USD",
+           "value": "24948"
+          }
+         ],
+         "period": "FY2025",
+         "status": "accepted",
+         "unit": "ratio",
+         "value": "0.1855459355459355459355459355"
+        },
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000 (differs)"
+         ],
+         "claims": [],
+         "issues": [
+          "capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000"
+         ],
+         "metric": "capex",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 18,
+            "table": "35"
+           },
+           "name": "v0",
+           "original_text": "(910)",
+           "passage_id": "4026000014:item_8:t35r18",
+           "period": "Years ended December 31, 2025",
+           "scale": "units",
+           "source_period": "2025",
+           "unit": "USD",
+           "value": "-910"
+          }
+         ],
+         "period": "FY2025",
+         "status": "rejected",
+         "unit": "USD",
+         "value": "-910"
+        },
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000 (differs)"
+         ],
+         "claims": [],
+         "issues": [
+          "net_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000"
+         ],
+         "metric": "net_income",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 4,
+            "table": "67"
+           },
+           "name": "v0",
+           "original_text": "$ 3,250",
+           "passage_id": "4026000014:item_8:t67r4",
+           "period": "2025",
+           "scale": "units",
+           "source_period": "2025",
+           "unit": "USD",
+           "value": "3250"
+          }
+         ],
+         "period": "FY2025",
+         "status": "rejected",
+         "unit": "USD",
+         "value": "3250"
+        }
+       ],
+       "generated_at": "2026-11-09T20:49:44.715385+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "qwen3-4b-finqa-v1",
+        "provider": "qwen"
+       },
+       "outcome": "completed",
+       "period": "FY2025",
+       "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+       "unresolved": [
+        "revenue FY2025: rejected (revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000)",
+        "capex FY2025: rejected (capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000)",
+        "net_income FY2025: rejected (net_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000)"
+       ],
+       "usage": {
+        "attempts": 1,
+        "cost_usd": "0",
+        "input_tokens": "2460",
+        "output_tokens": "423",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "90f64950d50677e302d61b70c1fab42ad14c98da1a476c606a2762ebe535d224"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-09 20:49:44.723679+00:00",
+     "detail": {
+      "reason": null,
+      "status": "completed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-09 20:49:32.322538+00:00",
+    "finished_at": "2026-11-09 20:49:44.723679+00:00",
+    "id": "488aac69-a9f0-4910-be38-b17717bbef20",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "qwen3-4b-finqa-v1",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [
+      "revenue",
+      "operating_margin",
+      "capex",
+      "net_income"
+     ],
+     "period": "FY2025",
+     "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K."
+    },
+    "stage": null,
+    "status": "completed",
+    "updated_at": "2026-11-09 20:49:44.723679+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-09 20:49:44.687297+00:00",
+     "error": null,
+     "latency_ms": 9454,
+     "model": "qwen3-4b-finqa-v1",
+     "model_version": "qwen3-4b-finqa-v1",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"p1\",\"original_text\":\"$ 24,948\",\"value\":\"24948\",\"scale\":\"units\",\"unit\":\"USD\",\"period\":\"Years ended December 31, 2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null},{\"metric\":\"operating_margin\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"p5\",\"original_text\":\"4,629\",\"value\":\"4629\",\"scale\":\"units\",\"unit\":\"USD\",\"period\":\"Years ended December 31, 2025\"},{\"name\":\"v1\",\"passage_id\":\"p1\",\"original_text\":\"$ 24,948\",\"value\":\"24948\",\"scale\":\"units\",\"unit\":\"USD\",\"period\":\"Years ended December 31, 2025\"}],\"program\":[{\"op\":\"divide\",\"args\":[\"v0\",\"v1\"]}],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"capex\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"p9\",\"original_text\":\"(910)\",\"value\":\"-910\",\"scale\":\"units\",\"unit\":\"USD\",\"period\":\"Years ended December 31, 2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null},{\"metric\":\"net_income\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"p13\",\"original_text\":\"$ 3,250\",\"value\":\"3250\",\"scale\":\"units\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2460,
+      "output_tokens": 423
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 124400,
+     "id": "4026000014:item_7:p105",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 123887,
+     "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 101187,
+     "id": "4026000014:item_7:t13r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "13"
+     },
+     "section": "item_7",
+     "start_offset": 101087,
+     "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 114163,
+     "id": "4026000014:item_7:t19r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "19"
+     },
+     "section": "item_7",
+     "start_offset": 114070,
+     "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118261,
+     "id": "4026000014:item_7:t20r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118168,
+     "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118648,
+     "id": "4026000014:item_7:t20r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118531,
+     "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 93442,
+     "id": "4026000014:item_7:t9r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "9"
+     },
+     "section": "item_7",
+     "start_offset": 93253,
+     "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 448141,
+     "id": "4026000014:item_8:p377",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 446823,
+     "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 533679,
+     "id": "4026000014:item_8:p574",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 532943,
+     "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 194840,
+     "id": "4026000014:item_8:t31r19",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 19,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 194613,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 191188,
+     "id": "4026000014:item_8:t31r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 190986,
+     "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 192483,
+     "id": "4026000014:item_8:t31r9",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 9,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 192273,
+     "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 197183,
+     "id": "4026000014:item_8:t32r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "32"
+     },
+     "section": "item_8",
+     "start_offset": 196942,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 207202,
+     "id": "4026000014:item_8:t34r11",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 11,
+      "table": "34"
+     },
+     "section": "item_8",
+     "start_offset": 207000,
+     "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 214138,
+     "id": "4026000014:item_8:t35r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "35"
+     },
+     "section": "item_8",
+     "start_offset": 213901,
+     "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 262380,
+     "id": "4026000014:item_8:t51r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "51"
+     },
+     "section": "item_8",
+     "start_offset": 262177,
+     "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 297883,
+     "id": "4026000014:item_8:t67r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "67"
+     },
+     "section": "item_8",
+     "start_offset": 297705,
+     "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-09 20:49:44.717733+00:00",
+    "json_path": ".finsight/artifacts/reports/488aac69-a9f0-4910-be38-b17717bbef20/200c02cb-1e73-45dd-8e6f-53851c173adc/report.json",
+    "markdown_path": ".finsight/artifacts/reports/488aac69-a9f0-4910-be38-b17717bbef20/200c02cb-1e73-45dd-8e6f-53851c173adc/report.md",
+    "sha256": "90f64950d50677e302d61b70c1fab42ad14c98da1a476c606a2762ebe535d224"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0000066740-26-000014",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0000066740-26-000014/mmm-20251231.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2026-02-03",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2025-12-31",
+     "retrieved_at": "2026-11-09 20:46:19.503685+00:00",
+     "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+     "size_bytes": 4113721,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-09 20:50:05.298788+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": true,
+       "max_tokens": 3500,
+       "model": "Qwen/Qwen3-4B",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:50:05.829981+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:50:07.596585+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261109T205007472861Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-09T20:50:07.472861+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "4026000014:item_8:t35r18",
+         "4026000014:item_8:p574",
+         "4026000014:item_8:p377",
+         "4026000014:item_7:p105"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "net_income": {
+        "passage_ids": [
+         "4026000014:item_8:t67r4",
+         "4026000014:item_8:t31r19",
+         "4026000014:item_8:t32r2",
+         "4026000014:item_8:t34r11"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "4026000014:item_8:t31r9",
+         "4026000014:item_8:t51r4",
+         "4026000014:item_7:t13r6",
+         "4026000014:item_7:t20r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "4026000014:item_8:t31r2",
+         "4026000014:item_7:t19r2",
+         "4026000014:item_7:t20r2",
+         "4026000014:item_7:t9r2"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0000066740-26-000014",
+       "amendments": [],
+       "filing_date": "2026-02-03",
+       "form": "10-K",
+       "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+       "period_end": "2025-12-31",
+       "reason": "original 10-K with report date 2025-12-31 for FY2025",
+       "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+       "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+      },
+      "fiscal_year": 2025,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex",
+       "net_income"
+      ],
+      "passages": [
+       {
+        "id": "4026000014:item_8:t31r2",
+        "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t19r2",
+        "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t20r2",
+        "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t9r2",
+        "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r9",
+        "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t51r4",
+        "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t13r6",
+        "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+       },
+       {
+        "id": "4026000014:item_7:t20r7",
+        "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t35r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:p574",
+        "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+       },
+       {
+        "id": "4026000014:item_8:p377",
+        "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+       },
+       {
+        "id": "4026000014:item_7:p105",
+        "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+       },
+       {
+        "id": "4026000014:item_8:t67r4",
+        "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r19",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t32r2",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t34r11",
+        "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+       }
+      ],
+      "period": "FY2025",
+      "xbrl": {
+       "capex": {
+        "accession": "0000066740-26-000014",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 910000000
+       },
+       "net_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "NetIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 3250000000
+       },
+       "operating_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "OperatingIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 4629000000
+       },
+       "revenue": {
+        "accession": "0000066740-26-000014",
+        "concept": "Revenues",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 24948000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-09 20:50:41.442314+00:00",
+     "detail": {
+      "reason": "malformed model output after one repair: 4 validation errors for ReportOutput",
+      "status": "failed"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-09 20:50:41.449487+00:00",
+     "detail": {
+      "findings": [],
+      "reason": "malformed model output after one repair: 4 validation errors for ReportOutput",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "status": "failed"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-09 20:50:41.453403+00:00",
+     "detail": {
+      "findings": [],
+      "outcome": "failed",
+      "reason": "malformed model output after one repair: 4 validation errors for ReportOutput",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "unresolved": [
+       "malformed model output after one repair: 4 validation errors for ReportOutput"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-09 20:50:41.458665+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2025\n\nSource: 10-K accession 0000066740-26-000014, period ending 2025-12-31, filed 2026-02-03 ([original](https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm), sha256 `6f90b2e24893`, retrieved 2026-11-09T20:46:19.503685+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- malformed model output after one repair: 4 validation errors for ReportOutput\n\n## Run\n\n- Outcome: failed\n- Model: qwen Qwen/Qwen3-4B (contract finsight-report-v1)\n- Generated: 2026-11-09T20:50:41.456947+00:00\n- Usage: \\{'attempts': 2, 'input\\_tokens': '4929', 'output\\_tokens': '1755', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "failed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "findings": [],
+       "generated_at": "2026-11-09T20:50:41.456947+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 3500,
+        "model": "Qwen/Qwen3-4B",
+        "provider": "qwen"
+       },
+       "outcome": "failed",
+       "period": "FY2025",
+       "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+       "unresolved": [
+        "malformed model output after one repair: 4 validation errors for ReportOutput"
+       ],
+       "usage": {
+        "attempts": 2,
+        "cost_usd": "0",
+        "input_tokens": "4929",
+        "output_tokens": "1755",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "4919f783fe4c8a39c7ec15c82c8c26c756424375c769ea63b15af7e83d648127"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-09 20:50:41.461087+00:00",
+     "detail": {
+      "reason": "malformed model output after one repair: 4 validation errors for ReportOutput",
+      "status": "failed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-09 20:50:05.297717+00:00",
+    "finished_at": "2026-11-09 20:50:41.461087+00:00",
+    "id": "99d788bf-3831-49bb-b46f-466f56da0ad6",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": true,
+     "max_tokens": 3500,
+     "model": "Qwen/Qwen3-4B",
+     "provider": "qwen"
+    },
+    "outcome_reason": "malformed model output after one repair: 4 validation errors for ReportOutput",
+    "repairs": {
+     "malformed_output": 1
+    },
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [
+      "revenue",
+      "operating_margin",
+      "capex",
+      "net_income"
+     ],
+     "period": "FY2025",
+     "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K."
+    },
+    "stage": null,
+    "status": "failed",
+    "updated_at": "2026-11-09 20:50:41.461087+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-09 20:50:22.485359+00:00",
+     "error": null,
+     "latency_ms": 14866,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"original_text\",\"passage_id\":\"p1\",\"original_text\":\"$ 24,948\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"},{\"name\":\"original_text\",\"passage_id\":\"p4\",\"original_text\":\"$ 24,948\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2456,
+      "output_tokens": 754
+     }
+    },
+    {
+     "attempt": 2,
+     "cost_usd": null,
+     "created_at": "2026-11-09 20:50:41.439373+00:00",
+     "error": null,
+     "latency_ms": 18941,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"revenue\",\"passage_id\":\"p1\",\"original_text\":\"$ 24,948\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"},{\"name\":\"revenue\",\"passage_id\":\"p4\",\"original_text\":\"$ 24,948\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null},{\"metric\":\"operating_margin\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"operating_income\",\"passage_id\":\"p5\",\"original_text\":\"4,629\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"},{\"name\":\"revenue\",\"passage_id\":\"p1\",\"original_text\":\"$ 24,948\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[{\"op\":\"divide\",\"args\":[\"operating_income\",\"revenue\"]}],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"capex\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"capex\",\"passage_id\":\"p9\",\"original_text\":\"(910)\",\"value\":\",\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null},{\"metric\":\"net_income\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"net_income\",\"passage_id\":\"p13\",\"original_text\":\"$ 3,250\",\"value\":\",\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"},{\"name\":\"net_income\",\"passage_id\":\"p14\",\"original_text\":\"$ 3,250\",\"value\":\",\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"},{\"name\":\"net_income\",\"passage_id\":\"p15\",\"original_text\":\"$ 3,250\",\"value\":\",\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2473,
+      "output_tokens": 1001
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 124400,
+     "id": "4026000014:item_7:p105",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 123887,
+     "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 101187,
+     "id": "4026000014:item_7:t13r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "13"
+     },
+     "section": "item_7",
+     "start_offset": 101087,
+     "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 114163,
+     "id": "4026000014:item_7:t19r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "19"
+     },
+     "section": "item_7",
+     "start_offset": 114070,
+     "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118261,
+     "id": "4026000014:item_7:t20r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118168,
+     "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118648,
+     "id": "4026000014:item_7:t20r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118531,
+     "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 93442,
+     "id": "4026000014:item_7:t9r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "9"
+     },
+     "section": "item_7",
+     "start_offset": 93253,
+     "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 448141,
+     "id": "4026000014:item_8:p377",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 446823,
+     "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 533679,
+     "id": "4026000014:item_8:p574",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 532943,
+     "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 194840,
+     "id": "4026000014:item_8:t31r19",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 19,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 194613,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 191188,
+     "id": "4026000014:item_8:t31r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 190986,
+     "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 192483,
+     "id": "4026000014:item_8:t31r9",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 9,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 192273,
+     "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 197183,
+     "id": "4026000014:item_8:t32r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "32"
+     },
+     "section": "item_8",
+     "start_offset": 196942,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 207202,
+     "id": "4026000014:item_8:t34r11",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 11,
+      "table": "34"
+     },
+     "section": "item_8",
+     "start_offset": 207000,
+     "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 214138,
+     "id": "4026000014:item_8:t35r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "35"
+     },
+     "section": "item_8",
+     "start_offset": 213901,
+     "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 262380,
+     "id": "4026000014:item_8:t51r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "51"
+     },
+     "section": "item_8",
+     "start_offset": 262177,
+     "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 297883,
+     "id": "4026000014:item_8:t67r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "67"
+     },
+     "section": "item_8",
+     "start_offset": 297705,
+     "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-09 20:50:41.458081+00:00",
+    "json_path": ".finsight/artifacts/reports/99d788bf-3831-49bb-b46f-466f56da0ad6/11e62642-e79e-407d-a83d-2a0154949cb1/report.json",
+    "markdown_path": ".finsight/artifacts/reports/99d788bf-3831-49bb-b46f-466f56da0ad6/11e62642-e79e-407d-a83d-2a0154949cb1/report.md",
+    "sha256": "4919f783fe4c8a39c7ec15c82c8c26c756424375c769ea63b15af7e83d648127"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0000066740-26-000014",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0000066740-26-000014/mmm-20251231.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2026-02-03",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2025-12-31",
+     "retrieved_at": "2026-11-09 20:46:19.503685+00:00",
+     "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+     "size_bytes": 4113721,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-09 20:52:57.681227+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": true,
+       "max_tokens": 3500,
+       "model": "Qwen/Qwen3-4B",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:52:57.913342+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-09 20:53:00.755066+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261109T205300613698Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-09T20:53:00.613698+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "4026000014:item_8:t35r18",
+         "4026000014:item_8:p574",
+         "4026000014:item_8:p377",
+         "4026000014:item_7:p105"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "net_income": {
+        "passage_ids": [
+         "4026000014:item_8:t67r4",
+         "4026000014:item_8:t31r19",
+         "4026000014:item_8:t32r2",
+         "4026000014:item_8:t34r11"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "4026000014:item_8:t31r9",
+         "4026000014:item_8:t51r4",
+         "4026000014:item_7:t13r6",
+         "4026000014:item_7:t20r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "4026000014:item_8:t31r2",
+         "4026000014:item_7:t19r2",
+         "4026000014:item_7:t20r2",
+         "4026000014:item_7:t9r2"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0000066740-26-000014",
+       "amendments": [],
+       "filing_date": "2026-02-03",
+       "form": "10-K",
+       "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+       "period_end": "2025-12-31",
+       "reason": "original 10-K with report date 2025-12-31 for FY2025",
+       "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+       "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+      },
+      "fiscal_year": 2025,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex",
+       "net_income"
+      ],
+      "passages": [
+       {
+        "id": "4026000014:item_8:t31r2",
+        "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t19r2",
+        "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t20r2",
+        "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t9r2",
+        "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r9",
+        "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t51r4",
+        "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_7:t13r6",
+        "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+       },
+       {
+        "id": "4026000014:item_7:t20r7",
+        "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t35r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:p574",
+        "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+       },
+       {
+        "id": "4026000014:item_8:p377",
+        "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+       },
+       {
+        "id": "4026000014:item_7:p105",
+        "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+       },
+       {
+        "id": "4026000014:item_8:t67r4",
+        "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t31r19",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t32r2",
+        "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+       },
+       {
+        "id": "4026000014:item_8:t34r11",
+        "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+       }
+      ],
+      "period": "FY2025",
+      "xbrl": {
+       "capex": {
+        "accession": "0000066740-26-000014",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 910000000
+       },
+       "net_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "NetIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 3250000000
+       },
+       "operating_income": {
+        "accession": "0000066740-26-000014",
+        "concept": "OperatingIncomeLoss",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 4629000000
+       },
+       "revenue": {
+        "accession": "0000066740-26-000014",
+        "concept": "Revenues",
+        "end": "2025-12-31",
+        "later_different_values": [],
+        "start": "2025-01-01",
+        "value": 24948000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-09 20:53:15.078096+00:00",
+     "detail": {
+      "attempts": 1,
+      "output": {
+       "findings": [
+        {
+         "explanation": [],
+         "metric": "revenue",
+         "missing": null,
+         "operands": [
+          {
+           "name": "revenue",
+           "original_text": "$ 24,948",
+           "passage_id": "4026000014:item_8:t31r2",
+           "period": "2025",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "24948"
+          },
+          {
+           "name": "revenue",
+           "original_text": "$ 24,948",
+           "passage_id": "4026000014:item_7:t9r2",
+           "period": "2025",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "24948"
+          }
+         ],
+         "period": "FY2025",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        }
+       ],
+       "unresolved": []
+      },
+      "prompt_version": "finsight-report-v1.2",
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-09 20:53:15.088014+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [
+         "duplicate operand names"
+        ],
+        "metric": "revenue",
+        "operands": [],
+        "period": "FY2025",
+        "status": "rejected",
+        "unit": null,
+        "value": null
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [
+         "the model returned no finding for this metric"
+        ],
+        "metric": "operating_margin",
+        "operands": [],
+        "period": "FY2025",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [
+         "the model returned no finding for this metric"
+        ],
+        "metric": "capex",
+        "operands": [],
+        "period": "FY2025",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [
+         "the model returned no finding for this metric"
+        ],
+        "metric": "net_income",
+        "operands": [],
+        "period": "FY2025",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       }
+      ],
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-09 20:53:15.091637+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [],
+        "claims": [],
+        "issues": [
+         "duplicate operand names"
+        ],
+        "metric": "revenue",
+        "operands": [],
+        "period": "FY2025",
+        "status": "rejected",
+        "unit": null,
+        "value": null
+       },
+       {
+        "calculation": [],
+        "checks": [],
+        "claims": [],
+        "issues": [
+         "the model returned no finding for this metric"
+        ],
+        "metric": "operating_margin",
+        "operands": [],
+        "period": "FY2025",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       },
+       {
+        "calculation": [],
+        "checks": [],
+        "claims": [],
+        "issues": [
+         "the model returned no finding for this metric"
+        ],
+        "metric": "capex",
+        "operands": [],
+        "period": "FY2025",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       },
+       {
+        "calculation": [],
+        "checks": [],
+        "claims": [],
+        "issues": [
+         "the model returned no finding for this metric"
+        ],
+        "metric": "net_income",
+        "operands": [],
+        "period": "FY2025",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       }
+      ],
+      "outcome": "failed",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "4026000014:item_8:t35r18",
+          "4026000014:item_8:p574",
+          "4026000014:item_8:p377",
+          "4026000014:item_7:p105"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "net_income": {
+         "passage_ids": [
+          "4026000014:item_8:t67r4",
+          "4026000014:item_8:t31r19",
+          "4026000014:item_8:t32r2",
+          "4026000014:item_8:t34r11"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "4026000014:item_8:t31r9",
+          "4026000014:item_8:t51r4",
+          "4026000014:item_7:t13r6",
+          "4026000014:item_7:t20r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "4026000014:item_8:t31r2",
+          "4026000014:item_7:t19r2",
+          "4026000014:item_7:t20r2",
+          "4026000014:item_7:t9r2"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex",
+        "net_income"
+       ],
+       "period": "FY2025",
+       "xbrl": {
+        "capex": {
+         "accession": "0000066740-26-000014",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 910000000
+        },
+        "net_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "NetIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 3250000000
+        },
+        "operating_income": {
+         "accession": "0000066740-26-000014",
+         "concept": "OperatingIncomeLoss",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 4629000000
+        },
+        "revenue": {
+         "accession": "0000066740-26-000014",
+         "concept": "Revenues",
+         "end": "2025-12-31",
+         "later_different_values": [],
+         "start": "2025-01-01",
+         "value": 24948000000
+        }
+       }
+      },
+      "unresolved": [
+       "revenue FY2025: rejected (duplicate operand names)",
+       "operating_margin FY2025: insufficient evidence (the model returned no finding for this metric)",
+       "capex FY2025: insufficient evidence (the model returned no finding for this metric)",
+       "net_income FY2025: insufficient evidence (the model returned no finding for this metric)"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-09 20:53:15.097872+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2025\n\nSource: 10-K accession 0000066740-26-000014, period ending 2025-12-31, filed 2026-02-03 ([original](https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm), sha256 `6f90b2e24893`, retrieved 2026-11-09T20:46:19.503685+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| revenue | FY2025 | \u2014 | rejected |\n| operating\\_margin | FY2025 | \u2014 | insufficient\\_evidence |\n| capex | FY2025 | \u2014 | insufficient\\_evidence |\n| net\\_income | FY2025 | \u2014 | insufficient\\_evidence |\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- revenue FY2025: rejected \\(duplicate operand names\\)\n- operating\\_margin FY2025: insufficient evidence \\(the model returned no finding for this metric\\)\n- capex FY2025: insufficient evidence \\(the model returned no finding for this metric\\)\n- net\\_income FY2025: insufficient evidence \\(the model returned no finding for this metric\\)\n\n## Run\n\n- Outcome: failed\n- Model: qwen Qwen/Qwen3-4B (contract finsight-report-v1)\n- Generated: 2026-11-09T20:53:15.095384+00:00\n- Usage: \\{'attempts': 1, 'input\\_tokens': '2456', 'output\\_tokens': '733', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "failed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0000066740-26-000014",
+        "amendments": [],
+        "filing_date": "2026-02-03",
+        "form": "10-K",
+        "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+        "period_end": "2025-12-31",
+        "reason": "original 10-K with report date 2025-12-31 for FY2025",
+        "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+        "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+       },
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [],
+         "claims": [],
+         "issues": [
+          "duplicate operand names"
+         ],
+         "metric": "revenue",
+         "operands": [],
+         "period": "FY2025",
+         "status": "rejected",
+         "unit": null,
+         "value": null
+        },
+        {
+         "calculation": [],
+         "checks": [],
+         "claims": [],
+         "issues": [
+          "the model returned no finding for this metric"
+         ],
+         "metric": "operating_margin",
+         "operands": [],
+         "period": "FY2025",
+         "status": "insufficient_evidence",
+         "unit": null,
+         "value": null
+        },
+        {
+         "calculation": [],
+         "checks": [],
+         "claims": [],
+         "issues": [
+          "the model returned no finding for this metric"
+         ],
+         "metric": "capex",
+         "operands": [],
+         "period": "FY2025",
+         "status": "insufficient_evidence",
+         "unit": null,
+         "value": null
+        },
+        {
+         "calculation": [],
+         "checks": [],
+         "claims": [],
+         "issues": [
+          "the model returned no finding for this metric"
+         ],
+         "metric": "net_income",
+         "operands": [],
+         "period": "FY2025",
+         "status": "insufficient_evidence",
+         "unit": null,
+         "value": null
+        }
+       ],
+       "generated_at": "2026-11-09T20:53:15.095384+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 3500,
+        "model": "Qwen/Qwen3-4B",
+        "provider": "qwen"
+       },
+       "outcome": "failed",
+       "period": "FY2025",
+       "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+       "unresolved": [
+        "revenue FY2025: rejected (duplicate operand names)",
+        "operating_margin FY2025: insufficient evidence (the model returned no finding for this metric)",
+        "capex FY2025: insufficient evidence (the model returned no finding for this metric)",
+        "net_income FY2025: insufficient evidence (the model returned no finding for this metric)"
+       ],
+       "usage": {
+        "attempts": 1,
+        "cost_usd": "0",
+        "input_tokens": "2456",
+        "output_tokens": "733",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "e51a444423294bf024db496b4c465dd21b7c86af2d7a83a35b5b9bff8f6a1cd7"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-09 20:53:15.101640+00:00",
+     "detail": {
+      "reason": "revenue FY2025: rejected (duplicate operand names); operating_margin FY2025: insufficient evidence (the model returned no finding for this metric); capex FY2025: insufficient evidence (the model returned no finding for this metric); net_income FY2025: insufficient evidence (the model returned no finding for this metric)",
+      "status": "failed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-09 20:52:57.675254+00:00",
+    "finished_at": "2026-11-09 20:53:15.101640+00:00",
+    "id": "6c82c607-fe86-412a-a9bb-5cd80286d4df",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": true,
+     "max_tokens": 3500,
+     "model": "Qwen/Qwen3-4B",
+     "provider": "qwen"
+    },
+    "outcome_reason": "revenue FY2025: rejected (duplicate operand names); operating_margin FY2025: insufficient evidence (the model returned no finding for this metric); capex FY2025: insufficient evidence (the model returned no finding for this metric); net_income FY2025: insufficient evidence (the model returned no finding for this metric)",
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [
+      "revenue",
+      "operating_margin",
+      "capex",
+      "net_income"
+     ],
+     "period": "FY2025",
+     "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K."
+    },
+    "stage": null,
+    "status": "failed",
+    "updated_at": "2026-11-09 20:53:15.101640+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-09 20:53:15.068155+00:00",
+     "error": null,
+     "latency_ms": 14278,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2025\",\"status\":\"answered\",\"operands\":[{\"name\":\"revenue\",\"passage_id\":\"p1\",\"original_text\":\"$ 24,948\",\"value\":\"24948\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"},{\"name\":\"revenue\",\"passage_id\":\"p4\",\"original_text\":\"$ 24,948\",\"value\":\"24948\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2025\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2456,
+      "output_tokens": 733
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 124400,
+     "id": "4026000014:item_7:p105",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 123887,
+     "text": "Capital Spending/Property, Plant and Equipment - Net: Amounts relative to these items in the above table relate to 3M's continuing operations and do not include amounts associated with discontinued operations (refer to Note 2 for the amount attributed to discontinued operations).YoY changes in capital spending primarily reflect the timing of project execution and the scale of underlying initiatives. Capital spending is also discussed later in MD&A in the section entitled Cash Flows from Investing Activities."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 101187,
+     "id": "4026000014:item_7:t13r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "13"
+     },
+     "section": "item_7",
+     "start_offset": 101087,
+     "text": "Operating income margin | 2025: 18.6% | 2024: 19.6% | Change: (1.0)%  [table: Results of Operations]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 114163,
+     "id": "4026000014:item_7:t19r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "19"
+     },
+     "section": "item_7",
+     "start_offset": 114070,
+     "text": "Sales (millions) | 2025: $ 8,272 | 2024: $ 8,380  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118261,
+     "id": "4026000014:item_7:t20r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118168,
+     "text": "Sales (millions) | 2025: $ 4,920 | 2024: $ 4,931  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 118648,
+     "id": "4026000014:item_7:t20r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "20"
+     },
+     "section": "item_7",
+     "start_offset": 118531,
+     "text": "Business segment operating income (millions) | 2025: $ 996 | 2024: $ 932  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 93442,
+     "id": "4026000014:item_7:t9r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "9"
+     },
+     "section": "item_7",
+     "start_offset": 93253,
+     "text": "Net sales (millions) | 2025 GAAP: $ 24,948 | 2025 Adjusted(a): $ 24,279 | 2024 GAAP: $ 24,575 | 2024 Adjusted(a): $ 23,630  [table: Financial highlights for 2025 and 2024:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 448141,
+     "id": "4026000014:item_8:p377",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 446823,
+     "text": "Environmental Matters and Litigation: The Company\u2019s operations are subject to environmental laws and regulations including those pertaining to air emissions, wastewater discharges, toxic or hazardous substances, and the handling and disposal of solid and hazardous wastes, which are enforceable by national, state, and local authorities around the world, and many for which private parties in the United States and abroad may have related rights of action. These laws and regulations can form the basis of, under certain circumstances, claims for the investigation and remediation of contamination, for capital investment in pollution control equipment, for restoration of and/or compensation for damages to natural resources, and for personal injury and property damages. The Company has incurred, and will continue to incur, costs and capital expenditures in complying with these laws and regulations, defending personal injury, natural resource and property damage claims, and modifying its business operations in light of its environmental responsibilities. In its effort to satisfy its environmental responsibilities and comply with environmental laws and regulations, the Company has established, and periodically updates, policies relating to environmental standards of performance for its operations worldwide."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 533679,
+     "id": "4026000014:item_8:p574",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_8",
+     "start_offset": 532943,
+     "text": "3M and ADEM agreed to the terms of an interim consent order in July 2020 to cover all PFAS-related wastewater discharges and air emissions from the Company\u2019s Decatur facility. Under the interim consent order, the Company\u2019s principal obligations include commitments related to (i) future ongoing site operations such as (a) providing notices or reports and performing various analytical and characterization studies and (b) future capital improvements; and (ii) remediation activities, including on-site and off-site investigations and studies. Obligations related to ongoing future site operations under the Consent Order or any further investigations may involve additional operating costs and capital expenditures over multiple years."
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 194840,
+     "id": "4026000014:item_8:t31r19",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 19,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 194613,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 191188,
+     "id": "4026000014:item_8:t31r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 190986,
+     "text": "Net sales | Years ended December 31, 2025: $ 24,948 | Years ended December 31, 2024: $ 24,575 | Years ended December 31, 2023: $ 24,610  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 192483,
+     "id": "4026000014:item_8:t31r9",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 9,
+      "table": "31"
+     },
+     "section": "item_8",
+     "start_offset": 192273,
+     "text": "Operating income (loss) | Years ended December 31, 2025: 4,629 | Years ended December 31, 2024: 4,822 | Years ended December 31, 2023: (10,689)  [table: Consolidated Statement of Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 197183,
+     "id": "4026000014:item_8:t32r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "32"
+     },
+     "section": "item_8",
+     "start_offset": 196942,
+     "text": "Net income (loss) attributable to 3M | Years ended December 31, 2025: $ 3,250 | Years ended December 31, 2024: $ 4,173 | Years ended December 31, 2023: $(6,995)  [table: Consolidated Statement of Comprehensive Income (Loss); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 207202,
+     "id": "4026000014:item_8:t34r11",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 11,
+      "table": "34"
+     },
+     "section": "item_8",
+     "start_offset": 207000,
+     "text": "Net income | Total: 4,188 | 3M Company shareholders Retained earnings: 4,173 | 3M Company shareholders Non-controlling interest: 15  [table: Consolidated Statement of Changes in Equity; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 214138,
+     "id": "4026000014:item_8:t35r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "35"
+     },
+     "section": "item_8",
+     "start_offset": 213901,
+     "text": "Purchases of property, plant and equipment (PP&E) | Years ended December 31, 2025: (910) | Years ended December 31, 2024: (1,181) | Years ended December 31, 2023: (1,615)  [table: Consolidated Statement of Cash Flows(a); units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 262380,
+     "id": "4026000014:item_8:t51r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "51"
+     },
+     "section": "item_8",
+     "start_offset": 262177,
+     "text": "Total operating income impact | 2025: $ 21 | 2024: $ 187 | 2023: $ 415  [table: The related restructuring charges for periods presented were recorded in the income statement as follows:; units: millions]"
+    },
+    {
+     "document_id": "sec:0000066740-26-000014:mmm-20251231.htm",
+     "end_offset": 297883,
+     "id": "4026000014:item_8:t67r4",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "67"
+     },
+     "section": "item_8",
+     "start_offset": 297705,
+     "text": "Net income (loss) attributable to 3M | 2025: $ 3,250 | 2024: $ 4,173 | 2023: $(6,995)  [table: The computations for basic and diluted earnings per share follow:; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-09 20:53:15.097458+00:00",
+    "json_path": ".finsight/artifacts/reports/6c82c607-fe86-412a-a9bb-5cd80286d4df/b9a5ad59-1c86-4fcb-a490-1393487550df/report.json",
+    "markdown_path": ".finsight/artifacts/reports/6c82c607-fe86-412a-a9bb-5cd80286d4df/b9a5ad59-1c86-4fcb-a490-1393487550df/report.md",
+    "sha256": "e51a444423294bf024db496b4c465dd21b7c86af2d7a83a35b5b9bff8f6a1cd7"
+   }
+  }
+ ],
+ "note": "3M FY2025 10-K (0000066740-26-000014) dashboard runs, 2026-11-09; exported from the Compose database"
+}

@@ -1,0 +1,195 @@
+{
+ "company": "3M CO",
+ "contract": "finsight-report-v1",
+ "filing": {
+  "accession": "0000066740-26-000014",
+  "amendments": [],
+  "filing_date": "2026-02-03",
+  "form": "10-K",
+  "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+  "period_end": "2025-12-31",
+  "reason": "original 10-K with report date 2025-12-31 for FY2025",
+  "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+  "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+  "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+ },
+ "findings": [
+  {
+   "calculation": [],
+   "checks": [
+    "XBRL Revenues as reported in 0000066740-26-000014: 24948000000 (differs)"
+   ],
+   "claims": [],
+   "issues": [
+    "revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000"
+   ],
+   "metric": "revenue",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "31"
+     },
+     "name": "v0",
+     "original_text": "$ 24,948",
+     "passage_id": "4026000014:item_8:t31r2",
+     "period": "Years ended December 31, 2025",
+     "scale": "units",
+     "source_period": "2025",
+     "unit": "USD",
+     "value": "24948"
+    }
+   ],
+   "period": "FY2025",
+   "status": "rejected",
+   "unit": "USD",
+   "value": "24948"
+  },
+  {
+   "calculation": [
+    {
+     "args": [
+      "v0",
+      "v1"
+     ],
+     "op": "divide",
+     "value": "0.1855459355459355459355459355"
+    }
+   ],
+   "checks": [
+    "XBRL OperatingIncomeLoss / Revenues = 0.1855 (agrees)"
+   ],
+   "claims": [],
+   "issues": [],
+   "metric": "operating_margin",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 9,
+      "table": "31"
+     },
+     "name": "v0",
+     "original_text": "4,629",
+     "passage_id": "4026000014:item_8:t31r9",
+     "period": "Years ended December 31, 2025",
+     "scale": "units",
+     "source_period": "2025",
+     "unit": "USD",
+     "value": "4629"
+    },
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "31"
+     },
+     "name": "v1",
+     "original_text": "$ 24,948",
+     "passage_id": "4026000014:item_8:t31r2",
+     "period": "Years ended December 31, 2025",
+     "scale": "units",
+     "source_period": "2025",
+     "unit": "USD",
+     "value": "24948"
+    }
+   ],
+   "period": "FY2025",
+   "status": "accepted",
+   "unit": "ratio",
+   "value": "0.1855459355459355459355459355"
+  },
+  {
+   "calculation": [],
+   "checks": [
+    "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000 (differs)"
+   ],
+   "claims": [],
+   "issues": [
+    "capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000"
+   ],
+   "metric": "capex",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "35"
+     },
+     "name": "v0",
+     "original_text": "(910)",
+     "passage_id": "4026000014:item_8:t35r18",
+     "period": "Years ended December 31, 2025",
+     "scale": "units",
+     "source_period": "2025",
+     "unit": "USD",
+     "value": "-910"
+    }
+   ],
+   "period": "FY2025",
+   "status": "rejected",
+   "unit": "USD",
+   "value": "-910"
+  },
+  {
+   "calculation": [],
+   "checks": [
+    "XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000 (differs)"
+   ],
+   "claims": [],
+   "issues": [
+    "net_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000"
+   ],
+   "metric": "net_income",
+   "operands": [
+    {
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 4,
+      "table": "67"
+     },
+     "name": "v0",
+     "original_text": "$ 3,250",
+     "passage_id": "4026000014:item_8:t67r4",
+     "period": "2025",
+     "scale": "units",
+     "source_period": "2025",
+     "unit": "USD",
+     "value": "3250"
+    }
+   ],
+   "period": "FY2025",
+   "status": "rejected",
+   "unit": "USD",
+   "value": "3250"
+  }
+ ],
+ "generated_at": "2026-11-09T20:49:44.715385+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 2048,
+  "model": "qwen3-4b-finqa-v1",
+  "provider": "qwen"
+ },
+ "outcome": "completed",
+ "period": "FY2025",
+ "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+ "unresolved": [
+  "revenue FY2025: rejected (revenue: 24948 differs from XBRL Revenues as reported in 0000066740-26-000014: 24948000000)",
+  "capex FY2025: rejected (capex: -910 differs from XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0000066740-26-000014: 910000000)",
+  "net_income FY2025: rejected (net_income: 3250 differs from XBRL NetIncomeLoss as reported in 0000066740-26-000014: 3250000000)"
+ ],
+ "usage": {
+  "attempts": 1,
+  "cost_usd": "0",
+  "input_tokens": "2460",
+  "output_tokens": "423",
+  "unknown_outcomes": 0
+ }
+}

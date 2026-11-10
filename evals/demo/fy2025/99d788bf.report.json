@@ -1,0 +1,37 @@
+{
+ "company": "3M CO",
+ "contract": "finsight-report-v1",
+ "filing": {
+  "accession": "0000066740-26-000014",
+  "amendments": [],
+  "filing_date": "2026-02-03",
+  "form": "10-K",
+  "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+  "period_end": "2025-12-31",
+  "reason": "original 10-K with report date 2025-12-31 for FY2025",
+  "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+  "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+  "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+ },
+ "findings": [],
+ "generated_at": "2026-11-09T20:50:41.456947+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 3500,
+  "model": "Qwen/Qwen3-4B",
+  "provider": "qwen"
+ },
+ "outcome": "failed",
+ "period": "FY2025",
+ "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+ "unresolved": [
+  "malformed model output after one repair: 4 validation errors for ReportOutput"
+ ],
+ "usage": {
+  "attempts": 2,
+  "cost_usd": "0",
+  "input_tokens": "4929",
+  "output_tokens": "1755",
+  "unknown_outcomes": 0
+ }
+}

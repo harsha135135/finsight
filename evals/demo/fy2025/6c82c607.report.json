@@ -1,0 +1,97 @@
+{
+ "company": "3M CO",
+ "contract": "finsight-report-v1",
+ "filing": {
+  "accession": "0000066740-26-000014",
+  "amendments": [],
+  "filing_date": "2026-02-03",
+  "form": "10-K",
+  "id": "sec:0000066740-26-000014:mmm-20251231.htm",
+  "period_end": "2025-12-31",
+  "reason": "original 10-K with report date 2025-12-31 for FY2025",
+  "retrieved_at": "2026-11-09T20:46:19.503685+00:00",
+  "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a",
+  "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm"
+ },
+ "findings": [
+  {
+   "calculation": [],
+   "checks": [],
+   "claims": [],
+   "issues": [
+    "duplicate operand names"
+   ],
+   "metric": "revenue",
+   "operands": [],
+   "period": "FY2025",
+   "status": "rejected",
+   "unit": null,
+   "value": null
+  },
+  {
+   "calculation": [],
+   "checks": [],
+   "claims": [],
+   "issues": [
+    "the model returned no finding for this metric"
+   ],
+   "metric": "operating_margin",
+   "operands": [],
+   "period": "FY2025",
+   "status": "insufficient_evidence",
+   "unit": null,
+   "value": null
+  },
+  {
+   "calculation": [],
+   "checks": [],
+   "claims": [],
+   "issues": [
+    "the model returned no finding for this metric"
+   ],
+   "metric": "capex",
+   "operands": [],
+   "period": "FY2025",
+   "status": "insufficient_evidence",
+   "unit": null,
+   "value": null
+  },
+  {
+   "calculation": [],
+   "checks": [],
+   "claims": [],
+   "issues": [
+    "the model returned no finding for this metric"
+   ],
+   "metric": "net_income",
+   "operands": [],
+   "period": "FY2025",
+   "status": "insufficient_evidence",
+   "unit": null,
+   "value": null
+  }
+ ],
+ "generated_at": "2026-11-09T20:53:15.095384+00:00",
+ "model": {
+  "contract": "finsight-report-v1",
+  "max_tokens": 3500,
+  "model": "Qwen/Qwen3-4B",
+  "provider": "qwen"
+ },
+ "outcome": "failed",
+ "period": "FY2025",
+ "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K.",
+ "unresolved": [
+  "revenue FY2025: rejected (duplicate operand names)",
+  "operating_margin FY2025: insufficient evidence (the model returned no finding for this metric)",
+  "capex FY2025: insufficient evidence (the model returned no finding for this metric)",
+  "net_income FY2025: insufficient evidence (the model returned no finding for this metric)"
+ ],
+ "usage": {
+  "attempts": 1,
+  "cost_usd": "0",
+  "input_tokens": "2456",
+  "output_tokens": "733",
+  "unknown_outcomes": 0
+ }
+}

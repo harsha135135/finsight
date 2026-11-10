@@ -1,0 +1,4636 @@
+{
+ "bundle": "finsight-demo-bundle-v1",
+ "jobs": [
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0001558370-19-000470",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0001558370-19-000470/mmm-20181231x10k.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2019-02-07",
+     "fiscal_year": 2018,
+     "form": "10-K",
+     "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2018-12-31",
+     "retrieved_at": "2026-11-07 15:26:49.993552+00:00",
+     "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+     "size_bytes": 10020720,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-07 15:11:13.696606+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "qwen3-4b-finqa-v1",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:11:14.226077+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:11:17.057790+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261107T151116971078Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-07T15:11:16.971078+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "7019000470:item_8:t175r18",
+         "7019000470:item_7:t164r2",
+         "7019000470:item_7:t166r8",
+         "7019000470:item_7:p240"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "7019000470:item_8:t170r8",
+         "7019000470:item_7:t80r6",
+         "7019000470:item_7:t150r6",
+         "7019000470:item_7:t104r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "7019000470:item_8:t170r1",
+         "7019000470:item_6:t22r2",
+         "7019000470:item_8:t249r7",
+         "7019000470:item_8:t170r3"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0001558370-19-000470",
+       "amendments": [],
+       "filing_date": "2019-02-07",
+       "form": "10-K",
+       "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+       "period_end": "2018-12-31",
+       "reason": "original 10-K with report date 2018-12-31 for FY2018",
+       "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+       "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+      },
+      "fiscal_year": 2018,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex"
+      ],
+      "passages": [
+       {
+        "id": "7019000470:item_8:t170r1",
+        "text": "Net sales | 2018: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_6:t22r2",
+        "text": "Net sales | 2018*: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109 | 2015: $ 30,274 | 2014: $ 31,821  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t249r7",
+        "text": "Sales and settlements | 2018: (3) | 2017: (3) | 2016: (4)  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r3",
+        "text": "Cost of sales | 2018: 16,682 | 2017: 16,055 | 2016: 15,118  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r8",
+        "text": "Operating income | 2018: 7,207 | 2017: 7,692 | 2016: 7,027  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t80r6",
+        "text": "Operating income margin | 2018: 22.0% | 2017: 24.3% | 2016: 23.3% | 2018 versus 2017: (2.3)% | 2017 versus 2016: 1.0%  [table: Operating Expenses:]"
+       },
+       {
+        "id": "7019000470:item_7:t150r6",
+        "text": "Operating income (millions) | 2018: $ 1,027 | 2017: $ 1,004 | 2016: $ 1,054  [table: Consumer Business (14.6% of consolidated sales):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t104r7",
+        "text": "Operating income (millions) | 2018: $ 2,737 | 2017: $ 2,490 | 2016: $ 2,528  [table: Industrial Business (37.4% of consolidated sales):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t175r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t164r2",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: $(1,577) | 2017: $(1,373) | 2016: $(1,420)  [table: Cash Flows from Investing Activities:; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t166r8",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Free Cash Flow (non-GAAP measure):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:p240",
+        "text": "Investments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. In 2018, 63% of 3M\u2019s capital spending was within the United States, followed by Europe, Middle East and Africa; Asia Pacific; and Latin America/Canada. 3M is increasing its investment in manufacturing and sourcing capability in order to more closely align its product capability with its sales in major geographic areas in order to best serve its customers throughout the world with proprietary, automated, efficient, safe and sustainable processes. Capital spending is discussed in more detail later in MD&A in the section entitled \u201cCash Flows from Investing Activities.\u201d"
+       }
+      ],
+      "period": "FY2018",
+      "xbrl": {
+       "capex": {
+        "accession": "0001558370-19-000470",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 1577000000
+       },
+       "operating_income": {
+        "accession": "0001558370-19-000470",
+        "concept": "OperatingIncomeLoss",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 7207000000
+       },
+       "revenue": {
+        "accession": "0001558370-19-000470",
+        "concept": "Revenues",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 32765000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:11:25.311921+00:00",
+     "detail": {
+      "attempts": 1,
+      "output": {
+       "findings": [
+        {
+         "explanation": [],
+         "metric": "revenue",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        },
+        {
+         "explanation": [],
+         "metric": "operating_margin",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "7,207",
+           "passage_id": "7019000470:item_8:t170r8",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "7207"
+          },
+          {
+           "name": "v1",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "program": [
+          {
+           "args": [
+            "v0",
+            "v1"
+           ],
+           "op": "divide"
+          }
+         ],
+         "status": "answered",
+         "unit": "ratio"
+        },
+        {
+         "explanation": [],
+         "metric": "capex",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "(1,577)",
+           "passage_id": "7019000470:item_8:t175r18",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "-1577"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        }
+       ],
+       "unresolved": []
+      },
+      "prompt_version": "finsight-report-v1.1",
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:11:25.324952+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "v0",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "32765000000"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "v0",
+           "v1"
+          ],
+          "op": "divide",
+          "value": "0.2199603235159468945521135358"
+         }
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 8,
+           "table": "170"
+          },
+          "name": "v0",
+          "original_text": "7,207",
+          "passage_id": "7019000470:item_8:t170r8",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "7207"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "v1",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.2199603235159468945521135358"
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "175"
+          },
+          "name": "v0",
+          "original_text": "(1,577)",
+          "passage_id": "7019000470:item_8:t175r18",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "-1577"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-1577000000"
+       }
+      ],
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "7019000470:item_8:t175r18",
+          "7019000470:item_7:t164r2",
+          "7019000470:item_7:t166r8",
+          "7019000470:item_7:p240"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r8",
+          "7019000470:item_7:t80r6",
+          "7019000470:item_7:t150r6",
+          "7019000470:item_7:t104r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "7019000470:item_8:t170r1",
+          "7019000470:item_6:t22r2",
+          "7019000470:item_8:t249r7",
+          "7019000470:item_8:t170r3"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "capex": {
+         "accession": "0001558370-19-000470",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 1577000000
+        },
+        "operating_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "OperatingIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 7207000000
+        },
+        "revenue": {
+         "accession": "0001558370-19-000470",
+         "concept": "Revenues",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 32765000000
+        }
+       }
+      },
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:11:25.335361+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "v0",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "32765000000"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "v0",
+           "v1"
+          ],
+          "op": "divide",
+          "value": "0.2199603235159468945521135358"
+         }
+        ],
+        "checks": [
+         "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 8,
+           "table": "170"
+          },
+          "name": "v0",
+          "original_text": "7,207",
+          "passage_id": "7019000470:item_8:t170r8",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "7207"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "v1",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.2199603235159468945521135358"
+       },
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "175"
+          },
+          "name": "v0",
+          "original_text": "(1,577)",
+          "passage_id": "7019000470:item_8:t175r18",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "-1577"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-1577000000"
+       }
+      ],
+      "outcome": "completed",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "7019000470:item_8:t175r18",
+          "7019000470:item_7:t164r2",
+          "7019000470:item_7:t166r8",
+          "7019000470:item_7:p240"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r8",
+          "7019000470:item_7:t80r6",
+          "7019000470:item_7:t150r6",
+          "7019000470:item_7:t104r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "7019000470:item_8:t170r1",
+          "7019000470:item_6:t22r2",
+          "7019000470:item_8:t249r7",
+          "7019000470:item_8:t170r3"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "capex": {
+         "accession": "0001558370-19-000470",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 1577000000
+        },
+        "operating_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "OperatingIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 7207000000
+        },
+        "revenue": {
+         "accession": "0001558370-19-000470",
+         "concept": "Revenues",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 32765000000
+        }
+       }
+      },
+      "unresolved": []
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:11:25.348011+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2018\n\nSource: 10-K accession 0001558370-19-000470, period ending 2018-12-31, filed 2019-02-07 ([original](https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm), sha256 `252d5b98ace7`, retrieved 2026-11-07T14:40:15.172098+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| revenue | FY2018 | 32,765 million USD | accepted |\n| operating\\_margin | FY2018 | 22.0% | accepted |\n| capex | FY2018 | -1,577 million USD | accepted |\n\n## Calculations and sources\n\n**revenue (FY2018)**\n- v0 = $ 32,765 (millions, 2018) from passage `7019000470:item_8:t170r1`\n- check: XBRL Revenues as reported in 0001558370-19-000470: 32765000000 \\(agrees\\)\n\n**operating\\_margin (FY2018)**\n- v0 = 7,207 (millions, 2018) from passage `7019000470:item_8:t170r8`\n- v1 = $ 32,765 (millions, 2018) from passage `7019000470:item_8:t170r1`\n- divide(v0, v1) = 0.2199603235159468945521135358\n- check: XBRL OperatingIncomeLoss / Revenues = 0.2200 \\(agrees\\)\n\n**capex (FY2018)**\n- v0 = \\(1,577\\) (millions, 2018) from passage `7019000470:item_8:t175r18`\n- check: XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 \\(agrees\\)\n\n## Unresolved and missing information\n\n- none\n\n## Run\n\n- Outcome: completed\n- Model: qwen qwen3-4b-finqa-v1 (contract finsight-report-v1)\n- Generated: 2026-11-07T15:11:25.345458+00:00\n- Usage: \\{'attempts': 1, 'input\\_tokens': '2181', 'output\\_tokens': '386', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "completed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "revenue",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 1,
+            "table": "170"
+           },
+           "name": "v0",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "USD",
+         "value": "32765000000"
+        },
+        {
+         "calculation": [
+          {
+           "args": [
+            "v0",
+            "v1"
+           ],
+           "op": "divide",
+           "value": "0.2199603235159468945521135358"
+          }
+         ],
+         "checks": [
+          "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "operating_margin",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 8,
+            "table": "170"
+           },
+           "name": "v0",
+           "original_text": "7,207",
+           "passage_id": "7019000470:item_8:t170r8",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "7207"
+          },
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 1,
+            "table": "170"
+           },
+           "name": "v1",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "ratio",
+         "value": "0.2199603235159468945521135358"
+        },
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "capex",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 18,
+            "table": "175"
+           },
+           "name": "v0",
+           "original_text": "(1,577)",
+           "passage_id": "7019000470:item_8:t175r18",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "-1577"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "USD",
+         "value": "-1577000000"
+        }
+       ],
+       "generated_at": "2026-11-07T15:11:25.345458+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "qwen3-4b-finqa-v1",
+        "provider": "qwen"
+       },
+       "outcome": "completed",
+       "period": "FY2018",
+       "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source.",
+       "unresolved": [],
+       "usage": {
+        "attempts": 1,
+        "cost_usd": "0",
+        "input_tokens": "2181",
+        "output_tokens": "386",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "8803a922b848eb9892f3882f3cb743bf28a9846c5d79ff1a2aea34e64e90fa18"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:11:25.352832+00:00",
+     "detail": {
+      "reason": null,
+      "status": "completed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:11:13.694514+00:00",
+    "finished_at": "2026-11-07 15:11:25.352832+00:00",
+    "id": "4458ec8d-b1a0-46a7-bf5e-72de5e9f8cff",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "qwen3-4b-finqa-v1",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2018",
+     "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source."
+    },
+    "stage": null,
+    "status": "completed",
+    "updated_at": "2026-11-07 15:11:25.352832+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:11:25.308736+00:00",
+     "error": null,
+     "latency_ms": 8239,
+     "model": "qwen3-4b-finqa-v1",
+     "model_version": "qwen3-4b-finqa-v1",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"32765\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null},{\"metric\":\"operating_margin\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"7019000470:item_8:t170r8\",\"original_text\":\"7,207\",\"value\":\"7207\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"},{\"name\":\"v1\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"32765\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[{\"op\":\"divide\",\"args\":[\"v0\",\"v1\"]}],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"capex\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"7019000470:item_8:t175r18\",\"original_text\":\"(1,577)\",\"value\":\"-1577\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2181,
+      "output_tokens": 386
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 64939,
+     "id": "7019000470:item_6:t22r2",
+     "location": {
+      "html_section": "item_6",
+      "page": null,
+      "row": 2,
+      "table": "22"
+     },
+     "section": "item_6",
+     "start_offset": 64799,
+     "text": "Net sales | 2018*: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109 | 2015: $ 30,274 | 2014: $ 31,821  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 161988,
+     "id": "7019000470:item_7:p240",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 161256,
+     "text": "Investments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. In 2018, 63% of 3M\u2019s capital spending was within the United States, followed by Europe, Middle East and Africa; Asia Pacific; and Latin America/Canada. 3M is increasing its investment in manufacturing and sourcing capability in order to more closely align its product capability with its sales in major geographic areas in order to best serve its customers throughout the world with proprietary, automated, efficient, safe and sustainable processes. Capital spending is discussed in more detail later in MD&A in the section entitled \u201cCash Flows from Investing Activities.\u201d"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 149303,
+     "id": "7019000470:item_7:t104r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "104"
+     },
+     "section": "item_7",
+     "start_offset": 149150,
+     "text": "Operating income (millions) | 2018: $ 2,737 | 2017: $ 2,490 | 2016: $ 2,528  [table: Industrial Business (37.4% of consolidated sales):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 157175,
+     "id": "7019000470:item_7:t150r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "150"
+     },
+     "section": "item_7",
+     "start_offset": 157024,
+     "text": "Operating income (millions) | 2018: $ 1,027 | 2017: $ 1,004 | 2016: $ 1,054  [table: Consumer Business (14.6% of consolidated sales):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 197774,
+     "id": "7019000470:item_7:t164r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "164"
+     },
+     "section": "item_7",
+     "start_offset": 197609,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: $(1,577) | 2017: $(1,373) | 2016: $(1,420)  [table: Cash Flows from Investing Activities:; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 211702,
+     "id": "7019000470:item_7:t166r8",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 8,
+      "table": "166"
+     },
+     "section": "item_7",
+     "start_offset": 211543,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Free Cash Flow (non-GAAP measure):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 129531,
+     "id": "7019000470:item_7:t80r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "80"
+     },
+     "section": "item_7",
+     "start_offset": 129384,
+     "text": "Operating income margin | 2018: 22.0% | 2017: 24.3% | 2016: 23.3% | 2018 versus 2017: (2.3)% | 2017 versus 2016: 1.0%  [table: Operating Expenses:]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236084,
+     "id": "7019000470:item_8:t170r1",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 1,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 235973,
+     "text": "Net sales | 2018: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236194,
+     "id": "7019000470:item_8:t170r3",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 3,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 236085,
+     "text": "Cost of sales | 2018: 16,682 | 2017: 16,055 | 2016: 15,118  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236819,
+     "id": "7019000470:item_8:t170r8",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 8,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 236710,
+     "text": "Operating income | 2018: 7,207 | 2017: 7,692 | 2016: 7,027  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 254402,
+     "id": "7019000470:item_8:t175r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "175"
+     },
+     "section": "item_8",
+     "start_offset": 254254,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 566339,
+     "id": "7019000470:item_8:t249r7",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 7,
+      "table": "249"
+     },
+     "section": "item_8",
+     "start_offset": 566237,
+     "text": "Sales and settlements | 2018: (3) | 2017: (3) | 2016: (4)  [table: Table of Contents; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-07 15:11:25.347043+00:00",
+    "json_path": ".finsight/artifacts/reports/4458ec8d-b1a0-46a7-bf5e-72de5e9f8cff/6aa698f3-5dc4-470d-bccd-8f930685375d/report.json",
+    "markdown_path": ".finsight/artifacts/reports/4458ec8d-b1a0-46a7-bf5e-72de5e9f8cff/6aa698f3-5dc4-470d-bccd-8f930685375d/report.md",
+    "sha256": "8803a922b848eb9892f3882f3cb743bf28a9846c5d79ff1a2aea34e64e90fa18"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0001558370-19-000470",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0001558370-19-000470/mmm-20181231x10k.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2019-02-07",
+     "fiscal_year": 2018,
+     "form": "10-K",
+     "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2018-12-31",
+     "retrieved_at": "2026-11-07 15:26:49.993552+00:00",
+     "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+     "size_bytes": 10020720,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-07 15:11:13.740707+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": true,
+       "max_tokens": 3500,
+       "model": "Qwen/Qwen3-4B",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:11:25.357714+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:11:26.736404+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261107T151126670751Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-07T15:11:26.670751+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "7019000470:item_8:t175r18",
+         "7019000470:item_7:t164r2",
+         "7019000470:item_7:t166r8",
+         "7019000470:item_7:p240"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "7019000470:item_8:t170r8",
+         "7019000470:item_7:t80r6",
+         "7019000470:item_7:t150r6",
+         "7019000470:item_7:t104r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "7019000470:item_8:t170r1",
+         "7019000470:item_6:t22r2",
+         "7019000470:item_8:t249r7",
+         "7019000470:item_8:t170r3"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0001558370-19-000470",
+       "amendments": [],
+       "filing_date": "2019-02-07",
+       "form": "10-K",
+       "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+       "period_end": "2018-12-31",
+       "reason": "original 10-K with report date 2018-12-31 for FY2018",
+       "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+       "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+      },
+      "fiscal_year": 2018,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex"
+      ],
+      "passages": [
+       {
+        "id": "7019000470:item_8:t170r1",
+        "text": "Net sales | 2018: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_6:t22r2",
+        "text": "Net sales | 2018*: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109 | 2015: $ 30,274 | 2014: $ 31,821  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t249r7",
+        "text": "Sales and settlements | 2018: (3) | 2017: (3) | 2016: (4)  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r3",
+        "text": "Cost of sales | 2018: 16,682 | 2017: 16,055 | 2016: 15,118  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r8",
+        "text": "Operating income | 2018: 7,207 | 2017: 7,692 | 2016: 7,027  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t80r6",
+        "text": "Operating income margin | 2018: 22.0% | 2017: 24.3% | 2016: 23.3% | 2018 versus 2017: (2.3)% | 2017 versus 2016: 1.0%  [table: Operating Expenses:]"
+       },
+       {
+        "id": "7019000470:item_7:t150r6",
+        "text": "Operating income (millions) | 2018: $ 1,027 | 2017: $ 1,004 | 2016: $ 1,054  [table: Consumer Business (14.6% of consolidated sales):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t104r7",
+        "text": "Operating income (millions) | 2018: $ 2,737 | 2017: $ 2,490 | 2016: $ 2,528  [table: Industrial Business (37.4% of consolidated sales):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t175r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t164r2",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: $(1,577) | 2017: $(1,373) | 2016: $(1,420)  [table: Cash Flows from Investing Activities:; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t166r8",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Free Cash Flow (non-GAAP measure):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:p240",
+        "text": "Investments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. In 2018, 63% of 3M\u2019s capital spending was within the United States, followed by Europe, Middle East and Africa; Asia Pacific; and Latin America/Canada. 3M is increasing its investment in manufacturing and sourcing capability in order to more closely align its product capability with its sales in major geographic areas in order to best serve its customers throughout the world with proprietary, automated, efficient, safe and sustainable processes. Capital spending is discussed in more detail later in MD&A in the section entitled \u201cCash Flows from Investing Activities.\u201d"
+       }
+      ],
+      "period": "FY2018",
+      "xbrl": {
+       "capex": {
+        "accession": "0001558370-19-000470",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 1577000000
+       },
+       "operating_income": {
+        "accession": "0001558370-19-000470",
+        "concept": "OperatingIncomeLoss",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 7207000000
+       },
+       "revenue": {
+        "accession": "0001558370-19-000470",
+        "concept": "Revenues",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 32765000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:11:45.467627+00:00",
+     "detail": {
+      "attempts": 1,
+      "output": {
+       "findings": [
+        {
+         "explanation": [],
+         "metric": "revenue",
+         "missing": null,
+         "operands": [
+          {
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "ratio"
+        },
+        {
+         "explanation": [],
+         "metric": "operating_margin",
+         "missing": null,
+         "operands": [
+          {
+           "name": "operating_income",
+           "original_text": "7,207",
+           "passage_id": "7019000470:item_8:t170r8",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "7207"
+          },
+          {
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "program": [
+          {
+           "args": [
+            "operating_income",
+            "revenue"
+           ],
+           "op": "divide"
+          }
+         ],
+         "status": "answered",
+         "unit": "ratio"
+        },
+        {
+         "explanation": [],
+         "metric": "capex",
+         "missing": null,
+         "operands": [
+          {
+           "name": "capex",
+           "original_text": "(1,577)",
+           "passage_id": "7019000470:item_8:t175r18",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "-1577"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        }
+       ],
+       "unresolved": []
+      },
+      "prompt_version": "finsight-report-v1.1",
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:11:45.477748+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "32765000000"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "operating_income",
+           "revenue"
+          ],
+          "op": "divide",
+          "value": "0.2199603235159468945521135358"
+         }
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 8,
+           "table": "170"
+          },
+          "name": "operating_income",
+          "original_text": "7,207",
+          "passage_id": "7019000470:item_8:t170r8",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "7207"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.2199603235159468945521135358"
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "175"
+          },
+          "name": "capex",
+          "original_text": "(1,577)",
+          "passage_id": "7019000470:item_8:t175r18",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "-1577"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-1577000000"
+       }
+      ],
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "7019000470:item_8:t175r18",
+          "7019000470:item_7:t164r2",
+          "7019000470:item_7:t166r8",
+          "7019000470:item_7:p240"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r8",
+          "7019000470:item_7:t80r6",
+          "7019000470:item_7:t150r6",
+          "7019000470:item_7:t104r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "7019000470:item_8:t170r1",
+          "7019000470:item_6:t22r2",
+          "7019000470:item_8:t249r7",
+          "7019000470:item_8:t170r3"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "capex": {
+         "accession": "0001558370-19-000470",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 1577000000
+        },
+        "operating_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "OperatingIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 7207000000
+        },
+        "revenue": {
+         "accession": "0001558370-19-000470",
+         "concept": "Revenues",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 32765000000
+        }
+       }
+      },
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:11:45.487189+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "32765000000"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "operating_income",
+           "revenue"
+          ],
+          "op": "divide",
+          "value": "0.2199603235159468945521135358"
+         }
+        ],
+        "checks": [
+         "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 8,
+           "table": "170"
+          },
+          "name": "operating_income",
+          "original_text": "7,207",
+          "passage_id": "7019000470:item_8:t170r8",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "7207"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.2199603235159468945521135358"
+       },
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "175"
+          },
+          "name": "capex",
+          "original_text": "(1,577)",
+          "passage_id": "7019000470:item_8:t175r18",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "-1577"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-1577000000"
+       }
+      ],
+      "outcome": "completed",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "7019000470:item_8:t175r18",
+          "7019000470:item_7:t164r2",
+          "7019000470:item_7:t166r8",
+          "7019000470:item_7:p240"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r8",
+          "7019000470:item_7:t80r6",
+          "7019000470:item_7:t150r6",
+          "7019000470:item_7:t104r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "7019000470:item_8:t170r1",
+          "7019000470:item_6:t22r2",
+          "7019000470:item_8:t249r7",
+          "7019000470:item_8:t170r3"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "capex": {
+         "accession": "0001558370-19-000470",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 1577000000
+        },
+        "operating_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "OperatingIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 7207000000
+        },
+        "revenue": {
+         "accession": "0001558370-19-000470",
+         "concept": "Revenues",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 32765000000
+        }
+       }
+      },
+      "unresolved": []
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:11:45.498683+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2018\n\nSource: 10-K accession 0001558370-19-000470, period ending 2018-12-31, filed 2019-02-07 ([original](https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm), sha256 `252d5b98ace7`, retrieved 2026-11-07T14:40:15.172098+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| revenue | FY2018 | 32,765 million USD | accepted |\n| operating\\_margin | FY2018 | 22.0% | accepted |\n| capex | FY2018 | -1,577 million USD | accepted |\n\n## Calculations and sources\n\n**revenue (FY2018)**\n- revenue = $ 32,765 (millions, 2018) from passage `7019000470:item_8:t170r1`\n- check: XBRL Revenues as reported in 0001558370-19-000470: 32765000000 \\(agrees\\)\n\n**operating\\_margin (FY2018)**\n- operating\\_income = 7,207 (millions, 2018) from passage `7019000470:item_8:t170r8`\n- revenue = $ 32,765 (millions, 2018) from passage `7019000470:item_8:t170r1`\n- divide(operating\\_income, revenue) = 0.2199603235159468945521135358\n- check: XBRL OperatingIncomeLoss / Revenues = 0.2200 \\(agrees\\)\n\n**capex (FY2018)**\n- capex = \\(1,577\\) (millions, 2018) from passage `7019000470:item_8:t175r18`\n- check: XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 \\(agrees\\)\n\n## Unresolved and missing information\n\n- none\n\n## Run\n\n- Outcome: completed\n- Model: qwen Qwen/Qwen3-4B (contract finsight-report-v1)\n- Generated: 2026-11-07T15:11:45.496459+00:00\n- Usage: \\{'attempts': 1, 'input\\_tokens': '2177', 'output\\_tokens': '996', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "completed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "revenue",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 1,
+            "table": "170"
+           },
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "USD",
+         "value": "32765000000"
+        },
+        {
+         "calculation": [
+          {
+           "args": [
+            "operating_income",
+            "revenue"
+           ],
+           "op": "divide",
+           "value": "0.2199603235159468945521135358"
+          }
+         ],
+         "checks": [
+          "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "operating_margin",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 8,
+            "table": "170"
+           },
+           "name": "operating_income",
+           "original_text": "7,207",
+           "passage_id": "7019000470:item_8:t170r8",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "7207"
+          },
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 1,
+            "table": "170"
+           },
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "ratio",
+         "value": "0.2199603235159468945521135358"
+        },
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "capex",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 18,
+            "table": "175"
+           },
+           "name": "capex",
+           "original_text": "(1,577)",
+           "passage_id": "7019000470:item_8:t175r18",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "-1577"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "USD",
+         "value": "-1577000000"
+        }
+       ],
+       "generated_at": "2026-11-07T15:11:45.496459+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 3500,
+        "model": "Qwen/Qwen3-4B",
+        "provider": "qwen"
+       },
+       "outcome": "completed",
+       "period": "FY2018",
+       "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source.",
+       "unresolved": [],
+       "usage": {
+        "attempts": 1,
+        "cost_usd": "0",
+        "input_tokens": "2177",
+        "output_tokens": "996",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "b0afdd635a67c6b1fbebd0e0b59f3f6d4db879a6d2cf59cf21b0e438b6549cfe"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:11:45.503680+00:00",
+     "detail": {
+      "reason": null,
+      "status": "completed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:11:13.739860+00:00",
+    "finished_at": "2026-11-07 15:11:45.503680+00:00",
+    "id": "197869b7-9af2-4fff-a212-a487da5181b8",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": true,
+     "max_tokens": 3500,
+     "model": "Qwen/Qwen3-4B",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2018",
+     "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source."
+    },
+    "stage": null,
+    "status": "completed",
+    "updated_at": "2026-11-07 15:11:45.503680+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:11:45.464233+00:00",
+     "error": null,
+     "latency_ms": 18719,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"32765\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"operating_margin\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"operating_income\",\"passage_id\":\"7019000470:item_8:t170r8\",\"original_text\":\"7,207\",\"value\":\"7207\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"},{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"32765\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[{\"op\":\"divide\",\"args\":[\"operating_income\",\"revenue\"]}],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"capex\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"capex\",\"passage_id\":\"7019000470:item_8:t175r18\",\"original_text\":\"(1,577)\",\"value\":\"-1577\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2177,
+      "output_tokens": 996
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 64939,
+     "id": "7019000470:item_6:t22r2",
+     "location": {
+      "html_section": "item_6",
+      "page": null,
+      "row": 2,
+      "table": "22"
+     },
+     "section": "item_6",
+     "start_offset": 64799,
+     "text": "Net sales | 2018*: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109 | 2015: $ 30,274 | 2014: $ 31,821  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 161988,
+     "id": "7019000470:item_7:p240",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 161256,
+     "text": "Investments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. In 2018, 63% of 3M\u2019s capital spending was within the United States, followed by Europe, Middle East and Africa; Asia Pacific; and Latin America/Canada. 3M is increasing its investment in manufacturing and sourcing capability in order to more closely align its product capability with its sales in major geographic areas in order to best serve its customers throughout the world with proprietary, automated, efficient, safe and sustainable processes. Capital spending is discussed in more detail later in MD&A in the section entitled \u201cCash Flows from Investing Activities.\u201d"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 149303,
+     "id": "7019000470:item_7:t104r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "104"
+     },
+     "section": "item_7",
+     "start_offset": 149150,
+     "text": "Operating income (millions) | 2018: $ 2,737 | 2017: $ 2,490 | 2016: $ 2,528  [table: Industrial Business (37.4% of consolidated sales):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 157175,
+     "id": "7019000470:item_7:t150r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "150"
+     },
+     "section": "item_7",
+     "start_offset": 157024,
+     "text": "Operating income (millions) | 2018: $ 1,027 | 2017: $ 1,004 | 2016: $ 1,054  [table: Consumer Business (14.6% of consolidated sales):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 197774,
+     "id": "7019000470:item_7:t164r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "164"
+     },
+     "section": "item_7",
+     "start_offset": 197609,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: $(1,577) | 2017: $(1,373) | 2016: $(1,420)  [table: Cash Flows from Investing Activities:; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 211702,
+     "id": "7019000470:item_7:t166r8",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 8,
+      "table": "166"
+     },
+     "section": "item_7",
+     "start_offset": 211543,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Free Cash Flow (non-GAAP measure):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 129531,
+     "id": "7019000470:item_7:t80r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "80"
+     },
+     "section": "item_7",
+     "start_offset": 129384,
+     "text": "Operating income margin | 2018: 22.0% | 2017: 24.3% | 2016: 23.3% | 2018 versus 2017: (2.3)% | 2017 versus 2016: 1.0%  [table: Operating Expenses:]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236084,
+     "id": "7019000470:item_8:t170r1",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 1,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 235973,
+     "text": "Net sales | 2018: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236194,
+     "id": "7019000470:item_8:t170r3",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 3,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 236085,
+     "text": "Cost of sales | 2018: 16,682 | 2017: 16,055 | 2016: 15,118  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236819,
+     "id": "7019000470:item_8:t170r8",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 8,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 236710,
+     "text": "Operating income | 2018: 7,207 | 2017: 7,692 | 2016: 7,027  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 254402,
+     "id": "7019000470:item_8:t175r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "175"
+     },
+     "section": "item_8",
+     "start_offset": 254254,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 566339,
+     "id": "7019000470:item_8:t249r7",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 7,
+      "table": "249"
+     },
+     "section": "item_8",
+     "start_offset": 566237,
+     "text": "Sales and settlements | 2018: (3) | 2017: (3) | 2016: (4)  [table: Table of Contents; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-07 15:11:45.497858+00:00",
+    "json_path": ".finsight/artifacts/reports/197869b7-9af2-4fff-a212-a487da5181b8/2c6a808a-0f69-4c01-8a4a-7d6f2940d8ea/report.json",
+    "markdown_path": ".finsight/artifacts/reports/197869b7-9af2-4fff-a212-a487da5181b8/2c6a808a-0f69-4c01-8a4a-7d6f2940d8ea/report.md",
+    "sha256": "b0afdd635a67c6b1fbebd0e0b59f3f6d4db879a6d2cf59cf21b0e438b6549cfe"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0001558370-19-000470",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0001558370-19-000470/mmm-20181231x10k.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2019-02-07",
+     "fiscal_year": 2018,
+     "form": "10-K",
+     "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2018-12-31",
+     "retrieved_at": "2026-11-07 15:26:49.993552+00:00",
+     "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+     "size_bytes": 10020720,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-07 15:11:13.768471+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "Qwen/Qwen3-4B",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:11:45.507682+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:11:46.863134+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261107T151146799451Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-07T15:11:46.799451+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "capex": {
+        "passage_ids": [
+         "7019000470:item_8:t175r18",
+         "7019000470:item_7:t164r2",
+         "7019000470:item_7:t166r8",
+         "7019000470:item_7:p240"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "operating_income": {
+        "passage_ids": [
+         "7019000470:item_8:t170r8",
+         "7019000470:item_7:t80r6",
+         "7019000470:item_7:t150r6",
+         "7019000470:item_7:t104r7"
+        ],
+        "reason": null,
+        "status": "found"
+       },
+       "revenue": {
+        "passage_ids": [
+         "7019000470:item_8:t170r1",
+         "7019000470:item_6:t22r2",
+         "7019000470:item_8:t249r7",
+         "7019000470:item_8:t170r3"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0001558370-19-000470",
+       "amendments": [],
+       "filing_date": "2019-02-07",
+       "form": "10-K",
+       "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+       "period_end": "2018-12-31",
+       "reason": "original 10-K with report date 2018-12-31 for FY2018",
+       "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+       "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+      },
+      "fiscal_year": 2018,
+      "metrics": [
+       "revenue",
+       "operating_margin",
+       "capex"
+      ],
+      "passages": [
+       {
+        "id": "7019000470:item_8:t170r1",
+        "text": "Net sales | 2018: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_6:t22r2",
+        "text": "Net sales | 2018*: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109 | 2015: $ 30,274 | 2014: $ 31,821  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t249r7",
+        "text": "Sales and settlements | 2018: (3) | 2017: (3) | 2016: (4)  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r3",
+        "text": "Cost of sales | 2018: 16,682 | 2017: 16,055 | 2016: 15,118  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r8",
+        "text": "Operating income | 2018: 7,207 | 2017: 7,692 | 2016: 7,027  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t80r6",
+        "text": "Operating income margin | 2018: 22.0% | 2017: 24.3% | 2016: 23.3% | 2018 versus 2017: (2.3)% | 2017 versus 2016: 1.0%  [table: Operating Expenses:]"
+       },
+       {
+        "id": "7019000470:item_7:t150r6",
+        "text": "Operating income (millions) | 2018: $ 1,027 | 2017: $ 1,004 | 2016: $ 1,054  [table: Consumer Business (14.6% of consolidated sales):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t104r7",
+        "text": "Operating income (millions) | 2018: $ 2,737 | 2017: $ 2,490 | 2016: $ 2,528  [table: Industrial Business (37.4% of consolidated sales):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t175r18",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t164r2",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: $(1,577) | 2017: $(1,373) | 2016: $(1,420)  [table: Cash Flows from Investing Activities:; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:t166r8",
+        "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Free Cash Flow (non-GAAP measure):; units: millions]"
+       },
+       {
+        "id": "7019000470:item_7:p240",
+        "text": "Investments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. In 2018, 63% of 3M\u2019s capital spending was within the United States, followed by Europe, Middle East and Africa; Asia Pacific; and Latin America/Canada. 3M is increasing its investment in manufacturing and sourcing capability in order to more closely align its product capability with its sales in major geographic areas in order to best serve its customers throughout the world with proprietary, automated, efficient, safe and sustainable processes. Capital spending is discussed in more detail later in MD&A in the section entitled \u201cCash Flows from Investing Activities.\u201d"
+       }
+      ],
+      "period": "FY2018",
+      "xbrl": {
+       "capex": {
+        "accession": "0001558370-19-000470",
+        "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 1577000000
+       },
+       "operating_income": {
+        "accession": "0001558370-19-000470",
+        "concept": "OperatingIncomeLoss",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 7207000000
+       },
+       "revenue": {
+        "accession": "0001558370-19-000470",
+        "concept": "Revenues",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 32765000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:12:02.569325+00:00",
+     "detail": {
+      "attempts": 2,
+      "output": {
+       "findings": [
+        {
+         "explanation": [],
+         "metric": "revenue",
+         "missing": null,
+         "operands": [
+          {
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "ratio"
+        },
+        {
+         "explanation": [],
+         "metric": "operating_margin",
+         "missing": null,
+         "operands": [
+          {
+           "name": "operating_income",
+           "original_text": "7,207",
+           "passage_id": "7019000470:item_8:t170r8",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "7207"
+          },
+          {
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "program": [
+          {
+           "args": [
+            "operating_income",
+            "revenue"
+           ],
+           "op": "divide"
+          }
+         ],
+         "status": "answered",
+         "unit": "ratio"
+        },
+        {
+         "explanation": [],
+         "metric": "capex",
+         "missing": null,
+         "operands": [
+          {
+           "name": "capex",
+           "original_text": "(1,577)",
+           "passage_id": "7019000470:item_8:t175r18",
+           "period": "2018",
+           "scale": "millions",
+           "unit": "USD",
+           "value": "-1577"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        }
+       ],
+       "unresolved": []
+      },
+      "prompt_version": "finsight-report-v1.1",
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:12:02.581946+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "32765000000"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "operating_income",
+           "revenue"
+          ],
+          "op": "divide",
+          "value": "0.2199603235159468945521135358"
+         }
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 8,
+           "table": "170"
+          },
+          "name": "operating_income",
+          "original_text": "7,207",
+          "passage_id": "7019000470:item_8:t170r8",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "7207"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.2199603235159468945521135358"
+       },
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "175"
+          },
+          "name": "capex",
+          "original_text": "(1,577)",
+          "passage_id": "7019000470:item_8:t175r18",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "-1577"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-1577000000"
+       }
+      ],
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "7019000470:item_8:t175r18",
+          "7019000470:item_7:t164r2",
+          "7019000470:item_7:t166r8",
+          "7019000470:item_7:p240"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r8",
+          "7019000470:item_7:t80r6",
+          "7019000470:item_7:t150r6",
+          "7019000470:item_7:t104r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "7019000470:item_8:t170r1",
+          "7019000470:item_6:t22r2",
+          "7019000470:item_8:t249r7",
+          "7019000470:item_8:t170r3"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "capex": {
+         "accession": "0001558370-19-000470",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 1577000000
+        },
+        "operating_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "OperatingIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 7207000000
+        },
+        "revenue": {
+         "accession": "0001558370-19-000470",
+         "concept": "Revenues",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 32765000000
+        }
+       }
+      },
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:12:02.589959+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "revenue",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "32765000000"
+       },
+       {
+        "calculation": [
+         {
+          "args": [
+           "operating_income",
+           "revenue"
+          ],
+          "op": "divide",
+          "value": "0.2199603235159468945521135358"
+         }
+        ],
+        "checks": [
+         "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "operating_margin",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 8,
+           "table": "170"
+          },
+          "name": "operating_income",
+          "original_text": "7,207",
+          "passage_id": "7019000470:item_8:t170r8",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "7207"
+         },
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 1,
+           "table": "170"
+          },
+          "name": "revenue",
+          "original_text": "$ 32,765",
+          "passage_id": "7019000470:item_8:t170r1",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "32765"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "ratio",
+        "value": "0.2199603235159468945521135358"
+       },
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+        ],
+        "claims": [],
+        "issues": [],
+        "metric": "capex",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 18,
+           "table": "175"
+          },
+          "name": "capex",
+          "original_text": "(1,577)",
+          "passage_id": "7019000470:item_8:t175r18",
+          "period": "2018",
+          "scale": "millions",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "-1577"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "-1577000000"
+       }
+      ],
+      "outcome": "completed",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "capex": {
+         "passage_ids": [
+          "7019000470:item_8:t175r18",
+          "7019000470:item_7:t164r2",
+          "7019000470:item_7:t166r8",
+          "7019000470:item_7:p240"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "operating_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r8",
+          "7019000470:item_7:t80r6",
+          "7019000470:item_7:t150r6",
+          "7019000470:item_7:t104r7"
+         ],
+         "reason": null,
+         "status": "found"
+        },
+        "revenue": {
+         "passage_ids": [
+          "7019000470:item_8:t170r1",
+          "7019000470:item_6:t22r2",
+          "7019000470:item_8:t249r7",
+          "7019000470:item_8:t170r3"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "revenue",
+        "operating_margin",
+        "capex"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "capex": {
+         "accession": "0001558370-19-000470",
+         "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 1577000000
+        },
+        "operating_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "OperatingIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 7207000000
+        },
+        "revenue": {
+         "accession": "0001558370-19-000470",
+         "concept": "Revenues",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 32765000000
+        }
+       }
+      },
+      "unresolved": []
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:12:02.600962+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2018\n\nSource: 10-K accession 0001558370-19-000470, period ending 2018-12-31, filed 2019-02-07 ([original](https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm), sha256 `252d5b98ace7`, retrieved 2026-11-07T14:40:15.172098+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| revenue | FY2018 | 32,765 million USD | accepted |\n| operating\\_margin | FY2018 | 22.0% | accepted |\n| capex | FY2018 | -1,577 million USD | accepted |\n\n## Calculations and sources\n\n**revenue (FY2018)**\n- revenue = $ 32,765 (millions, 2018) from passage `7019000470:item_8:t170r1`\n- check: XBRL Revenues as reported in 0001558370-19-000470: 32765000000 \\(agrees\\)\n\n**operating\\_margin (FY2018)**\n- operating\\_income = 7,207 (millions, 2018) from passage `7019000470:item_8:t170r8`\n- revenue = $ 32,765 (millions, 2018) from passage `7019000470:item_8:t170r1`\n- divide(operating\\_income, revenue) = 0.2199603235159468945521135358\n- check: XBRL OperatingIncomeLoss / Revenues = 0.2200 \\(agrees\\)\n\n**capex (FY2018)**\n- capex = \\(1,577\\) (millions, 2018) from passage `7019000470:item_8:t175r18`\n- check: XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 \\(agrees\\)\n\n## Unresolved and missing information\n\n- none\n\n## Run\n\n- Outcome: completed\n- Model: qwen Qwen/Qwen3-4B (contract finsight-report-v1)\n- Generated: 2026-11-07T15:12:02.597868+00:00\n- Usage: \\{'attempts': 2, 'input\\_tokens': '4379', 'output\\_tokens': '839', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "completed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL Revenues as reported in 0001558370-19-000470: 32765000000 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "revenue",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 1,
+            "table": "170"
+           },
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "USD",
+         "value": "32765000000"
+        },
+        {
+         "calculation": [
+          {
+           "args": [
+            "operating_income",
+            "revenue"
+           ],
+           "op": "divide",
+           "value": "0.2199603235159468945521135358"
+          }
+         ],
+         "checks": [
+          "XBRL OperatingIncomeLoss / Revenues = 0.2200 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "operating_margin",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 8,
+            "table": "170"
+           },
+           "name": "operating_income",
+           "original_text": "7,207",
+           "passage_id": "7019000470:item_8:t170r8",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "7207"
+          },
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 1,
+            "table": "170"
+           },
+           "name": "revenue",
+           "original_text": "$ 32,765",
+           "passage_id": "7019000470:item_8:t170r1",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "32765"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "ratio",
+         "value": "0.2199603235159468945521135358"
+        },
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL PaymentsToAcquirePropertyPlantAndEquipment as reported in 0001558370-19-000470: 1577000000 (agrees)"
+         ],
+         "claims": [],
+         "issues": [],
+         "metric": "capex",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 18,
+            "table": "175"
+           },
+           "name": "capex",
+           "original_text": "(1,577)",
+           "passage_id": "7019000470:item_8:t175r18",
+           "period": "2018",
+           "scale": "millions",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "-1577"
+          }
+         ],
+         "period": "FY2018",
+         "status": "accepted",
+         "unit": "USD",
+         "value": "-1577000000"
+        }
+       ],
+       "generated_at": "2026-11-07T15:12:02.597868+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "Qwen/Qwen3-4B",
+        "provider": "qwen"
+       },
+       "outcome": "completed",
+       "period": "FY2018",
+       "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source.",
+       "unresolved": [],
+       "usage": {
+        "attempts": 2,
+        "cost_usd": "0",
+        "input_tokens": "4379",
+        "output_tokens": "839",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "305014ed15bea75cb0f849e515e7bbb7b5b729ebb2fe689ebc7917052ff25643"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:12:02.604937+00:00",
+     "detail": {
+      "reason": null,
+      "status": "completed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:11:13.767442+00:00",
+    "finished_at": "2026-11-07 15:12:02.604937+00:00",
+    "id": "f80787f0-745c-4d10-b96f-68dfdc0bdd11",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "Qwen/Qwen3-4B",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {
+     "malformed_output": 1
+    },
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2018",
+     "question": "Using 3M's FY2018 annual report, report revenue, operating margin and capital expenditure. Show the calculations and cite each source."
+    },
+    "stage": null,
+    "status": "completed",
+    "updated_at": "2026-11-07 15:12:02.604937+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:11:55.072993+00:00",
+     "error": null,
+     "latency_ms": 8202,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"},{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_6:t22r2\",\"original_text\":\"$ 32,765\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"operating_margin\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"operating_income\",\"passage_id\":\"7019000470:item_8:t170r8\",\"original_text\":\"7,207\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"},{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[{\"op\":\"divide\",\"args\":[\"operating_income\",\"revenue\"]}],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"capex\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"capex\",\"passage_id\":\"7019000470:item_8:t175r18\",\"original_text\":\"(1,577)\",\"value\":\",\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2181,
+      "output_tokens": 438
+     }
+    },
+    {
+     "attempt": 2,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:12:02.566164+00:00",
+     "error": null,
+     "latency_ms": 7487,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"revenue\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"32765\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"operating_margin\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"operating_income\",\"passage_id\":\"7019000470:item_8:t170r8\",\"original_text\":\"7,207\",\"value\":\"7207\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"},{\"name\":\"revenue\",\"passage_id\":\"7019000470:item_8:t170r1\",\"original_text\":\"$ 32,765\",\"value\":\"32765\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[{\"op\":\"divide\",\"args\":[\"operating_income\",\"revenue\"]}],\"unit\":\"ratio\",\"explanation\":[],\"missing\":null},{\"metric\":\"capex\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"capex\",\"passage_id\":\"7019000470:item_8:t175r18\",\"original_text\":\"(1,577)\",\"value\":\"-1577\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 2198,
+      "output_tokens": 401
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 64939,
+     "id": "7019000470:item_6:t22r2",
+     "location": {
+      "html_section": "item_6",
+      "page": null,
+      "row": 2,
+      "table": "22"
+     },
+     "section": "item_6",
+     "start_offset": 64799,
+     "text": "Net sales | 2018*: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109 | 2015: $ 30,274 | 2014: $ 31,821  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 161988,
+     "id": "7019000470:item_7:p240",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": null,
+      "table": null
+     },
+     "section": "item_7",
+     "start_offset": 161256,
+     "text": "Investments in property, plant and equipment enable growth across many diverse markets, helping to meet product demand and increasing manufacturing efficiency. In 2018, 63% of 3M\u2019s capital spending was within the United States, followed by Europe, Middle East and Africa; Asia Pacific; and Latin America/Canada. 3M is increasing its investment in manufacturing and sourcing capability in order to more closely align its product capability with its sales in major geographic areas in order to best serve its customers throughout the world with proprietary, automated, efficient, safe and sustainable processes. Capital spending is discussed in more detail later in MD&A in the section entitled \u201cCash Flows from Investing Activities.\u201d"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 149303,
+     "id": "7019000470:item_7:t104r7",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 7,
+      "table": "104"
+     },
+     "section": "item_7",
+     "start_offset": 149150,
+     "text": "Operating income (millions) | 2018: $ 2,737 | 2017: $ 2,490 | 2016: $ 2,528  [table: Industrial Business (37.4% of consolidated sales):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 157175,
+     "id": "7019000470:item_7:t150r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "150"
+     },
+     "section": "item_7",
+     "start_offset": 157024,
+     "text": "Operating income (millions) | 2018: $ 1,027 | 2017: $ 1,004 | 2016: $ 1,054  [table: Consumer Business (14.6% of consolidated sales):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 197774,
+     "id": "7019000470:item_7:t164r2",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 2,
+      "table": "164"
+     },
+     "section": "item_7",
+     "start_offset": 197609,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: $(1,577) | 2017: $(1,373) | 2016: $(1,420)  [table: Cash Flows from Investing Activities:; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 211702,
+     "id": "7019000470:item_7:t166r8",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 8,
+      "table": "166"
+     },
+     "section": "item_7",
+     "start_offset": 211543,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Free Cash Flow (non-GAAP measure):; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 129531,
+     "id": "7019000470:item_7:t80r6",
+     "location": {
+      "html_section": "item_7",
+      "page": null,
+      "row": 6,
+      "table": "80"
+     },
+     "section": "item_7",
+     "start_offset": 129384,
+     "text": "Operating income margin | 2018: 22.0% | 2017: 24.3% | 2016: 23.3% | 2018 versus 2017: (2.3)% | 2017 versus 2016: 1.0%  [table: Operating Expenses:]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236084,
+     "id": "7019000470:item_8:t170r1",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 1,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 235973,
+     "text": "Net sales | 2018: $ 32,765 | 2017: $ 31,657 | 2016: $ 30,109  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236194,
+     "id": "7019000470:item_8:t170r3",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 3,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 236085,
+     "text": "Cost of sales | 2018: 16,682 | 2017: 16,055 | 2016: 15,118  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 236819,
+     "id": "7019000470:item_8:t170r8",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 8,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 236710,
+     "text": "Operating income | 2018: 7,207 | 2017: 7,692 | 2016: 7,027  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 254402,
+     "id": "7019000470:item_8:t175r18",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 18,
+      "table": "175"
+     },
+     "section": "item_8",
+     "start_offset": 254254,
+     "text": "Purchases of property, plant and equipment (PP&E) | 2018: (1,577) | 2017: (1,373) | 2016: (1,420)  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 566339,
+     "id": "7019000470:item_8:t249r7",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 7,
+      "table": "249"
+     },
+     "section": "item_8",
+     "start_offset": 566237,
+     "text": "Sales and settlements | 2018: (3) | 2017: (3) | 2016: (4)  [table: Table of Contents; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-07 15:12:02.600275+00:00",
+    "json_path": ".finsight/artifacts/reports/f80787f0-745c-4d10-b96f-68dfdc0bdd11/29714c6a-03e4-4d11-bf5c-15e2c0c37162/report.json",
+    "markdown_path": ".finsight/artifacts/reports/f80787f0-745c-4d10-b96f-68dfdc0bdd11/29714c6a-03e4-4d11-bf5c-15e2c0c37162/report.md",
+    "sha256": "305014ed15bea75cb0f849e515e7bbb7b5b729ebb2fe689ebc7917052ff25643"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0001558370-19-000470",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0001558370-19-000470/mmm-20181231x10k.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2019-02-07",
+     "fiscal_year": 2018,
+     "form": "10-K",
+     "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2018-12-31",
+     "retrieved_at": "2026-11-07 15:26:49.993552+00:00",
+     "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+     "size_bytes": 10020720,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-07 15:11:13.796108+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": true,
+       "max_tokens": 3500,
+       "model": "Qwen/Qwen3-4B",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:12:02.608091+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:12:03.994505+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261107T151203952296Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-07T15:12:03.952296+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "net_income": {
+        "passage_ids": [
+         "7019000470:item_8:t170r14",
+         "7019000470:item_8:t182r2",
+         "7019000470:item_6:t22r3",
+         "7019000470:item_8:t170r13"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0001558370-19-000470",
+       "amendments": [],
+       "filing_date": "2019-02-07",
+       "form": "10-K",
+       "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+       "period_end": "2018-12-31",
+       "reason": "original 10-K with report date 2018-12-31 for FY2018",
+       "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+       "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+      },
+      "fiscal_year": 2018,
+      "metrics": [
+       "net_income"
+      ],
+      "passages": [
+       {
+        "id": "7019000470:item_8:t170r14",
+        "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t182r2",
+        "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Earnings Per Share Computations; units: millions]"
+       },
+       {
+        "id": "7019000470:item_6:t22r3",
+        "text": "Net income attributable to 3M | 2018*: 5,349 | 2017: 4,858 | 2016: 5,050 | 2015: 4,833 | 2014: 4,956  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r13",
+        "text": "Less: Net income attributable to noncontrolling interest | 2018: 14 | 2017: 11 | 2016: 8  [table: Years ended December 31; units: millions]"
+       }
+      ],
+      "period": "FY2018",
+      "xbrl": {
+       "net_income": {
+        "accession": "0001558370-19-000470",
+        "concept": "NetIncomeLoss",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 5349000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:12:23.591477+00:00",
+     "detail": {
+      "reason": "malformed model output after one repair: 1 validation error for ReportOutput",
+      "status": "failed"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:12:23.600283+00:00",
+     "detail": {
+      "findings": [],
+      "reason": "malformed model output after one repair: 1 validation error for ReportOutput",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "net_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r14",
+          "7019000470:item_8:t182r2",
+          "7019000470:item_6:t22r3",
+          "7019000470:item_8:t170r13"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "net_income"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "net_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "NetIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 5349000000
+        }
+       }
+      },
+      "status": "failed"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:12:23.606871+00:00",
+     "detail": {
+      "findings": [],
+      "outcome": "failed",
+      "reason": "malformed model output after one repair: 1 validation error for ReportOutput",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "net_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r14",
+          "7019000470:item_8:t182r2",
+          "7019000470:item_6:t22r3",
+          "7019000470:item_8:t170r13"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "net_income"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "net_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "NetIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 5349000000
+        }
+       }
+      },
+      "unresolved": [
+       "malformed model output after one repair: 1 validation error for ReportOutput"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:12:23.617243+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2018\n\nSource: 10-K accession 0001558370-19-000470, period ending 2018-12-31, filed 2019-02-07 ([original](https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm), sha256 `252d5b98ace7`, retrieved 2026-11-07T14:40:15.172098+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- malformed model output after one repair: 1 validation error for ReportOutput\n\n## Run\n\n- Outcome: failed\n- Model: qwen Qwen/Qwen3-4B (contract finsight-report-v1)\n- Generated: 2026-11-07T15:12:23.611444+00:00\n- Usage: \\{'attempts': 2, 'input\\_tokens': '1789', 'output\\_tokens': '1067', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "failed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "findings": [],
+       "generated_at": "2026-11-07T15:12:23.611444+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 3500,
+        "model": "Qwen/Qwen3-4B",
+        "provider": "qwen"
+       },
+       "outcome": "failed",
+       "period": "FY2018",
+       "question": "What was 3M's FY2018 net income?",
+       "unresolved": [
+        "malformed model output after one repair: 1 validation error for ReportOutput"
+       ],
+       "usage": {
+        "attempts": 2,
+        "cost_usd": "0",
+        "input_tokens": "1789",
+        "output_tokens": "1067",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "a23894436337e44329072fa8847a831556d1d04c5c2384bb8a158ef366bdfe53"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:12:23.622033+00:00",
+     "detail": {
+      "reason": "malformed model output after one repair: 1 validation error for ReportOutput",
+      "status": "failed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:11:13.795181+00:00",
+    "finished_at": "2026-11-07 15:12:23.622033+00:00",
+    "id": "80d6cc40-1d74-4e6b-8487-a1f5722290a2",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": true,
+     "max_tokens": 3500,
+     "model": "Qwen/Qwen3-4B",
+     "provider": "qwen"
+    },
+    "outcome_reason": "malformed model output after one repair: 1 validation error for ReportOutput",
+    "repairs": {
+     "malformed_output": 1
+    },
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2018",
+     "question": "What was 3M's FY2018 net income?"
+    },
+    "stage": null,
+    "status": "failed",
+    "updated_at": "2026-11-07 15:12:23.622033+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:12:13.149549+00:00",
+     "error": null,
+     "latency_ms": 9148,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"net_income\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"original_text\",\"passage_id\":\"7019000470:item_8:t170r14\",\"original_text\":\"$ 5,349\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 886,
+      "output_tokens": 497
+     }
+    },
+    {
+     "attempt": 2,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:12:23.588277+00:00",
+     "error": null,
+     "latency_ms": 10434,
+     "model": "Qwen/Qwen3-4B",
+     "model_version": "Qwen/Qwen3-4B",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"net_income\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"original_text\",\"passage_id\":\"7019000470:item_8:t170r14\",\"original_text\":\"$ 5,349\",\"value\":\"\",\"scale\":\"millions\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 903,
+      "output_tokens": 570
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 65085,
+     "id": "7019000470:item_6:t22r3",
+     "location": {
+      "html_section": "item_6",
+      "page": null,
+      "row": 3,
+      "table": "22"
+     },
+     "section": "item_6",
+     "start_offset": 64940,
+     "text": "Net income attributable to 3M | 2018*: 5,349 | 2017: 4,858 | 2016: 5,050 | 2015: 4,833 | 2014: 4,956  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 237459,
+     "id": "7019000470:item_8:t170r13",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 13,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 237320,
+     "text": "Less: Net income attributable to noncontrolling interest | 2018: 14 | 2017: 11 | 2016: 8  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 237588,
+     "id": "7019000470:item_8:t170r14",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 14,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 237460,
+     "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 281870,
+     "id": "7019000470:item_8:t182r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "182"
+     },
+     "section": "item_8",
+     "start_offset": 281734,
+     "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Earnings Per Share Computations; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-07 15:12:23.616226+00:00",
+    "json_path": ".finsight/artifacts/reports/80d6cc40-1d74-4e6b-8487-a1f5722290a2/4dbb7f2c-fe2d-45b9-b2c5-d6561dc045f7/report.json",
+    "markdown_path": ".finsight/artifacts/reports/80d6cc40-1d74-4e6b-8487-a1f5722290a2/4dbb7f2c-fe2d-45b9-b2c5-d6561dc045f7/report.md",
+    "sha256": "a23894436337e44329072fa8847a831556d1d04c5c2384bb8a158ef366bdfe53"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [],
+   "events": [
+    {
+     "at": "2026-11-07 15:07:47.001933+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "qwen3-4b-finqa-v1",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:08:36.701564+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:08:36.725419+00:00",
+     "detail": {
+      "company": "MMM",
+      "evidence": {},
+      "filing": {},
+      "gap": "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)",
+      "metrics": [],
+      "passages": [],
+      "period": "FY2018",
+      "xbrl": {}
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:08:36.729440+00:00",
+     "detail": {
+      "reason": "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)",
+      "status": "gap"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:08:36.733652+00:00",
+     "detail": {
+      "findings": [],
+      "reason": "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)",
+      "research": {
+       "company": "MMM",
+       "evidence": {},
+       "filing": {},
+       "gap": "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)",
+       "metrics": [],
+       "period": "FY2018",
+       "xbrl": {}
+      },
+      "status": "gap"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:08:36.737560+00:00",
+     "detail": {
+      "findings": [],
+      "outcome": "insufficient_evidence",
+      "reason": "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)",
+      "research": {
+       "company": "MMM",
+       "evidence": {},
+       "filing": {},
+       "gap": "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)",
+       "metrics": [],
+       "period": "FY2018",
+       "xbrl": {}
+      },
+      "unresolved": [
+       "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:08:36.743251+00:00",
+     "detail": {
+      "markdown": "# MMM: FY2018\n\nSource: no filing was used (see unresolved information)\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- the question asks for no metric that FinSight can evidence from filings \\(supported: capex, net\\_income, operating\\_income, operating\\_margin, revenue\\)\n\n## Run\n\n- Outcome: insufficient\\_evidence\n- Model: qwen qwen3-4b-finqa-v1 (contract finsight-report-v1)\n- Generated: 2026-11-07T15:08:36.742697+00:00\n- Usage: \\{'attempts': 0, 'input\\_tokens': '0', 'output\\_tokens': '0', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "insufficient_evidence",
+      "report": {
+       "company": "MMM",
+       "contract": "finsight-report-v1",
+       "filing": {},
+       "findings": [],
+       "generated_at": "2026-11-07T15:08:36.742697+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "qwen3-4b-finqa-v1",
+        "provider": "qwen"
+       },
+       "outcome": "insufficient_evidence",
+       "period": "FY2018",
+       "question": "How many employees did 3M have in Antarctica in FY2018?",
+       "unresolved": [
+        "the question asks for no metric that FinSight can evidence from filings (supported: capex, net_income, operating_income, operating_margin, revenue)"
+       ],
+       "usage": {
+        "attempts": 0,
+        "cost_usd": "0",
+        "input_tokens": "0",
+        "output_tokens": "0",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "8d2c84e44ba8d0d83d9832ef31e593fe77c017de6538b1f9dc63c8f3b7a60042"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:08:36.745908+00:00",
+     "detail": {
+      "reason": null,
+      "status": "insufficient_evidence"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:07:47.000976+00:00",
+    "finished_at": "2026-11-07 15:08:36.745908+00:00",
+    "id": "732fa8be-91e1-43f4-8ec6-db095ca775d8",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "qwen3-4b-finqa-v1",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2018",
+     "question": "How many employees did 3M have in Antarctica in FY2018?"
+    },
+    "stage": null,
+    "status": "insufficient_evidence",
+    "updated_at": "2026-11-07 15:08:36.745908+00:00"
+   },
+   "model_attempts": [],
+   "passages": [],
+   "report": {
+    "created_at": "2026-11-07 15:08:36.742683+00:00",
+    "json_path": ".finsight/artifacts/reports/732fa8be-91e1-43f4-8ec6-db095ca775d8/8aed1c08-d243-4f79-9f8e-bc82b5910f15/report.json",
+    "markdown_path": ".finsight/artifacts/reports/732fa8be-91e1-43f4-8ec6-db095ca775d8/8aed1c08-d243-4f79-9f8e-bc82b5910f15/report.md",
+    "sha256": "8d2c84e44ba8d0d83d9832ef31e593fe77c017de6538b1f9dc63c8f3b7a60042"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [],
+   "events": [
+    {
+     "at": "2026-11-07 15:07:47.028080+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "qwen3-4b-finqa-v1",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:08:36.748338+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:08:37.495357+00:00",
+     "detail": {
+      "company": "MMM",
+      "evidence": {},
+      "filing": {},
+      "gap": "no 10-K for fiscal year 2031 (period end ~2031-12-31)",
+      "metrics": [
+       "revenue"
+      ],
+      "passages": [],
+      "period": "FY2031",
+      "xbrl": {}
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:08:37.505790+00:00",
+     "detail": {
+      "reason": "no 10-K for fiscal year 2031 (period end ~2031-12-31)",
+      "status": "gap"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:08:37.513314+00:00",
+     "detail": {
+      "findings": [],
+      "reason": "no 10-K for fiscal year 2031 (period end ~2031-12-31)",
+      "research": {
+       "company": "MMM",
+       "evidence": {},
+       "filing": {},
+       "gap": "no 10-K for fiscal year 2031 (period end ~2031-12-31)",
+       "metrics": [
+        "revenue"
+       ],
+       "period": "FY2031",
+       "xbrl": {}
+      },
+      "status": "gap"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:08:37.519252+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [],
+        "claims": [],
+        "issues": [
+         "no 10-K for fiscal year 2031 (period end ~2031-12-31)"
+        ],
+        "metric": "revenue",
+        "operands": [],
+        "period": "FY2031",
+        "status": "insufficient_evidence",
+        "unit": null,
+        "value": null
+       }
+      ],
+      "outcome": "insufficient_evidence",
+      "reason": "no 10-K for fiscal year 2031 (period end ~2031-12-31)",
+      "research": {
+       "company": "MMM",
+       "evidence": {},
+       "filing": {},
+       "gap": "no 10-K for fiscal year 2031 (period end ~2031-12-31)",
+       "metrics": [
+        "revenue"
+       ],
+       "period": "FY2031",
+       "xbrl": {}
+      },
+      "unresolved": [
+       "no 10-K for fiscal year 2031 (period end ~2031-12-31)"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:08:37.527076+00:00",
+     "detail": {
+      "markdown": "# MMM: FY2031\n\nSource: no filing was used (see unresolved information)\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| revenue | FY2031 | \u2014 | insufficient\\_evidence |\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- no 10-K for fiscal year 2031 \\(period end ~2031-12-31\\)\n\n## Run\n\n- Outcome: insufficient\\_evidence\n- Model: qwen qwen3-4b-finqa-v1 (contract finsight-report-v1)\n- Generated: 2026-11-07T15:08:37.526004+00:00\n- Usage: \\{'attempts': 0, 'input\\_tokens': '0', 'output\\_tokens': '0', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "insufficient_evidence",
+      "report": {
+       "company": "MMM",
+       "contract": "finsight-report-v1",
+       "filing": {},
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [],
+         "claims": [],
+         "issues": [
+          "no 10-K for fiscal year 2031 (period end ~2031-12-31)"
+         ],
+         "metric": "revenue",
+         "operands": [],
+         "period": "FY2031",
+         "status": "insufficient_evidence",
+         "unit": null,
+         "value": null
+        }
+       ],
+       "generated_at": "2026-11-07T15:08:37.526004+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "qwen3-4b-finqa-v1",
+        "provider": "qwen"
+       },
+       "outcome": "insufficient_evidence",
+       "period": "FY2031",
+       "question": "What was 3M's FY2031 revenue?",
+       "unresolved": [
+        "no 10-K for fiscal year 2031 (period end ~2031-12-31)"
+       ],
+       "usage": {
+        "attempts": 0,
+        "cost_usd": "0",
+        "input_tokens": "0",
+        "output_tokens": "0",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "8cbc8beb4deaa6bfc9e0872221c521368cab5090c992a59df0990f90ba02147b"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:08:37.530377+00:00",
+     "detail": {
+      "reason": null,
+      "status": "insufficient_evidence"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:07:47.027076+00:00",
+    "finished_at": "2026-11-07 15:08:37.530377+00:00",
+    "id": "42d9a6b6-570f-4de6-a150-2170831b4042",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "qwen3-4b-finqa-v1",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2031",
+     "question": "What was 3M's FY2031 revenue?"
+    },
+    "stage": null,
+    "status": "insufficient_evidence",
+    "updated_at": "2026-11-07 15:08:37.530377+00:00"
+   },
+   "model_attempts": [],
+   "passages": [],
+   "report": {
+    "created_at": "2026-11-07 15:08:37.526353+00:00",
+    "json_path": ".finsight/artifacts/reports/42d9a6b6-570f-4de6-a150-2170831b4042/ea49f16a-23d6-4022-8a9c-84cc15899f0f/report.json",
+    "markdown_path": ".finsight/artifacts/reports/42d9a6b6-570f-4de6-a150-2170831b4042/ea49f16a-23d6-4022-8a9c-84cc15899f0f/report.md",
+    "sha256": "8cbc8beb4deaa6bfc9e0872221c521368cab5090c992a59df0990f90ba02147b"
+   }
+  },
+  {
+   "claims": [],
+   "documents": [
+    {
+     "accession": "0001558370-19-000470",
+     "artifact_path": ".finsight/artifacts/sec/0000066740/0001558370-19-000470/mmm-20181231x10k.htm",
+     "cik": "0000066740",
+     "company": "3M CO",
+     "content_type": "text/html",
+     "filing_date": "2019-02-07",
+     "fiscal_year": 2018,
+     "form": "10-K",
+     "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "parser_version": "sec-html-1",
+     "period_end": "2018-12-31",
+     "retrieved_at": "2026-11-07 15:26:49.993552+00:00",
+     "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+     "size_bytes": 10020720,
+     "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+    }
+   ],
+   "events": [
+    {
+     "at": "2026-11-07 15:07:47.055128+00:00",
+     "detail": {
+      "model_config": {
+       "base_url": "<local-model-endpoint>",
+       "contract": "finsight-report-v1",
+       "enable_thinking": false,
+       "max_tokens": 2048,
+       "model": "qwen3-4b-finqa-v1",
+       "provider": "qwen"
+      }
+     },
+     "kind": "admitted",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:08:37.533222+00:00",
+     "detail": {
+      "worker": "<worker>"
+     },
+     "kind": "claimed",
+     "stage": null
+    },
+    {
+     "at": "2026-11-07 15:08:39.397385+00:00",
+     "detail": {
+      "cik": "0000066740",
+      "company": "3M CO",
+      "companyfacts_snapshot": {
+       "artifact_path": ".finsight/artifacts/sec/0000066740/companyfacts/20261107T150839346625Z.json",
+       "kind": "sec_companyfacts",
+       "retrieved_at": "2026-11-07T15:08:39.346625+00:00",
+       "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209",
+       "source_uri": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json"
+      },
+      "evidence": {
+       "net_income": {
+        "passage_ids": [
+         "7019000470:item_8:t170r14",
+         "7019000470:item_8:t182r2",
+         "7019000470:item_6:t22r3",
+         "7019000470:item_8:t170r13"
+        ],
+        "reason": null,
+        "status": "found"
+       }
+      },
+      "filing": {
+       "accession": "0001558370-19-000470",
+       "amendments": [],
+       "filing_date": "2019-02-07",
+       "form": "10-K",
+       "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+       "period_end": "2018-12-31",
+       "reason": "original 10-K with report date 2018-12-31 for FY2018",
+       "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+       "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+       "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+      },
+      "fiscal_year": 2018,
+      "metrics": [
+       "net_income"
+      ],
+      "passages": [
+       {
+        "id": "7019000470:item_8:t170r14",
+        "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Years ended December 31; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t182r2",
+        "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Earnings Per Share Computations; units: millions]"
+       },
+       {
+        "id": "7019000470:item_6:t22r3",
+        "text": "Net income attributable to 3M | 2018*: 5,349 | 2017: 4,858 | 2016: 5,050 | 2015: 4,833 | 2014: 4,956  [table: Table of Contents; units: millions]"
+       },
+       {
+        "id": "7019000470:item_8:t170r13",
+        "text": "Less: Net income attributable to noncontrolling interest | 2018: 14 | 2017: 11 | 2016: 8  [table: Years ended December 31; units: millions]"
+       }
+      ],
+      "period": "FY2018",
+      "xbrl": {
+       "net_income": {
+        "accession": "0001558370-19-000470",
+        "concept": "NetIncomeLoss",
+        "end": "2018-12-31",
+        "later_different_values": [],
+        "start": "2018-01-01",
+        "value": 5349000000
+       }
+      }
+     },
+     "kind": "stage_result",
+     "stage": "research"
+    },
+    {
+     "at": "2026-11-07 15:08:41.974538+00:00",
+     "detail": {
+      "attempts": 1,
+      "output": {
+       "findings": [
+        {
+         "explanation": [],
+         "metric": "net_income",
+         "missing": null,
+         "operands": [
+          {
+           "name": "v0",
+           "original_text": "$ 5,349",
+           "passage_id": "7019000470:item_8:t170r14",
+           "period": "2018",
+           "scale": "thousands",
+           "unit": "USD",
+           "value": "5349"
+          }
+         ],
+         "period": "FY2018",
+         "program": [],
+         "status": "answered",
+         "unit": "USD"
+        }
+       ],
+       "unresolved": []
+      },
+      "prompt_version": "finsight-report-v1.1",
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "analysis"
+    },
+    {
+     "at": "2026-11-07 15:08:41.985693+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "claims": [],
+        "issues": [],
+        "metric": "net_income",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 14,
+           "table": "170"
+          },
+          "name": "v0",
+          "original_text": "$ 5,349",
+          "passage_id": "7019000470:item_8:t170r14",
+          "period": "2018",
+          "scale": "thousands",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "5349"
+         }
+        ],
+        "period": "FY2018",
+        "status": "accepted",
+        "unit": "USD",
+        "value": "5349000"
+       }
+      ],
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "net_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r14",
+          "7019000470:item_8:t182r2",
+          "7019000470:item_6:t22r3",
+          "7019000470:item_8:t170r13"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "net_income"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "net_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "NetIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 5349000000
+        }
+       }
+      },
+      "status": "ok"
+     },
+     "kind": "stage_result",
+     "stage": "validation"
+    },
+    {
+     "at": "2026-11-07 15:08:41.992151+00:00",
+     "detail": {
+      "findings": [
+       {
+        "calculation": [],
+        "checks": [
+         "XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000 (differs)"
+        ],
+        "claims": [],
+        "issues": [
+         "net_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000"
+        ],
+        "metric": "net_income",
+        "operands": [
+         {
+          "location": {
+           "html_section": "item_8",
+           "page": null,
+           "row": 14,
+           "table": "170"
+          },
+          "name": "v0",
+          "original_text": "$ 5,349",
+          "passage_id": "7019000470:item_8:t170r14",
+          "period": "2018",
+          "scale": "thousands",
+          "source_period": "2018",
+          "unit": "USD",
+          "value": "5349"
+         }
+        ],
+        "period": "FY2018",
+        "status": "rejected",
+        "unit": "USD",
+        "value": "5349000"
+       }
+      ],
+      "outcome": "failed",
+      "research": {
+       "company": "3M CO",
+       "evidence": {
+        "net_income": {
+         "passage_ids": [
+          "7019000470:item_8:t170r14",
+          "7019000470:item_8:t182r2",
+          "7019000470:item_6:t22r3",
+          "7019000470:item_8:t170r13"
+         ],
+         "reason": null,
+         "status": "found"
+        }
+       },
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "gap": null,
+       "metrics": [
+        "net_income"
+       ],
+       "period": "FY2018",
+       "xbrl": {
+        "net_income": {
+         "accession": "0001558370-19-000470",
+         "concept": "NetIncomeLoss",
+         "end": "2018-12-31",
+         "later_different_values": [],
+         "start": "2018-01-01",
+         "value": 5349000000
+        }
+       }
+      },
+      "unresolved": [
+       "net_income FY2018: rejected (net_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000)"
+      ]
+     },
+     "kind": "stage_result",
+     "stage": "review"
+    },
+    {
+     "at": "2026-11-07 15:08:42.000919+00:00",
+     "detail": {
+      "markdown": "# 3M CO: FY2018\n\nSource: 10-K accession 0001558370-19-000470, period ending 2018-12-31, filed 2019-02-07 ([original](https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm), sha256 `252d5b98ace7`, retrieved 2026-11-07T14:40:15.172098+00:00); amounts as reported in this filing\n\n## Findings\n\n| Metric | Period | Value | Status |\n|---|---|---:|---|\n| net\\_income | FY2018 | 5 million USD | rejected |\n\n## Calculations and sources\n\n## Unresolved and missing information\n\n- net\\_income FY2018: rejected \\(net\\_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000\\)\n\n## Run\n\n- Outcome: failed\n- Model: qwen qwen3-4b-finqa-v1 (contract finsight-report-v1)\n- Generated: 2026-11-07T15:08:41.998915+00:00\n- Usage: \\{'attempts': 1, 'input\\_tokens': '890', 'output\\_tokens': '111', 'cost\\_usd': '0', 'unknown\\_outcomes': 0\\}\n",
+      "outcome": "failed",
+      "report": {
+       "company": "3M CO",
+       "contract": "finsight-report-v1",
+       "filing": {
+        "accession": "0001558370-19-000470",
+        "amendments": [],
+        "filing_date": "2019-02-07",
+        "form": "10-K",
+        "id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+        "period_end": "2018-12-31",
+        "reason": "original 10-K with report date 2018-12-31 for FY2018",
+        "retrieved_at": "2026-11-07T14:40:15.172098+00:00",
+        "sha256": "252d5b98ace772a61ae11df5bc7b99a465571b9adcb92b863adc096608817178",
+        "source_uri": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm"
+       },
+       "findings": [
+        {
+         "calculation": [],
+         "checks": [
+          "XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000 (differs)"
+         ],
+         "claims": [],
+         "issues": [
+          "net_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000"
+         ],
+         "metric": "net_income",
+         "operands": [
+          {
+           "location": {
+            "html_section": "item_8",
+            "page": null,
+            "row": 14,
+            "table": "170"
+           },
+           "name": "v0",
+           "original_text": "$ 5,349",
+           "passage_id": "7019000470:item_8:t170r14",
+           "period": "2018",
+           "scale": "thousands",
+           "source_period": "2018",
+           "unit": "USD",
+           "value": "5349"
+          }
+         ],
+         "period": "FY2018",
+         "status": "rejected",
+         "unit": "USD",
+         "value": "5349000"
+        }
+       ],
+       "generated_at": "2026-11-07T15:08:41.998915+00:00",
+       "model": {
+        "contract": "finsight-report-v1",
+        "max_tokens": 2048,
+        "model": "qwen3-4b-finqa-v1",
+        "provider": "qwen"
+       },
+       "outcome": "failed",
+       "period": "FY2018",
+       "question": "What was 3M's FY2018 net income?",
+       "unresolved": [
+        "net_income FY2018: rejected (net_income: 5349000 differs from XBRL NetIncomeLoss as reported in 0001558370-19-000470: 5349000000)"
+       ],
+       "usage": {
+        "attempts": 1,
+        "cost_usd": "0",
+        "input_tokens": "890",
+        "output_tokens": "111",
+        "unknown_outcomes": 0
+       }
+      },
+      "report_sha256": "e7e2ab4144380928b062b67edda0b5b22e8aa655decc5a83a4e149aec7f05b00"
+     },
+     "kind": "stage_result",
+     "stage": "reporting"
+    },
+    {
+     "at": "2026-11-07 15:08:42.004573+00:00",
+     "detail": {
+      "reason": null,
+      "status": "failed"
+     },
+     "kind": "finished",
+     "stage": null
+    }
+   ],
+   "job": {
+    "cancel_requested": false,
+    "created_at": "2026-11-07 15:07:47.054165+00:00",
+    "finished_at": "2026-11-07 15:08:42.004573+00:00",
+    "id": "b66455ba-0750-43a7-aa5a-682d83727584",
+    "model_config": {
+     "base_url": "<local-model-endpoint>",
+     "contract": "finsight-report-v1",
+     "enable_thinking": false,
+     "max_tokens": 2048,
+     "model": "qwen3-4b-finqa-v1",
+     "provider": "qwen"
+    },
+    "outcome_reason": null,
+    "repairs": {},
+    "request": {
+     "company": "MMM",
+     "cutoff_date": null,
+     "metrics": [],
+     "period": "FY2018",
+     "question": "What was 3M's FY2018 net income?"
+    },
+    "stage": null,
+    "status": "failed",
+    "updated_at": "2026-11-07 15:08:42.004573+00:00"
+   },
+   "model_attempts": [
+    {
+     "attempt": 1,
+     "cost_usd": null,
+     "created_at": "2026-11-07 15:08:41.971134+00:00",
+     "error": null,
+     "latency_ms": 2564,
+     "model": "qwen3-4b-finqa-v1",
+     "model_version": "qwen3-4b-finqa-v1",
+     "paid": false,
+     "provider": "qwen",
+     "reserved_usd": "0.000000",
+     "response": {
+      "text": "{\"findings\":[{\"metric\":\"net_income\",\"period\":\"FY2018\",\"status\":\"answered\",\"operands\":[{\"name\":\"v0\",\"passage_id\":\"7019000470:item_8:t170r14\",\"original_text\":\"$ 5,349\",\"value\":\"5349\",\"scale\":\"thousands\",\"unit\":\"USD\",\"period\":\"2018\"}],\"program\":[],\"unit\":\"USD\",\"explanation\":[],\"missing\":null}],\"unresolved\":[]}"
+     },
+     "stage": "analysis",
+     "status": "completed",
+     "stop_reason": "ok",
+     "usage": {
+      "input_tokens": 890,
+      "output_tokens": 111
+     }
+    }
+   ],
+   "passages": [
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 65085,
+     "id": "7019000470:item_6:t22r3",
+     "location": {
+      "html_section": "item_6",
+      "page": null,
+      "row": 3,
+      "table": "22"
+     },
+     "section": "item_6",
+     "start_offset": 64940,
+     "text": "Net income attributable to 3M | 2018*: 5,349 | 2017: 4,858 | 2016: 5,050 | 2015: 4,833 | 2014: 4,956  [table: Table of Contents; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 237459,
+     "id": "7019000470:item_8:t170r13",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 13,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 237320,
+     "text": "Less: Net income attributable to noncontrolling interest | 2018: 14 | 2017: 11 | 2016: 8  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 237588,
+     "id": "7019000470:item_8:t170r14",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 14,
+      "table": "170"
+     },
+     "section": "item_8",
+     "start_offset": 237460,
+     "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Years ended December 31; units: millions]"
+    },
+    {
+     "document_id": "sec:0001558370-19-000470:mmm-20181231x10k.htm",
+     "end_offset": 281870,
+     "id": "7019000470:item_8:t182r2",
+     "location": {
+      "html_section": "item_8",
+      "page": null,
+      "row": 2,
+      "table": "182"
+     },
+     "section": "item_8",
+     "start_offset": 281734,
+     "text": "Net income attributable to 3M | 2018: $ 5,349 | 2017: $ 4,858 | 2016: $ 5,050  [table: Earnings Per Share Computations; units: millions]"
+    }
+   ],
+   "report": {
+    "created_at": "2026-11-07 15:08:42.000223+00:00",
+    "json_path": ".finsight/artifacts/reports/b66455ba-0750-43a7-aa5a-682d83727584/76cb75dc-a42d-4108-a36c-edd5ee3d0bed/report.json",
+    "markdown_path": ".finsight/artifacts/reports/b66455ba-0750-43a7-aa5a-682d83727584/76cb75dc-a42d-4108-a36c-edd5ee3d0bed/report.md",
+    "sha256": "e7e2ab4144380928b062b67edda0b5b22e8aa655decc5a83a4e149aec7f05b00"
+   }
+  }
+ ],
+ "note": "3M FY2018 10-K (0001558370-19-000470) demo runs, 2026-11-07, prompt finsight-report-v1 (before v1.2); exported from the Compose database"
+}
