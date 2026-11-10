@@ -90,3 +90,30 @@ def test_every_requested_year_must_be_covered_by_a_placed_figure():
     unplaced = qa(answer_type="numeric", operands=[op("rd", "t1", "$1,821 million", "1821")])
     lenient = validate_qa(unplaced, SUPPLIED, {2018}, strict=False)
     assert lenient.coverage == "unverified" and lenient.status == "accepted"   # unknown, not a period rejection
+
+
+def test_claim_numbers_parse_fix_drops_trailing_punctuation():
+    from finsight.qa import claim_numbers
+    text = "net sales rose from 14,544 to 14,694, so margin improved"
+    assert claim_numbers(text, "v1.6") == ["14,544", "14,694,"]
+    assert claim_numbers(text, "parse") == ["14,544", "14,694"]
+
+
+def test_reference_exemptions_apply_only_inside_identified_spans():
+    from finsight.qa import claim_numbers
+    assert claim_numbers("December 31, 2022 revenue was 31 million", "v1.7") == ["2022", "31"]   # the figure 31 is still checked
+    assert claim_numbers("Item 9.01 lists the exhibits", "v1.7") == []
+    assert claim_numbers("Note 6 shows 6% growth", "v1.7") == ["6"]
+    assert claim_numbers("acquired on November 2, 2021, for 389", "v1.7") == ["2021", "389"]
+    assert claim_numbers("Exhibit 21.1 and Section 12(b)", "v1.7") == []
+    assert claim_numbers("dec 3.5 million", "v1.7") == ["3.5"]                                       # not a date: decimal follows
+    assert claim_numbers("revenue of 1,234.5 and 0.62% and (5,022)", "v1.7") == ["1,234.5", "0.62", "5,022"]
+    assert claim_numbers("Item 9.01", "parse") == ["9.01"]                                           # policy off: still a figure
+
+
+def test_date_day_number_no_longer_rejects_a_supported_claim():
+    passage = Passage(id="p1", document_id="d", section="s", location=PassageLocation(), start=0, end=60,
+                      text="Total assets were $9,912 million at the end of 2022.")
+    out = qa(answer_type="boolean", boolean="yes", claims=[{"text": "Assets were 9,912 million at December 31, 2022.", "passage_ids": ["p1"]}])
+    assert validate_qa(out, {"p1": passage}, claim_policy="v1.6").status == "rejected"
+    assert validate_qa(out, {"p1": passage}, claim_policy="v1.7").status == "accepted"

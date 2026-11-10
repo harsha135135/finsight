@@ -14,7 +14,46 @@ from finsight.contracts.qa import QAOutput
 from finsight.qa import requested_years, validate_qa
 from modelforge import stats
 
-FISCAL = {k: tuple(v) if v else None for k, v in json.loads(Path("evals/financebench/fiscal-years-dev-v1.json").read_text())["fiscal_year_end"].items()}
+DEV_FISCAL_FILES = ("evals/financebench/fiscal-years-dev-v1.json",)
+
+# Scoring versions (validator claim policy + scorer rules). Records pin the version they were scored with, so their
+# scores can be regenerated exactly. "v1.6": frozen 2026-11-10. "v1.7-parse": bug fixes only (claim numbers parsed
+# without trailing punctuation; an explicit gold unit scale honoured when the question states none). "v1.7": plus the
+# policy change exempting dates' day numbers and numbered document references in claims.
+VERSIONS = {"v1.6": {"claim_policy": "v1.6", "gold_unit_scale": False},
+            "v1.6+unit": {"claim_policy": "v1.6", "gold_unit_scale": True},
+            "v1.7-parse": {"claim_policy": "parse", "gold_unit_scale": True},
+            "v1.7": {"claim_policy": "v1.7", "gold_unit_scale": True}}
+CURRENT = "v1.7"
+
+
+def load_fiscal(paths=DEV_FISCAL_FILES) -> dict:
+    table: dict = {}
+    for path in paths:
+        for key, value in json.loads(Path(path).read_text())["fiscal_year_end"].items():
+            value = tuple(value) if value else None
+            if key in table and table[key] != value:
+                raise ValueError(f"conflicting fiscal-year entries for {key} in {path}")
+            table[key] = value
+    return table
+
+
+FISCAL = load_fiscal()
+
+
+def company_key(company: str) -> str:
+    return company.upper().replace(" ", "").replace("&", "")
+
+
+def fiscal_year_end(company: str | None, table: dict | None = None):
+    """None for FinQA items (no company); an unknown company is an error, never a silent calendar-year fallback."""
+    if company is None:
+        return None
+    table = FISCAL if table is None else table
+    key = company_key(company)
+    if key not in table:
+        raise KeyError(f"no fiscal-year entry for company {company!r} (key {key!r})")
+    return table[key]
 
 
 def _load(run: Path) -> tuple[dict, dict]:
@@ -32,9 +71,10 @@ def _parse(pred: dict):
         return None, "invalid"
 
 
-def _validate(output, item: dict, requested: set[int], company: str | None, strict: bool):
+def _validate(output, item: dict, requested: set[int], company: str | None, strict: bool, version: str = CURRENT, fiscal: dict | None = None):
     supplied = {p["id"]: Passage.model_validate(p) for p in item["passages"]}
-    return validate_qa(output, supplied, requested, fiscal_year_end=FISCAL.get((company or "").upper().replace(" ", "").replace("&", "")), strict=strict)
+    return validate_qa(output, supplied, requested, fiscal_year_end=fiscal_year_end(company, fiscal), strict=strict,
+                       claim_policy=VERSIONS[version]["claim_policy"])
 
 
 def _scale_for(question: str) -> Decimal:
@@ -42,13 +82,19 @@ def _scale_for(question: str) -> Decimal:
     return Decimal(10) ** (9 if "billion" in q else 6 if "million" in q else 3 if "thousand" in q else 0)
 
 
-def numeric_outcome(value: str | None, gold: dict, question: str) -> str:
+_GOLD_UNIT_SCALE = {"USD thousands": 3, "USD millions": 6, "USD billions": 9}
+
+
+def numeric_outcome(value: str | None, gold: dict, question: str, version: str = CURRENT) -> str:
     if value is None:
         return "no_value"
     v, g = Decimal(value), Decimal(gold["gold_value"])
     decimals = gold["decimals"]
     percent = gold["gold_unit"] in ("percent", "percentage points")
-    base = v / _scale_for(question) if not percent else v
+    scale = _scale_for(question)
+    if VERSIONS[version]["gold_unit_scale"] and scale == 1 and gold["gold_unit"] in _GOLD_UNIT_SCALE:
+        scale = Decimal(10) ** _GOLD_UNIT_SCALE[gold["gold_unit"]]
+    base = v / scale if not percent else v
 
     def close(x: Decimal) -> bool:
         if gold["sign_policy"] == "magnitude":
@@ -212,7 +258,9 @@ def period_verdict(result) -> str:
     return "passed"
 
 
-def score_controls_v2(run: Path) -> dict:
+def score_controls_v2(run: Path, version: str = CURRENT) -> dict:
+    """Native period controls: per role, period verdicts of numeric answers plus how many are accepted in strict and
+    lenient mode (on negatives every accepted numeric answer used wrong-period evidence)."""
     items, preds = _load(run)
     out = {"negative": Counter(), "positive": Counter()}
     for item_id, item in items.items():
@@ -221,8 +269,12 @@ def score_controls_v2(run: Path) -> dict:
         if failure or output.answer_type != "numeric":
             out[role]["insufficient_evidence" if output and output.answer_type == "insufficient_evidence" else "other_or_invalid"] += 1
             continue
-        res = _validate(output, item, requested_years(item["question"]), None, strict=False)
+        requested = requested_years(item["question"])
+        res = _validate(output, item, requested, None, strict=False, version=version)
+        strict = _validate(output, item, requested, None, strict=True, version=version)
         verdict = period_verdict(res)
+        out[role]["accepted_lenient"] += int(res.status == "accepted")
+        out[role]["accepted_strict"] += int(strict.status == "accepted")
         if role == "positive":
             correct = finqa_value_matches(res, output, item.get("gold_answer"))
             out[role][("correct_" if correct else "wrong_") + verdict] += 1
@@ -231,43 +283,77 @@ def score_controls_v2(run: Path) -> dict:
     return {k: dict(v) for k, v in out.items()}
 
 
-def trust_table(run: Path, gold: dict, review: dict | None = None) -> dict:
-    """Per answer type: coverage (questions with an accepted answer), correct among accepted (strict and lenient),
-    unsupported (answered but rejected), declined, invalid; for gold-matching numeric answers, period rejections vs
-    strict-only rejections because a period could not be placed."""
+def trust_rows(run: Path, gold: dict, review: dict | None = None, version: str = CURRENT, fiscal: dict | None = None) -> list[dict]:
+    """One row per question: answer type, correctness, strict and lenient status (for tables and version transitions)."""
     items, preds = _load(run)
-    table = {k: Counter() for k in ("numeric", "boolean", "narrative")}
+    rows = []
     for item_id, item in items.items():
         g = gold["questions"][item_id]
-        kind, t = g["expected_type"], table[g["expected_type"]]
-        t["n"] += 1
+        kind = g["expected_type"]
+        row = {"id": item_id, "company": item["company"], "kind": kind, "outcome": None, "correct": False,
+               "strict": None, "lenient": None, "period": None, "gold_value_but_rejected": None, "strict_only_unverified": False}
         output, failure = _parse(preds[item_id])
         if failure:
-            t["invalid_or_operational"] += 1
+            rows.append(row | {"outcome": "invalid_or_operational"})
             continue
         if output.answer_type == "insufficient_evidence":
-            t["declined"] += 1
+            rows.append(row | {"outcome": "declined"})
             continue
         requested = set(g["requested_years"])
-        strict = _validate(output, item, requested, item["company"], True)
-        lenient = _validate(output, item, requested, item["company"], False)
+        strict = _validate(output, item, requested, item["company"], True, version, fiscal)
+        lenient = _validate(output, item, requested, item["company"], False, version, fiscal)
         if kind == "numeric":
-            correct = output.answer_type == "numeric" and lenient.value is not None and numeric_outcome(lenient.value, g, item["question"]) == "correct"
+            correct = output.answer_type == "numeric" and lenient.value is not None and numeric_outcome(lenient.value, g, item["question"], version) == "correct"
             if output.answer_type == "numeric" and lenient.status != "accepted":
-                loose = _validate(output, item, set(), item["company"], False)          # value without period constraints
-                if loose.value is not None and numeric_outcome(loose.value, g, item["question"]) == "correct":
-                    t["gold_value_but_rejected_" + period_verdict(lenient)] += 1
-            if correct and strict.status != "accepted" and lenient.status == "accepted":
-                t["gold_value_strict_only_rejection_unverified"] += 1
+                loose = _validate(output, item, set(), item["company"], False, version, fiscal)    # value without period constraints
+                if loose.value is not None and numeric_outcome(loose.value, g, item["question"], version) == "correct":
+                    row["gold_value_but_rejected"] = period_verdict(lenient)
+            row["strict_only_unverified"] = correct and strict.status != "accepted" and lenient.status == "accepted"
         elif kind == "boolean":
             correct = output.answer_type == "boolean" and output.boolean == g["gold_boolean"]
         else:
             correct = (review or {}).get(f"{run.name}::{item_id}") == "correct"
-        for mode, res in (("strict", strict), ("lenient", lenient)):
-            if res.status == "accepted":
+        rows.append(row | {"outcome": "answered", "correct": correct, "strict": strict.status, "lenient": lenient.status,
+                           "period": period_verdict(lenient) if lenient.operands else None,
+                           "issues": lenient.issues + [i for c in lenient.claims for i in c.issues]})
+    return rows
+
+
+def trust_table(run: Path, gold: dict, review: dict | None = None, version: str = CURRENT, fiscal: dict | None = None) -> dict:
+    """Per answer type: coverage (questions with an accepted answer), correct among accepted (strict and lenient),
+    unsupported (answered but rejected), declined, invalid; for gold-matching numeric answers, period rejections vs
+    strict-only rejections because a period could not be placed."""
+    table = {k: Counter() for k in ("numeric", "boolean", "narrative")}
+    for r in trust_rows(run, gold, review, version, fiscal):
+        t = table[r["kind"]]
+        t["n"] += 1
+        if r["outcome"] in ("invalid_or_operational", "declined"):
+            t["invalid_or_operational" if r["outcome"] == "invalid_or_operational" else "declined"] += 1
+            continue
+        if r["gold_value_but_rejected"]:
+            t["gold_value_but_rejected_" + r["gold_value_but_rejected"]] += 1
+        if r["strict_only_unverified"]:
+            t["gold_value_strict_only_rejection_unverified"] += 1
+        for mode in ("strict", "lenient"):
+            if r[mode] == "accepted":
                 t[f"accepted_{mode}"] += 1
-                t[f"correct_accepted_{mode}"] += int(correct)
-        if lenient.status != "accepted":
+                t[f"correct_accepted_{mode}"] += int(r["correct"])
+        if r["lenient"] != "accepted":
             t["unsupported"] += 1
-        t["correct_any"] += int(correct)
+        t["correct_any"] += int(r["correct"])
     return {k: dict(v) for k, v in table.items()}
+
+
+def transitions(before: list[dict], after: list[dict]) -> dict:
+    """Acceptance changes between two scoring versions of the same run, by mode and correctness."""
+    b = {r["id"]: r for r in before}
+    out = Counter()
+    for r in after:
+        old = b[r["id"]]
+        for mode in ("strict", "lenient"):
+            was, now = old[mode] == "accepted", r[mode] == "accepted"
+            if was != now:
+                out[f"{mode}_{'newly_accepted' if now else 'newly_rejected'}_{'correct' if r['correct'] else 'incorrect'}"] += 1
+        if old["correct"] != r["correct"]:
+            out["correctness_changed"] += 1
+    return dict(out)

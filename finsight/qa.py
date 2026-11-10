@@ -86,10 +86,31 @@ def requested_years(question: str) -> set[int]:
     return years
 
 
-def _claim(claim, supplied: dict[str, Passage], result: Decimal | None) -> ClaimCheck:
+# Claim-check policies. "v1.6": every digit run (a trailing comma is kept: "14,694," fails to match). "parse": numbers
+# are digit groups only (fixes the trailing comma). "v1.7": "parse" plus two exempt reference spans that are not
+# financial figures: the day in a calendar date ("December 31, 2022", "May 31") and numbered references to a
+# document part ("Item 9.01", "Note 6", "Exhibit 21.1"). Only digits inside such a span are exempt.
+CLAIM_POLICIES = ("v1.6", "parse", "v1.7")
+_MONTH_NAME = r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?"
+_REFERENCE_SPANS = re.compile(
+    rf"(?i)\b{_MONTH_NAME}\s+\d{{1,2}}(?:st|nd|rd|th)?\b(?!\.\d)(?!,\d)"                          # date: month name + day
+    r"|\b(?:item|note|part|exhibit|section|schedule|rule)\s+\d+[a-z]?(?:\.\d+)*\b(?![\d,]*\s*%)")   # document reference
+
+
+def claim_numbers(text: str, policy: str = "v1.7") -> list[str]:
+    if policy not in CLAIM_POLICIES:
+        raise ValueError(f"unknown claim policy {policy!r}")
+    if policy == "v1.6":
+        return re.findall(r"\d[\d,]*(?:\.\d+)?", text)
+    if policy == "v1.7":
+        text = _REFERENCE_SPANS.sub(lambda m: " " * len(m.group(0)), text)
+    return re.findall(r"(?<![\d.])\d{1,3}(?:,\d{3})+(?:\.\d+)?(?!\d)|(?<![\d.,])\d+(?:\.\d+)?(?!\d)", text)
+
+
+def _claim(claim, supplied: dict[str, Passage], result: Decimal | None, policy: str = "v1.7") -> ClaimCheck:
     issues = [f"cites passage {p} that was not supplied" for p in claim.passage_ids if p not in supplied]
     cited = " ".join(supplied[p].text for p in claim.passage_ids if p in supplied)
-    for number in re.findall(r"\d[\d,]*(?:\.\d+)?", claim.text):
+    for number in claim_numbers(claim.text, policy):
         plain = number.replace(",", "")
         if re.fullmatch(r"(19|20)\d{2}", plain) or _squash(number) in _squash(cited):
             continue
@@ -112,7 +133,7 @@ def _result_unit(output: QAOutput) -> str | None:
 
 
 def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[int] | None = None, *,
-                fiscal_year_end: tuple[int, int] | None = None, strict: bool = True) -> QAResult:
+                fiscal_year_end: tuple[int, int] | None = None, strict: bool = True, claim_policy: str = "v1.7") -> QAResult:
     requested = requested or set()
     kind = output.answer_type
     if kind == "insufficient_evidence":
@@ -194,7 +215,7 @@ def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[i
     if kind in ("boolean", "narrative"):
         if not output.claims:
             issues.append(f"{kind} answer without cited claims")
-    claims = [_claim(c, supplied, value) for c in output.claims]
+    claims = [_claim(c, supplied, value, claim_policy) for c in output.claims]
     if kind in ("boolean", "narrative"):
         issues += [f"claim {n}: {i}" for n, c in enumerate(claims) for i in c.issues]
     status = "rejected" if issues else "accepted"
