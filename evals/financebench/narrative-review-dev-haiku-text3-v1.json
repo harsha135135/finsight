@@ -1,0 +1,213 @@
+{
+ "claude_grades_claude_disclosure": true,
+ "date": "2026-11-10",
+ "decoy_agreement": "6/6",
+ "decoy_disagreements": [],
+ "grader": "Claude (claude-opus-5-5), blind to model, retrieval version and validation status",
+ "key": {
+  "G001": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01028"
+  },
+  "G002": {
+   "decoy": true,
+   "key": "20261110-qa15-fb-full-v2b::financebench_id_01930",
+   "verdict": "incorrect"
+  },
+  "G003": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_00494"
+  },
+  "G004": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01936"
+  },
+  "G005": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01935"
+  },
+  "G006": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_00585"
+  },
+  "G007": {
+   "decoy": true,
+   "key": "20261110-qa15-fb-supplied-base::financebench_id_00723",
+   "verdict": "incorrect"
+  },
+  "G008": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_00720"
+  },
+  "G009": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_00585"
+  },
+  "G010": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_00720"
+  },
+  "G011": {
+   "decoy": true,
+   "key": "20261110-qa15-fb-supplied-v2b::financebench_id_00724",
+   "verdict": "incorrect"
+  },
+  "G012": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01077"
+  },
+  "G013": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_00494"
+  },
+  "G014": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_00941"
+  },
+  "G015": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01275"
+  },
+  "G016": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01865"
+  },
+  "G017": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_00723"
+  },
+  "G018": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01028"
+  },
+  "G019": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01226"
+  },
+  "G020": {
+   "decoy": true,
+   "key": "20261110-qa15-fb-supplied-base::financebench_id_01226",
+   "verdict": "partial"
+  },
+  "G021": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01226"
+  },
+  "G022": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01865"
+  },
+  "G023": {
+   "decoy": true,
+   "key": "20261110-qa15-fb-full-base::financebench_id_01865",
+   "verdict": "incorrect"
+  },
+  "G024": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01936"
+  },
+  "G025": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_00723"
+  },
+  "G026": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01930"
+  },
+  "G027": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_00941"
+  },
+  "G028": {
+   "decoy": false,
+   "key": "20261110-qa17-fb-text3-full-haiku::financebench_id_01148"
+  },
+  "G029": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01290"
+  },
+  "G030": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01935"
+  },
+  "G031": {
+   "decoy": true,
+   "key": "20261110-qa15-fb-full-v2a::financebench_id_00476",
+   "verdict": "incorrect"
+  },
+  "G032": {
+   "decoy": false,
+   "key": "20261110-qa16-fb-full-haiku::financebench_id_01930"
+  }
+ },
+ "name": "financebench-dev-haiku-text2-vs-text3-narrative-v1",
+ "procedure": "modelforge/grading.py (frozen), seed 20261112, decoys from the local-model review",
+ "regrade_consistency_text2": {
+  "agree": 12,
+  "differences": [],
+  "of": 12
+ },
+ "rubric": "correct: conclusion and key facts match the gold; partial: right direction but incomplete or one error (e.g. right segment with a different-basis figure, two of three items, a bare answer where the gold also gives facts); incorrect: wrong or no conclusion, or a figure that does not answer a which/what/why question",
+ "verdicts": {
+  "20261110-qa16-fb-full-haiku::financebench_id_00494": "correct",
+  "20261110-qa16-fb-full-haiku::financebench_id_00585": "partial",
+  "20261110-qa16-fb-full-haiku::financebench_id_00720": "correct",
+  "20261110-qa16-fb-full-haiku::financebench_id_00723": "correct",
+  "20261110-qa16-fb-full-haiku::financebench_id_00941": "correct",
+  "20261110-qa16-fb-full-haiku::financebench_id_01028": "incorrect",
+  "20261110-qa16-fb-full-haiku::financebench_id_01226": "partial",
+  "20261110-qa16-fb-full-haiku::financebench_id_01290": "incorrect",
+  "20261110-qa16-fb-full-haiku::financebench_id_01865": "incorrect",
+  "20261110-qa16-fb-full-haiku::financebench_id_01930": "correct",
+  "20261110-qa16-fb-full-haiku::financebench_id_01935": "correct",
+  "20261110-qa16-fb-full-haiku::financebench_id_01936": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_00494": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_00585": "partial",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_00720": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_00723": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_00941": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01028": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01077": "partial",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01148": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01226": "partial",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01275": "partial",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01865": "incorrect",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01930": "incorrect",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01935": "correct",
+  "20261110-qa17-fb-text3-full-haiku::financebench_id_01936": "correct"
+ },
+ "verdicts_by_blind_id": {
+  "G001": "correct",
+  "G002": "incorrect",
+  "G003": "correct",
+  "G004": "correct",
+  "G005": "correct",
+  "G006": "partial",
+  "G007": "incorrect",
+  "G008": "correct",
+  "G009": "partial",
+  "G010": "correct",
+  "G011": "incorrect",
+  "G012": "partial",
+  "G013": "correct",
+  "G014": "correct",
+  "G015": "partial",
+  "G016": "incorrect",
+  "G017": "correct",
+  "G018": "incorrect",
+  "G019": "partial",
+  "G020": "partial",
+  "G021": "partial",
+  "G022": "incorrect",
+  "G023": "incorrect",
+  "G024": "correct",
+  "G025": "correct",
+  "G026": "incorrect",
+  "G027": "correct",
+  "G028": "correct",
+  "G029": "incorrect",
+  "G030": "correct",
+  "G031": "incorrect",
+  "G032": "correct"
+ }
+}

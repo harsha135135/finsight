@@ -1,0 +1,627 @@
+{
+ "name": "20261110-haiku-fb-dev-text3",
+ "model": "claude-haiku-5-5",
+ "effort": "medium",
+ "prompt_version": "finsight-qa-v1.5",
+ "max_tokens": 5600,
+ "inputs": {
+  "full": {
+   "path": "artifacts/runs/20261110-qa17-fb-full-base-text3/items.jsonl",
+   "sha256": "53be0e07541196be57fe066816acbb3abe865462a6acb72057b451be34f8e0cc"
+  }
+ },
+ "modes": [
+  "full"
+ ],
+ "run_prefix": "20261110-qa17-fb-text3",
+ "label": "finsight-qa-v1.5 text-3",
+ "freeze": "evals/financebench/freeze-dev-text3-v1.json",
+ "freeze_sha256": "1d972a2575fced06e7d291bce9ce8cc250c45248230b89ed020e15837c69458e",
+ "requests": [
+  {
+   "custom_id": "f000",
+   "mode": "full",
+   "item_id": "financebench_id_03029",
+   "input_tokens": 5656,
+   "request_sha256": "441365d341d2d2eb5bd3ee9b596923654c4fece3727c36e160ed29d350b63c59",
+   "attempt_id": "2ec92b9f-bf74-4410-a898-3ff9ee29b818"
+  },
+  {
+   "custom_id": "f001",
+   "mode": "full",
+   "item_id": "financebench_id_04672",
+   "input_tokens": 5974,
+   "request_sha256": "644f847cf9bd694cc8f33cd2977385bc768752a2a599a18fb86301baa55fb790",
+   "attempt_id": "aa46a3e7-b1c5-4301-afaf-93c81c816c53"
+  },
+  {
+   "custom_id": "f002",
+   "mode": "full",
+   "item_id": "financebench_id_00499",
+   "input_tokens": 5619,
+   "request_sha256": "31b93e936dbee24c3f591235b50d77106fda88ffdadd8dbfa83bfd6922fc37c3",
+   "attempt_id": "c0d267a4-c45e-49e7-9482-391d030974dd"
+  },
+  {
+   "custom_id": "f003",
+   "mode": "full",
+   "item_id": "financebench_id_01226",
+   "input_tokens": 5751,
+   "request_sha256": "f0b304bf70fce2f1042c3a9fcd16ce903acc7eff0e38e96dc93af5b89dddf384",
+   "attempt_id": "f43ab189-38bb-48bd-ba65-b410d4ca7c70"
+  },
+  {
+   "custom_id": "f004",
+   "mode": "full",
+   "item_id": "financebench_id_01865",
+   "input_tokens": 5893,
+   "request_sha256": "caabfda0f5e32edc7e3ad309cd3f95a5760b834902d6d0cddf06821719e07051",
+   "attempt_id": "3ffc7853-bcac-4ad9-97e6-6ef2d28edeb0"
+  },
+  {
+   "custom_id": "f005",
+   "mode": "full",
+   "item_id": "financebench_id_00807",
+   "input_tokens": 6008,
+   "request_sha256": "3d8ab003ddf08b00fecc72c02cce41dffc22179c73f63741e800ab88dcd90768",
+   "attempt_id": "0280d489-1071-4848-a18d-78ad2b1c2259"
+  },
+  {
+   "custom_id": "f006",
+   "mode": "full",
+   "item_id": "financebench_id_00941",
+   "input_tokens": 6145,
+   "request_sha256": "76dc5740ba52a7b029b47899b795c1b14b2a8bd8a9818c613d458e3e716f6ef7",
+   "attempt_id": "cb2f096d-048b-4876-a00f-2ab2b0713583"
+  },
+  {
+   "custom_id": "f007",
+   "mode": "full",
+   "item_id": "financebench_id_01858",
+   "input_tokens": 5583,
+   "request_sha256": "6da96a6bbfb63c18f1c56f6f60cadf4c4f226fea7bc47b88ae0d1130b3e0da54",
+   "attempt_id": "1c473bf9-6818-40a4-aa58-ebd69bc90fbc"
+  },
+  {
+   "custom_id": "f008",
+   "mode": "full",
+   "item_id": "financebench_id_02987",
+   "input_tokens": 5936,
+   "request_sha256": "bd902ae06955970e67c12617ae5090a6b29af6cea22e03c1afb2f5186d436e8e",
+   "attempt_id": "7cdf1b46-bf16-48f1-9b63-30074f728137"
+  },
+  {
+   "custom_id": "f009",
+   "mode": "full",
+   "item_id": "financebench_id_07966",
+   "input_tokens": 5603,
+   "request_sha256": "ea01f7b4b30342d06a9a830f2875dc914d5d03896fae12b01c375dc521573479",
+   "attempt_id": "3dc6b1c7-0bda-41bd-a9ad-b237740132ae"
+  },
+  {
+   "custom_id": "f010",
+   "mode": "full",
+   "item_id": "financebench_id_04735",
+   "input_tokens": 5340,
+   "request_sha256": "ca69c7019498ed82ea21d928bfc720c1eea39e8dde70cfc9019bcb8af788a66e",
+   "attempt_id": "8a07d696-8332-47e2-95a9-7263f3011175"
+  },
+  {
+   "custom_id": "f011",
+   "mode": "full",
+   "item_id": "financebench_id_07507",
+   "input_tokens": 6195,
+   "request_sha256": "e913fbb815d0a422d3e8b0ff85b5f1d73d5797a4cd89588924daa0464daa31cb",
+   "attempt_id": "1088aca7-7a47-4c08-bbb9-5209e624683e"
+  },
+  {
+   "custom_id": "f012",
+   "mode": "full",
+   "item_id": "financebench_id_03856",
+   "input_tokens": 6009,
+   "request_sha256": "6d44a2c40837056fb11184a3802cdafcbabd1431e3ea562102c6bff329911a5a",
+   "attempt_id": "2cc326f6-5be5-4321-81f5-ad6a0405cdf3"
+  },
+  {
+   "custom_id": "f013",
+   "mode": "full",
+   "item_id": "financebench_id_00438",
+   "input_tokens": 6130,
+   "request_sha256": "fa4eb357f78c9568086f7a4e54fa8c8244321938a0561609289ee1373207e978",
+   "attempt_id": "880081bb-ffc9-4e17-9081-7d5d0c2690a0"
+  },
+  {
+   "custom_id": "f014",
+   "mode": "full",
+   "item_id": "financebench_id_00591",
+   "input_tokens": 5879,
+   "request_sha256": "b2ab6c4f9e6370fad88ca1f97a5961038b30d24764315673cdf4e4d249176338",
+   "attempt_id": "8033b627-ac13-45cb-a0fa-2596f081beb5"
+  },
+  {
+   "custom_id": "f015",
+   "mode": "full",
+   "item_id": "financebench_id_06655",
+   "input_tokens": 5546,
+   "request_sha256": "4f297eeaa5fd597c46915ae690a9b2d37721a6b8186681b34c96d81859ad675c",
+   "attempt_id": "ac210a94-d054-4e70-822b-7a3b1d030b69"
+  },
+  {
+   "custom_id": "f016",
+   "mode": "full",
+   "item_id": "financebench_id_08135",
+   "input_tokens": 5638,
+   "request_sha256": "2f101b575df9c75b6add3c6638671d84a907d2ca737bd18ad5be277b0fc65313",
+   "attempt_id": "4c00cdb2-8440-4ebc-8d80-7958d03b3722"
+  },
+  {
+   "custom_id": "f017",
+   "mode": "full",
+   "item_id": "financebench_id_08286",
+   "input_tokens": 5813,
+   "request_sha256": "1e8c6e8cf1cbcda354b87b4da22e3805ab1572eb9024e91617a8883086e4a95f",
+   "attempt_id": "3a9c5948-a10f-471f-b57f-1b23fabb13e2"
+  },
+  {
+   "custom_id": "f018",
+   "mode": "full",
+   "item_id": "financebench_id_03882",
+   "input_tokens": 5487,
+   "request_sha256": "70f9da3b51b5bba0bf3c3fd6203001db8727c731c4e3dfb4d8fa7c74186850b0",
+   "attempt_id": "76e586a7-c0c3-4449-945f-d55d76b444cc"
+  },
+  {
+   "custom_id": "f019",
+   "mode": "full",
+   "item_id": "financebench_id_01935",
+   "input_tokens": 6064,
+   "request_sha256": "6bb207ae8f33a3eb82b4238cdbc91a8713185b5cfbfede2aaa48ab0f453783d8",
+   "attempt_id": "5e299f58-e03b-4d79-9de7-8736eaaa4a9b"
+  },
+  {
+   "custom_id": "f020",
+   "mode": "full",
+   "item_id": "financebench_id_00799",
+   "input_tokens": 5780,
+   "request_sha256": "007f3e61bdcc20806cb03391747672b3a38ae65870dd0962396609ae91c43d17",
+   "attempt_id": "4bdd3c59-1d41-454d-92c3-7d6bcb1f8fa1"
+  },
+  {
+   "custom_id": "f021",
+   "mode": "full",
+   "item_id": "financebench_id_01079",
+   "input_tokens": 6010,
+   "request_sha256": "14dc9d7bb0366758ba48deedb7923094a816dc8cb5ce76ea1267f9c853b4f122",
+   "attempt_id": "3e073554-74bb-497a-8851-8c4dbb52b758"
+  },
+  {
+   "custom_id": "f022",
+   "mode": "full",
+   "item_id": "financebench_id_01148",
+   "input_tokens": 5061,
+   "request_sha256": "94e0940bb6ab60f27937267dd1337b78848d7957a167f62196fc282af4416a57",
+   "attempt_id": "611ef438-ed71-4def-a219-7ba134ce112a"
+  },
+  {
+   "custom_id": "f023",
+   "mode": "full",
+   "item_id": "financebench_id_00684",
+   "input_tokens": 5766,
+   "request_sha256": "a88477037461ffc2c93c8cec6dfc74b86c7a2ffaa597196d48ae3c3a86b180aa",
+   "attempt_id": "e44c93aa-725d-47a6-afd8-054ce91b1710"
+  },
+  {
+   "custom_id": "f024",
+   "mode": "full",
+   "item_id": "financebench_id_01936",
+   "input_tokens": 5564,
+   "request_sha256": "bfd7db88bb577cc9344b54602ba612ee79ce340b7ded8285c86deb3f69521068",
+   "attempt_id": "c59499fb-4572-493a-920d-c82935a64139"
+  },
+  {
+   "custom_id": "f025",
+   "mode": "full",
+   "item_id": "financebench_id_01928",
+   "input_tokens": 6055,
+   "request_sha256": "421228a88e3a6103800bede17e3b6b1ed0727b1d496e578751080b87e330a1ce",
+   "attempt_id": "62c6dde6-5811-41bb-aca7-ae004c0c70e8"
+  },
+  {
+   "custom_id": "f026",
+   "mode": "full",
+   "item_id": "financebench_id_01930",
+   "input_tokens": 5787,
+   "request_sha256": "500351003a4e7d43f4fba29dc838b7cfd421d8621c5c05860933bc25572ddef1",
+   "attempt_id": "81242dfc-60fc-403e-8e3d-a53416829058"
+  },
+  {
+   "custom_id": "f027",
+   "mode": "full",
+   "item_id": "financebench_id_00476",
+   "input_tokens": 5499,
+   "request_sha256": "9d727178261746c80eb283318e949db3c0a3a4cfd09191dbe792d961d46830f9",
+   "attempt_id": "af79643d-1c61-46fe-b15a-d701aee5b0b9"
+  },
+  {
+   "custom_id": "f028",
+   "mode": "full",
+   "item_id": "financebench_id_01028",
+   "input_tokens": 5389,
+   "request_sha256": "f9d7ba1bd8af16af963ca2d107f1f197a25a0358f70952891bcdf48c5a041913",
+   "attempt_id": "09510aba-15e4-459b-b51d-681ae7ab4c42"
+  },
+  {
+   "custom_id": "f029",
+   "mode": "full",
+   "item_id": "financebench_id_00723",
+   "input_tokens": 5687,
+   "request_sha256": "0b6f4710e000a5589c051c2c2f774922dcf390ea342a80e1f14c393d5666fe3e",
+   "attempt_id": "a0676985-0d41-4f0c-81a3-c7910b78af28"
+  },
+  {
+   "custom_id": "f030",
+   "mode": "full",
+   "item_id": "financebench_id_00720",
+   "input_tokens": 5854,
+   "request_sha256": "f3b9a9812ae264f63abd63160868a47cefe777a9063991e6e4f60bdef8b03f4e",
+   "attempt_id": "abd89988-a458-421d-8e73-d8e7ba245e31"
+  },
+  {
+   "custom_id": "f031",
+   "mode": "full",
+   "item_id": "financebench_id_01351",
+   "input_tokens": 5483,
+   "request_sha256": "2b15d585b65eddff03e2a49e8d91f13591b58ae6ff81a2a0d7c19079354a2a5a",
+   "attempt_id": "470913bf-426f-499e-8d85-a5b1fa02fe71"
+  },
+  {
+   "custom_id": "f032",
+   "mode": "full",
+   "item_id": "financebench_id_01964",
+   "input_tokens": 6194,
+   "request_sha256": "3bcea109b173fe709615c9d7b3d4df27d155c377ac8562f5fcbcf55e5090f8d1",
+   "attempt_id": "1baabe8c-9c4f-48ec-8ca4-5a7602a47be0"
+  },
+  {
+   "custom_id": "f033",
+   "mode": "full",
+   "item_id": "financebench_id_01981",
+   "input_tokens": 5482,
+   "request_sha256": "5cb49e2a8beafeac368b83b9ee769d5b73a46f10b125a92bda44a9d153c28531",
+   "attempt_id": "58f25c90-9105-444c-8ac2-35a36ef4617e"
+  },
+  {
+   "custom_id": "f034",
+   "mode": "full",
+   "item_id": "financebench_id_02608",
+   "input_tokens": 5549,
+   "request_sha256": "00c2d11e853647219c5156b90b525eec02988b97fd06f62020fee166fd7db20a",
+   "attempt_id": "927b053a-a04c-45ef-ad58-cd93a6adbe6b"
+  },
+  {
+   "custom_id": "f035",
+   "mode": "full",
+   "item_id": "financebench_id_04417",
+   "input_tokens": 5763,
+   "request_sha256": "a563b21d3e11746d7181b1f50dcbdcbe41ca58ea7b08036780a802922aca8d18",
+   "attempt_id": "e5c0eed6-2078-4a22-80fc-21c1f1a27806"
+  },
+  {
+   "custom_id": "f036",
+   "mode": "full",
+   "item_id": "financebench_id_00685",
+   "input_tokens": 5261,
+   "request_sha256": "72a55d17070897d136e97e0e0bb604f9f6e7a330aee630e263f454d6710c338d",
+   "attempt_id": "e70135f7-e6a9-4343-aa5a-294253787690"
+  },
+  {
+   "custom_id": "f037",
+   "mode": "full",
+   "item_id": "financebench_id_01077",
+   "input_tokens": 5790,
+   "request_sha256": "6301a834f5e4076ab01bed0f425f52fdb509595b79c149091acb3a22ba91237a",
+   "attempt_id": "55a6abe0-3410-4f75-bc97-d3c2777354fa"
+  },
+  {
+   "custom_id": "f038",
+   "mode": "full",
+   "item_id": "financebench_id_01275",
+   "input_tokens": 5410,
+   "request_sha256": "84ba597f71bc82c6a40ea551f58e3fa68a56f798151a19750c5073a52dabd888",
+   "attempt_id": "7c0cc346-0077-45b0-b726-6a4c51a05d1a"
+  },
+  {
+   "custom_id": "f039",
+   "mode": "full",
+   "item_id": "financebench_id_00288",
+   "input_tokens": 5930,
+   "request_sha256": "1a2314740f9b0d719190e76867976dc7581952ef2ccca4e2b72d3e82dade356c",
+   "attempt_id": "3f2a3c29-61e4-4176-99ad-e9d9d61022b0"
+  },
+  {
+   "custom_id": "f040",
+   "mode": "full",
+   "item_id": "financebench_id_00460",
+   "input_tokens": 5922,
+   "request_sha256": "1f95e167f622c86959169bd05b55c879723240b10355878003c8e5cb17fd317d",
+   "attempt_id": "4cae953d-44b2-4aad-ac5b-1fca1e59f605"
+  },
+  {
+   "custom_id": "f041",
+   "mode": "full",
+   "item_id": "financebench_id_01902",
+   "input_tokens": 5436,
+   "request_sha256": "a58a35c13799741aadb9e66d744e9069a8874d37d3b27d21c58ddb30437463c7",
+   "attempt_id": "be9cffc0-65e7-4a09-b150-9b62d273ba53"
+  },
+  {
+   "custom_id": "f042",
+   "mode": "full",
+   "item_id": "financebench_id_04660",
+   "input_tokens": 5780,
+   "request_sha256": "b4070f82e0a1b4c921dbee8d5e2ead1d71e188c1f1a938b0c46598fd73bba4ee",
+   "attempt_id": "909a7e8e-b9fc-42c8-ace9-dfae2a11b134"
+  },
+  {
+   "custom_id": "f043",
+   "mode": "full",
+   "item_id": "financebench_id_03838",
+   "input_tokens": 5926,
+   "request_sha256": "dc8190b298aa366eadd42e7aeafe442e7278f97bd1b2b856dd6e41daa1a0c2f5",
+   "attempt_id": "a80ec43d-d303-44be-8674-f08e1df222d2"
+  },
+  {
+   "custom_id": "f044",
+   "mode": "full",
+   "item_id": "financebench_id_07661",
+   "input_tokens": 5472,
+   "request_sha256": "7e73423fae0032debef5296fd741a113c1bc11e6b11b212937a465c8d148cc71",
+   "attempt_id": "a251c4b6-a590-43ee-82ec-90e043adf4b1"
+  },
+  {
+   "custom_id": "f045",
+   "mode": "full",
+   "item_id": "financebench_id_10285",
+   "input_tokens": 5777,
+   "request_sha256": "901c34a5410e6ba1b9e78aaac02daafce37b3ba861cbc3f85a989148b82732e1",
+   "attempt_id": "3773cf82-7b9f-4670-9960-8de66a4e720f"
+  },
+  {
+   "custom_id": "f046",
+   "mode": "full",
+   "item_id": "financebench_id_00517",
+   "input_tokens": 5312,
+   "request_sha256": "94d4c7602111a3043c0ff05926325e0d0ae3a046d038274b118ae35c88cf0ef6",
+   "attempt_id": "e559b6e4-99cf-4848-a51c-120b793a9e71"
+  },
+  {
+   "custom_id": "f047",
+   "mode": "full",
+   "item_id": "financebench_id_01091",
+   "input_tokens": 5654,
+   "request_sha256": "85bf47e18620d2c33196095279d3bb8ad4cc58056ac1e677bdffb9fee3966b45",
+   "attempt_id": "f2ce35dc-fd72-45a6-a33b-6b842e29157a"
+  },
+  {
+   "custom_id": "f048",
+   "mode": "full",
+   "item_id": "financebench_id_00678",
+   "input_tokens": 5398,
+   "request_sha256": "e3fdeb38b386e18ce41b794a4ca497fcd54fc55d723a26538c0d66f566d6f742",
+   "attempt_id": "9b9fe429-7027-45b9-ba61-2c46a64c0ae8"
+  },
+  {
+   "custom_id": "f049",
+   "mode": "full",
+   "item_id": "financebench_id_01290",
+   "input_tokens": 5587,
+   "request_sha256": "d3dd3845dad230b0339b4dbd5ab4f472aa4a51562eb0fc89059d1690ef15cd55",
+   "attempt_id": "6d0d889c-6132-4d2f-9acd-9777b7678814"
+  },
+  {
+   "custom_id": "f050",
+   "mode": "full",
+   "item_id": "financebench_id_00464",
+   "input_tokens": 5113,
+   "request_sha256": "61031f09ae780c8cc83caafebae32e08a6a982778b8768de53d7e3594c0ccb91",
+   "attempt_id": "94f780d5-e3ca-4b89-8fb7-2a9579c74802"
+  },
+  {
+   "custom_id": "f051",
+   "mode": "full",
+   "item_id": "financebench_id_00494",
+   "input_tokens": 5279,
+   "request_sha256": "9073321712a6807f15147814ff376bd87c422999dd8fa5f0e7f31f8dabbb8618",
+   "attempt_id": "51be94b8-3a58-4bd9-aca1-dc8ddb737055"
+  },
+  {
+   "custom_id": "f052",
+   "mode": "full",
+   "item_id": "financebench_id_00585",
+   "input_tokens": 5635,
+   "request_sha256": "2f794f6be4c43090e3da436bd27c1ab241b071191f53893c8f6ab4e3987f6706",
+   "attempt_id": "04d4d210-7a3c-4e38-bca3-1dfd6cb5947b"
+  },
+  {
+   "custom_id": "f053",
+   "mode": "full",
+   "item_id": "financebench_id_10130",
+   "input_tokens": 5930,
+   "request_sha256": "f987e47612644f16e6e4b98429f3ff19121932525940e3cfb4b125a6dcde94be",
+   "attempt_id": "7b86ae51-86cc-421f-b903-09a6b03662d4"
+  },
+  {
+   "custom_id": "f054",
+   "mode": "full",
+   "item_id": "financebench_id_02981",
+   "input_tokens": 6059,
+   "request_sha256": "a1613936e960d20d7b1b5e2d2dd7b508ab84727925f06f1a21157ba97a7d8725",
+   "attempt_id": "9c099fe2-252c-4683-a1f4-95cbeea5edda"
+  },
+  {
+   "custom_id": "f055",
+   "mode": "full",
+   "item_id": "financebench_id_01346",
+   "input_tokens": 5523,
+   "request_sha256": "c8d74a5a1cb1c1eff15e724047a57bb67d3d2beeade85d94365531f0ff0817c3",
+   "attempt_id": "b44a3a36-f702-4332-a5b4-4b6d3b1d9f12"
+  },
+  {
+   "custom_id": "f056",
+   "mode": "full",
+   "item_id": "financebench_id_00005",
+   "input_tokens": 5640,
+   "request_sha256": "ea7ddc50a6afaaf423f80a2b900aa32a83cd82c45b0725df7d491daaa756dd0a",
+   "attempt_id": "d847e7d0-c4c7-46c6-ba6b-10474db89542"
+  },
+  {
+   "custom_id": "f057",
+   "mode": "full",
+   "item_id": "financebench_id_00839",
+   "input_tokens": 5396,
+   "request_sha256": "939598531374dd96c53009603154d5679a23819b18e0bc092cafc5844a2f5345",
+   "attempt_id": "9c6103cf-67cc-4e22-8345-54e3ce975b0b"
+  },
+  {
+   "custom_id": "f058",
+   "mode": "full",
+   "item_id": "financebench_id_00822",
+   "input_tokens": 4310,
+   "request_sha256": "f8386001e7ba9d131338fc26d900e16c0eb8ba96f7facf53ff8fe02fefb3facb",
+   "attempt_id": "55940f04-1492-474f-9f4b-dd20fa5231b7"
+  },
+  {
+   "custom_id": "f059",
+   "mode": "full",
+   "item_id": "financebench_id_04103",
+   "input_tokens": 6334,
+   "request_sha256": "fc9608fef81c419e4d6e57a622de227fa3af382e6110c22a636f28cea918877e",
+   "attempt_id": "9bb71fed-04b1-4420-8ba8-9a6a30065462"
+  },
+  {
+   "custom_id": "f060",
+   "mode": "full",
+   "item_id": "financebench_id_03471",
+   "input_tokens": 5941,
+   "request_sha256": "be6f829b4b017ced49501800322a2c311411a48986c7ca9e8a2ca8e4ec052187",
+   "attempt_id": "31b6b16e-1b81-4e9d-8f70-9690f6830a61"
+  },
+  {
+   "custom_id": "f061",
+   "mode": "full",
+   "item_id": "financebench_id_04854",
+   "input_tokens": 5989,
+   "request_sha256": "e3eaea20794c175b80587e177518cf4e12212e2a57ebbf8ee617eff9bec0764b",
+   "attempt_id": "c0563604-220f-4f45-8e22-75af5ea05b82"
+  },
+  {
+   "custom_id": "f062",
+   "mode": "full",
+   "item_id": "financebench_id_10136",
+   "input_tokens": 6171,
+   "request_sha256": "44b74e5c7058f6e6b4bfe32364a8a3baccece705fc09c6287d1d6b34c0add234",
+   "attempt_id": "4d4cfb7a-410c-45f3-be00-16ad38044b74"
+  },
+  {
+   "custom_id": "f063",
+   "mode": "full",
+   "item_id": "financebench_id_10499",
+   "input_tokens": 5931,
+   "request_sha256": "4d31e1331f1713d9bba7dbe555862eb23243173d02497840e42b247fdf59c2c7",
+   "attempt_id": "797a5105-c594-489c-8820-94a12cbf15a4"
+  },
+  {
+   "custom_id": "f064",
+   "mode": "full",
+   "item_id": "financebench_id_04458",
+   "input_tokens": 5388,
+   "request_sha256": "444aeb50e274d288fe751f296823f13eb183bd5f4565cd0d411b1b55c0912fa4",
+   "attempt_id": "4fd03720-3ae4-49e5-b4ee-a2c519710c3c"
+  },
+  {
+   "custom_id": "f065",
+   "mode": "full",
+   "item_id": "financebench_id_03282",
+   "input_tokens": 5704,
+   "request_sha256": "ef14504c356321e1ac2b956355e0e3e589da17ea5a694bff72acacc6f7e8e73b",
+   "attempt_id": "00634dc8-b1e9-4b28-886a-7445606ca920"
+  },
+  {
+   "custom_id": "f066",
+   "mode": "full",
+   "item_id": "financebench_id_00302",
+   "input_tokens": 6164,
+   "request_sha256": "49cc41dc613e18509ab6dbd157b1b95c348aa7bd1520900576572151953d4657",
+   "attempt_id": "8f80ce3e-55a3-41ef-a89f-ab617472503a"
+  },
+  {
+   "custom_id": "f067",
+   "mode": "full",
+   "item_id": "financebench_id_00702",
+   "input_tokens": 5963,
+   "request_sha256": "87d60381bab95930206c8f2fddc845acb37d984640f0ece07e31a04b5306d637",
+   "attempt_id": "08df39f3-794e-42e7-96fa-cbfd72f467b3"
+  },
+  {
+   "custom_id": "f068",
+   "mode": "full",
+   "item_id": "financebench_id_02416",
+   "input_tokens": 5154,
+   "request_sha256": "55b23082e57ffb577dc2846b65df47b15a37e832ccb99fe23e7c3a298da7f9c9",
+   "attempt_id": "5bee40e7-3f7b-4a0a-9f7f-b9f30ef8443d"
+  },
+  {
+   "custom_id": "f069",
+   "mode": "full",
+   "item_id": "financebench_id_00283",
+   "input_tokens": 5154,
+   "request_sha256": "a7d90100918d630a26f7af65a36c30517f2ebe3ab9879c1443509ed38e1d0d6b",
+   "attempt_id": "cd67ec17-ac50-41f5-afc0-d0602c95c8f0"
+  },
+  {
+   "custom_id": "f070",
+   "mode": "full",
+   "item_id": "financebench_id_00724",
+   "input_tokens": 6155,
+   "request_sha256": "41ea8a054ac68a755db3261438c3b44d3b56dc447b771379fea6171df8c10680",
+   "attempt_id": "bc270f5f-bae8-4e49-829f-a692e8781103"
+  },
+  {
+   "custom_id": "f071",
+   "mode": "full",
+   "item_id": "financebench_id_02419",
+   "input_tokens": 6191,
+   "request_sha256": "2e300d92980aa62c5f8a3017081106e9469faf3a93a555f8e9de9d94654076ee",
+   "attempt_id": "000fc7e3-eaf9-4aa7-8ac1-3347b817e583"
+  },
+  {
+   "custom_id": "f072",
+   "mode": "full",
+   "item_id": "financebench_id_06247",
+   "input_tokens": 5575,
+   "request_sha256": "900b3144bdeb36326a9d066f0ba8d934068231cc50bc636dd5d77134b5ffff1e",
+   "attempt_id": "76120b2d-ae6c-4ce5-bca3-ff051fb371b1"
+  },
+  {
+   "custom_id": "f073",
+   "mode": "full",
+   "item_id": "financebench_id_04784",
+   "input_tokens": 5747,
+   "request_sha256": "4f4647e3eed9b4e1c4399e191159e5da27060214c7d9398f19815f2c8322132c",
+   "attempt_id": "5dcf13fc-3c95-4c3c-99a1-482d1f2d4c98"
+  },
+  {
+   "custom_id": "f074",
+   "mode": "full",
+   "item_id": "financebench_id_06741",
+   "input_tokens": 5610,
+   "request_sha256": "a30292f7cc5b0f5ead8eb5ee2d7d5f7e00ce8a60e4361aa2c57e24678659fd1a",
+   "attempt_id": "71a35728-3d6e-4393-8071-d730eb5f3f23"
+  }
+ ],
+ "created_at": "2026-11-10 07:29:35.499845+00:00",
+ "run_cap_usd": "0.15",
+ "input_tokens_total": 427903,
+ "input_cost_usd": "0.0214",
+ "worst_case_usd": "0.1264"
+}

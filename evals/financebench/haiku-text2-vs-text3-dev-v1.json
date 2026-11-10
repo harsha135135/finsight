@@ -1,0 +1,685 @@
+{
+ "haiku": {
+  "changes": [
+   {
+    "company": "3M",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "complete",
+    "id": "financebench_id_04672",
+    "kind": "numeric",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "3M",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_00499",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "Adobe",
+    "direction": "improved",
+    "evidence_text2": "partial",
+    "evidence_text3": "complete",
+    "id": "financebench_id_00438",
+    "kind": "boolean",
+    "pages_text2": "all",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Amcor",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_01148",
+    "kind": "narrative",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Amcor",
+    "direction": "improved",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_01928",
+    "kind": "numeric",
+    "pages_text2": "all",
+    "pages_text3": "all",
+    "text2": "wrong (rejected/rejected)",
+    "text3": "correct (rejected/accepted)"
+   },
+   {
+    "company": "Amcor",
+    "direction": "regressed",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_01930",
+    "kind": "narrative",
+    "pages_text2": "all",
+    "pages_text3": "all",
+    "text2": "correct (accepted/accepted)",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "American Express",
+    "direction": "improved",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_01028",
+    "kind": "narrative",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "wrong (accepted/accepted)",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Best Buy",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_04417",
+    "kind": "numeric",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "Best Buy",
+    "direction": "abstention changed",
+    "evidence_text2": "partial",
+    "evidence_text3": "partial",
+    "id": "financebench_id_01077",
+    "kind": "narrative",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "Best Buy",
+    "direction": "abstention changed",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_01275",
+    "kind": "narrative",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "Block",
+    "direction": "regressed",
+    "evidence_text2": "none",
+    "evidence_text3": "complete",
+    "id": "financebench_id_07661",
+    "kind": "numeric",
+    "pages_text2": "all",
+    "pages_text3": "all",
+    "text2": "correct (accepted/accepted)",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "Boeing",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_01290",
+    "kind": "narrative",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "wrong (accepted/accepted)",
+    "text3": "declined"
+   },
+   {
+    "company": "Corning",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "partial",
+    "id": "financebench_id_02981",
+    "kind": "numeric",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "invalid_or_operational"
+   },
+   {
+    "company": "Corning",
+    "direction": "improved",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_01346",
+    "kind": "numeric",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "correct (rejected/accepted)"
+   },
+   {
+    "company": "Corning",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_00005",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   },
+   {
+    "company": "Netflix",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "complete",
+    "id": "financebench_id_03282",
+    "kind": "numeric",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "declined",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Pfizer",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "complete",
+    "id": "financebench_id_00702",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Pfizer",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_02419",
+    "kind": "boolean",
+    "pages_text2": "all",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "wrong (accepted/accepted)"
+   }
+  ],
+  "paired": {
+   "all_scored/correct": {
+    "ci95_company_clustered": [
+     0.0,
+     0.127
+    ],
+    "diff": 0.067,
+    "mcnemar": {
+     "p": 0.1797,
+     "text2_only": 2,
+     "text3_only": 7
+    },
+    "n": 75,
+    "text2": 22,
+    "text3": 27
+   },
+   "all_scored/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     0.0,
+     0.108
+    ],
+    "diff": 0.053,
+    "mcnemar": {
+     "p": 0.2891,
+     "text2_only": 2,
+     "text3_only": 6
+    },
+    "n": 75,
+    "text2": 14,
+    "text3": 18
+   },
+   "boolean/correct": {
+    "ci95_company_clustered": [
+     0.0,
+     0.235
+    ],
+    "diff": 0.1,
+    "mcnemar": {
+     "p": 0.5,
+     "text2_only": 0,
+     "text3_only": 2
+    },
+    "n": 20,
+    "text2": 7,
+    "text3": 9
+   },
+   "boolean/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     0.0,
+     0.269
+    ],
+    "diff": 0.15,
+    "mcnemar": {
+     "p": 0.25,
+     "text2_only": 0,
+     "text3_only": 3
+    },
+    "n": 20,
+    "text2": 5,
+    "text3": 8
+   },
+   "narrative/correct": {
+    "ci95_company_clustered": [
+     0.0,
+     0.13
+    ],
+    "diff": 0.045,
+    "mcnemar": {
+     "p": 1,
+     "text2_only": 1,
+     "text3_only": 2
+    },
+    "n": 22,
+    "text2": 7,
+    "text3": 8
+   },
+   "narrative/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     0.0,
+     0.13
+    ],
+    "diff": 0.045,
+    "mcnemar": {
+     "p": 1,
+     "text2_only": 1,
+     "text3_only": 2
+    },
+    "n": 22,
+    "text2": 7,
+    "text3": 8
+   },
+   "numeric/correct": {
+    "ci95_company_clustered": [
+     -0.056,
+     0.182
+    ],
+    "diff": 0.061,
+    "mcnemar": {
+     "p": 0.625,
+     "text2_only": 1,
+     "text3_only": 3
+    },
+    "n": 33,
+    "text2": 8,
+    "text3": 10
+   },
+   "numeric/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     -0.083,
+     0.088
+    ],
+    "diff": 0.0,
+    "mcnemar": {
+     "p": 1,
+     "text2_only": 1,
+     "text3_only": 1
+    },
+    "n": 33,
+    "text2": 2,
+    "text3": 2
+   }
+  },
+  "tables": {
+   "text-2": {
+    "boolean": {
+     "accepted_lenient": 5,
+     "accepted_strict": 5,
+     "correct_accepted_lenient": 5,
+     "correct_accepted_strict": 5,
+     "correct_any": 7,
+     "declined": 13,
+     "n": 20,
+     "unsupported": 2
+    },
+    "narrative": {
+     "accepted_lenient": 10,
+     "accepted_strict": 10,
+     "correct_accepted_lenient": 7,
+     "correct_accepted_strict": 7,
+     "correct_any": 7,
+     "declined": 10,
+     "n": 22,
+     "unsupported": 2
+    },
+    "numeric": {
+     "accepted_lenient": 8,
+     "accepted_strict": 2,
+     "correct_accepted_lenient": 8,
+     "correct_accepted_strict": 2,
+     "correct_any": 8,
+     "declined": 23,
+     "gold_value_strict_only_rejection_unverified": 6,
+     "n": 33,
+     "unsupported": 2
+    }
+   },
+   "text-3": {
+    "boolean": {
+     "accepted_lenient": 11,
+     "accepted_strict": 11,
+     "correct_accepted_lenient": 8,
+     "correct_accepted_strict": 8,
+     "correct_any": 9,
+     "declined": 8,
+     "n": 20,
+     "unsupported": 1
+    },
+    "narrative": {
+     "accepted_lenient": 12,
+     "accepted_strict": 12,
+     "correct_accepted_lenient": 8,
+     "correct_accepted_strict": 8,
+     "correct_any": 8,
+     "declined": 8,
+     "n": 22,
+     "unsupported": 2
+    },
+    "numeric": {
+     "accepted_lenient": 13,
+     "accepted_strict": 5,
+     "correct_accepted_lenient": 10,
+     "correct_accepted_strict": 2,
+     "correct_any": 10,
+     "declined": 18,
+     "gold_value_strict_only_rejection_unverified": 8,
+     "invalid_or_operational": 1,
+     "n": 33,
+     "unsupported": 1
+    }
+   }
+  }
+ },
+ "qwen_base_no_narrative": {
+  "changes": [
+   {
+    "company": "Adobe",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_00591",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "invalid_or_operational",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Amcor",
+    "direction": "abstention changed",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_03882",
+    "kind": "numeric",
+    "pages_text2": "all",
+    "pages_text3": "none",
+    "text2": "declined",
+    "text3": "wrong (rejected/rejected)"
+   },
+   {
+    "company": "American Express",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_01981",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "invalid_or_operational",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Best Buy",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "complete",
+    "id": "financebench_id_00288",
+    "kind": "boolean",
+    "pages_text2": "all",
+    "pages_text3": "all",
+    "text2": "wrong (rejected/rejected)",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Boeing",
+    "direction": "improved",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_10285",
+    "kind": "numeric",
+    "pages_text2": "all",
+    "pages_text3": "all",
+    "text2": "wrong (accepted/accepted)",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Boeing",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_01091",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "invalid_or_operational",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Corning",
+    "direction": "improved",
+    "evidence_text2": "complete",
+    "evidence_text3": "complete",
+    "id": "financebench_id_01346",
+    "kind": "numeric",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "wrong (rejected/accepted)",
+    "text3": "correct (rejected/accepted)"
+   },
+   {
+    "company": "Corning",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_00005",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "all",
+    "text2": "wrong (accepted/accepted)",
+    "text3": "correct (accepted/accepted)"
+   },
+   {
+    "company": "Pfizer",
+    "direction": "improved",
+    "evidence_text2": "none",
+    "evidence_text3": "none",
+    "id": "financebench_id_00302",
+    "kind": "boolean",
+    "pages_text2": "none",
+    "pages_text3": "none",
+    "text2": "invalid_or_operational",
+    "text3": "correct (accepted/accepted)"
+   }
+  ],
+  "paired": {
+   "all_scored/correct": {
+    "ci95_company_clustered": [
+     0.06,
+     0.246
+    ],
+    "diff": 0.151,
+    "mcnemar": {
+     "p": 0.0078,
+     "text2_only": 0,
+     "text3_only": 8
+    },
+    "n": 53,
+    "text2": 8,
+    "text3": 16
+   },
+   "all_scored/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     0.018,
+     0.204
+    ],
+    "diff": 0.113,
+    "mcnemar": {
+     "p": 0.0703,
+     "text2_only": 1,
+     "text3_only": 7
+    },
+    "n": 53,
+    "text2": 7,
+    "text3": 13
+   },
+   "boolean/correct": {
+    "ci95_company_clustered": [
+     0.158,
+     0.5
+    ],
+    "diff": 0.3,
+    "mcnemar": {
+     "p": 0.0312,
+     "text2_only": 0,
+     "text3_only": 6
+    },
+    "n": 20,
+    "text2": 7,
+    "text3": 13
+   },
+   "boolean/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     0.04,
+     0.471
+    ],
+    "diff": 0.25,
+    "mcnemar": {
+     "p": 0.125,
+     "text2_only": 1,
+     "text3_only": 6
+    },
+    "n": 20,
+    "text2": 7,
+    "text3": 12
+   },
+   "numeric/correct": {
+    "ci95_company_clustered": [
+     0.0,
+     0.161
+    ],
+    "diff": 0.061,
+    "mcnemar": {
+     "p": 0.5,
+     "text2_only": 0,
+     "text3_only": 2
+    },
+    "n": 33,
+    "text2": 1,
+    "text3": 3
+   },
+   "numeric/correct_and_strict_accepted": {
+    "ci95_company_clustered": [
+     0.0,
+     0.107
+    ],
+    "diff": 0.03,
+    "mcnemar": {
+     "p": 1,
+     "text2_only": 0,
+     "text3_only": 1
+    },
+    "n": 33,
+    "text2": 0,
+    "text3": 1
+   }
+  },
+  "tables": {
+   "text-2": {
+    "boolean": {
+     "accepted_lenient": 14,
+     "accepted_strict": 14,
+     "correct_accepted_lenient": 7,
+     "correct_accepted_strict": 7,
+     "correct_any": 7,
+     "invalid_or_operational": 4,
+     "n": 20,
+     "unsupported": 2
+    },
+    "narrative": {
+     "accepted_lenient": 15,
+     "accepted_strict": 14,
+     "correct_accepted_lenient": 0,
+     "correct_accepted_strict": 0,
+     "correct_any": 0,
+     "invalid_or_operational": 3,
+     "n": 22,
+     "unsupported": 4
+    },
+    "numeric": {
+     "accepted_lenient": 6,
+     "accepted_strict": 3,
+     "correct_accepted_lenient": 1,
+     "correct_accepted_strict": 0,
+     "correct_any": 1,
+     "declined": 2,
+     "gold_value_strict_only_rejection_unverified": 1,
+     "n": 33,
+     "unsupported": 25
+    }
+   },
+   "text-3": {
+    "boolean": {
+     "accepted_lenient": 19,
+     "accepted_strict": 19,
+     "correct_accepted_lenient": 12,
+     "correct_accepted_strict": 12,
+     "correct_any": 13,
+     "n": 20,
+     "unsupported": 1
+    },
+    "narrative": {
+     "accepted_lenient": 15,
+     "accepted_strict": 14,
+     "correct_accepted_lenient": 0,
+     "correct_accepted_strict": 0,
+     "correct_any": 0,
+     "invalid_or_operational": 1,
+     "n": 22,
+     "unsupported": 6
+    },
+    "numeric": {
+     "accepted_lenient": 14,
+     "accepted_strict": 5,
+     "correct_accepted_lenient": 3,
+     "correct_accepted_strict": 1,
+     "correct_any": 3,
+     "declined": 1,
+     "gold_value_strict_only_rejection_unverified": 2,
+     "invalid_or_operational": 1,
+     "n": 33,
+     "unsupported": 17
+    }
+   }
+  }
+ }
+}

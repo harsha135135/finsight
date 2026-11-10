@@ -1,0 +1,232 @@
+{
+ "artifacts": {
+  "batch_plan": {
+   "path": "artifacts/claude-batches/20261110-haiku-fb-dev-text3/plan.json",
+   "sha256": "4127e8e9065179bd6840c3df00a2b1c274b6bbeb2408b767999d9dfc20dc75c2"
+  },
+  "batch_state": {
+   "path": "artifacts/claude-batches/20261110-haiku-fb-dev-text3/state.json",
+   "sha256": "ff648336c48e0f00dffb916983ea4f2e053f4b7184e3073a245169a0b1d72133"
+  },
+  "comparison": {
+   "path": "evals/financebench/haiku-text2-vs-text3-dev-v1.json",
+   "sha256": "c2f454af3727213f77555f56e436a5f71a7522748f948846b4bad8f515a92631"
+  },
+  "freeze": {
+   "path": "evals/financebench/freeze-dev-text3-v1.json",
+   "sha256": "1d972a2575fced06e7d291bce9ce8cc250c45248230b89ed020e15837c69458e"
+  },
+  "gold": {
+   "path": "evals/financebench/gold-dev-v1.json",
+   "sha256": "a5af0fd65be4c15a0b9729a5878974212f18e0fe99906bfe40e976aecdc1ac7d"
+  },
+  "narrative_review": {
+   "path": "evals/financebench/narrative-review-dev-haiku-text3-v1.json",
+   "sha256": "9c1e9e453061ad6f50a4e69bf14254c9d911b41ae947eaac10012d8259163ee7"
+  },
+  "retrieval_text2": {
+   "path": "evals/financebench/retrieval-dev-pdf2-text-2.json",
+   "sha256": "b08e16479288ce172392b37fa574980bdf4d9d9b6c805eaa83afc6c8a41fc860"
+  },
+  "retrieval_text3": {
+   "path": "evals/financebench/retrieval-dev-pdf2-text-3.json",
+   "sha256": "0515e4c1e9945d9dbf49ff6874c98d04309ebe892623951fcbf3f4295a61e281"
+  }
+ },
+ "description": "Haiku full-document FinanceBench dev: text-2 vs text-3 retrieval on the same 75 questions (scorer v1.7); base Qwen alongside",
+ "facts": {
+  "actual_cost_usd": "0.031903",
+  "batch_id": "msgbatch_01XK7zXX88gFTdj71bWdMqPQ",
+  "narrative_grader": "Claude, blind; decoys 6/6; text-2 regrade 12/12 consistent with earlier grades",
+  "results": "75 succeeded, 0 truncated, 0 refused, no retries",
+  "run_cap_usd": "0.15",
+  "scoring_version": "v1.7",
+  "sealed": true,
+  "spend_total_usd": "0.205653",
+  "worst_case_reserved_usd": "0.1264"
+ },
+ "name": "financebench-dev-haiku-text3-v1",
+ "regenerate": [
+  {
+   "fiscal": [
+    "evals/financebench/fiscal-years-dev-v1.json"
+   ],
+   "gold": "evals/financebench/gold-dev-v1.json",
+   "kind": "financebench_trust",
+   "tables": {
+    "full-text2/haiku": {
+     "expected": {
+      "boolean": {
+       "accepted_lenient": 5,
+       "accepted_strict": 5,
+       "correct_accepted_lenient": 5,
+       "correct_accepted_strict": 5,
+       "correct_any": 7,
+       "declined": 13,
+       "n": 20,
+       "unsupported": 2
+      },
+      "narrative": {
+       "accepted_lenient": 10,
+       "accepted_strict": 10,
+       "correct_accepted_lenient": 7,
+       "correct_accepted_strict": 7,
+       "correct_any": 7,
+       "declined": 10,
+       "n": 22,
+       "unsupported": 2
+      },
+      "numeric": {
+       "accepted_lenient": 8,
+       "accepted_strict": 2,
+       "correct_accepted_lenient": 8,
+       "correct_accepted_strict": 2,
+       "correct_any": 8,
+       "declined": 23,
+       "gold_value_strict_only_rejection_unverified": 6,
+       "n": 33,
+       "unsupported": 2
+      }
+     },
+     "review": "evals/financebench/narrative-review-dev-haiku-text3-v1.json",
+     "run": "artifacts/runs/20261110-qa16-fb-full-haiku"
+    },
+    "full-text2/qwen-base": {
+     "expected": {
+      "boolean": {
+       "accepted_lenient": 14,
+       "accepted_strict": 14,
+       "correct_accepted_lenient": 7,
+       "correct_accepted_strict": 7,
+       "correct_any": 7,
+       "invalid_or_operational": 4,
+       "n": 20,
+       "unsupported": 2
+      },
+      "narrative": {
+       "accepted_lenient": 15,
+       "accepted_strict": 14,
+       "correct_accepted_lenient": 0,
+       "correct_accepted_strict": 0,
+       "correct_any": 0,
+       "invalid_or_operational": 3,
+       "n": 22,
+       "unsupported": 4
+      },
+      "numeric": {
+       "accepted_lenient": 6,
+       "accepted_strict": 3,
+       "correct_accepted_lenient": 1,
+       "correct_accepted_strict": 0,
+       "correct_any": 1,
+       "declined": 2,
+       "gold_value_strict_only_rejection_unverified": 1,
+       "n": 33,
+       "unsupported": 25
+      }
+     },
+     "review": null,
+     "run": "artifacts/runs/20261110-qa15-fb-full-base"
+    },
+    "full-text3/haiku": {
+     "expected": {
+      "boolean": {
+       "accepted_lenient": 11,
+       "accepted_strict": 11,
+       "correct_accepted_lenient": 8,
+       "correct_accepted_strict": 8,
+       "correct_any": 9,
+       "declined": 8,
+       "n": 20,
+       "unsupported": 1
+      },
+      "narrative": {
+       "accepted_lenient": 12,
+       "accepted_strict": 12,
+       "correct_accepted_lenient": 8,
+       "correct_accepted_strict": 8,
+       "correct_any": 8,
+       "declined": 8,
+       "n": 22,
+       "unsupported": 2
+      },
+      "numeric": {
+       "accepted_lenient": 13,
+       "accepted_strict": 5,
+       "correct_accepted_lenient": 10,
+       "correct_accepted_strict": 2,
+       "correct_any": 10,
+       "declined": 18,
+       "gold_value_strict_only_rejection_unverified": 8,
+       "invalid_or_operational": 1,
+       "n": 33,
+       "unsupported": 1
+      }
+     },
+     "review": "evals/financebench/narrative-review-dev-haiku-text3-v1.json",
+     "run": "artifacts/runs/20261110-qa17-fb-text3-full-haiku"
+    },
+    "full-text3/qwen-base": {
+     "expected": {
+      "boolean": {
+       "accepted_lenient": 19,
+       "accepted_strict": 19,
+       "correct_accepted_lenient": 12,
+       "correct_accepted_strict": 12,
+       "correct_any": 13,
+       "n": 20,
+       "unsupported": 1
+      },
+      "narrative": {
+       "accepted_lenient": 15,
+       "accepted_strict": 14,
+       "correct_accepted_lenient": 0,
+       "correct_accepted_strict": 0,
+       "correct_any": 0,
+       "invalid_or_operational": 1,
+       "n": 22,
+       "unsupported": 6
+      },
+      "numeric": {
+       "accepted_lenient": 14,
+       "accepted_strict": 5,
+       "correct_accepted_lenient": 3,
+       "correct_accepted_strict": 1,
+       "correct_any": 3,
+       "declined": 1,
+       "gold_value_strict_only_rejection_unverified": 2,
+       "invalid_or_operational": 1,
+       "n": 33,
+       "unsupported": 17
+      }
+     },
+     "review": null,
+     "run": "artifacts/runs/20261110-qa17-fb-full-base-text3"
+    }
+   },
+   "version": "v1.7"
+  }
+ ],
+ "runs": {
+  "artifacts/runs/20261110-qa15-fb-full-base": {
+   "config_sha256": "1efd568ac21a372e8a7d323081350f13926c5b5b8b473bbcb2b2eedac8759e1b",
+   "predictions_sha256": "2f377594a4f094ea7b294d5d4f616910877196a4e7426ac7aaef01c027725ac2",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa16-fb-full-haiku": {
+   "config_sha256": "b50a38d2ba8a04d6c8dfde321d26a396ed672e49321eec8e5b44a14a8011b2dc",
+   "predictions_sha256": "14ffa81ae033f08006f0faddc8e794bd03b635b5d102cebe80a41f6df26a78be",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa17-fb-full-base-text3": {
+   "config_sha256": "2815aea14126b693e290c66a641acad54df3f609e75bf6adf581fd5d882af70e",
+   "predictions_sha256": "6eca5c0272888791ba896648bf5846f2ce58e9fbf46ec2b6d0c5abcac8c82870",
+   "scorecard_sha256": null
+  },
+  "artifacts/runs/20261110-qa17-fb-text3-full-haiku": {
+   "config_sha256": "06efd1e9081a7574c937e8938f5432d6e80e177107338da23df9b5aa9e76bfdc",
+   "predictions_sha256": "01e3636447c8a17fa0f49bc1aa938d4e403e1d25471a86f7649b684824752ce7",
+   "scorecard_sha256": null
+  }
+ }
+}
