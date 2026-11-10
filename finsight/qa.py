@@ -121,6 +121,7 @@ def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[i
     claims: list[ClaimCheck] = []
     operands: list[OperandCheck] = []
     value: Decimal | None = None
+    coverage, missing_years = None, []
     if kind == "numeric":
         if not output.operands:
             return QAResult(answer_type=kind, status="rejected", issues=["numeric answer without cited operands"])
@@ -171,6 +172,13 @@ def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[i
                 if literal not in QA_CONSTANTS:
                     issues.append(f"step {index} uses literal {arg}: financial quantities must be cited operands")
         unverified = sum(o.period == "unverified" for o in operands)
+        # Coverage: every requested year must be covered by a figure the source places in it (a growth answer built
+        # only from the later year, or an average missing a year, does not answer the question).
+        placed = {int(o.source_year) for o in operands if o.period == "pass" and o.source_year}
+        missing_years = sorted(requested - placed) if requested else []
+        coverage = "complete" if not missing_years else "unverified" if unverified else "missing"
+        if coverage == "missing":
+            issues.append(f"requested year(s) {missing_years} not covered by any cited figure")
         if strict and unverified:
             issues.append(f"{unverified} operand(s) could not be placed in a period by the source")
         if len(output.operands) > 1 and not output.program:
@@ -193,4 +201,5 @@ def validate_qa(output: QAOutput, supplied: dict[str, Passage], requested: set[i
     return QAResult(answer_type=kind, status=status, value=format_value(value) if value is not None else None,
                     unit=_result_unit(output) if kind == "numeric" else None, boolean=output.boolean,
                     operands=operands, claims=claims, issues=issues,
-                    period_unverified=sum(o.period == "unverified" for o in operands))
+                    period_unverified=sum(o.period == "unverified" for o in operands),
+                    coverage=coverage if kind == "numeric" else None, missing_years=missing_years if kind == "numeric" else [])

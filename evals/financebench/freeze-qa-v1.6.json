@@ -1,0 +1,36 @@
+{
+ "code_sha256": {
+  "finsight/calc.py": "0650b8584a76ca9d7d3e604c37d9474f2410731783f7357c91b4815914e58786",
+  "finsight/contracts/qa.py": "b35e2a44f9395c3923153e77feabf3223612b24719e56fd65213faf40c332ca6",
+  "finsight/findings.py": "be54314ac2ac62aee9999e7ddbff44a1aa43351d5591f197ca24484f9e7d63b1",
+  "finsight/normalize.py": "59966039877bdbf604a30e4bbed40cc87f503b61c029e2deef536cc14b2f3ec2",
+  "finsight/qa.py": "a0b23894e8750a7c8a9f210652c87670680c8dc3c54179518524d99450fd686f",
+  "finsight/reasoning/qa_prompt.py": "4dd5a3064163a07179932e8eb119a2a1ec408197f51076306e4aba752ac553eb",
+  "modelforge/qa_score.py": "1d2abf23a14ee32b19f8a6053d8abbf5bb6d63ed81a21ccbd0959f5f04cc8f44"
+ },
+ "contract": "finsight-qa-v1 (validator v1.6: requested-year coverage; prompt v1.5)",
+ "data_sha256": {
+  "evals/financebench/fiscal-years-dev-v1.json": "4afdc1b98ec469013574438ea44f80ac422516cf83f81e87a46a19cb909e598d",
+  "evals/financebench/gold-dev-v1.json": "a5af0fd65be4c15a0b9729a5878974212f18e0fe99906bfe40e976aecdc1ac7d",
+  "evals/financebench/retrieval-dev-pdf2-text-2.json": "b08e16479288ce172392b37fa574980bdf4d9d9b6c805eaa83afc6c8a41fc860",
+  "evals/manifests/financebench-v1.json": "01697462a1ab6c24555f1a5db0d6000a539d47c71906995a7ca23402d1304d83"
+ },
+ "date": "2026-11-10",
+ "identical_inputs_check": {
+  "full": true,
+  "supplied": true
+ },
+ "inputs_sha256": {
+  "full": "25819adb0a5b7f7e7c017200ac0b5b182f5e0d7a29011c96e6c298f1527ce0c8",
+  "supplied": "3a64aa0d52edd6f445b642564a6b1690ba30e2881e0274c5d2ffcd8ca582209b"
+ },
+ "name": "finsight-qa-v1.6-freeze",
+ "prompt_version": "finsight-qa-v1.5",
+ "schema_sha256": {
+  "claude": "d4480c86dec626c8aab575bf9269b8478aaa6c87322c8142c04e1d42b1de9a95",
+  "qwen": "64d77fd625636525bfd91ec93da236f2848e01a7f3a1b88b831d037127101c01"
+ },
+ "scoring": "trust_table: coverage, correct among accepted (strict and lenient), unsupported, declined, invalid; period rejections vs strict-only unverified rejections; narrative by blind rubric",
+ "sealed": "FinanceBench held-out half and FinQA test set not read",
+ "system_prompt_sha256": "50a479991ebf285b96f9f3ecd964486f3e70197a51ddc5012a9b9605694d9262"
+}

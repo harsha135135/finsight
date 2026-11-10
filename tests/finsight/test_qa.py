@@ -78,3 +78,15 @@ def test_model_facing_schema_requires_the_evidence_each_answer_type_needs():
     assert branches["numeric"]["properties"]["operands"]["minItems"] == 1
     assert branches["boolean"]["properties"]["claims"]["minItems"] == 1 and branches["narrative"]["properties"]["claims"]["minItems"] == 1
     assert branches["numeric"]["properties"]["operands"]["items"]["$ref"].endswith("QAOperand")
+
+
+def test_every_requested_year_must_be_covered_by_a_placed_figure():
+    one_year = qa(answer_type="numeric", operands=[op("rev", SALES, "32,765", "32765")])
+    result = validate_qa(one_year, SUPPLIED, {2017, 2018})                 # growth question, only the 2018 figure cited
+    assert result.status == "rejected" and result.coverage == "missing" and result.missing_years == [2017]
+    both = qa(answer_type="numeric", operands=[op("r18", SALES, "32,765", "32765"), op("r17", SALES, "31,657", "31657", period="FY2017")],
+              program=[{"op": "subtract", "args": ["r18", "r17"]}])
+    assert validate_qa(both, SUPPLIED, {2017, 2018}).coverage == "complete"
+    unplaced = qa(answer_type="numeric", operands=[op("rd", "t1", "$1,821 million", "1821")])
+    lenient = validate_qa(unplaced, SUPPLIED, {2018}, strict=False)
+    assert lenient.coverage == "unverified" and lenient.status == "accepted"   # unknown, not a period rejection

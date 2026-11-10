@@ -79,3 +79,5 @@ class QAResult(Contract):
     claims: list[ClaimCheck] = Field(default_factory=list)
     issues: list[str] = Field(default_factory=list)
     period_unverified: int = 0          # operands the source could not place (accepted only in lenient mode)
+    coverage: str | None = None         # numeric: complete | missing (a requested year has no placed figure) | unverified
+    missing_years: list[int] = Field(default_factory=list)

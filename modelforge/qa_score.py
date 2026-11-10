@@ -198,3 +198,76 @@ def review_sheet(runs: list[Path], gold: dict, seed: int = 20261109) -> list[dic
     for n, e in enumerate(entries, 1):
         e["blind_id"] = f"Q{n:03d}"
     return entries
+
+
+def period_verdict(result) -> str:
+    """period_rejected: a figure placed in another year, or a requested year not covered while every figure was placed;
+    unverified: no period rejection, but some figure (or the coverage) could not be placed; passed otherwise."""
+    if not result.operands:
+        return "not_checked"            # rejected before any period check (e.g. duplicate operand names)
+    if any(o.period == "reject" for o in result.operands) or result.coverage == "missing":
+        return "period_rejected"
+    if result.period_unverified or result.coverage == "unverified":
+        return "unverified"
+    return "passed"
+
+
+def score_controls_v2(run: Path) -> dict:
+    items, preds = _load(run)
+    out = {"negative": Counter(), "positive": Counter()}
+    for item_id, item in items.items():
+        output, failure = _parse(preds[item_id])
+        role = item["role"]
+        if failure or output.answer_type != "numeric":
+            out[role]["insufficient_evidence" if output and output.answer_type == "insufficient_evidence" else "other_or_invalid"] += 1
+            continue
+        res = _validate(output, item, requested_years(item["question"]), None, strict=False)
+        verdict = period_verdict(res)
+        if role == "positive":
+            correct = finqa_value_matches(res, output, item.get("gold_answer"))
+            out[role][("correct_" if correct else "wrong_") + verdict] += 1
+        else:
+            out[role]["answered_" + verdict] += 1
+    return {k: dict(v) for k, v in out.items()}
+
+
+def trust_table(run: Path, gold: dict, review: dict | None = None) -> dict:
+    """Per answer type: coverage (questions with an accepted answer), correct among accepted (strict and lenient),
+    unsupported (answered but rejected), declined, invalid; for gold-matching numeric answers, period rejections vs
+    strict-only rejections because a period could not be placed."""
+    items, preds = _load(run)
+    table = {k: Counter() for k in ("numeric", "boolean", "narrative")}
+    for item_id, item in items.items():
+        g = gold["questions"][item_id]
+        kind, t = g["expected_type"], table[g["expected_type"]]
+        t["n"] += 1
+        output, failure = _parse(preds[item_id])
+        if failure:
+            t["invalid_or_operational"] += 1
+            continue
+        if output.answer_type == "insufficient_evidence":
+            t["declined"] += 1
+            continue
+        requested = set(g["requested_years"])
+        strict = _validate(output, item, requested, item["company"], True)
+        lenient = _validate(output, item, requested, item["company"], False)
+        if kind == "numeric":
+            correct = output.answer_type == "numeric" and lenient.value is not None and numeric_outcome(lenient.value, g, item["question"]) == "correct"
+            if output.answer_type == "numeric" and lenient.status != "accepted":
+                loose = _validate(output, item, set(), item["company"], False)          # value without period constraints
+                if loose.value is not None and numeric_outcome(loose.value, g, item["question"]) == "correct":
+                    t["gold_value_but_rejected_" + period_verdict(lenient)] += 1
+            if correct and strict.status != "accepted" and lenient.status == "accepted":
+                t["gold_value_strict_only_rejection_unverified"] += 1
+        elif kind == "boolean":
+            correct = output.answer_type == "boolean" and output.boolean == g["gold_boolean"]
+        else:
+            correct = (review or {}).get(f"{run.name}::{item_id}") == "correct"
+        for mode, res in (("strict", strict), ("lenient", lenient)):
+            if res.status == "accepted":
+                t[f"accepted_{mode}"] += 1
+                t[f"correct_accepted_{mode}"] += int(correct)
+        if lenient.status != "accepted":
+            t["unsupported"] += 1
+        t["correct_any"] += int(correct)
+    return {k: dict(v) for k, v in table.items()}
