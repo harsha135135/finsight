@@ -1,0 +1,35 @@
+{
+ "code_sha256": {
+  "finsight/qa.py": "849b2b0cf725213742d2d7c5274cd862f2d09786f8503c0a21db6e3c851b9cb8",
+  "finsight/reasoning/qa_prompt.py": "4dd5a3064163a07179932e8eb119a2a1ec408197f51076306e4aba752ac553eb",
+  "finsight/retrieval/search.py": "8feb27e8cf0d041179a5ef7f6bbc1048a1fe213ff38ad062e6aae5f35cf2a6c5",
+  "modelforge/claude_qa_batch.py": "ab8c17b1b6a0a6d8fcf72ce0db2614576f02665f9856f900b836df80ac37acfd",
+  "modelforge/qa_score.py": "eccee985c390ad422e23a74e971237b87d95d337f063452a1e03ff281e60610f"
+ },
+ "date": "2026-11-10",
+ "haiku_settings": {
+  "batch": true,
+  "effort": "medium",
+  "max_tokens": 5600,
+  "model": "claude-haiku-5-5"
+ },
+ "inputs": {
+  "full": {
+   "path": "artifacts/runs/20261110-qa17-fb-full-base-text3/items.jsonl",
+   "sha256": "53be0e07541196be57fe066816acbb3abe865462a6acb72057b451be34f8e0cc"
+  }
+ },
+ "name": "freeze-dev-text3-v1",
+ "prompt_version": "finsight-qa-v1.5",
+ "purpose": "one Haiku development run, full-document mode with the adopted retrieval (confirmation, not tuning)",
+ "retrieval": "pdf-2 + text-3",
+ "retrieval_file_sha256": "0515e4c1e9945d9dbf49ff6874c98d04309ebe892623951fcbf3f4295a61e281",
+ "same_items_as": "base Qwen run 20261110-qa17-fb-full-base-text3",
+ "schema_sha256": {
+  "claude": "d4480c86dec626c8aab575bf9269b8478aaa6c87322c8142c04e1d42b1de9a95",
+  "qwen": "64d77fd625636525bfd91ec93da236f2848e01a7f3a1b88b831d037127101c01"
+ },
+ "scorer": "v1.7",
+ "sealed": "held-out half and FinQA test not read",
+ "system_prompt_sha256": "50a479991ebf285b96f9f3ecd964486f3e70197a51ddc5012a9b9605694d9262"
+}
