@@ -42,3 +42,16 @@ Otherwise Qwen stays the local model. If the interval includes zero, the result 
 **Also reported.** Lenient results; boolean accuracy; correct/accepted, coverage and unsupported counts per answer
 type; invalid outputs; latency p50/p95 and time to first token; peak GPU memory (an `nvidia-smi` sampler during the
 run); quantization; the chat template's sha256 and the rendered prompt's thinking check.
+
+## Addendum: feasibility outcome (recorded before any scored Gemma output)
+- **Attempt 1** (as declared, no offload): the weights filled the card (11,963 MiB peak), leaving no memory for the KV
+  cache, so vLLM refused to start.
+- **Attempt 2** (the declared retry, `--cpu-offload-gb 3`): vLLM 0.33's torch.compile failed on the offloaded layers
+  (`Unsupported: setattr() on OrderedDict`). This is a software incompatibility, not a memory limit.
+- **Attempt 3, a disclosed deviation** (`--cpu-offload-gb 3 --enforce-eager`): the model loaded. A one-item smoke test
+  returned valid JSON with no thinking text, in 36 s against Qwen's median of 2.9 s.
+- **Consequence:** the memory criterion (runs without CPU offload) already fails, so Gemma cannot become the local model
+  for the sealed run. The quality comparison still runs because it answers the question this baseline was set up for.
+  Latency is reported, but offload and eager mode make it unrepresentative of Gemma on a larger card.
+- **Context:** the longest supplied item is 6,913 Gemma tokens and 6,717 Qwen tokens, so it exceeds 6,656 for both. Qwen's
+  run already recorded it as an HTTP 400. Keeping 6,656 preserves parity.

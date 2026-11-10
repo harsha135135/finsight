@@ -102,6 +102,7 @@ def main(argv: list[str] | None = None) -> int:
     sv.add_argument("--language-model-only", action="store_true", help="multimodal checkpoints: load the text model only")
     sv.add_argument("--limit-mm-per-prompt", default=None, help='e.g. \'{"image": 0, "audio": 0}\'')
     sv.add_argument("--cpu-offload-gb", type=float, default=None, help="offload this many GB of weights to CPU (recorded)")
+    sv.add_argument("--enforce-eager", action="store_true", help="disable torch.compile and CUDA graphs (recorded)")
     sv.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
@@ -198,7 +199,8 @@ def main(argv: list[str] | None = None) -> int:
                           gpu_memory_utilization=args.gpu_memory_utilization, max_lora_rank=args.max_lora_rank,
                           compact_json=args.compact_json, reasoning_parser=args.reasoning_parser,
                           lora=not args.no_lora, language_model_only=args.language_model_only,
-                          limit_mm_per_prompt=args.limit_mm_per_prompt, cpu_offload_gb=args.cpu_offload_gb)
+                          limit_mm_per_prompt=args.limit_mm_per_prompt, cpu_offload_gb=args.cpu_offload_gb,
+                          enforce_eager=args.enforce_eager)
     return 2
 
 

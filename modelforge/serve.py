@@ -33,7 +33,8 @@ def build_command(model: str, revision: str, *, port: int = 8000, max_model_len:
                   gpu_memory_utilization: float = 0.87, max_lora_rank: int = 16,
                   loras: dict[str, Path] | None = None, compact_json: bool = False,
                   reasoning_parser: str | None = None, lora: bool = True, language_model_only: bool = False,
-                  limit_mm_per_prompt: str | None = None, cpu_offload_gb: float | None = None) -> list[str]:
+                  limit_mm_per_prompt: str | None = None, cpu_offload_gb: float | None = None,
+                  enforce_eager: bool = False) -> list[str]:
     executable = shutil.which("vllm")
     base = [executable] if executable else [sys.executable, "-m", "vllm.entrypoints.cli.main"]
     command = base + [
@@ -52,6 +53,8 @@ def build_command(model: str, revision: str, *, port: int = 8000, max_model_len:
         command += ["--limit-mm-per-prompt", limit_mm_per_prompt]
     if cpu_offload_gb:
         command += ["--cpu-offload-gb", str(cpu_offload_gb)]
+    if enforce_eager:     # no torch.compile / CUDA graphs (vLLM 0.33 cannot compile Gemma 4 with offloaded weights)
+        command += ["--enforce-eager"]
     if compact_json:
         # Server-wide in vLLM 0.33 (the per-request field is ignored): guided JSON without free whitespace, so a
         # model cannot emit whitespace until max_tokens. Used for FinSight serving; FinQA runs keep the default
