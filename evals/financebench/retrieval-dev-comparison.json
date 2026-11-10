@@ -1,5 +1,54 @@
 {
  "audit": "evals/financebench/evidence-audit-dev-v1.json",
+ "base_qwen_full_document_note": "narrative answers not graded for this comparison; same model, prompt, serving and scorer; only the retrieved passages differ",
+ "base_qwen_full_document_v1.7": {
+  "text-2": {
+   "boolean": {
+    "accepted_lenient": 14,
+    "accepted_strict": 14,
+    "correct_accepted_lenient": 7,
+    "correct_accepted_strict": 7,
+    "correct_any": 7,
+    "invalid_or_operational": 4,
+    "n": 20,
+    "unsupported": 2
+   },
+   "numeric": {
+    "accepted_lenient": 6,
+    "accepted_strict": 3,
+    "correct_accepted_lenient": 1,
+    "correct_accepted_strict": 0,
+    "correct_any": 1,
+    "declined": 2,
+    "gold_value_strict_only_rejection_unverified": 1,
+    "n": 33,
+    "unsupported": 25
+   }
+  },
+  "text-3": {
+   "boolean": {
+    "accepted_lenient": 19,
+    "accepted_strict": 19,
+    "correct_accepted_lenient": 12,
+    "correct_accepted_strict": 12,
+    "correct_any": 13,
+    "n": 20,
+    "unsupported": 1
+   },
+   "numeric": {
+    "accepted_lenient": 14,
+    "accepted_strict": 5,
+    "correct_accepted_lenient": 3,
+    "correct_accepted_strict": 1,
+    "correct_any": 3,
+    "declined": 1,
+    "gold_value_strict_only_rejection_unverified": 2,
+    "invalid_or_operational": 1,
+    "n": 33,
+    "unsupported": 17
+   }
+  }
+ },
  "configs": {
   "pdf-2+text-2": {
    "breakdown": {
