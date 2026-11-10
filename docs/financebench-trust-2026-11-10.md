@@ -19,8 +19,14 @@ Each cell: **correct (any) / n · correct / accepted (strict) · correct / accep
 | Full doc | v2b | 2 · 0/9 · 2/17 · 12 · 4 | 13 · 8/14 · 8/14 · 5 · 1 | 1 · 1/14 · 1/15 · 5 · 2 |
 | Full doc | **Haiku** | 8 · **2/2 · 8/8** · 2 · **23** | 7 · **5/5 · 5/5** · 2 · **13** | 7 · **7/10 · 7/10** · 2 · **10** |
 
-Narrative: blind rubric; Haiku's outputs were graded mixed with 30 already-graded local outputs as decoys (agreement
-29/30; the one difference was an item first graded from a truncated view).
+Narrative: blind rubric; Haiku's outputs were graded mixed with 30 already-graded local outputs as decoys, with model
+labels hidden. Re-grading agreement on the decoys was 29/30; the one difference (an Amcor restructuring answer from base,
+full-document mode: incorrect before, partial now) is left as originally recorded in the local scores. The blinding is
+weak: Haiku's answers are longer and more specific in style and are often recognizable, so the narrative comparison
+carries grader bias that the decoys measure only partly. The numeric and boolean results are scored deterministically.
+
+Paired test, supplied numeric (exact McNemar on the same 33 questions): Haiku correct where base is not 15, the reverse
+0 (p = 6e-5); vs v2a 16 / 0 (p = 3e-5); vs v2b 20 / 0 (p = 2e-6). Development data, 33 questions.
 
 **Period validator (native FinQA controls, coverage rule applied to saved outputs).** Wrong-year answers passing:
 0 / 0 / 0 (base, v2a, v2b). Correct answers rejected for their period: 0 / 0 / 0. Correct answers rejected only in strict
