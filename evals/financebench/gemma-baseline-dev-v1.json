@@ -1,4 +1,5 @@
 {
+ "conclusion": "Neither tested local configuration matched Haiku under this pipeline. Gemma performed worse than base Qwen, with CPU offloading and an interface developed primarily around Qwen.",
  "decision": {
   "latency": "fails: median 17.8 s vs 2.9 s (offload and eager mode; not representative of a larger card)",
   "memory": "fails: does not run on the RTX 4070 at 6,656 tokens without CPU offload",

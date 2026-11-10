@@ -2,7 +2,7 @@
  "artifacts": {
   "analysis": {
    "path": "evals/financebench/gemma-baseline-dev-v1.json",
-   "sha256": "1729f42fa0cf8172913e58e2ee0dcd3de0158559ae1eebc4d509dd06fff2e11e"
+   "sha256": "cc7c97ae813c3c94666dcae9f4c75073cd58d18bbb5f4e60b2747e49d01eb64a"
   },
   "evidence_audit": {
    "path": "evals/financebench/evidence-audit-dev-v1.json",
@@ -29,7 +29,7 @@
  "facts": {
   "code_sha256": {
    "finsight/qa.py": "849b2b0cf725213742d2d7c5274cd862f2d09786f8503c0a21db6e3c851b9cb8",
-   "finsight/retrieval/search.py": "25f02de4a89bcb6d02ad33e990c487d6dafc1fb683c397fdf3162df2bf25aef9",
+   "finsight/retrieval/search.py": "8feb27e8cf0d041179a5ef7f6bbc1048a1fe213ff38ad062e6aae5f35cf2a6c5",
    "modelforge/fb_retrieval.py": "c6f3fd9fe676fec4c56641542922d1dd48fb0cd550c205a675e9442b5f10319e",
    "modelforge/qa_score.py": "eccee985c390ad422e23a74e971237b87d95d337f063452a1e03ff281e60610f"
   },

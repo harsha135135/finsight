@@ -191,6 +191,55 @@ def dev_questions(manifest: dict) -> list[dict]:
     return dev
 
 
+HELD_OUT_AUTHORIZATION = Path("evals/authorizations/financebench-heldout.json")
+
+
+def _committed_unchanged(path: Path) -> bool:
+    import subprocess
+
+    tracked = subprocess.run(["git", "ls-files", "--error-unmatch", str(path)], capture_output=True).returncode == 0
+    clean = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", str(path)], capture_output=True).returncode == 0
+    return tracked and clean
+
+
+def held_out_questions(manifest: dict, authorization: Path = HELD_OUT_AUTHORIZATION, *, require_committed: bool = True,
+                       questions: list[dict] | None = None) -> list[dict]:
+    """The held-out questions, only after an explicit authorization.
+
+    The authorization file names the frozen configuration it authorizes (``freeze`` path and ``freeze_sha256``) and who
+    authorized it; both files must be committed and unchanged, so the order "freeze, authorize, then open" is visible in
+    git. Without it this raises; nothing else in the code base returns held-out questions or answers."""
+    import hashlib
+
+    if not authorization.exists():
+        raise PermissionError(f"the FinanceBench held-out half is sealed: no authorization at {authorization}")
+    auth = json.loads(authorization.read_text())
+    freeze = Path(auth["freeze"])
+    if hashlib.sha256(freeze.read_bytes()).hexdigest() != auth["freeze_sha256"]:
+        raise PermissionError("the frozen configuration changed after the held-out half was authorized")
+    if auth.get("split") != "held_out" or not auth.get("authorized_by"):
+        raise PermissionError("authorization must name split 'held_out' and who authorized it")
+    if require_committed and not (_committed_unchanged(authorization) and _committed_unchanged(freeze)):
+        raise PermissionError("the authorization and the freeze must be committed (and unchanged) before opening")
+    pool = questions if questions is not None else load()[0]
+    held_ids, dev_ids = set(manifest["samples"]["held_out"]), set(manifest["samples"]["dev"])
+    held = [q for q in pool if q["financebench_id"] in held_ids]
+    assert len(held) == len(held_ids) and not any(q["financebench_id"] in dev_ids for q in held)
+    assert {q["company"] for q in held} <= set(manifest["companies"]["held_out"])
+    return held
+
+
+def company_documents(manifest: dict, split: str, pdf_record: dict, documents: dict | None = None) -> dict:
+    """company -> [(doc_name, doc_type, pdf path)] for the companies of one split (document metadata only)."""
+    documents = documents if documents is not None else load()[1]
+    companies = set(manifest["companies"][split])
+    out: dict[str, list] = {}
+    for name, info in sorted(documents.items()):
+        if info["company"] in companies and name in pdf_record and pdf_record[name].get("status") == "ok":
+            out.setdefault(info["company"], []).append((name, info["doc_type"], Path(pdf_record[name]["path"])))
+    return out
+
+
 def ingest_documents(conn, manifest: dict, pdf_record: dict, doc_names: list[str]) -> dict:
     """Parse and store the given (development) documents as FinSight passages; returns passages per document."""
     from datetime import datetime, timezone

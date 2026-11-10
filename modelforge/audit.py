@@ -185,13 +185,16 @@ def decide(path: Path, decisions: dict[str, tuple[str, str]]) -> None:
 RESCORE_PATH = Path("evals/labels/finqa-unanswerable-audit-valshared250-v1.json")
 
 
-def candidates_for(variant_ids: list[str], pool: str, prior: dict | None = None) -> dict:
+def candidates_for(variant_ids: list[str], pool: str, prior: dict | None = None, *,
+                   version: str = "finqa-unanswerable-audit-valshared250-v1",
+                   purpose: str = "relabel v1's val_shared_250 negatives to rescore saved v1 runs",
+                   manifest_name: str = "finqa-grouped") -> dict:
     """Audit skeleton for a fixed list of variants (e.g. v1's val_shared_250 negatives), same rules.
 
     Decisions already made in ``prior`` (another audit file) are copied with a note, so one
     reviewer's judgement is not made twice for the same variant.
     """
-    manifest = splits.load("finqa-grouped")
+    manifest = splits.load(manifest_name)
     bases = {b.id: b for b in splits.resolve_items(manifest, sorted({v.split("::")[0] for v in variant_ids}))}
     out = {}
     for vid in sorted(variant_ids):
@@ -201,7 +204,19 @@ def candidates_for(variant_ids: list[str], pool: str, prior: dict | None = None)
             entry["decision"] = prior["candidates"][vid]["decision"]
             entry["reason"] = prior["candidates"][vid]["reason"] + f" [decision from {prior['version']}]"
         out[vid] = entry
-    return {"version": "finqa-unanswerable-audit-valshared250-v1",
+    return {"version": version,
             "generator": {"name": "gold_passages_removed", "builder_version": splits.BUILDER_VERSION},
-            "rules": __doc__.strip(), "purpose": "relabel v1's val_shared_250 negatives to rescore saved v1 runs",
+            "rules": __doc__.strip(), "purpose": purpose, "manifest": manifest_name,
             "candidates": out}
+
+
+def final_denominators(audit: dict, answerable_ids: list[str]) -> dict:
+    """Frozen exclusion rule for a test pool: every answerable item counts; an unanswerable variant counts only if the
+    audit verified it (decision "verified_unanswerable"); everything else is excluded and listed. Written before any inference."""
+    verified = sorted(v for v, e in audit["candidates"].items() if e["decision"] == "verified_unanswerable")
+    excluded = sorted(v for v, e in audit["candidates"].items() if e["decision"] != "verified_unanswerable")
+    undecided = sorted(v for v, e in audit["candidates"].items() if e["decision"] is None)
+    if undecided:
+        raise ValueError(f"{len(undecided)} variants have no audit decision; denominators cannot be frozen")
+    return {"audit": audit["version"], "answerable": len(answerable_ids), "unanswerable_verified": len(verified),
+            "excluded": excluded, "items": sorted(answerable_ids) + verified}

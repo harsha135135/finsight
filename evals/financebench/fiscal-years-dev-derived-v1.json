@@ -1,0 +1,250 @@
+{
+ "agreement_with_hand_file": {
+  "3M": true,
+  "ACTIVISIONBLIZZARD": true,
+  "ADOBE": true,
+  "AMAZON": true,
+  "AMCOR": true,
+  "AMERICANEXPRESS": true,
+  "BESTBUY": true,
+  "BLOCK": true,
+  "BOEING": true,
+  "CORNING": true,
+  "FOOTLOCKER": true,
+  "GENERALMILLS": true,
+  "KRAFTHEINZ": true,
+  "NETFLIX": true,
+  "PFIZER": true,
+  "WALMART": true
+ },
+ "date": "2026-11-10",
+ "evidence": {
+  "3M": [
+   [
+    "3M_2018_10K",
+    "2018-12-31"
+   ],
+   [
+    "3M_2022_10K",
+    "2022-12-31"
+   ]
+  ],
+  "ACTIVISIONBLIZZARD": [
+   [
+    "ACTIVISIONBLIZZARD_2019_10K",
+    "2019-12-31"
+   ]
+  ],
+  "ADOBE": [
+   [
+    "ADOBE_2015_10K",
+    "2015-11-27"
+   ],
+   [
+    "ADOBE_2016_10K",
+    "2016-12-02"
+   ],
+   [
+    "ADOBE_2017_10K",
+    "2017-12-01"
+   ],
+   [
+    "ADOBE_2022_10K",
+    "2022-12-02"
+   ]
+  ],
+  "AMAZON": [
+   [
+    "AMAZON_2017_10K",
+    "2017-12-31"
+   ],
+   [
+    "AMAZON_2019_10K",
+    "2019-12-31"
+   ]
+  ],
+  "AMCOR": [
+   [
+    "AMCOR_2020_10K",
+    "2020-06-30"
+   ],
+   [
+    "AMCOR_2023_10K",
+    "2023-06-30"
+   ]
+  ],
+  "AMERICANEXPRESS": [
+   [
+    "AMERICANEXPRESS_2022_10K",
+    "2022-12-31"
+   ]
+  ],
+  "BESTBUY": [
+   [
+    "BESTBUY_2017_10K",
+    "2017-01-28"
+   ],
+   [
+    "BESTBUY_2019_10K",
+    "2019-02-02"
+   ],
+   [
+    "BESTBUY_2023_10K",
+    "2023-01-28"
+   ]
+  ],
+  "BLOCK": [
+   [
+    "BLOCK_2016_10K",
+    "2016-12-31"
+   ],
+   [
+    "BLOCK_2020_10K",
+    "2020-12-31"
+   ]
+  ],
+  "BOEING": [
+   [
+    "BOEING_2018_10K",
+    "2018-12-31"
+   ],
+   [
+    "BOEING_2022_10K",
+    "2022-12-31"
+   ]
+  ],
+  "CORNING": [
+   [
+    "CORNING_2020_10K",
+    "2020-12-31"
+   ],
+   [
+    "CORNING_2021_10K",
+    "2021-12-31"
+   ],
+   [
+    "CORNING_2022_10K",
+    "2022-12-31"
+   ]
+  ],
+  "GENERALMILLS": [
+   [
+    "GENERALMILLS_2019_10K",
+    "2019-05-26"
+   ],
+   [
+    "GENERALMILLS_2020_10K",
+    "2020-05-31"
+   ],
+   [
+    "GENERALMILLS_2022_10K",
+    "2022-05-29"
+   ]
+  ],
+  "KRAFTHEINZ": [
+   [
+    "KRAFTHEINZ_2019_10K",
+    "2019-12-28"
+   ]
+  ],
+  "NETFLIX": [
+   [
+    "NETFLIX_2015_10K",
+    "2015-12-31"
+   ],
+   [
+    "NETFLIX_2017_10K",
+    "2017-12-31"
+   ]
+  ],
+  "PFIZER": [
+   [
+    "PFIZER_2021_10K",
+    "2021-12-31"
+   ]
+  ],
+  "WALMART": [
+   [
+    "WALMART_2018_10K",
+    "2018-01-31"
+   ],
+   [
+    "WALMART_2019_10K",
+    "2019-01-31"
+   ],
+   [
+    "WALMART_2020_10K",
+    "2020-01-31"
+   ]
+  ]
+ },
+ "fiscal_year_end": {
+  "3M": [
+   12,
+   31
+  ],
+  "ACTIVISIONBLIZZARD": [
+   12,
+   31
+  ],
+  "ADOBE": [
+   11,
+   27
+  ],
+  "AMAZON": [
+   12,
+   31
+  ],
+  "AMCOR": [
+   6,
+   30
+  ],
+  "AMERICANEXPRESS": [
+   12,
+   31
+  ],
+  "BESTBUY": [
+   1,
+   28
+  ],
+  "BLOCK": [
+   12,
+   31
+  ],
+  "BOEING": [
+   12,
+   31
+  ],
+  "CORNING": [
+   12,
+   31
+  ],
+  "FOOTLOCKER": null,
+  "GENERALMILLS": [
+   5,
+   26
+  ],
+  "KRAFTHEINZ": [
+   12,
+   28
+  ],
+  "NETFLIX": [
+   12,
+   31
+  ],
+  "PFIZER": [
+   12,
+   31
+  ],
+  "WALMART": [
+   1,
+   31
+  ]
+ },
+ "name": "fiscal-years-dev-derived-v1",
+ "no_10k_in_corpus": [
+  "FOOTLOCKER"
+ ],
+ "rule": "1. For each company, read the cover page (first three pages) of every 10-K of that company in the corpus and collect\n   the dates in \"for the (fiscal) year ended <Month D, YYYY>\".\n2. Companies with 52/53-week years report different dates in different years. The fiscal-year end (month, day) is the\n   earliest date of the smallest window that holds all of them; the window may not exceed 7 days, which is the\n   tolerance the validator applies (`finsight.qa.fiscal_year`). A wider spread is an error for a person to resolve.\n3. A company with no 10-K in the corpus gets null, which the validator reads as calendar years. It is listed, because\n   any period question about such a company deserves a manual look.",
+ "split": "dev"
+}

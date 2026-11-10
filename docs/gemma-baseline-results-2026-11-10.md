@@ -37,6 +37,6 @@ though: only 1 of the 15 narrative-typed answers states the figure. This is a pr
 **Feasibility.** Without offload, the weights filled the card. With offload, vLLM 0.33's compiler failed on Gemma 4.
 Offload plus eager mode loaded; that is a disclosed deviation and the cause of the high latency.
 
-**Answer to the question this baseline was set up for.** The FinanceBench limits are not specific to our Qwen setup.
-The other current local model in the same size class does worse, under an interface refined on Qwen outputs. With the right evidence
-supplied, the stronger model (Haiku: 28 of 33 under v1.7) is what changes the result.
+**Conclusion.** Neither tested local configuration matched Haiku under this pipeline. Gemma performed worse than base
+Qwen, with CPU offloading and an interface developed primarily around Qwen. This does not generalize to other local
+models, and it does not isolate model size as the cause.

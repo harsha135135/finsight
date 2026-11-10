@@ -28,14 +28,22 @@ ROOT = Path("artifacts/claude-batches")
 FROZEN = {"supplied": Path("artifacts/runs/20261110-qa15-fb-supplied-base/items.jsonl"),
           "full": Path("artifacts/runs/20261110-qa15-fb-full-base/items.jsonl")}
 FREEZE = Path("evals/financebench/freeze-qa-v1.6.json")
+MAX_TOKENS = 5600       # the output allowance of the 2026-11-10 development batch; fixed so later runs match it
+EFFORT = "medium"
 
 
-def _items(mode: str) -> list[dict]:
-    body = FROZEN[mode].read_bytes()
-    expected = json.loads(FREEZE.read_text())["inputs_sha256"][mode]
-    if hashlib.sha256(body).hexdigest() != expected:
-        raise ValueError(f"{FROZEN[mode]} does not match the frozen inputs")
+def _check(path: Path, expected_sha256: str) -> list[dict]:
+    body = Path(path).read_bytes()
+    if hashlib.sha256(body).hexdigest() != expected_sha256:
+        raise ValueError(f"{path} does not match its expected sha256")
     return [json.loads(line) for line in body.decode().splitlines() if line]
+
+
+def _items(mode: str, inputs: dict | None = None) -> list[dict]:
+    """Items for a mode; ``inputs`` (from the plan) maps mode -> {"path", "sha256"}; default: the v1.6 dev freeze."""
+    if inputs:
+        return _check(Path(inputs[mode]["path"]), inputs[mode]["sha256"])
+    return _check(FROZEN[mode], json.loads(FREEZE.read_text())["inputs_sha256"][mode])
 
 
 def _body(model: str, max_tokens: int, effort: str, item: dict) -> dict:
@@ -45,27 +53,34 @@ def _body(model: str, max_tokens: int, effort: str, item: dict) -> dict:
             "output_config": {"format": {"type": "json_schema", "schema": claude_schema()}, "effort": effort}}
 
 
-def plan(name: str, model: str = "claude-haiku-5-5", effort: str = "medium") -> dict:
+def plan(name: str, model: str = "claude-haiku-5-5", effort: str = EFFORT, *, inputs: dict | None = None,
+         freeze: Path = FREEZE, run_prefix: str = "20261110-qa16-fb", label: str = "finsight-qa-v1.6",
+         max_tokens: int = MAX_TOKENS) -> dict:
+    """``inputs``: mode -> {"path": items.jsonl, "sha256": expected}; modes are run in the order given."""
     out = ROOT / name
     if (out / "state.json").exists():
         raise ValueError(f"{out} already has a submitted batch")
+    modes = list(inputs) if inputs else ["supplied", "full"]
     requests = [{"custom_id": f"{mode[0]}{n:03d}", "mode": mode, "item_id": item["id"]}
-                for mode in ("supplied", "full") for n, item in enumerate(_items(mode))]
-    data = {"name": name, "model": model, "effort": effort, "prompt_version": QA_PROMPT_VERSION,
-            "freeze_sha256": hashlib.sha256(FREEZE.read_bytes()).hexdigest(), "requests": requests,
+                for mode in modes for n, item in enumerate(_items(mode, inputs))]
+    data = {"name": name, "model": model, "effort": effort, "prompt_version": QA_PROMPT_VERSION, "max_tokens": max_tokens,
+            "inputs": inputs, "modes": modes, "run_prefix": run_prefix, "label": label, "freeze": str(freeze),
+            "freeze_sha256": hashlib.sha256(Path(freeze).read_bytes()).hexdigest(), "requests": requests,
             "created_at": datetime.now(timezone.utc)}
     out.mkdir(parents=True, exist_ok=True)
     _write(out / "plan.json", data)
     return {k: v for k, v in data.items() if k != "requests"} | {"requests": len(requests)}
 
 
-def _lookup() -> dict:
-    return {(mode, item["id"]): item for mode in ("supplied", "full") for item in _items(mode)}
+def _lookup(data: dict) -> dict:
+    inputs = data.get("inputs")
+    return {(mode, item["id"]): item for mode in data.get("modes", ["supplied", "full"]) for item in _items(mode, inputs)}
 
 
 def count(name: str, client, *, run_cap_usd: Decimal) -> dict:
     out = ROOT / name
-    data, items = _read(out / "plan.json"), _lookup()
+    data = _read(out / "plan.json")
+    items = _lookup(data)
     for r in data["requests"]:
         if "input_tokens" not in r:
             body = _body(data["model"], 1, data["effort"], items[(r["mode"], r["item_id"])])
@@ -74,12 +89,8 @@ def count(name: str, client, *, run_cap_usd: Decimal) -> dict:
             _write(out / "plan.json", data)
     n = len(data["requests"])
     input_cost = sum((cost(data["model"], TokenUsage(input_uncached=r["input_tokens"]), batch=True) for r in data["requests"]), Decimal(0))
-    largest = max(r["input_tokens"] for r in data["requests"])
-    per_token = (cost(data["model"], TokenUsage(input_uncached=largest, output=1_000_000), batch=True)
-                 - cost(data["model"], TokenUsage(input_uncached=largest), batch=True)) / Decimal(1_000_000)
-    max_tokens = min(int((run_cap_usd - input_cost) / (n * per_token)) // 100 * 100, 8000)
-    if max_tokens < 2048:
-        raise ValueError(f"the run cap leaves only {max_tokens} output tokens per request")
+    # the output allowance is fixed by the plan (identical conditions across runs); the cap only bounds the worst case
+    max_tokens = data.get("max_tokens") or MAX_TOKENS
     worst = sum((reservation(data["model"], r["input_tokens"], max_tokens, batch=True) for r in data["requests"]), Decimal(0))
     if worst > run_cap_usd:
         raise ValueError(f"worst case ${worst:.4f} exceeds the run cap ${run_cap_usd}")
@@ -91,7 +102,8 @@ def count(name: str, client, *, run_cap_usd: Decimal) -> dict:
 
 def submit(name: str, client, ledger: SpendLedger) -> dict:
     out = ROOT / name
-    data, items = _read(out / "plan.json"), _lookup()
+    data = _read(out / "plan.json")
+    items = _lookup(data)
     if "worst_case_usd" not in data:
         raise ValueError("run count first")
     if (out / "state.json").exists():
@@ -137,7 +149,7 @@ def collect(name: str, client, ledger: SpendLedger, runs_dir: Path = Path("artif
     if batch.processing_status != "ended":
         return {"status": batch.processing_status, "counts": _counts(batch.request_counts)}
     by_custom = {r["custom_id"]: r for r in data["requests"]}
-    lines = {"supplied": {}, "full": {}}
+    lines = {mode: {} for mode in data.get("modes", ["supplied", "full"])}
     spent = Decimal(0)
     for result in client.messages.batches.results(state["batch_id"]):
         r = by_custom[result.custom_id]
@@ -161,13 +173,15 @@ def collect(name: str, client, ledger: SpendLedger, runs_dir: Path = Path("artif
             lines[r["mode"]][r["item_id"]] = {"item_id": r["item_id"], "text": None, "raw": None, "status": "error",
                                               "error": f"batch result {result.result.type}: {error}", "latency_ms": None,
                                               "input_tokens": None, "output_tokens": None}
+    inputs = data.get("inputs")
     for mode, preds in lines.items():
-        run = runs_dir / f"20261110-qa16-fb-{mode}-haiku"
+        source = Path(inputs[mode]["path"]) if inputs else FROZEN[mode]
+        run = runs_dir / f"{data.get('run_prefix', '20261110-qa16-fb')}-{mode}-haiku"
         run.mkdir(parents=True, exist_ok=True)
-        (run / "items.jsonl").write_bytes(FROZEN[mode].read_bytes())
-        order = [json.loads(line)["id"] for line in FROZEN[mode].read_text().splitlines() if line]
+        (run / "items.jsonl").write_bytes(source.read_bytes())
+        order = [json.loads(line)["id"] for line in source.read_text().splitlines() if line]
         (run / "predictions.jsonl").write_text("".join(json.dumps(preds[i]) + "\n" for i in order if i in preds))
-        (run / "config.json").write_text(json.dumps({"label": f"finsight-qa-v1.6 fb-{mode} Claude batch", "model": data["model"],
+        (run / "config.json").write_text(json.dumps({"label": f"{data.get('label', 'finsight-qa-v1.6')} fb-{mode} Claude batch", "model": data["model"],
                                                      "effort": data["effort"], "max_tokens": data["max_tokens"], "batch_id": state["batch_id"],
                                                      "prompt_version": data["prompt_version"], "freeze_sha256": data["freeze_sha256"]}, indent=1) + "\n")
     state.update(status="ended", collected_at=datetime.now(timezone.utc), actual_cost_usd=str(spent))
