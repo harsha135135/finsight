@@ -9,6 +9,8 @@ TEST_DB = os.environ.get("FINSIGHT_TEST_DATABASE_URL")
 def pg():
     """A migrated, empty test database; skipped unless FINSIGHT_TEST_DATABASE_URL is set."""
     if not TEST_DB:
+        if os.environ.get("FINSIGHT_REQUIRE_POSTGRES"):     # CI: database tests (e.g. the replay test) must run, never skip
+            pytest.fail("FINSIGHT_REQUIRE_POSTGRES is set but FINSIGHT_TEST_DATABASE_URL is not")
         pytest.skip("set FINSIGHT_TEST_DATABASE_URL (e.g. docker compose up -d db)")
     from finsight.storage.db import connect, migrate
     conn = connect(TEST_DB, application_name="finsight-test")

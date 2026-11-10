@@ -33,6 +33,20 @@ jobs:
       - run: uv sync --locked --extra app
       # Offline: no paid API calls, no GPU; tests needing local v1 artifacts skip themselves.
       - run: uv run pytest -q
+        env:
+          FINSIGHT_REQUIRE_POSTGRES: "1"
+      # Mandatory offline replay of the FY2025 demo job from the committed bundle. Any HTTP(S) request outside the
+      # bundle would go to a dead proxy and fail; the replay must reproduce the original outcome and fail closed.
+      - name: Offline replay (no network)
+        run: uv run pytest -q tests/finsight/test_replay.py
+        env:
+          FINSIGHT_REQUIRE_POSTGRES: "1"
+          HTTP_PROXY: http://127.0.0.1:9
+          HTTPS_PROXY: http://127.0.0.1:9
+          NO_PROXY: 127.0.0.1,localhost
+      # Fresh-clone reproducibility: artifact hashes, and scores regenerated from committed predictions.
+      - name: Verify experiment records
+        run: uv run modelforge record verify --all
 
   image:
     runs-on: ubuntu-24.04
