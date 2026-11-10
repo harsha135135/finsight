@@ -23,17 +23,25 @@ def request_key(model: str, system: str, user: str, schema: dict) -> str:
 class RecordedProvider:
     provider = "recorded"
 
-    def __init__(self, recordings: Path | dict[str, str], model: str = "recorded") -> None:
+    def __init__(self, recordings: Path | dict, model: str = "recorded") -> None:
+        from finsight.replay import load_recordings
+
         self.model = model
-        self.recordings = (json.loads(Path(recordings).read_text()) if not isinstance(recordings, dict) else recordings)
+        raw = load_recordings(Path(recordings)) if not isinstance(recordings, dict) else recordings
+        self.recordings = {k: (v if isinstance(v, dict) else {"text": v, "provenance": None}) for k, v in raw.items()}
         self.settings = {"provider": "recorded", "model": model, "recordings": len(self.recordings)}
+        self.replayed: list[dict] = []        # provenance of every recording served (for the report and tests)
 
     def generate(self, system: str, user: str, schema: dict, *, job_id=None, stage: str = "answer",
                  attempt: int = 1, scope: str = "finsight") -> Generation:
         key = request_key(self.model, system, user, schema)
         started = datetime.now(timezone.utc)
-        text = self.recordings.get(key)
-        status, error = ("ok", None) if text is not None else ("error", f"no recording for request {key[:12]}")
+        entry = self.recordings.get(key)
+        text = entry["text"] if entry else None
+        if entry:
+            self.replayed.append({"request_sha256": key, "provenance": entry.get("provenance")})
+        status, error = (("ok", None) if text is not None else
+                         ("error", f"no recording for request {key[:12]} (replay fails closed; no live model is called)"))
         return Generation(text=text, attempts=[ModelAttempt(requested_model=self.model, served_model=self.model,
                                                             stage=stage, attempt=attempt, status=status,
                                                             latency_ms=0, started_at=started, error=error)])

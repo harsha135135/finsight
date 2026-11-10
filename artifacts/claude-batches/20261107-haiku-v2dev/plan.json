@@ -1,0 +1,2078 @@
+{
+ "name": "20261107-haiku-v2dev",
+ "manifest": "finqa-grouped-v2",
+ "manifest_sha256": "cbe78f1c576da01621597070d7d57595f4d6cdb3616c8b2aa728ada3e894c848",
+ "selection": "val_dev_eval",
+ "model": "claude-haiku-5-5",
+ "effort": "medium",
+ "prompt_version": "answer-v4",
+ "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+ "prices_as_of": "2026-11-07",
+ "limit": null,
+ "requests": [
+  {
+   "custom_id": "i0000",
+   "item_id": "AAPL/2014/page_38.pdf-1",
+   "input_tokens": 3839,
+   "request_sha256": "ce8276ee02da91fac4a7327e3dc0faa1ad7a888534906078fc587543b87853d4",
+   "attempt_id": "fa3c8e6f-287a-4523-b4b2-b5170ac30aa9"
+  },
+  {
+   "custom_id": "i0001",
+   "item_id": "AAPL/2014/page_38.pdf-2",
+   "input_tokens": 3843,
+   "request_sha256": "918f59f59bb0e517905c828073f2e9221979cb5454feb5bc3f392e90fa9de1a3",
+   "attempt_id": "e0e2e816-f08c-4fe2-b3e1-f673dc82fb02"
+  },
+  {
+   "custom_id": "i0002",
+   "item_id": "AAPL/2014/page_38.pdf-2::unanswerable",
+   "input_tokens": 3788,
+   "request_sha256": "fbc45095bf6f3fe2f81cb25bbeb830893a5605a4c1874520f792f0ad36fca897",
+   "attempt_id": "03dfa759-bacf-495f-9008-2f0214aa68a7"
+  },
+  {
+   "custom_id": "i0003",
+   "item_id": "AAPL/2014/page_38.pdf-3",
+   "input_tokens": 3838,
+   "request_sha256": "b8d42bfb622a99c2f56a968edf2ffcbe60b8dfaef961e6dc579c882889d8661b",
+   "attempt_id": "6f8a0d92-973d-4665-9164-6f5891feb948"
+  },
+  {
+   "custom_id": "i0004",
+   "item_id": "AAPL/2014/page_38.pdf-4",
+   "input_tokens": 3843,
+   "request_sha256": "7b40bf59a35e4ef47b4e0199ffe17ff0e8e30f18e432a2da5b14dd1faaf87106",
+   "attempt_id": "46e45d1f-2b2c-441b-8675-1399d53e67a9"
+  },
+  {
+   "custom_id": "i0005",
+   "item_id": "AAPL/2014/page_38.pdf-4::unanswerable",
+   "input_tokens": 3788,
+   "request_sha256": "eb1b6da7bd1aefed4e092bf2ee72d26f788d41b9db4daac4db28788d00f4c676",
+   "attempt_id": "2c3d2d88-1216-42e4-b217-182baa38aa84"
+  },
+  {
+   "custom_id": "i0006",
+   "item_id": "ADBE/2018/page_86.pdf-1",
+   "input_tokens": 4051,
+   "request_sha256": "de3772048d9c9d86f2b42e33b04ace59189c77b667bd15e8ad5d2f9e4ee5f92f",
+   "attempt_id": "52a5dab3-cf3a-4a08-966e-1a43dbb28535"
+  },
+  {
+   "custom_id": "i0007",
+   "item_id": "ADBE/2018/page_86.pdf-2",
+   "input_tokens": 4057,
+   "request_sha256": "1fcec50ab492d9e6b62eb9c2c5725db6aa52103c485247a5d42c8b7a8851a4df",
+   "attempt_id": "eb91785c-6c37-4275-bf01-e03639b70165"
+  },
+  {
+   "custom_id": "i0008",
+   "item_id": "ADBE/2018/page_86.pdf-3",
+   "input_tokens": 4051,
+   "request_sha256": "b6add69b9a8760d4eed5dd58a68262ca360a240b2f4eaad3f3b6b673f8374fd3",
+   "attempt_id": "952989c4-2ac2-43c5-afb2-515958f5aab7"
+  },
+  {
+   "custom_id": "i0009",
+   "item_id": "ADBE/2018/page_86.pdf-3::unanswerable",
+   "input_tokens": 3974,
+   "request_sha256": "1f5644558574652a7bbeaaf65c3419da267f5627ef104c9ecd6196334781c1e4",
+   "attempt_id": "f66097a4-63f3-4752-8661-f3ef3f37aa12"
+  },
+  {
+   "custom_id": "i0010",
+   "item_id": "ADBE/2018/page_86.pdf-4",
+   "input_tokens": 4065,
+   "request_sha256": "6b6b201679771006d9f2f7b6b9d7eb3c8b4cb88ade315bb57ba67183abb3a9c8",
+   "attempt_id": "d40bb98b-1e52-4114-8d27-40ccbc5110c9"
+  },
+  {
+   "custom_id": "i0011",
+   "item_id": "AES/2003/page_52.pdf-1",
+   "input_tokens": 3989,
+   "request_sha256": "e13222b3fe52ca6e6a82a063bea5977780810c26083f1ab31665661bab39d565",
+   "attempt_id": "45d8f6db-2bae-4bca-8b73-4815eaac775e"
+  },
+  {
+   "custom_id": "i0012",
+   "item_id": "AES/2003/page_52.pdf-2",
+   "input_tokens": 3989,
+   "request_sha256": "ddf4139251144a3578dade36ab9d80482c0ea5a4fe8c54dd69482923ec776a9a",
+   "attempt_id": "de533ccd-194b-411e-a585-1f6413063ac5"
+  },
+  {
+   "custom_id": "i0013",
+   "item_id": "AES/2015/page_117.pdf-1",
+   "input_tokens": 4793,
+   "request_sha256": "89eb94d294fe185da8681434ff45cb5ea1abbf0c3ec2a16d1e0cb85f71d46dc2",
+   "attempt_id": "9feeb06b-6b24-4433-8b6f-6edb2c644b7c"
+  },
+  {
+   "custom_id": "i0014",
+   "item_id": "AES/2015/page_117.pdf-2",
+   "input_tokens": 4793,
+   "request_sha256": "dea7f48e0a5400b6ab445ec081c687e80e92d9405551a4a2300fa1f370bb678f",
+   "attempt_id": "e2e932a8-4016-47c7-b7dc-375e2f3b5f3b"
+  },
+  {
+   "custom_id": "i0015",
+   "item_id": "AES/2015/page_117.pdf-3",
+   "input_tokens": 4813,
+   "request_sha256": "a41e98bdbc211e17de94c4a1c887499bcb1facc17e19b1c862908e50b606d2e3",
+   "attempt_id": "5a712a03-1fd4-4f97-89e8-c204ccd7107c"
+  },
+  {
+   "custom_id": "i0016",
+   "item_id": "AES/2015/page_117.pdf-4",
+   "input_tokens": 4789,
+   "request_sha256": "1f205c514ed5ad67945361842ba52db2ac23b848a6013e1f1a4c95beb5a93159",
+   "attempt_id": "cb70fa1e-a298-4640-80e2-5b51f219f2a6"
+  },
+  {
+   "custom_id": "i0017",
+   "item_id": "AES/2016/page_185.pdf-1",
+   "input_tokens": 4178,
+   "request_sha256": "c2a836adba0369712893227b837b65b53bbf3213fe6557c13ccbce6a787200ef",
+   "attempt_id": "365d1acc-1958-4ae5-944e-33f2f1bb7357"
+  },
+  {
+   "custom_id": "i0018",
+   "item_id": "AES/2016/page_185.pdf-1::unanswerable",
+   "input_tokens": 4071,
+   "request_sha256": "bc709c819b185cc092df25be4d406a306afc9b49ab5b1e9f92a61d4a8aa16238",
+   "attempt_id": "7f79c57a-0808-4833-95f5-71cc2b799459"
+  },
+  {
+   "custom_id": "i0019",
+   "item_id": "AES/2016/page_185.pdf-2",
+   "input_tokens": 4165,
+   "request_sha256": "37da428c8a26c7077ee16e252913816d3d7bb0bb1c9ed07b3cc8acef8dc71ee5",
+   "attempt_id": "d432b7d0-1f70-415a-9fda-0e435325d111"
+  },
+  {
+   "custom_id": "i0020",
+   "item_id": "AES/2016/page_185.pdf-3",
+   "input_tokens": 4172,
+   "request_sha256": "373b502861c31284aa18b0c35d864482977b2a496a7f010168499b9265660adc",
+   "attempt_id": "7327caf3-c4c8-42ac-b1d4-86767b26c910"
+  },
+  {
+   "custom_id": "i0021",
+   "item_id": "AES/2016/page_185.pdf-4",
+   "input_tokens": 4172,
+   "request_sha256": "80b74ee27b1e112d549c23aac2cc9f54d925ea276fc083fd98c1e1c143ae12ee",
+   "attempt_id": "82af3686-d1e9-4517-b1e8-8911a179edfa"
+  },
+  {
+   "custom_id": "i0022",
+   "item_id": "AES/2016/page_191.pdf-1",
+   "input_tokens": 4271,
+   "request_sha256": "4c4d58590a5832a8bc134dc86eab865d0f1c5f958d8da10645bd535d325221db",
+   "attempt_id": "5ef961ea-9833-4382-a138-88a721c6ffa1"
+  },
+  {
+   "custom_id": "i0023",
+   "item_id": "AES/2016/page_191.pdf-2",
+   "input_tokens": 4271,
+   "request_sha256": "02ac7b32dd67b3d3e04703aa197504004c4baed2562ce38f0ff402f9e1af7320",
+   "attempt_id": "29f89d2c-6224-4e99-b96b-11658de562f5"
+  },
+  {
+   "custom_id": "i0024",
+   "item_id": "AES/2016/page_191.pdf-3",
+   "input_tokens": 4268,
+   "request_sha256": "9d6a406c1a9a153b76b0521ab916b7469ef8e85140ee234f3f499405f319c412",
+   "attempt_id": "5e995f77-bfd4-48a3-9893-3b8d84d86ca3"
+  },
+  {
+   "custom_id": "i0025",
+   "item_id": "AES/2016/page_191.pdf-3::unanswerable",
+   "input_tokens": 4222,
+   "request_sha256": "1b29393c0df46aa69a038e151f6d41edfc8be42e41effde5ca4189a5a952ea55",
+   "attempt_id": "c6a5897c-e0fd-48da-8429-621dc3006311"
+  },
+  {
+   "custom_id": "i0026",
+   "item_id": "ALXN/2007/page_104.pdf-1",
+   "input_tokens": 3290,
+   "request_sha256": "35cb1c6a7483f06c4cabe2fe02fddb331ea4a2a55ca6a00aa46f74080550fa31",
+   "attempt_id": "c8132edc-34d5-42e0-bbd6-a2b966376674"
+  },
+  {
+   "custom_id": "i0027",
+   "item_id": "ALXN/2007/page_104.pdf-2",
+   "input_tokens": 3296,
+   "request_sha256": "a827dd5c127252067a8fc0b48a05b894a503a035349d7400a8b99311c65bbf4f",
+   "attempt_id": "a506de80-1c11-4ef5-864c-fad98d7365df"
+  },
+  {
+   "custom_id": "i0028",
+   "item_id": "AMAT/2014/page_18.pdf-1",
+   "input_tokens": 3903,
+   "request_sha256": "f2998c419b9b43f71e7f4addc9bde9b7135b0f36fdb3ada863631137c83c1b24",
+   "attempt_id": "3bdfc7f9-3992-42b0-880f-ee39d3dc5c28"
+  },
+  {
+   "custom_id": "i0029",
+   "item_id": "AMAT/2014/page_18.pdf-2",
+   "input_tokens": 3906,
+   "request_sha256": "358b6af2fe7903cfc5dcd876385b965ccf9817f280967db2b43ff0dd8b545c38",
+   "attempt_id": "e4e28fda-8e49-458a-8cb8-4bc695bff303"
+  },
+  {
+   "custom_id": "i0030",
+   "item_id": "AMAT/2014/page_35.pdf-1",
+   "input_tokens": 4462,
+   "request_sha256": "17929b155dbe0261e837bd30b2fc45ad1fa48b9e2e5070c1e56d4f5d389665f4",
+   "attempt_id": "4d593a83-6b66-4ee3-b4bd-9c5806adbf09"
+  },
+  {
+   "custom_id": "i0031",
+   "item_id": "AON/2009/page_46.pdf-1",
+   "input_tokens": 3683,
+   "request_sha256": "2eab5dfd52b8187bd51d0419aff8529d4aac20807ff34ac9d9092ccc2e6a7020",
+   "attempt_id": "50bfcaf1-d468-40c0-b685-bce46b61cb03"
+  },
+  {
+   "custom_id": "i0032",
+   "item_id": "AON/2009/page_46.pdf-2",
+   "input_tokens": 3681,
+   "request_sha256": "462ef65f5199c013812d8dd6631a2a356e43b51ad06f3ec96e7f7cd9df6eac7b",
+   "attempt_id": "5329f4b1-fdb0-4c22-a74b-65095c51183a"
+  },
+  {
+   "custom_id": "i0033",
+   "item_id": "AON/2009/page_46.pdf-3",
+   "input_tokens": 3705,
+   "request_sha256": "07e0af4ec2ea04fe13494f74d2b487670e4a71f279cabb878c154c6d7a1d7195",
+   "attempt_id": "6828c017-d545-46ae-bc07-087476e55354"
+  },
+  {
+   "custom_id": "i0034",
+   "item_id": "AON/2009/page_48.pdf-1",
+   "input_tokens": 3597,
+   "request_sha256": "3c625bf257fe507781ecbe7aa721c1ba57261738b7a341e2869474cb1e24d81c",
+   "attempt_id": "7dd21bf2-6ef2-4b23-bfbc-3b4e22c448a2"
+  },
+  {
+   "custom_id": "i0035",
+   "item_id": "AON/2009/page_48.pdf-2",
+   "input_tokens": 3583,
+   "request_sha256": "b5088b94d38317a543b64727ead5487423f7fdc84ced6bb3a43fc6d415de3ac9",
+   "attempt_id": "04009065-b553-4871-b4ac-8ca7f5fa66cc"
+  },
+  {
+   "custom_id": "i0036",
+   "item_id": "AON/2009/page_48.pdf-3",
+   "input_tokens": 3615,
+   "request_sha256": "98472edea8821f1c54435f919a04fbf1b6358850ac58aa3b1f337afdb1e57880",
+   "attempt_id": "af62094d-b5e9-48d7-931c-165c42acc3a1"
+  },
+  {
+   "custom_id": "i0037",
+   "item_id": "AON/2009/page_48.pdf-4",
+   "input_tokens": 3599,
+   "request_sha256": "190c4eb0cab4949d5001422441422bd22f1f774f606d83ff14523e6ce6b2298a",
+   "attempt_id": "f40c6aea-3290-423e-b734-f8a9a9b198d7"
+  },
+  {
+   "custom_id": "i0038",
+   "item_id": "AON/2011/page_134.pdf-1",
+   "input_tokens": 3458,
+   "request_sha256": "d476114e44d17b6646e8565e0ef074970dd145ad15bc1b366ce02239bf5d2235",
+   "attempt_id": "130cce1b-324f-4ac6-a2ee-f16609ed80ce"
+  },
+  {
+   "custom_id": "i0039",
+   "item_id": "AON/2011/page_134.pdf-2",
+   "input_tokens": 3455,
+   "request_sha256": "255b16300dfa437058231ec8d34e64b2dcbf0dc459c8c8514516a81c3d2daf89",
+   "attempt_id": "e0e118c1-bd34-4868-b97b-3d49a22e4e0a"
+  },
+  {
+   "custom_id": "i0040",
+   "item_id": "AON/2011/page_134.pdf-3",
+   "input_tokens": 3443,
+   "request_sha256": "da00bd46b9a1272ad71216b0c2238e85d3584970ca2f48e14b5142aa673dd871",
+   "attempt_id": "dc689750-55db-44fa-a432-085c04917536"
+  },
+  {
+   "custom_id": "i0041",
+   "item_id": "AON/2011/page_134.pdf-4",
+   "input_tokens": 3450,
+   "request_sha256": "3c7b0cf0a9c42b9503159db00b1e157bb6ada955cff44cfe570930c391073dd9",
+   "attempt_id": "22d5f6b6-7431-4999-b284-eb248f5d9966"
+  },
+  {
+   "custom_id": "i0042",
+   "item_id": "AOS/2004/page_11.pdf-1",
+   "input_tokens": 4163,
+   "request_sha256": "4296c8e9e42c16c7ab6970418632681e5dc98cebc89bd4d57f4e45e678e4b575",
+   "attempt_id": "313178b7-f7af-4db9-9293-3a403b1cbbf9"
+  },
+  {
+   "custom_id": "i0043",
+   "item_id": "AOS/2004/page_11.pdf-2",
+   "input_tokens": 4165,
+   "request_sha256": "05f22ae2f6ed4830eb17d8424e9057814b4abe9ed58c155c755a2197711c5986",
+   "attempt_id": "4f25b5f0-0349-4bf4-ad38-9ba79ed3761c"
+  },
+  {
+   "custom_id": "i0044",
+   "item_id": "APD/2014/page_39.pdf-1",
+   "input_tokens": 4141,
+   "request_sha256": "77f2a65712042b4a3bdacc3908e90e2760908b34e9c0fd0117ae31545a6e2d4c",
+   "attempt_id": "02d42047-89cb-415d-9867-a5395bc71940"
+  },
+  {
+   "custom_id": "i0045",
+   "item_id": "APD/2014/page_39.pdf-2",
+   "input_tokens": 4141,
+   "request_sha256": "d2bc54c087f4869dbb5718bbf7c742753b0f2aca27f0602d6b8cc03e881099a2",
+   "attempt_id": "e5809f59-4ffb-4bb7-b443-18919351d8b0"
+  },
+  {
+   "custom_id": "i0046",
+   "item_id": "APD/2014/page_44.pdf-1",
+   "input_tokens": 4394,
+   "request_sha256": "58d170db29f4a89916df836952dec8dfb023c8de735fb69c69134bc8ad9e0430",
+   "attempt_id": "f47b0f85-4746-4f2e-b04a-e5402d711709"
+  },
+  {
+   "custom_id": "i0047",
+   "item_id": "APD/2014/page_44.pdf-2",
+   "input_tokens": 4393,
+   "request_sha256": "a49d222e048499e792c35b3daa2bfcbb68d67f909c4c794dd1429ea848035ba3",
+   "attempt_id": "fa6ecc5d-9b95-467f-b427-55f4d28dc586"
+  },
+  {
+   "custom_id": "i0048",
+   "item_id": "APD/2019/page_31.pdf-1",
+   "input_tokens": 2910,
+   "request_sha256": "a4a7e53faac9dc07797c6acba05beb13a5b3756503c8b467a52de1930c01ee8a",
+   "attempt_id": "5e2ee1d6-0c0c-49e6-b7d2-69a26b9bbf9a"
+  },
+  {
+   "custom_id": "i0049",
+   "item_id": "APD/2019/page_31.pdf-2",
+   "input_tokens": 2918,
+   "request_sha256": "3ebb1d3e7fb7207f8389b7b6a33cef70f8971fae19f166958429d70dbb6dacde",
+   "attempt_id": "52939c6d-e902-4797-851d-ca3b46d59da7"
+  },
+  {
+   "custom_id": "i0050",
+   "item_id": "APD/2019/page_48.pdf-1",
+   "input_tokens": 4018,
+   "request_sha256": "952ac0bfa11cbb60b84b74ebf38e3d0061c33e06b6abebfc3712528466b529ea",
+   "attempt_id": "8e004b74-2a62-432a-9d78-684d70f5008c"
+  },
+  {
+   "custom_id": "i0051",
+   "item_id": "APD/2019/page_48.pdf-2",
+   "input_tokens": 4012,
+   "request_sha256": "ed736fa3c190b1f5d780bf885f94bcac7b9b10b65e86a63b0c17a02c2b92ff47",
+   "attempt_id": "ff74ff1e-0c2f-4a6d-a679-3d239a972c62"
+  },
+  {
+   "custom_id": "i0052",
+   "item_id": "APTV/2014/page_49.pdf-1",
+   "input_tokens": 3222,
+   "request_sha256": "c3dd4e213318e9306fb25ad1be7c7a4c3c679ed7fd5ab9c758882d72add1d9fc",
+   "attempt_id": "745c7ff4-b040-4661-83a2-8f83de0abaeb"
+  },
+  {
+   "custom_id": "i0053",
+   "item_id": "APTV/2014/page_49.pdf-2",
+   "input_tokens": 3239,
+   "request_sha256": "35b6db20161ce32edc56d670ad30a075f68c1ca9fb8f2cc2ac3c99411398eeaa",
+   "attempt_id": "77c2b375-7fc1-40a8-9d1a-bb4add78bf85"
+  },
+  {
+   "custom_id": "i0054",
+   "item_id": "APTV/2014/page_49.pdf-3",
+   "input_tokens": 3229,
+   "request_sha256": "3355b6e4a66a55854c4773410f3e14fc7d92a0c1f1607261aff635cfa5d7ad56",
+   "attempt_id": "0d7eb6a5-ebac-4f25-a63e-e2555006322e"
+  },
+  {
+   "custom_id": "i0055",
+   "item_id": "BLK/2016/page_119.pdf-1",
+   "input_tokens": 4992,
+   "request_sha256": "f48b996a50a555062b8208ba43ebed401a3a343b57624483801b141cdc598f67",
+   "attempt_id": "04ccecd7-323a-475d-8836-e01094178411"
+  },
+  {
+   "custom_id": "i0056",
+   "item_id": "BLK/2016/page_119.pdf-2",
+   "input_tokens": 4998,
+   "request_sha256": "2cc26694802bb8b1c2a432158db9ff6a0896d8f613ce5c285fb4ea1150c1cdc4",
+   "attempt_id": "f00f18c3-e9d3-4e6d-bbb8-fd22e9d5afa4"
+  },
+  {
+   "custom_id": "i0057",
+   "item_id": "BLK/2016/page_119.pdf-3",
+   "input_tokens": 4992,
+   "request_sha256": "1d2e334bf1b5d8c3fe690f7613d815377469ecf2c9fae1ebe71ed75614f84e2f",
+   "attempt_id": "6e2f21cb-802d-4e86-9d92-b71abbcea5bb"
+  },
+  {
+   "custom_id": "i0058",
+   "item_id": "BLK/2016/page_119.pdf-3::unanswerable",
+   "input_tokens": 4913,
+   "request_sha256": "a1109dcc3b8e396187765641383654932034f15c6b10a027bcbea4f468926792",
+   "attempt_id": "357b262f-6d86-42ef-b839-8c0edf841743"
+  },
+  {
+   "custom_id": "i0059",
+   "item_id": "BLK/2016/page_119.pdf-4",
+   "input_tokens": 4992,
+   "request_sha256": "b7e984fc9a36b74f61fe253df70bddf33a037125e6ef9e5e2f241ea4dfc9c8e0",
+   "attempt_id": "73a42f7d-b7f7-415e-8f93-5d523710534e"
+  },
+  {
+   "custom_id": "i0060",
+   "item_id": "BLL/2007/page_35.pdf-1",
+   "input_tokens": 3888,
+   "request_sha256": "092b9140f5bffb2d2938dd7bf5a96aae9697e5b56c5741d6f4f292a610d085f3",
+   "attempt_id": "9e43817f-69ff-43be-a8ea-5f91b7cab8bf"
+  },
+  {
+   "custom_id": "i0061",
+   "item_id": "BLL/2007/page_35.pdf-2",
+   "input_tokens": 3880,
+   "request_sha256": "abef7c18f4b7a1dc982c58a41a8289e465dd1a58c23dfc09c3395976c2131bd5",
+   "attempt_id": "b4005b98-1024-4c01-9f36-71fe268ee1a6"
+  },
+  {
+   "custom_id": "i0062",
+   "item_id": "BLL/2007/page_35.pdf-3",
+   "input_tokens": 3888,
+   "request_sha256": "a56de054856ef76e3d67d162f25dd9c9efc70fe09771338ad916d206b569564a",
+   "attempt_id": "6fa6c654-777c-40cb-b28b-66aa1bb107ea"
+  },
+  {
+   "custom_id": "i0063",
+   "item_id": "BLL/2007/page_35.pdf-4",
+   "input_tokens": 3927,
+   "request_sha256": "64321ab3e65412adddb1b34c7598000f3e282c4a361445d58f30bfca2b020714",
+   "attempt_id": "1357fba8-97f9-4eef-921b-16ca042668d5"
+  },
+  {
+   "custom_id": "i0064",
+   "item_id": "BLL/2007/page_47.pdf-1",
+   "input_tokens": 4225,
+   "request_sha256": "4a5d962c75d23d430a18add3469859545aadc7fb96b2ad3d4345ae451c268621",
+   "attempt_id": "82f457d1-fa03-4224-a7b3-360c8f29eec7"
+  },
+  {
+   "custom_id": "i0065",
+   "item_id": "BLL/2007/page_47.pdf-1::unanswerable",
+   "input_tokens": 4154,
+   "request_sha256": "ca5519bc852083160d91798533e6c4a5c0993b58f72c445c7ba5a05eccc449f1",
+   "attempt_id": "a71c9c7c-ed72-47cf-b742-e1e6ac4ca9ae"
+  },
+  {
+   "custom_id": "i0066",
+   "item_id": "BLL/2007/page_47.pdf-2",
+   "input_tokens": 4205,
+   "request_sha256": "da97ef400effb9b3878061a883c78acf1a76631ccc66d4ccda7c2fb2af172533",
+   "attempt_id": "e1174fe9-c3a1-47ec-ae01-7505d85a97a5"
+  },
+  {
+   "custom_id": "i0067",
+   "item_id": "BLL/2007/page_47.pdf-3",
+   "input_tokens": 4214,
+   "request_sha256": "29732ae0718af80c8ac2db002c279ecc1ab94e5784e1bf20b1e85ec1d9a5b371",
+   "attempt_id": "41b3ed31-30cb-4f26-a50e-ad60041348c7"
+  },
+  {
+   "custom_id": "i0068",
+   "item_id": "BLL/2007/page_47.pdf-4",
+   "input_tokens": 4214,
+   "request_sha256": "29732ae0718af80c8ac2db002c279ecc1ab94e5784e1bf20b1e85ec1d9a5b371",
+   "attempt_id": "0a5c6aef-cc32-44d9-a460-f5db8f47f03f"
+  },
+  {
+   "custom_id": "i0069",
+   "item_id": "C/2010/page_223.pdf-1",
+   "input_tokens": 3466,
+   "request_sha256": "657fb3d55e259a6b2871a29779ae0a5cc03f2bcd6a9a232c078a176147b0b7f0",
+   "attempt_id": "76ee5889-1acb-4469-a752-31ecb970d6d0"
+  },
+  {
+   "custom_id": "i0070",
+   "item_id": "C/2010/page_223.pdf-2",
+   "input_tokens": 3454,
+   "request_sha256": "89b75e6c03d1502353c47392a7a35e758d4c52cba70df55e7a5e47b9295715e8",
+   "attempt_id": "013e37af-d899-4436-8df8-e4866058fe07"
+  },
+  {
+   "custom_id": "i0071",
+   "item_id": "C/2010/page_223.pdf-3",
+   "input_tokens": 3449,
+   "request_sha256": "4d0ade7bc709f58545180d1cf7b7a5d5cf4a116a5d0c154dd8879748b70e63c8",
+   "attempt_id": "c3bf71c7-d703-468f-9c3e-243ee8750dfa"
+  },
+  {
+   "custom_id": "i0072",
+   "item_id": "C/2010/page_223.pdf-4",
+   "input_tokens": 3457,
+   "request_sha256": "4cfc32d7fb4e755e79c5060900bd2c425d9ca4bc9331f82f43b4d3d9bfa8eba4",
+   "attempt_id": "de8a7154-c6f2-4b5e-864f-d74f66cc9e08"
+  },
+  {
+   "custom_id": "i0073",
+   "item_id": "C/2017/page_328.pdf-1",
+   "input_tokens": 2858,
+   "request_sha256": "493930f1d4a6d2287c96e5303fa2901d5a9cf92a54ed7d725a94ba83d7e83d36",
+   "attempt_id": "c81618d2-f642-4533-afb7-c400de9f8d64"
+  },
+  {
+   "custom_id": "i0074",
+   "item_id": "C/2017/page_328.pdf-1::unanswerable",
+   "input_tokens": 2730,
+   "request_sha256": "1a858966f467f0efe65a884ab627ffc8a9f8b6dd974ce78487eee283fb4c7059",
+   "attempt_id": "2613e8f2-964d-4e0d-b5c5-7f2d23d9e010"
+  },
+  {
+   "custom_id": "i0075",
+   "item_id": "C/2017/page_328.pdf-2",
+   "input_tokens": 2860,
+   "request_sha256": "0aecda7adf27cd577fff993e1546022dd76757c9309d58ad2f9140561f4a85c5",
+   "attempt_id": "ffefbd10-0440-4bc9-9355-ed07317dcb56"
+  },
+  {
+   "custom_id": "i0076",
+   "item_id": "C/2017/page_328.pdf-2::unanswerable",
+   "input_tokens": 2796,
+   "request_sha256": "f3fa9bf2e7c9c8e2d3023bbf3014f7a8666122331eacf363cdb8443eee52e943",
+   "attempt_id": "939d75cf-bd63-441c-be9e-201ebc0dc683"
+  },
+  {
+   "custom_id": "i0077",
+   "item_id": "C/2017/page_328.pdf-3",
+   "input_tokens": 2867,
+   "request_sha256": "58d68b0b495b389b8bd1b1e9c5da46310c413ccf08145b301a482d9df520c702",
+   "attempt_id": "9a177a6a-29a1-420d-b907-b3a10eed8e60"
+  },
+  {
+   "custom_id": "i0078",
+   "item_id": "C/2017/page_328.pdf-4",
+   "input_tokens": 2857,
+   "request_sha256": "e1a6bab54ddd16cdcb4f89e4b61aaea5f551a260d0fa7b7d7f521f585fea1f9e",
+   "attempt_id": "f5d2a7f4-de5c-4231-915c-64e6f348f41e"
+  },
+  {
+   "custom_id": "i0079",
+   "item_id": "CAG/2008/page_75.pdf-1",
+   "input_tokens": 3159,
+   "request_sha256": "4dcb03a2deed68a1ffeebdeb08444dc30e4a5642c5f67ad29b3fb72617b6e2bd",
+   "attempt_id": "59c16e86-ed08-4f5d-b3fb-2f93558c6eaa"
+  },
+  {
+   "custom_id": "i0080",
+   "item_id": "CAG/2008/page_75.pdf-2",
+   "input_tokens": 3159,
+   "request_sha256": "9751c9626811f4d596d26ac5b059573af6d67a593172b723f036c783268fc29c",
+   "attempt_id": "2175d7d4-123d-4e1a-b836-5e89525f8ad2"
+  },
+  {
+   "custom_id": "i0081",
+   "item_id": "CAT/2017/page_85.pdf-1",
+   "input_tokens": 4185,
+   "request_sha256": "de4cd7d4b8bd64df974073a9df1e326cec078fe3f264d7f56b56b2aed95fe43a",
+   "attempt_id": "ef1c4a50-0e06-4288-b8b1-6194ae354517"
+  },
+  {
+   "custom_id": "i0082",
+   "item_id": "CAT/2017/page_85.pdf-1::unanswerable",
+   "input_tokens": 4122,
+   "request_sha256": "09dbce57b871f8d064416d13d9c6dd5d1f5398e73b273000fdadc9e188e1f4b8",
+   "attempt_id": "c2e0e05b-dd25-4eff-8a40-40f2bf3e78e3"
+  },
+  {
+   "custom_id": "i0083",
+   "item_id": "CAT/2017/page_85.pdf-2",
+   "input_tokens": 4202,
+   "request_sha256": "0fa7180ba8cbf11a15dd5e6136c13c6b7265964e6fd145dc52b71db517838b7b",
+   "attempt_id": "f697a4ec-4f61-4999-b633-ea680621a583"
+  },
+  {
+   "custom_id": "i0084",
+   "item_id": "CAT/2017/page_85.pdf-3",
+   "input_tokens": 4201,
+   "request_sha256": "a101734f9deadb4180146a199541dcfacd4af36617a6acb1e24d6439ab1a6569",
+   "attempt_id": "537c3ac5-75c2-4b8c-b1b1-309408d81da3"
+  },
+  {
+   "custom_id": "i0085",
+   "item_id": "CAT/2017/page_85.pdf-4",
+   "input_tokens": 4201,
+   "request_sha256": "81e12939fff8c72023f686b64be0a802ba8553c883fdd26b602723fa8aeaa2b1",
+   "attempt_id": "935c9c52-c90a-4c6a-8422-99446c8fdae1"
+  },
+  {
+   "custom_id": "i0086",
+   "item_id": "CAT/2017/page_85.pdf-4::unanswerable",
+   "input_tokens": 4130,
+   "request_sha256": "a2b80aa5791e3c99a96cb626d4ea843804b701a82ae89d7c1c314ab050f15119",
+   "attempt_id": "be4236ef-ffc7-4c99-aab7-9571cdab5b15"
+  },
+  {
+   "custom_id": "i0087",
+   "item_id": "DISCA/2012/page_39.pdf-1",
+   "input_tokens": 4011,
+   "request_sha256": "db36c499b2bc53b805ae229e10697b36a56de8080d5ef28abd0803ea9b708793",
+   "attempt_id": "994ad42d-9d31-40e0-b7c5-db3cd63791d2"
+  },
+  {
+   "custom_id": "i0088",
+   "item_id": "DISCA/2012/page_39.pdf-2",
+   "input_tokens": 4017,
+   "request_sha256": "68cc886c33bbaa02784ca782d853589e231115bb9dc393c15322c67ad8ff0ebe",
+   "attempt_id": "17fc2f2b-29af-442b-b056-db5f32649473"
+  },
+  {
+   "custom_id": "i0089",
+   "item_id": "DISCA/2012/page_39.pdf-3",
+   "input_tokens": 4003,
+   "request_sha256": "bd13bffbfe9c81d0150bc60c1003df53395d99779f0a6a7aa31a1ef23f5fa28c",
+   "attempt_id": "e18e1aa5-8506-4695-9e28-fd3193a3ee0b"
+  },
+  {
+   "custom_id": "i0090",
+   "item_id": "DISCA/2012/page_39.pdf-4",
+   "input_tokens": 4012,
+   "request_sha256": "df62bea7790ae744a7d240b9b0fd990fd54e978eee5c6e8ba67f7d02546d88a8",
+   "attempt_id": "b90080eb-6719-4cb6-9538-b035479fb1bf"
+  },
+  {
+   "custom_id": "i0091",
+   "item_id": "DRE/2009/page_56.pdf-1",
+   "input_tokens": 4086,
+   "request_sha256": "bbe6fecfd13cc5a4a4da437f7774b8fe282c0dc95f7c2126d7b07b5f4bb69dd4",
+   "attempt_id": "d0a5b9fc-03a3-4e73-9ad6-eddc6dd0eab7"
+  },
+  {
+   "custom_id": "i0092",
+   "item_id": "DRE/2009/page_72.pdf-1",
+   "input_tokens": 3730,
+   "request_sha256": "6d1e6c13213d1025670a60338d09a6681256e1cf9d00d4407cca31bdf35a48d1",
+   "attempt_id": "45a404cb-8dc0-435b-9417-c7a938e265ab"
+  },
+  {
+   "custom_id": "i0093",
+   "item_id": "DRE/2009/page_72.pdf-2",
+   "input_tokens": 3749,
+   "request_sha256": "a6cab1b72b987228474fbd03a12868257395b731d4937a4bd2a622d8954b0433",
+   "attempt_id": "9bbc203f-e7ab-4f0c-a1eb-f0f3113564ce"
+  },
+  {
+   "custom_id": "i0094",
+   "item_id": "DRE/2009/page_72.pdf-2::unanswerable",
+   "input_tokens": 3673,
+   "request_sha256": "2c4a8364dbec7830051b283d152bfec2332f7a99552d21a1e7e1507fa41f6293",
+   "attempt_id": "9beb7dda-2ee5-40f9-b5d8-453fc44a9bdb"
+  },
+  {
+   "custom_id": "i0095",
+   "item_id": "DRE/2013/page_39.pdf-1",
+   "input_tokens": 3587,
+   "request_sha256": "bcfc6472e92504344cbbb1043de5f218daed902717ac2449ac1b630ccbf2005d",
+   "attempt_id": "e2cab0a0-9d3f-474f-9f5b-f8be390681a5"
+  },
+  {
+   "custom_id": "i0096",
+   "item_id": "DRE/2013/page_39.pdf-2",
+   "input_tokens": 3587,
+   "request_sha256": "8bdf6079d2865a2ef0081c245201ba12b901c32f5165ebf1e932b9df84772d8f",
+   "attempt_id": "3ceccc4e-397e-4503-b55a-ff87ac011f60"
+  },
+  {
+   "custom_id": "i0097",
+   "item_id": "ETFC/2014/page_26.pdf-1",
+   "input_tokens": 2650,
+   "request_sha256": "c3346fd3b55af10f3b6e792120b7d85222641053e4901d11c21f16a2e08548bc",
+   "attempt_id": "f452fcdf-4286-4a10-be1c-33547aed64a8"
+  },
+  {
+   "custom_id": "i0098",
+   "item_id": "ETFC/2014/page_26.pdf-2",
+   "input_tokens": 2648,
+   "request_sha256": "34b130a5de7bbd9f0c2b357acd06dcad9549432ef6028f7fa7470a8340b82c49",
+   "attempt_id": "eaeb7c5b-6b25-4c42-9567-270c4d641672"
+  },
+  {
+   "custom_id": "i0099",
+   "item_id": "ETFC/2014/page_26.pdf-3",
+   "input_tokens": 2669,
+   "request_sha256": "08306ac480c541760856309e541265992b1495a588ea7181ef50206ebd3b828a",
+   "attempt_id": "03e0f406-dbd7-42c2-9196-6aff3399fa6d"
+  },
+  {
+   "custom_id": "i0100",
+   "item_id": "ETFC/2014/page_26.pdf-3::unanswerable",
+   "input_tokens": 2357,
+   "request_sha256": "df51a26245b9b3b00a989cc788d6d70479b9f133c9a5566e7e06e6e199b45e85",
+   "attempt_id": "a0aca0d0-a43a-4966-aa48-fe269739e82d"
+  },
+  {
+   "custom_id": "i0101",
+   "item_id": "ETFC/2014/page_26.pdf-4",
+   "input_tokens": 2662,
+   "request_sha256": "d069905ab63d1712433844a5db32f8b721b1621f2f31cc13ae9a6803033ccfa6",
+   "attempt_id": "c05e4c28-c26c-4f8b-ae7b-116bb06efceb"
+  },
+  {
+   "custom_id": "i0102",
+   "item_id": "GS/2016/page_70.pdf-1",
+   "input_tokens": 4227,
+   "request_sha256": "c19a3d06ff2ee99c14d2e2a086cfdb2c7b7d0a2a4c300abc9f6cdd63b233eb60",
+   "attempt_id": "fb0da5d2-909d-41f4-92d8-85852141d138"
+  },
+  {
+   "custom_id": "i0103",
+   "item_id": "GS/2016/page_70.pdf-2",
+   "input_tokens": 4227,
+   "request_sha256": "9d9f77d5f6c00e5da140af2a9aa2dd695388f51f49051b6c013494794fd05fea",
+   "attempt_id": "27aa06c9-688d-4cbd-9408-b3a24eaa8c75"
+  },
+  {
+   "custom_id": "i0104",
+   "item_id": "GS/2016/page_77.pdf-1",
+   "input_tokens": 4176,
+   "request_sha256": "4f3c621f46ac14cff860cd05a078f38230242e9d849afb54934694bc633fcb19",
+   "attempt_id": "bed68795-1352-459d-8935-1ccffb705b81"
+  },
+  {
+   "custom_id": "i0105",
+   "item_id": "GS/2016/page_77.pdf-2",
+   "input_tokens": 4173,
+   "request_sha256": "3f5ccc1423dc44a8b98f54cc5ff0cd94332a866375a8f59e39a2ca3cf742d1d5",
+   "attempt_id": "24864e67-0059-48a7-aae7-5f8ee3e53862"
+  },
+  {
+   "custom_id": "i0106",
+   "item_id": "GS/2016/page_77.pdf-3",
+   "input_tokens": 4171,
+   "request_sha256": "abbf623927593297718381d5420558efd9ec99c73a2aee087fcd1f21da417113",
+   "attempt_id": "16fad3c3-7aa5-472b-8628-568686cf5e6a"
+  },
+  {
+   "custom_id": "i0107",
+   "item_id": "GS/2016/page_77.pdf-4",
+   "input_tokens": 4176,
+   "request_sha256": "07fd8e618f4f95a5f1a2bcd55843d4579432f8feb88967e29d7f9993a31bc65f",
+   "attempt_id": "d4aa442a-df1a-41fa-8ef8-5a12b12c6eee"
+  },
+  {
+   "custom_id": "i0108",
+   "item_id": "HIG/2008/page_318.pdf-1",
+   "input_tokens": 4393,
+   "request_sha256": "ad6ec38e2c4ca7361c323c7432d7fbdc109f2b6733cf7169c431e20125fb7a50",
+   "attempt_id": "46d2999d-0c25-443f-91a3-87d6178455c0"
+  },
+  {
+   "custom_id": "i0109",
+   "item_id": "HIG/2008/page_318.pdf-2",
+   "input_tokens": 4376,
+   "request_sha256": "10b81ba68c16590259739d5762e58c5703dbaf0aae6ae6df5e56d4ed425c1c3e",
+   "attempt_id": "64c33e02-7e36-4ba7-8870-f1ae661a8872"
+  },
+  {
+   "custom_id": "i0110",
+   "item_id": "HIG/2008/page_318.pdf-3",
+   "input_tokens": 4373,
+   "request_sha256": "32f3d7a024b4710a1bbce9b9f42e395203e7cead299b4491cdd31f1546bdfdc2",
+   "attempt_id": "f12cdf2e-1934-4d7a-bc48-f8f941ba3a89"
+  },
+  {
+   "custom_id": "i0111",
+   "item_id": "HII/2017/page_104.pdf-1",
+   "input_tokens": 4014,
+   "request_sha256": "e4d33e59b47389e84f0a3bb0e61de0644226294b4f5b3410bb69aac361f5a4de",
+   "attempt_id": "39a8d945-27ce-4898-9912-f32f1010a0a8"
+  },
+  {
+   "custom_id": "i0112",
+   "item_id": "HII/2017/page_104.pdf-2",
+   "input_tokens": 4015,
+   "request_sha256": "d503d8b4a4ab5295184e5f8a4dfccc94df6a041585177395e15cad8c32781a82",
+   "attempt_id": "604d5a31-0f64-444d-910f-a80b9e9f0d51"
+  },
+  {
+   "custom_id": "i0113",
+   "item_id": "HII/2017/page_104.pdf-3",
+   "input_tokens": 3997,
+   "request_sha256": "3237dff83474b33ae4ff5f81e66a894a8149f86809913d05898d1eb151bfff55",
+   "attempt_id": "45723a7b-1d2d-49cb-9d2c-18b130dbf184"
+  },
+  {
+   "custom_id": "i0114",
+   "item_id": "HII/2017/page_104.pdf-4",
+   "input_tokens": 4017,
+   "request_sha256": "07d5cfa940ad9a747d631e3dfd0f4e4537c723569dc4b69c31f4f37a2de66a60",
+   "attempt_id": "2c2f7e39-d780-4274-95c0-b56c70b1c4de"
+  },
+  {
+   "custom_id": "i0115",
+   "item_id": "HII/2017/page_104.pdf-4::unanswerable",
+   "input_tokens": 3927,
+   "request_sha256": "2a147dfb249406ef43c8533cb491ac446209bae54580b0bdce87018eaf76592a",
+   "attempt_id": "fc1602a9-b54e-4fb1-8801-7fd6912a5e13"
+  },
+  {
+   "custom_id": "i0116",
+   "item_id": "HII/2017/page_124.pdf-1",
+   "input_tokens": 3646,
+   "request_sha256": "d778d2d50ce4f5803048f2bfd4c21642faf9d479128e53d6d0b5963c98e7746d",
+   "attempt_id": "eb90b5e9-4d8e-4cba-a211-a6b146bf2b97"
+  },
+  {
+   "custom_id": "i0117",
+   "item_id": "HII/2017/page_124.pdf-2",
+   "input_tokens": 3635,
+   "request_sha256": "0c144bd034bf8dc4ae8a9927916e9e4215d300546099931448e53c8bc9e656a6",
+   "attempt_id": "cdfaa597-9444-46ff-af60-c33ffe7001c5"
+  },
+  {
+   "custom_id": "i0118",
+   "item_id": "HII/2017/page_124.pdf-3",
+   "input_tokens": 3651,
+   "request_sha256": "74db891e2675767d68c422a1442d5f9f22b3eb81075c03dd63d85676df4b98ac",
+   "attempt_id": "56b7c975-5b9e-4448-a31a-d27b86088364"
+  },
+  {
+   "custom_id": "i0119",
+   "item_id": "HII/2017/page_124.pdf-4",
+   "input_tokens": 3628,
+   "request_sha256": "221a4425b29a8a6317deff2459ecb841377e04ebabfb1127bc4743789c376001",
+   "attempt_id": "bcce1e1c-04e5-4633-a366-7350dbba1bbe"
+  },
+  {
+   "custom_id": "i0120",
+   "item_id": "HII/2017/page_47.pdf-1",
+   "input_tokens": 3085,
+   "request_sha256": "1ed53b9add90ab37b347fbf5d641f0127ce82634ba933430d205874e3aa5f77c",
+   "attempt_id": "225c3318-d49a-4477-8b1d-cf512dd52af9"
+  },
+  {
+   "custom_id": "i0121",
+   "item_id": "HII/2017/page_47.pdf-2",
+   "input_tokens": 3085,
+   "request_sha256": "d17a3c2560e75571a4e81c9a721c2ad485ffce66f59f6cd92a930de7a2b12b27",
+   "attempt_id": "b54978a7-99c7-4604-b24d-47e46f29f978"
+  },
+  {
+   "custom_id": "i0122",
+   "item_id": "HOLX/2010/page_124.pdf-1",
+   "input_tokens": 3630,
+   "request_sha256": "d1f1bb0cf4c1a33fc4f810fe3c957b4ada735d0d513ef3687bb776c72c2854cf",
+   "attempt_id": "53663fcd-66c3-41d2-84b0-ad7c7263069d"
+  },
+  {
+   "custom_id": "i0123",
+   "item_id": "HOLX/2015/page_98.pdf-2",
+   "input_tokens": 4276,
+   "request_sha256": "628fa764dfe486ebfb8d284a6f2746f6471f58c32a5b95c7bd4cb9f78ea2b1e7",
+   "attempt_id": "b1a2c2af-e0f1-4d77-82bb-7deb1b079b31"
+  },
+  {
+   "custom_id": "i0124",
+   "item_id": "HOLX/2015/page_98.pdf-2::unanswerable",
+   "input_tokens": 4236,
+   "request_sha256": "a8e9be2cc26ffca82933dfe1ac6d3907b11bb783820c3db03a53817af76b6c72",
+   "attempt_id": "f38d0423-7ca4-449f-b869-f3c3c6ad8bf5"
+  },
+  {
+   "custom_id": "i0125",
+   "item_id": "HWM/2016/page_40.pdf-1",
+   "input_tokens": 3439,
+   "request_sha256": "8c273b6431b80f3c55d8a1ae31f240c3dbfaabc6d63fed72bdc9e4095af7a004",
+   "attempt_id": "957e7fdd-1d8d-47a4-bfb0-e43309fd9244"
+  },
+  {
+   "custom_id": "i0126",
+   "item_id": "HWM/2016/page_40.pdf-2",
+   "input_tokens": 3445,
+   "request_sha256": "c761d632e0f8b0dcbb3acb11a16d2903f2b1354743460ad64bf3a8ce46d895ea",
+   "attempt_id": "944c34f9-48eb-4e55-8cca-0cb624762086"
+  },
+  {
+   "custom_id": "i0127",
+   "item_id": "HWM/2016/page_40.pdf-2::unanswerable",
+   "input_tokens": 3247,
+   "request_sha256": "db3e24d10ae79d469c4312b00d733fd86fb8a0c1a723889c6bba31e5f2344798",
+   "attempt_id": "7e11635c-c37b-4cbc-92f3-54aa29d41969"
+  },
+  {
+   "custom_id": "i0128",
+   "item_id": "ILMN/2007/page_78.pdf-1",
+   "input_tokens": 3416,
+   "request_sha256": "2cec43c70aeb2142a3c3e4d6c4b33a9b4b690cce037107824280ae9e5e5465c7",
+   "attempt_id": "e1464f92-f891-4474-9c6d-00cb1f65ce4d"
+  },
+  {
+   "custom_id": "i0129",
+   "item_id": "ILMN/2007/page_78.pdf-2",
+   "input_tokens": 3434,
+   "request_sha256": "e8837f87c7f40380172676dd8f712087ce9d13703ef151bcd92f052914ce1212",
+   "attempt_id": "c605d812-adcd-4547-9c12-6eb12666d9e3"
+  },
+  {
+   "custom_id": "i0130",
+   "item_id": "ILMN/2007/page_78.pdf-3",
+   "input_tokens": 3429,
+   "request_sha256": "78540cc903fa8af2350a1501dd08646785ad78f12d38423288992923b654e024",
+   "attempt_id": "277d8fe2-e0be-44be-9bff-26acb9ef9adc"
+  },
+  {
+   "custom_id": "i0131",
+   "item_id": "ILMN/2007/page_78.pdf-3::unanswerable",
+   "input_tokens": 3373,
+   "request_sha256": "ca910e2bb2463e4b88b982e1d93229df75ca6b1453e80629fe1ce0a715241a2b",
+   "attempt_id": "297facfb-e578-4745-9e37-5a5776937c4c"
+  },
+  {
+   "custom_id": "i0132",
+   "item_id": "ILMN/2007/page_78.pdf-4",
+   "input_tokens": 3434,
+   "request_sha256": "4091f0382b9378363eb4299501b6ea6f0e10cf040623f51bb7ce05c529bd40a9",
+   "attempt_id": "7f2846b9-fba7-4420-9dfe-7418aea2e02f"
+  },
+  {
+   "custom_id": "i0133",
+   "item_id": "IP/2007/page_31.pdf-1",
+   "input_tokens": 4190,
+   "request_sha256": "1e8841bc898e43974829fd4e48d3c9e9c4c931e8245cd39ed41e6800fa5c452f",
+   "attempt_id": "5c51d521-873f-4ec2-8fa0-4817e07c911f"
+  },
+  {
+   "custom_id": "i0134",
+   "item_id": "IP/2007/page_31.pdf-1::unanswerable",
+   "input_tokens": 4074,
+   "request_sha256": "741537764e492ab52b811d5c6c29d4f80ff57b70d2267b7dbe5d0c5cf4eb63df",
+   "attempt_id": "5acc9ade-8470-446d-94cd-c00c12a90677"
+  },
+  {
+   "custom_id": "i0135",
+   "item_id": "IP/2007/page_31.pdf-2",
+   "input_tokens": 4190,
+   "request_sha256": "0de2fdc85994a75dacb26f5868a0f1b9d474b29661cdf8fafc30101707b1f6d0",
+   "attempt_id": "b7f17a7e-ebc9-41dd-a610-03a5f616ac8e"
+  },
+  {
+   "custom_id": "i0136",
+   "item_id": "IP/2007/page_31.pdf-3",
+   "input_tokens": 4177,
+   "request_sha256": "9986bbb084359ede8a2dcc8967cd3eb822b25b8ab5452cd0fe7ad4d89f449901",
+   "attempt_id": "4decf765-0d0a-4d20-813e-79a1853754c1"
+  },
+  {
+   "custom_id": "i0137",
+   "item_id": "IP/2007/page_31.pdf-4",
+   "input_tokens": 4176,
+   "request_sha256": "54a06978f8b23245fd72f9aa0b0ed047fb57d2bc79de6e0c1e9fbade1e123e7d",
+   "attempt_id": "7b230d6b-6b3a-4d99-ba8e-243e0ae51b7e"
+  },
+  {
+   "custom_id": "i0138",
+   "item_id": "IP/2007/page_75.pdf-1",
+   "input_tokens": 4246,
+   "request_sha256": "b8cdd26f8ca4ac8a9079bd66f7ebec73bbde2581fbcad1a1bf9ef6a89b2fd3a9",
+   "attempt_id": "a58e7911-e870-44b5-bd6f-b472d6c8d177"
+  },
+  {
+   "custom_id": "i0139",
+   "item_id": "IP/2007/page_75.pdf-1::unanswerable",
+   "input_tokens": 4076,
+   "request_sha256": "4abf08a5a77ae291f2c23dad8d33018ff81c50f51509b2878185f1fef7b61234",
+   "attempt_id": "cf13df28-bc4a-4f88-93bc-e8653920098a"
+  },
+  {
+   "custom_id": "i0140",
+   "item_id": "IP/2007/page_75.pdf-2",
+   "input_tokens": 4245,
+   "request_sha256": "db1da3d5f9a8d6ade6b970a5a39d3f73d55e86b790d8e594f9b24bf94ad31156",
+   "attempt_id": "764765ef-5f5e-4fb5-bc75-8d28c5089388"
+  },
+  {
+   "custom_id": "i0141",
+   "item_id": "IP/2007/page_75.pdf-2::unanswerable",
+   "input_tokens": 4083,
+   "request_sha256": "6a06526582a5f0c09a6e3f3aed7c751c38a2922c0190f351ad66177c1ec2d9b7",
+   "attempt_id": "397fc35d-6fba-4c87-8065-4fda392c3522"
+  },
+  {
+   "custom_id": "i0142",
+   "item_id": "IP/2007/page_75.pdf-3",
+   "input_tokens": 4235,
+   "request_sha256": "953c09f9441764ae8a24d5882f50346687302cce4f1683b8ce8f2e9eb5af4c3a",
+   "attempt_id": "ac8de0ea-8c79-412f-bf81-cc0d7b2f091b"
+  },
+  {
+   "custom_id": "i0143",
+   "item_id": "IP/2007/page_75.pdf-4",
+   "input_tokens": 4230,
+   "request_sha256": "9dc5da5b92a360830f5a6b4ac65c4c336718a81b434e1dab75c8a9a914aaac5b",
+   "attempt_id": "4bc58439-a98a-4ba1-be79-a9cde670e210"
+  },
+  {
+   "custom_id": "i0144",
+   "item_id": "JKHY/2014/page_30.pdf-1",
+   "input_tokens": 3221,
+   "request_sha256": "896394e04b4636af3ab5f6f94cf0f72d6ca884be96a23fc752229c89c6a3a90b",
+   "attempt_id": "195b5e4e-a3be-4b02-b970-9cc9603dd679"
+  },
+  {
+   "custom_id": "i0145",
+   "item_id": "JKHY/2014/page_30.pdf-2",
+   "input_tokens": 3225,
+   "request_sha256": "5b2402ab425511eef0765413c0c8c503b200cf1073c214591462b36d3b0273e0",
+   "attempt_id": "4beb1361-b3c7-4d59-9a2e-fbf049154f13"
+  },
+  {
+   "custom_id": "i0146",
+   "item_id": "JPM/2007/page_147.pdf-1",
+   "input_tokens": 3730,
+   "request_sha256": "18e799cf26e7c69144b51ff07701cad298216019119ed2343bed09749f1963a5",
+   "attempt_id": "46445710-2475-4e36-baff-6e26ff70e517"
+  },
+  {
+   "custom_id": "i0147",
+   "item_id": "JPM/2007/page_147.pdf-1::unanswerable",
+   "input_tokens": 3659,
+   "request_sha256": "a4ef173d08042953b889a2a5d8afc297c5fbd164ca5f826b00cd440cd2944dc1",
+   "attempt_id": "bba47917-7130-4668-baf8-48c3f461a0b9"
+  },
+  {
+   "custom_id": "i0148",
+   "item_id": "JPM/2007/page_147.pdf-2",
+   "input_tokens": 3725,
+   "request_sha256": "9cb2ca823043933acd3c6b5bef43354b12f614488599ce5cf7668fec6dfe5273",
+   "attempt_id": "bdac21d7-b54b-48c2-bd93-add908b48664"
+  },
+  {
+   "custom_id": "i0149",
+   "item_id": "JPM/2007/page_147.pdf-2::unanswerable",
+   "input_tokens": 3653,
+   "request_sha256": "de10d56e8edf53c1899ee5f8e5761a739061777c826745794ef3f578ea586e92",
+   "attempt_id": "2fe896e4-e27e-4768-9676-96fa6822cb52"
+  },
+  {
+   "custom_id": "i0150",
+   "item_id": "JPM/2007/page_147.pdf-3",
+   "input_tokens": 3732,
+   "request_sha256": "848655fa89661dc1408005e926f9b4766b78dd9fe52c13aa8a7818c1c1858f5d",
+   "attempt_id": "50d81d09-55b3-4868-86c4-d6891afcbfad"
+  },
+  {
+   "custom_id": "i0151",
+   "item_id": "JPM/2007/page_157.pdf-1",
+   "input_tokens": 5005,
+   "request_sha256": "f185d78c7750cbb2601d1dda65122468e3c32a69a43fe33f9e56246bd8838729",
+   "attempt_id": "1d2a3d02-0744-4d06-bc5d-e87bf0d4d809"
+  },
+  {
+   "custom_id": "i0152",
+   "item_id": "JPM/2007/page_157.pdf-2",
+   "input_tokens": 5007,
+   "request_sha256": "19b122fc5ca874c9114f705c268b38446499e59e6f82626abe402210c3840875",
+   "attempt_id": "3cedf088-cbd9-4d3e-b29c-61970569ccf7"
+  },
+  {
+   "custom_id": "i0153",
+   "item_id": "JPM/2007/page_33.pdf-1",
+   "input_tokens": 4610,
+   "request_sha256": "1cd7182caa2c29fe47af405e66ad143e944002c4ecebefc5e199b388da89f00e",
+   "attempt_id": "a1946171-111a-40bd-931a-1609f39ffa6b"
+  },
+  {
+   "custom_id": "i0154",
+   "item_id": "JPM/2007/page_33.pdf-2",
+   "input_tokens": 4610,
+   "request_sha256": "3b0958cbaee34c2b441406a13f1c89c4ac206a80f5f111748b5f1065118f117d",
+   "attempt_id": "c33f8444-8937-45bf-96c1-6881220f5985"
+  },
+  {
+   "custom_id": "i0155",
+   "item_id": "JPM/2007/page_33.pdf-2::unanswerable",
+   "input_tokens": 4547,
+   "request_sha256": "ec2feb86708fc7453c24c51cffa3ad058553748c9879674580adce20cb423781",
+   "attempt_id": "c577cc4b-5ed2-46c7-bbd9-11972bdf06fe"
+  },
+  {
+   "custom_id": "i0156",
+   "item_id": "JPM/2013/page_209.pdf-1",
+   "input_tokens": 3695,
+   "request_sha256": "c127bdeb1696b5d24fe4f6c463b331300f950acd0974a9b56a203dfc5d04c7f1",
+   "attempt_id": "75ebd792-abd8-43f7-886e-2eed563b418c"
+  },
+  {
+   "custom_id": "i0157",
+   "item_id": "JPM/2013/page_209.pdf-1::unanswerable",
+   "input_tokens": 3558,
+   "request_sha256": "dfe5f83ff1ae76bd6945c1fcbe3a56ad6f32b07aa4baadd7903e3e5b3c825439",
+   "attempt_id": "6f9ad81b-477c-4acb-82f8-b30b126f39e3"
+  },
+  {
+   "custom_id": "i0158",
+   "item_id": "JPM/2013/page_209.pdf-2",
+   "input_tokens": 3684,
+   "request_sha256": "18b6790835e182efd8bd2f41ed0311132b9ed881cfba3ba2d7c96fa94e0a05df",
+   "attempt_id": "cb120c9a-26fb-42a0-b1a3-3667091e3687"
+  },
+  {
+   "custom_id": "i0159",
+   "item_id": "JPM/2013/page_209.pdf-3",
+   "input_tokens": 3677,
+   "request_sha256": "444814e14426b39f13863a43709b77184ddc6c49efa7e1a8d68516cc89fb7329",
+   "attempt_id": "1f30c0bb-b818-436c-ad23-234fc9b6d3db"
+  },
+  {
+   "custom_id": "i0160",
+   "item_id": "LKQ/2010/page_84.pdf-1",
+   "input_tokens": 3481,
+   "request_sha256": "7f770e7d1178d13e2864c2ec30868e0fc6cb81360719a882745a7e4a7cab6fe4",
+   "attempt_id": "bee5262f-8c15-4aa9-ba87-048c99afb18e"
+  },
+  {
+   "custom_id": "i0161",
+   "item_id": "LKQ/2010/page_84.pdf-1::unanswerable",
+   "input_tokens": 3407,
+   "request_sha256": "40be20ed4489c34530ca3714a4b3cc4a21e91c31ac89290ffd245e8e293ddcdc",
+   "attempt_id": "eb988f46-06df-434e-ada9-d9491a260060"
+  },
+  {
+   "custom_id": "i0162",
+   "item_id": "LKQ/2010/page_84.pdf-2",
+   "input_tokens": 3481,
+   "request_sha256": "3e070eb69866b268aca0b72ab77892284283cf5cd9cf3b912a9353fa3ce1ceeb",
+   "attempt_id": "9699c255-5ebd-459f-afed-416b136f6325"
+  },
+  {
+   "custom_id": "i0163",
+   "item_id": "LKQ/2010/page_84.pdf-3",
+   "input_tokens": 3480,
+   "request_sha256": "9ae17b70a6a92e72cf09b87bcbe65c208da30b0e5c7f84d5fd92a44bed2a8716",
+   "attempt_id": "6951a5b8-50ae-4dd8-a898-c1fdf5f095f0"
+  },
+  {
+   "custom_id": "i0164",
+   "item_id": "LKQ/2010/page_84.pdf-3::unanswerable",
+   "input_tokens": 3412,
+   "request_sha256": "ff4e0ae64112cb093bb9ee2aadfd4fccf044fcd276248d139a367c19bbd9af30",
+   "attempt_id": "45ac44ff-b79f-4928-99b2-698c17ea0547"
+  },
+  {
+   "custom_id": "i0165",
+   "item_id": "LKQ/2010/page_84.pdf-4",
+   "input_tokens": 3493,
+   "request_sha256": "a567f6db773bfe758e4bfcba3b4b9930a947b7c00996e1c923e8a03e9b95975e",
+   "attempt_id": "e117f2cb-a394-4470-988f-7e30297805c4"
+  },
+  {
+   "custom_id": "i0166",
+   "item_id": "LKQ/2018/page_83.pdf-1",
+   "input_tokens": 3952,
+   "request_sha256": "9fc741b9a6c89bace9b7f317f5f0dbad04c0f8f5787ab40dcc2f15b33535ae9c",
+   "attempt_id": "6faff644-ea02-44a3-ba24-a67c26a187e9"
+  },
+  {
+   "custom_id": "i0167",
+   "item_id": "LKQ/2018/page_83.pdf-2",
+   "input_tokens": 3951,
+   "request_sha256": "00b35f1eb70b5d5cf6faff926cb027cd26fc565e2251c83af679f88ab99ae85f",
+   "attempt_id": "861e854b-4f18-41e3-b80e-d6a48e85b8c5"
+  },
+  {
+   "custom_id": "i0168",
+   "item_id": "LKQ/2018/page_83.pdf-3",
+   "input_tokens": 3956,
+   "request_sha256": "df85878ddb8822e40c64b3ca8491dba1fd8af9909ea32ce391568b1cd262292b",
+   "attempt_id": "8a38f07e-5e55-415a-a07c-571b190203a1"
+  },
+  {
+   "custom_id": "i0169",
+   "item_id": "LMT/2017/page_80.pdf-1",
+   "input_tokens": 4087,
+   "request_sha256": "933491d8d8978ce0d4cb259ded3580a3bce9e787e89c6edc2884f3409a29faa1",
+   "attempt_id": "c5110871-bfbb-4784-a923-370085010cc4"
+  },
+  {
+   "custom_id": "i0170",
+   "item_id": "LMT/2017/page_80.pdf-2",
+   "input_tokens": 4092,
+   "request_sha256": "fa362880334186d5ac9b0fb64bd4f7947b019bd563d51e695ab20f97b1854b32",
+   "attempt_id": "2f509c08-d062-47ea-9df1-52eac8060d26"
+  },
+  {
+   "custom_id": "i0171",
+   "item_id": "LMT/2017/page_80.pdf-3",
+   "input_tokens": 4092,
+   "request_sha256": "9485d73ef4aeaa23317ca1e49bb39ccb1a38a1bc848afc569eec0589ba89ebfe",
+   "attempt_id": "01508016-ed18-41e2-8bb0-db0f9403f829"
+  },
+  {
+   "custom_id": "i0172",
+   "item_id": "MA/2008/page_126.pdf-1",
+   "input_tokens": 3935,
+   "request_sha256": "a0df77d0e9a28136f4a8d5dc87c618579730a6e8965aaee9d141c490148feb25",
+   "attempt_id": "b4c92de2-e422-4887-acdd-0467386d0bdc"
+  },
+  {
+   "custom_id": "i0173",
+   "item_id": "MA/2008/page_126.pdf-2",
+   "input_tokens": 3928,
+   "request_sha256": "ffe8068c46ea3098dd853b0c481a85dad984923faa2a465f53182b06561016d2",
+   "attempt_id": "f50593e2-ad87-4231-afb7-47526ea970d3"
+  },
+  {
+   "custom_id": "i0174",
+   "item_id": "MAS/2018/page_35.pdf-1",
+   "input_tokens": 3846,
+   "request_sha256": "8878a0c36a7e714e40efc93c0c1d3fc8774857dbfe1a729192424caa7cad0e31",
+   "attempt_id": "736b0ba6-599c-42fc-91d6-59b5d2e55f50"
+  },
+  {
+   "custom_id": "i0175",
+   "item_id": "MAS/2018/page_35.pdf-2",
+   "input_tokens": 3846,
+   "request_sha256": "45214c3142ff551d024c8d308357527dbef50dc11fa4f7d398e51ee6a3ed8054",
+   "attempt_id": "4cfa280a-37a9-413c-b4b8-ee81a0d7bc14"
+  },
+  {
+   "custom_id": "i0176",
+   "item_id": "MAS/2018/page_35.pdf-3",
+   "input_tokens": 3845,
+   "request_sha256": "2cbd8f4d0e1815c62d0ff2b35300b7bde944f13d38d2a8084347f499a0c39d8a",
+   "attempt_id": "2f54729b-c2d2-4302-866d-fe40d461d8b9"
+  },
+  {
+   "custom_id": "i0177",
+   "item_id": "MAS/2018/page_60.pdf-1",
+   "input_tokens": 3400,
+   "request_sha256": "71d168b0ace46f54bec9a044307b5790ce4a0dbfb8f673f34fd45fcc438cc5f1",
+   "attempt_id": "3ce1cf68-0591-47db-adf4-db72bb90c4f2"
+  },
+  {
+   "custom_id": "i0178",
+   "item_id": "MAS/2018/page_60.pdf-2",
+   "input_tokens": 3401,
+   "request_sha256": "64d0e996fb98286e94c7c42241873cc2d3a6f102788cda8bd1e8e2dd5f5949a2",
+   "attempt_id": "a0614257-5fa4-4fdf-a10b-754559920a2c"
+  },
+  {
+   "custom_id": "i0179",
+   "item_id": "MMM/2005/page_95.pdf-1",
+   "input_tokens": 4123,
+   "request_sha256": "ccd400da74d0e55d007c78d4e8d06500437284c1904796a1638a8f656ff600c7",
+   "attempt_id": "1c9be23c-d5b9-436f-be56-6d5a54e0f009"
+  },
+  {
+   "custom_id": "i0180",
+   "item_id": "MMM/2005/page_95.pdf-1::unanswerable",
+   "input_tokens": 4022,
+   "request_sha256": "e15b82ab697b69cb196e7babc5a3e15751778aa7293614a619bd5c31568a2bae",
+   "attempt_id": "b02bad42-4263-46d7-a889-c32ee72f9892"
+  },
+  {
+   "custom_id": "i0181",
+   "item_id": "MRO/2014/page_58.pdf-1",
+   "input_tokens": 3976,
+   "request_sha256": "2e3a634533c0471ff4ea7eaf4071c9b95d39d92bfb8d091597a8a99624aa2d01",
+   "attempt_id": "edd8c25b-9e57-4158-812d-15ed2a6d12a5"
+  },
+  {
+   "custom_id": "i0182",
+   "item_id": "MS/2017/page_74.pdf-1",
+   "input_tokens": 4391,
+   "request_sha256": "b65c534fff8380ff49e854ae6c96bec9900c3a0de55f8cb9149877d4133ea12a",
+   "attempt_id": "50fcad1a-3e26-423a-86f8-3e5590ad0ac4"
+  },
+  {
+   "custom_id": "i0183",
+   "item_id": "MS/2017/page_74.pdf-2",
+   "input_tokens": 4391,
+   "request_sha256": "e2c166873545d9227d035cd6b5f21215d7db51b6665e4f656b03648da1107526",
+   "attempt_id": "5219d585-c75d-4561-ad66-bec117a149df"
+  },
+  {
+   "custom_id": "i0184",
+   "item_id": "MSI/2006/page_61.pdf-1",
+   "input_tokens": 4038,
+   "request_sha256": "a605f091f3df1e11a0b3d41034e7178a169d14fec1a9dedb98fe7352d76111ad",
+   "attempt_id": "825d7b75-7ec8-45fe-89ae-5ab5ecdfa64c"
+  },
+  {
+   "custom_id": "i0185",
+   "item_id": "MSI/2006/page_61.pdf-2",
+   "input_tokens": 4033,
+   "request_sha256": "ad3fa23f0b6821e6c7023c6c8ab96d0498bfa5919c51ea094aa6a2ab894a5b80",
+   "attempt_id": "5104a07b-f39a-4013-8dfe-af159e37a852"
+  },
+  {
+   "custom_id": "i0186",
+   "item_id": "MSI/2006/page_61.pdf-3",
+   "input_tokens": 4035,
+   "request_sha256": "88cff917518ed34116f2b2a24da7d05b1790ba265029327b524ff906164dfb92",
+   "attempt_id": "dd0dbd27-5665-4b27-8349-081d0348f679"
+  },
+  {
+   "custom_id": "i0187",
+   "item_id": "MSI/2006/page_61.pdf-4",
+   "input_tokens": 4040,
+   "request_sha256": "fc2b87d9f34df540572ff4a81aa4ef31d2ecb16886fd8df0081ce88baecaf082",
+   "attempt_id": "0dd84fb2-f963-4404-a888-69e789bd4aec"
+  },
+  {
+   "custom_id": "i0188",
+   "item_id": "MSI/2006/page_61.pdf-4::unanswerable",
+   "input_tokens": 3985,
+   "request_sha256": "28e1c7ed731ed201b510027b23c58810424d49fcd9e33c4f6cd7cdb3619b4c78",
+   "attempt_id": "6c4ee2f4-11f5-4569-9175-818728786feb"
+  },
+  {
+   "custom_id": "i0189",
+   "item_id": "MSI/2009/page_65.pdf-1",
+   "input_tokens": 3959,
+   "request_sha256": "ee74578755a05b1601907a4a6ee2deee75543688d44e6feb49d8aab1a33ce328",
+   "attempt_id": "350fea8e-4b56-4b7f-9172-8629f04cf1c2"
+  },
+  {
+   "custom_id": "i0190",
+   "item_id": "MSI/2009/page_65.pdf-1::unanswerable",
+   "input_tokens": 3786,
+   "request_sha256": "e5e826413ee11b9cffe830ef6ac3ed5d49e421be275ce49f3e206d10a9ef495d",
+   "attempt_id": "fe3e460e-bd84-4f2b-a2df-b6a1f7ac097c"
+  },
+  {
+   "custom_id": "i0191",
+   "item_id": "MSI/2009/page_65.pdf-2",
+   "input_tokens": 3958,
+   "request_sha256": "584cc32d0a3eb7c51b045dfeca8a58b461c2ab0013cce2c201b84f8e6a4763c6",
+   "attempt_id": "a61d64e2-d8e3-4101-94bd-6884123f458f"
+  },
+  {
+   "custom_id": "i0192",
+   "item_id": "OKE/2012/page_52.pdf-1",
+   "input_tokens": 3667,
+   "request_sha256": "5a706f8ad4d9935b8da882c06b004defea60d617c3e4e0bf61ae14fefb20c8fb",
+   "attempt_id": "7a4c627c-1fce-4159-91a7-ed6ca0d908a4"
+  },
+  {
+   "custom_id": "i0193",
+   "item_id": "PKG/2009/page_65.pdf-1",
+   "input_tokens": 3431,
+   "request_sha256": "705609b8cfe1501f190758f516027b2976ae1c064a33c82fda9064d76304af2c",
+   "attempt_id": "c2235c52-64d3-436f-a3f2-9bddd5dd764f"
+  },
+  {
+   "custom_id": "i0194",
+   "item_id": "PKG/2009/page_65.pdf-2",
+   "input_tokens": 3422,
+   "request_sha256": "7e65a72ed8a133bf27cfbce96e058407fef1c277ef70b2e1437bd234244cdc14",
+   "attempt_id": "3ace87ab-a308-4415-818e-9d08afaabcf5"
+  },
+  {
+   "custom_id": "i0195",
+   "item_id": "PKG/2009/page_65.pdf-3",
+   "input_tokens": 3428,
+   "request_sha256": "78a37a2e1419b263b124e354aefd41ee8b4e1480306c57f308cad2ff724c16a9",
+   "attempt_id": "3452a20b-1e77-45f7-9093-d58b9bec15c9"
+  },
+  {
+   "custom_id": "i0196",
+   "item_id": "PKG/2009/page_65.pdf-4",
+   "input_tokens": 3422,
+   "request_sha256": "ab62423102efce4f0120ae12aea92db0404c553ce764da3b8c514264909bdfe7",
+   "attempt_id": "d1be6ffa-463d-4de8-af30-4c35114c6a51"
+  },
+  {
+   "custom_id": "i0197",
+   "item_id": "PM/2015/page_127.pdf-1",
+   "input_tokens": 3569,
+   "request_sha256": "814c15648de3ccef85a3b3b60925fb3f5bbdde2ec077de2e05ef26ccc7d7a68b",
+   "attempt_id": "667621d6-2940-431d-b457-0e902a2d03db"
+  },
+  {
+   "custom_id": "i0198",
+   "item_id": "PM/2015/page_127.pdf-2",
+   "input_tokens": 3569,
+   "request_sha256": "737655b7cccd1e52ce980cbd8fc7b1d67fa7770e9e491c77b59893beb62cd282",
+   "attempt_id": "e0f6cdee-56be-45ae-a2a1-797da10276d7"
+  },
+  {
+   "custom_id": "i0199",
+   "item_id": "PM/2015/page_127.pdf-2::unanswerable",
+   "input_tokens": 3518,
+   "request_sha256": "36a8d522e619a8522ded9abc5358bb5f269de3269ad0354525c850da736fa93d",
+   "attempt_id": "17981eea-c612-441e-b180-f6767be7fdf7"
+  },
+  {
+   "custom_id": "i0200",
+   "item_id": "PM/2015/page_127.pdf-3",
+   "input_tokens": 3568,
+   "request_sha256": "619dca5b640ecf7f77d8c3dfa3986d609c37c7b28ebab171b22af9b1263162ad",
+   "attempt_id": "d9dbd060-d4aa-4403-90ee-e30daddee37b"
+  },
+  {
+   "custom_id": "i0201",
+   "item_id": "PM/2015/page_127.pdf-4",
+   "input_tokens": 3563,
+   "request_sha256": "4151d57aeff6c77c35e424a026965d534d03628858733bc67b6a972ddbd22185",
+   "attempt_id": "7709daa0-f42f-43d7-bfdb-cc7cc3d4424f"
+  },
+  {
+   "custom_id": "i0202",
+   "item_id": "PM/2015/page_38.pdf-1",
+   "input_tokens": 4266,
+   "request_sha256": "86e5380079ad4e6153d3ae498db479f91eb0b2bfe6bab8cea810e6cf61b1c91a",
+   "attempt_id": "c8bfe409-5fe8-4168-922c-5b28aa762611"
+  },
+  {
+   "custom_id": "i0203",
+   "item_id": "PM/2015/page_38.pdf-2",
+   "input_tokens": 4268,
+   "request_sha256": "25b8dd4524acd89eb170ea0e68fccbd66659bfa43fdf6bdad38f5ca41eaee27d",
+   "attempt_id": "bcc7cae0-cb94-4f79-b143-6ed549b092c7"
+  },
+  {
+   "custom_id": "i0204",
+   "item_id": "PM/2015/page_85.pdf-1",
+   "input_tokens": 5474,
+   "request_sha256": "0e9896305f87b8ecf23bd4a4a4ccab01fb56b6e51d6cdffe8fa7033fa42dfb9d",
+   "attempt_id": "0bfe8473-dd70-42f8-85a5-aa70d96ac32c"
+  },
+  {
+   "custom_id": "i0205",
+   "item_id": "PM/2015/page_85.pdf-2",
+   "input_tokens": 5479,
+   "request_sha256": "e1d3f3aa2af23188d5646bd90486bf9ecc085c165aa4370b5262a1fd75c200ee",
+   "attempt_id": "891238e2-5726-4ba0-8c58-f9ca4b55aec6"
+  },
+  {
+   "custom_id": "i0206",
+   "item_id": "PM/2015/page_85.pdf-3",
+   "input_tokens": 5491,
+   "request_sha256": "a1fc7b17e4faa64243235973ecd73e689910218693736b77e087b576dca2f76f",
+   "attempt_id": "8e48577a-49a7-4727-9772-f565d1047233"
+  },
+  {
+   "custom_id": "i0207",
+   "item_id": "PM/2015/page_85.pdf-4",
+   "input_tokens": 5478,
+   "request_sha256": "513e187e0362be56b2c6a06a194453e3f3c16b4ddcc92b36c07cdf73e2e2d32b",
+   "attempt_id": "4d786bcc-6ccd-48d8-b2b4-8d91f02bf0cc"
+  },
+  {
+   "custom_id": "i0208",
+   "item_id": "PM/2018/page_24.pdf-1",
+   "input_tokens": 3203,
+   "request_sha256": "721c6f6a633605d398815b99f0d0d7b2460ab0acfb6399ef01eb27fd7b6ab39c",
+   "attempt_id": "f294bca1-67bf-4e01-a681-0c2144c3bfa7"
+  },
+  {
+   "custom_id": "i0209",
+   "item_id": "PM/2018/page_24.pdf-1::unanswerable",
+   "input_tokens": 3059,
+   "request_sha256": "96a4612ac1376b26310b83c2670f5742aa4ed905c4eedbfb7af63d007f6d3356",
+   "attempt_id": "dd5f3848-3ddf-403a-b536-6ea11f5fbb99"
+  },
+  {
+   "custom_id": "i0210",
+   "item_id": "PM/2018/page_24.pdf-2",
+   "input_tokens": 3218,
+   "request_sha256": "9cee5cb4586cb2458a6d867bc45478b2ae632b9a0995760da1e29842a31a7f18",
+   "attempt_id": "83ac9f8a-8c2f-492d-aa94-181d75a2233f"
+  },
+  {
+   "custom_id": "i0211",
+   "item_id": "PM/2018/page_24.pdf-3",
+   "input_tokens": 3204,
+   "request_sha256": "5c8e0db102c8fd1eb7f8f5f1ddf101d67ac03bc4be3f0e5ec7069eaa54857271",
+   "attempt_id": "54e99948-b7fa-47f3-8bb0-b4d35d20560f"
+  },
+  {
+   "custom_id": "i0212",
+   "item_id": "PM/2018/page_31.pdf-1",
+   "input_tokens": 4239,
+   "request_sha256": "3da29b9d6a874a4268b0679eac531689f38d5a1bcffef6f6352437f30d337027",
+   "attempt_id": "c1613f15-8a74-4fdc-963e-0f3a2cd34756"
+  },
+  {
+   "custom_id": "i0213",
+   "item_id": "PM/2018/page_31.pdf-2",
+   "input_tokens": 4237,
+   "request_sha256": "028143b8769b6c5de1d435fcb0cb08a6f1b2862be704b70a960e75e11bc564c2",
+   "attempt_id": "b66591e1-16cb-4d6c-a538-d2860c96c242"
+  },
+  {
+   "custom_id": "i0214",
+   "item_id": "PNC/2009/page_41.pdf-1",
+   "input_tokens": 4375,
+   "request_sha256": "344a49e21f51a32f68b14e8460756ecb6236681546ebd39db24642deb574ded7",
+   "attempt_id": "1dc162b0-4a05-4196-9a2b-c22f40b79f68"
+  },
+  {
+   "custom_id": "i0215",
+   "item_id": "PNC/2009/page_41.pdf-1::unanswerable",
+   "input_tokens": 4203,
+   "request_sha256": "a445e9cdf1ac888264989ce99bb4527a2100cc6608b9e4d8b142163164447c25",
+   "attempt_id": "d0c697af-4449-4ad4-97e5-496c37836809"
+  },
+  {
+   "custom_id": "i0216",
+   "item_id": "PNC/2009/page_41.pdf-2",
+   "input_tokens": 4337,
+   "request_sha256": "359e06dd48b45e15d32a5bbc1f5fdd2cdcb521d2c9b32a13bcac1d02b0bb905a",
+   "attempt_id": "55d71dc3-28fa-43c2-a747-1ab7a03d6649"
+  },
+  {
+   "custom_id": "i0217",
+   "item_id": "PNC/2009/page_41.pdf-3",
+   "input_tokens": 4344,
+   "request_sha256": "7e1673e639177a97d54dfd557205f745d1c43410f82b62aed71b611aae995fbe",
+   "attempt_id": "79a654f9-8701-4151-b9b7-b3013341a17d"
+  },
+  {
+   "custom_id": "i0218",
+   "item_id": "PNC/2009/page_41.pdf-4",
+   "input_tokens": 4328,
+   "request_sha256": "9ecf46b94bd5d412b175675f8c2b86c6cb37d8db8cc23d44f180a891f769ec47",
+   "attempt_id": "1d55b951-13ea-4106-90a6-199643c8e57b"
+  },
+  {
+   "custom_id": "i0219",
+   "item_id": "PNC/2009/page_46.pdf-1",
+   "input_tokens": 4342,
+   "request_sha256": "7f6b9591a0c21158b1d674b123fe5278a891de892b33aece496d8b23408dee0c",
+   "attempt_id": "67c8dd58-ec19-4434-8191-bf62c242a8e7"
+  },
+  {
+   "custom_id": "i0220",
+   "item_id": "PNC/2009/page_46.pdf-1::unanswerable",
+   "input_tokens": 4187,
+   "request_sha256": "8493c58960d2cdf18d861a0ab266fe3c8c101b3ea7ed7492d7152a139928a4a0",
+   "attempt_id": "e88e7e77-1e30-46f4-9c3b-82964bd66b0e"
+  },
+  {
+   "custom_id": "i0221",
+   "item_id": "PNC/2009/page_46.pdf-2",
+   "input_tokens": 4348,
+   "request_sha256": "e6c45f4379348f61a6a38799561e4a93bdaae4f4edaba7de29fcef86f904e6ad",
+   "attempt_id": "e5ac9f95-61cd-49d0-b03a-fc0d0f739d46"
+  },
+  {
+   "custom_id": "i0222",
+   "item_id": "PNC/2009/page_46.pdf-3",
+   "input_tokens": 4341,
+   "request_sha256": "1d1a97a71744867ee3bcfa0d263ad077f749a661f04b9ff6ce283af3182c2f73",
+   "attempt_id": "fb879783-fa9a-4c56-87d9-0434098476b4"
+  },
+  {
+   "custom_id": "i0223",
+   "item_id": "PNC/2009/page_46.pdf-4",
+   "input_tokens": 4340,
+   "request_sha256": "985bcfb48c456cd6b3d25f883d4e5fd1891beca2cdd59a641c82d667cf95edfe",
+   "attempt_id": "f2931195-198b-4590-8459-bc0f945246e3"
+  },
+  {
+   "custom_id": "i0224",
+   "item_id": "PNC/2013/page_112.pdf-1",
+   "input_tokens": 4154,
+   "request_sha256": "c1f56b6808e78cc9f3eaafb0cc37bb989be1f791ada960defa9a8d6b800f462b",
+   "attempt_id": "734cd61d-f8ef-4332-8543-74ae2a2bab27"
+  },
+  {
+   "custom_id": "i0225",
+   "item_id": "PNC/2013/page_112.pdf-2",
+   "input_tokens": 4154,
+   "request_sha256": "6e261580b80e54412939cef770ee46d1fe24e7f4dc6501ac7ccd9067aa7766c1",
+   "attempt_id": "a2793e14-fd26-4004-a6eb-fa14f46572ce"
+  },
+  {
+   "custom_id": "i0226",
+   "item_id": "PNC/2013/page_207.pdf-1",
+   "input_tokens": 3522,
+   "request_sha256": "379dd576b5f3604a493bdf2318153ce50dc0dcffee90725c76e7ad1c3fe92798",
+   "attempt_id": "9f3001fe-a124-40f8-bc85-613ee71cc54e"
+  },
+  {
+   "custom_id": "i0227",
+   "item_id": "PNC/2013/page_207.pdf-2",
+   "input_tokens": 3536,
+   "request_sha256": "594dcfacfc132cc59549b6570f8818f62a28eaeb6bcac636a3e1bc8696a7eafd",
+   "attempt_id": "a0e426e3-d11e-4964-b856-68e3781a2b30"
+  },
+  {
+   "custom_id": "i0228",
+   "item_id": "PNC/2013/page_62.pdf-1",
+   "input_tokens": 4219,
+   "request_sha256": "afeea50a369eef61eb1664e45da4cafe9b1b64c1b1788053392599cd0d433921",
+   "attempt_id": "f712fc7d-4156-496c-8af8-df595ff24cfc"
+  },
+  {
+   "custom_id": "i0229",
+   "item_id": "PNC/2013/page_62.pdf-2",
+   "input_tokens": 4222,
+   "request_sha256": "82226fd291a5b14b631d24358423b6ee041a39b1fd78b6914064e240d0e7813a",
+   "attempt_id": "1c7d652c-927e-4ca6-be65-d65745ba8e31"
+  },
+  {
+   "custom_id": "i0230",
+   "item_id": "PNC/2016/page_177.pdf-1",
+   "input_tokens": 3584,
+   "request_sha256": "263f01e353b1609ee0a8904882501a4e8d32c37fb97b450b62a2ced727df6e23",
+   "attempt_id": "1b1e463b-5f7a-4df4-b48e-6510439b5268"
+  },
+  {
+   "custom_id": "i0231",
+   "item_id": "PNC/2018/page_171.pdf-1",
+   "input_tokens": 3734,
+   "request_sha256": "8c795b5548971df33383ac865d73d093c05c5720d1204c8956a6b19040f544a6",
+   "attempt_id": "7b709b6b-4826-4316-9b84-31a8e6a57fe9"
+  },
+  {
+   "custom_id": "i0232",
+   "item_id": "PNC/2018/page_171.pdf-2",
+   "input_tokens": 3721,
+   "request_sha256": "cf61f58dcb6a9e0810d6b2c4b780517cf11e3cc1177ddd986565bbe5f41fc7cd",
+   "attempt_id": "b1eec49c-27d8-432d-9f31-4525d251a1f6"
+  },
+  {
+   "custom_id": "i0233",
+   "item_id": "PPG/2013/page_40.pdf-1",
+   "input_tokens": 4110,
+   "request_sha256": "30c0844167a4cfacc7af208e75107cd4bb34a783723262ac2f91b18dfdae2687",
+   "attempt_id": "dbbd3bf2-c125-46ae-9585-a83ca6ad0944"
+  },
+  {
+   "custom_id": "i0234",
+   "item_id": "PPG/2013/page_40.pdf-2",
+   "input_tokens": 4110,
+   "request_sha256": "4f9c93494206cc7b01e8c7c34bbdf4fc2698de599e552f409a957847dcbdb4f4",
+   "attempt_id": "9aaaeef8-9ba3-4834-8c3b-7919c3a6b249"
+  },
+  {
+   "custom_id": "i0235",
+   "item_id": "PPG/2013/page_40.pdf-3",
+   "input_tokens": 4111,
+   "request_sha256": "76c83836250dba326bc63bad456f9d6e4c2033c4cccb61fc1ddf3ef53827dcf0",
+   "attempt_id": "68101e53-003e-43ae-abaa-6a7fa5256eeb"
+  },
+  {
+   "custom_id": "i0236",
+   "item_id": "PPG/2013/page_40.pdf-4",
+   "input_tokens": 4111,
+   "request_sha256": "e06673a214c12753661678212afe4b1312c797c025b035fdabb35b3dfa103067",
+   "attempt_id": "7cc6aa89-1379-4b5a-9c89-7bd9a42575c4"
+  },
+  {
+   "custom_id": "i0237",
+   "item_id": "RE/2017/page_159.pdf-1",
+   "input_tokens": 3459,
+   "request_sha256": "adfd52b36166ec992983fdf8b45d50c28e1aef83e39666addd0cc0da8a19008c",
+   "attempt_id": "535c94ec-c9aa-4cfd-ad56-2c06e7774155"
+  },
+  {
+   "custom_id": "i0238",
+   "item_id": "RE/2017/page_159.pdf-2",
+   "input_tokens": 3455,
+   "request_sha256": "12bcb8fc6abfbb54da269563413b789b515eb4af9ce784b9320e4ac2e3779ca6",
+   "attempt_id": "71e4fc87-e414-41d1-8342-a935d1480f9c"
+  },
+  {
+   "custom_id": "i0239",
+   "item_id": "RE/2017/page_159.pdf-3",
+   "input_tokens": 3452,
+   "request_sha256": "801fda6493a8b1840c11ce4a3a24a9286afce2226f4f03de756cc64efa5ccd95",
+   "attempt_id": "76597254-a3f3-4982-bd10-6c93a9769d16"
+  },
+  {
+   "custom_id": "i0240",
+   "item_id": "RE/2017/page_159.pdf-4",
+   "input_tokens": 3458,
+   "request_sha256": "c26eb2fb0d605cd79651cec7da9fc9ff773caa0142ac6546526dd15b8147d2ba",
+   "attempt_id": "659757a5-2ea2-4c34-a1c7-178e5856d7f0"
+  },
+  {
+   "custom_id": "i0241",
+   "item_id": "STT/2008/page_83.pdf-1",
+   "input_tokens": 3615,
+   "request_sha256": "efd1a5d050a48882bbd0f7ac22d35d20d66bcfc079e3579c51db742d395690ee",
+   "attempt_id": "9c564f37-5587-4618-96dc-c9eed53cb391"
+  },
+  {
+   "custom_id": "i0242",
+   "item_id": "STT/2008/page_83.pdf-2",
+   "input_tokens": 3616,
+   "request_sha256": "8856dc557606bd6a5e050e159a9fd28e2bd7e7f36bfb180592fcedc491c511ce",
+   "attempt_id": "8da7fb98-c244-467c-b364-fc02a28a1e58"
+  },
+  {
+   "custom_id": "i0243",
+   "item_id": "STZ/2006/page_68.pdf-1",
+   "input_tokens": 4556,
+   "request_sha256": "0b3a2df20efb785680960d78e071bff87b71b278d1887a82a6e2451d3603c261",
+   "attempt_id": "09e278d4-dac8-4457-ab2e-32ac1f04e0b4"
+  },
+  {
+   "custom_id": "i0244",
+   "item_id": "STZ/2006/page_68.pdf-2",
+   "input_tokens": 4578,
+   "request_sha256": "06d9e4a2e024dacf7e06ba450236d7f1f430edbe3000cd7ebd5045ddce039b25",
+   "attempt_id": "99c00d69-1db6-4c12-ab73-36af72996bf7"
+  },
+  {
+   "custom_id": "i0245",
+   "item_id": "STZ/2006/page_68.pdf-3",
+   "input_tokens": 4567,
+   "request_sha256": "5e44372c23df7ace829064a34f8776b5dd758cb458360a2b8e92335d3966e5be",
+   "attempt_id": "4566443f-e876-4a8c-9723-1d1113c9e426"
+  },
+  {
+   "custom_id": "i0246",
+   "item_id": "STZ/2006/page_68.pdf-4",
+   "input_tokens": 4563,
+   "request_sha256": "7ff6d0653fd012af1e304a77e2d588e32288fa06c9a69e5019e6b3dfec325a58",
+   "attempt_id": "d52b2a4b-98d2-431c-8585-429ab79cc401"
+  },
+  {
+   "custom_id": "i0247",
+   "item_id": "SWKS/2006/page_81.pdf-1",
+   "input_tokens": 4116,
+   "request_sha256": "f8ae8c825622b75a8e80c61ec2a14475c23cca12113581358ade6dfd3a587c26",
+   "attempt_id": "5dd3d34d-8119-48fc-b222-1f10303bafad"
+  },
+  {
+   "custom_id": "i0248",
+   "item_id": "SWKS/2006/page_81.pdf-2",
+   "input_tokens": 4120,
+   "request_sha256": "de9ea8b3e76f3b28c1d9697fd88babd148631fd52fec65fd7ae4e175a3424808",
+   "attempt_id": "e0b287b7-eb44-426d-97d5-ab7d8e93ab3f"
+  },
+  {
+   "custom_id": "i0249",
+   "item_id": "TSCO/2017/page_31.pdf-1",
+   "input_tokens": 2910,
+   "request_sha256": "16a4ba083acb03c657a06255ee618258a3586d85ddf541986c6dd6e983959fe0",
+   "attempt_id": "87ee1d88-4240-4d40-a76e-3be3a272113f"
+  },
+  {
+   "custom_id": "i0250",
+   "item_id": "TSCO/2017/page_31.pdf-2",
+   "input_tokens": 2914,
+   "request_sha256": "0e429826b5c301f5a016ecabce5e07d0fd4bf3c5670f94f9958cf3772ad85be4",
+   "attempt_id": "962ee59e-15ca-4afb-a42a-335c4a140ab9"
+  },
+  {
+   "custom_id": "i0251",
+   "item_id": "TSCO/2018/page_34.pdf-1",
+   "input_tokens": 2914,
+   "request_sha256": "5aedab0bf9fffc4e3b60e88999a262e159031ab8b275284b0ce071564759d651",
+   "attempt_id": "91aef759-4576-4def-a00e-949be547fa98"
+  },
+  {
+   "custom_id": "i0252",
+   "item_id": "TSCO/2018/page_34.pdf-2",
+   "input_tokens": 2912,
+   "request_sha256": "5091da4570cb49324a268f441af0cb80d2f56ef0c5d9b0a93415725c2f974093",
+   "attempt_id": "32f7fdf7-2c6c-440a-98fb-4cf5b26bd218"
+  },
+  {
+   "custom_id": "i0253",
+   "item_id": "UNP/2008/page_27.pdf-1",
+   "input_tokens": 3822,
+   "request_sha256": "9312b7a72160d0b6f6068bb6bd2c03886c581873a4faf6db0fd602b5d8406151",
+   "attempt_id": "548d9ef6-b18c-4253-93f6-3556815f3370"
+  },
+  {
+   "custom_id": "i0254",
+   "item_id": "UNP/2008/page_27.pdf-1::unanswerable",
+   "input_tokens": 3592,
+   "request_sha256": "5900ba530c7837025f00ef5278faa7bf721f1f3beed7f2b10afc215c2b5f43f7",
+   "attempt_id": "4dfcca50-9f26-4acb-9dbd-d58380d55e68"
+  },
+  {
+   "custom_id": "i0255",
+   "item_id": "UNP/2008/page_77.pdf-1",
+   "input_tokens": 3845,
+   "request_sha256": "157c0c8fce126a1bb3c9b852ee2d88bc4ab02237b0be8dc19880bac40dff8ef4",
+   "attempt_id": "57b38afc-4f94-41d3-a721-31d3ba8a50f7"
+  },
+  {
+   "custom_id": "i0256",
+   "item_id": "UNP/2008/page_77.pdf-2",
+   "input_tokens": 3829,
+   "request_sha256": "c8fa5d0a3e88217c389847c2442b8f6e33c7bb2084dc8f56043e1af2dbe56305",
+   "attempt_id": "4e604016-b88b-4cee-b6fa-76c1de94a38e"
+  },
+  {
+   "custom_id": "i0257",
+   "item_id": "UNP/2008/page_77.pdf-3",
+   "input_tokens": 3831,
+   "request_sha256": "a5e12312c2856483163f7c08b23598f00935cf5ceaec601d8685ffae9e789c1c",
+   "attempt_id": "9958186a-a953-439e-bd7c-20263409c97b"
+  },
+  {
+   "custom_id": "i0258",
+   "item_id": "UNP/2008/page_79.pdf-1",
+   "input_tokens": 3877,
+   "request_sha256": "accc75545c65b35846ff57ec6845968b15fd8e5b8533d188246e4a66e1e9ac09",
+   "attempt_id": "02bbe702-87c7-47b7-b102-c59c5cbeebc0"
+  },
+  {
+   "custom_id": "i0259",
+   "item_id": "UNP/2008/page_79.pdf-2",
+   "input_tokens": 3855,
+   "request_sha256": "9d96d2c4df36baa97a5e3bbe9350ee3aa812bef9b23fb4c2dca20dd75100f08d",
+   "attempt_id": "de39c9ad-9d2b-4344-9e0c-d2b6fff576fb"
+  },
+  {
+   "custom_id": "i0260",
+   "item_id": "UNP/2008/page_79.pdf-3",
+   "input_tokens": 3855,
+   "request_sha256": "bf3e9cc8d318a0ba2405ef6de0fd737488caadf08eb958a5a48619524f5a3aaf",
+   "attempt_id": "6b10bf0a-20a5-4700-91ed-fbb40ca06796"
+  },
+  {
+   "custom_id": "i0261",
+   "item_id": "UNP/2014/page_25.pdf-1",
+   "input_tokens": 3743,
+   "request_sha256": "4c05a42abe64df533a6b8d0d597c014b663a2bf5d4853d703d437e4b938999b2",
+   "attempt_id": "54dfbe90-1e31-4b4b-8319-df23b02862b8"
+  },
+  {
+   "custom_id": "i0262",
+   "item_id": "UNP/2014/page_25.pdf-2",
+   "input_tokens": 3752,
+   "request_sha256": "a050805dbac5c755d0344b76c3037f7acb403cceb0e04062758ed96b59f98f0c",
+   "attempt_id": "de653a96-8136-4632-950d-ac08969bc6ef"
+  },
+  {
+   "custom_id": "i0263",
+   "item_id": "UNP/2014/page_25.pdf-3",
+   "input_tokens": 3737,
+   "request_sha256": "2ced45d2d29e542b79c4307a9c578d1fffd4d9c7283970deb1bae0a4082b168e",
+   "attempt_id": "bd9fd997-e500-4cef-bd5b-932a9d98fbcb"
+  },
+  {
+   "custom_id": "i0264",
+   "item_id": "UNP/2014/page_25.pdf-4",
+   "input_tokens": 3737,
+   "request_sha256": "1517e932f2e3792e109a5646d14e7b6d258bff4d88362b8b8101c234f8778bc8",
+   "attempt_id": "6eaf534c-22c9-4f2d-ab8c-642ecf0856dd"
+  },
+  {
+   "custom_id": "i0265",
+   "item_id": "UNP/2014/page_35.pdf-1",
+   "input_tokens": 3419,
+   "request_sha256": "a50d122d9c88fab20c7b134ffbc08ca872eec40d2ba152fc54d57a9f3d157905",
+   "attempt_id": "97433c30-f7dd-48a9-a2a5-cd396c857364"
+  },
+  {
+   "custom_id": "i0266",
+   "item_id": "UNP/2014/page_35.pdf-1::unanswerable",
+   "input_tokens": 3261,
+   "request_sha256": "9a0c3262a88ecf8305bf6c5919af2b660abac1f28c57ec6e8fe8423cf81c45a5",
+   "attempt_id": "4899e8df-a5f7-423e-ba27-40f8eac34800"
+  },
+  {
+   "custom_id": "i0267",
+   "item_id": "UNP/2014/page_35.pdf-2",
+   "input_tokens": 3404,
+   "request_sha256": "6aceeff7797ecf4e934e548bdce67555706f0ef1733ead44f71ebe826ac5e8ee",
+   "attempt_id": "21cad221-9370-4f45-a900-ac402aae7292"
+  },
+  {
+   "custom_id": "i0268",
+   "item_id": "UNP/2014/page_35.pdf-3",
+   "input_tokens": 3409,
+   "request_sha256": "c94090a934031df701d58e91ff64e11d024a92b45f980334ba0a7e9fd4d0f456",
+   "attempt_id": "0173323c-ab75-49c7-a821-5ba7205c7f16"
+  },
+  {
+   "custom_id": "i0269",
+   "item_id": "UNP/2014/page_35.pdf-4",
+   "input_tokens": 3409,
+   "request_sha256": "d3197df2ee6007944ef586a90869a097af27e896a7795d8e450f6d6689a94512",
+   "attempt_id": "d964b567-553a-44ef-83bd-7264b1a5f8bd"
+  },
+  {
+   "custom_id": "i0270",
+   "item_id": "UNP/2014/page_75.pdf-1",
+   "input_tokens": 4163,
+   "request_sha256": "5c18a6e24ef0c83a660158eaf6758506191f6da953345fd05ea974353fde7cd9",
+   "attempt_id": "f94a6a0e-350f-4fc8-bf34-250ef7966172"
+  },
+  {
+   "custom_id": "i0271",
+   "item_id": "UNP/2014/page_75.pdf-2",
+   "input_tokens": 4160,
+   "request_sha256": "206aa177a6ead2f17d346c28143cd6e28391ea408bc5cb5e67d7348972054c61",
+   "attempt_id": "e91dfc7b-cf8b-4e4b-a411-563bab8ca65a"
+  },
+  {
+   "custom_id": "i0272",
+   "item_id": "UNP/2014/page_75.pdf-3",
+   "input_tokens": 4160,
+   "request_sha256": "bcb72dd5d6165ac66d69dbbf1e46a8af23f4f95783faa447ec788d61823224dc",
+   "attempt_id": "ab7eb8f1-eea9-4699-a1af-9db80f802ecc"
+  },
+  {
+   "custom_id": "i0273",
+   "item_id": "V/2013/page_41.pdf-1",
+   "input_tokens": 3678,
+   "request_sha256": "5f6b76b1fdfc5e3685017caf0c2406126298e0bee86974085e788a9bb6e3777c",
+   "attempt_id": "5431c216-f5a0-4122-92b6-4d512e76a5aa"
+  },
+  {
+   "custom_id": "i0274",
+   "item_id": "V/2013/page_41.pdf-1::unanswerable",
+   "input_tokens": 3322,
+   "request_sha256": "194098e3ab666479949442c381041e31636fa4d42152aa68431ae9c1e9a68226",
+   "attempt_id": "98dac29d-f65a-43f5-a49b-eb027264d0dc"
+  },
+  {
+   "custom_id": "i0275",
+   "item_id": "VLO/2018/page_25.pdf-1",
+   "input_tokens": 4030,
+   "request_sha256": "19d04416bce303057fe2c1a7925f4264321f852eadf8e63b146b53a70c8a2195",
+   "attempt_id": "6f27445c-144b-40c2-baf7-a5da85efc11c"
+  },
+  {
+   "custom_id": "i0276",
+   "item_id": "VLO/2018/page_25.pdf-2",
+   "input_tokens": 4026,
+   "request_sha256": "a9d076fa1e78389121f362c8d09673ae6da82bfcbbbdc18f9fd46d55b7754138",
+   "attempt_id": "8ca77803-810b-49d7-9307-8bf86cf301a7"
+  },
+  {
+   "custom_id": "i0277",
+   "item_id": "VLO/2018/page_25.pdf-3",
+   "input_tokens": 4020,
+   "request_sha256": "cd35d5bda14c25c0062cbd487608b415f0f75727d3dacca45fba572f259e7027",
+   "attempt_id": "e94aedbc-6377-41fb-a051-e16e41520636"
+  },
+  {
+   "custom_id": "i0278",
+   "item_id": "VNO/2012/page_84.pdf-1",
+   "input_tokens": 2664,
+   "request_sha256": "69b6bf3eac3dab5db5554844a3a8e20f24ee5e53ede97b480db07494a58c64c4",
+   "attempt_id": "86ea802c-a779-45bf-8544-5692a042145e"
+  },
+  {
+   "custom_id": "i0279",
+   "item_id": "VNO/2012/page_84.pdf-2",
+   "input_tokens": 2664,
+   "request_sha256": "2413ec12f887905aa34c09ed68664b60ff3f9a800b5534a9d5d186300f236c94",
+   "attempt_id": "b9c54b3c-19ad-4229-a0c8-b03d28e543b4"
+  },
+  {
+   "custom_id": "i0280",
+   "item_id": "VTR/2007/page_47.pdf-1",
+   "input_tokens": 3082,
+   "request_sha256": "d4ba2155ba416eee0ed66c55ce2d352fe0a305bb59f1713f7cecdc6930db1c43",
+   "attempt_id": "a3d1976e-d1e7-4c82-a711-6db559321558"
+  },
+  {
+   "custom_id": "i0281",
+   "item_id": "VTR/2007/page_47.pdf-1::unanswerable",
+   "input_tokens": 2973,
+   "request_sha256": "4d78b60223ffeaac3d95aec8f8ec20be098dc46810d3bd3c49c18d4a92972e64",
+   "attempt_id": "92f29d39-369c-4284-9f99-f04f983450e2"
+  },
+  {
+   "custom_id": "i0282",
+   "item_id": "VTR/2007/page_47.pdf-2",
+   "input_tokens": 3073,
+   "request_sha256": "40c3b1089293dea77440e2e13fc87988f048e1159ac3a8c6488d609d12cf6e05",
+   "attempt_id": "b483e8a8-0c8b-484e-90af-b9e2b8aee001"
+  },
+  {
+   "custom_id": "i0283",
+   "item_id": "VTR/2007/page_47.pdf-2::unanswerable",
+   "input_tokens": 2964,
+   "request_sha256": "384628b5e9e81c98e62c7d94c585dbe695f7099e4507664d0e7c6e92494f51cb",
+   "attempt_id": "2a4db472-d4c2-4f0f-ad64-367c832081ac"
+  },
+  {
+   "custom_id": "i0284",
+   "item_id": "VTR/2007/page_47.pdf-3",
+   "input_tokens": 3077,
+   "request_sha256": "fb2bb834c263bad01ef84531e37e5e84940046705893af231f5ca451a61fdf37",
+   "attempt_id": "3d81e097-041b-405a-962f-5e0f22828b6d"
+  },
+  {
+   "custom_id": "i0285",
+   "item_id": "VTR/2007/page_47.pdf-4",
+   "input_tokens": 3069,
+   "request_sha256": "372d362efea248b0856493910f4b97483f668da2f3ea5d7ecf2972946608fb09",
+   "attempt_id": "cff4a191-e2b5-4d23-b7c4-9f3db0fe0711"
+  },
+  {
+   "custom_id": "i0286",
+   "item_id": "ZBH/2003/page_40.pdf-1",
+   "input_tokens": 4432,
+   "request_sha256": "e7c7a96c9fa7e1d6a0a9afe11814aa8905db977732c5994af8c65bc1353b4c04",
+   "attempt_id": "80dea9b1-522a-48d6-aab9-3f0bdcede354"
+  },
+  {
+   "custom_id": "i0287",
+   "item_id": "ZBH/2003/page_40.pdf-1::unanswerable",
+   "input_tokens": 4376,
+   "request_sha256": "0916ebabb932d7f4d2f188bf6e032b40689693427eecc483192f901005ab1844",
+   "attempt_id": "fc6e8aa4-eef9-4661-90bb-0b3a272db5e5"
+  },
+  {
+   "custom_id": "i0288",
+   "item_id": "ZBH/2003/page_40.pdf-2",
+   "input_tokens": 4431,
+   "request_sha256": "071f12604ce7a20580613abe9a69c0a4cbd334fb7d0c99773f1ecc0db0da43f9",
+   "attempt_id": "e19ca322-11df-4ffe-83a5-933a0f892cca"
+  },
+  {
+   "custom_id": "i0289",
+   "item_id": "ZBH/2003/page_40.pdf-2::unanswerable",
+   "input_tokens": 4376,
+   "request_sha256": "b3e057aa06edf06c642588437c697a1c72e1f02686ebbabf042f59fd3707cfac",
+   "attempt_id": "a8b1eb62-719a-4214-a4d6-c594e00bc268"
+  },
+  {
+   "custom_id": "i0290",
+   "item_id": "ZBH/2003/page_58.pdf-1",
+   "input_tokens": 4297,
+   "request_sha256": "700793bea25251978defc404c8145d5e130a499bdd7a2c9973933bddd6fce5bd",
+   "attempt_id": "9582c35f-cdbf-489e-b48c-8554c9f1887b"
+  },
+  {
+   "custom_id": "i0291",
+   "item_id": "ZBH/2003/page_58.pdf-2",
+   "input_tokens": 4298,
+   "request_sha256": "4986e69563976fc6d89728946c862e884d73ea18a5c4f1d1407936e3d10f2e79",
+   "attempt_id": "898ea4ed-647a-4ba8-ac8d-7ace14f5a690"
+  },
+  {
+   "custom_id": "i0292",
+   "item_id": "ZBH/2003/page_58.pdf-3",
+   "input_tokens": 4302,
+   "request_sha256": "52fdb4578a9f1de91a080f4be7e2b18a87090b6999cbe7ce66c71078bd04e0dd",
+   "attempt_id": "55a36105-5927-4291-956d-6c6864368687"
+  },
+  {
+   "custom_id": "i0293",
+   "item_id": "ZBH/2003/page_58.pdf-4",
+   "input_tokens": 4298,
+   "request_sha256": "848d6a874129a3c294234eaf5c95e7e6f0288c780ba6ccf32518910e7208f434",
+   "attempt_id": "7fce3b98-0e75-4c3d-88ef-ad4b940e1ace"
+  }
+ ],
+ "created_at": "2026-11-07 15:21:43.618395+00:00",
+ "max_tokens": 2600,
+ "run_cap_usd": "0.25",
+ "input_tokens_total": 1134396,
+ "worst_case_usd": "0.2478",
+ "input_cost_usd": "0.0567"
+}

@@ -1,0 +1,50 @@
+{
+ "label": "finsight-qa-v1.5 fb-supplied gemma-4-E4B-it-qat-w4a16",
+ "contract": "finsight-qa-v1",
+ "prompt_version": "finsight-qa-v1.5",
+ "schema_sha256": "64d77fd625636525bfd91ec93da236f2848e01a7f3a1b88b831d037127101c01",
+ "items_sha256": "3a64aa0d52edd6f445b642564a6b1690ba30e2881e0274c5d2ffcd8ca582209b",
+ "model": "google/gemma-4-E4B-it-qat-w4a16-ct",
+ "settings": {
+  "provider": "vllm",
+  "runtime": "vllm",
+  "model": "google/gemma-4-E4B-it-qat-w4a16-ct",
+  "max_tokens": "1536",
+  "enable_thinking": "not requested",
+  "decoding": "greedy, guided JSON schema",
+  "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}",
+  "family": "gemma4",
+  "chat_template_kwargs": "{}"
+ },
+ "server": {
+  "vllm_version": "0.33.0",
+  "models": [
+   {
+    "id": "google/gemma-4-E4B-it-qat-w4a16-ct",
+    "root": "google/gemma-4-E4B-it-qat-w4a16-ct",
+    "parent": null,
+    "max_model_len": 6656
+   }
+  ]
+ },
+ "git": {
+  "commit": "b0bebcc90c0abd5479499fe20808085fe4de4065",
+  "dirty": true
+ },
+ "serving": {
+  "command": "modelforge serve --model google/gemma-4-E4B-it-qat-w4a16-ct --revision 6cd26aaa2357fb2bad8c51699a7558a4d1a965bb --compact-json --max-model-len 6656 --no-lora --language-model-only --cpu-offload-gb 3 --enforce-eager",
+  "revision": "6cd26aaa2357fb2bad8c51699a7558a4d1a965bb",
+  "precision": "compressed-tensors w4a16 (pack-quantized), QAT checkpoint",
+  "chat_template_sha256": "0a2c8073c878ab1da004bee933a998606537bbb62016310352c7285c3f01c5b5",
+  "thinking": "not requested; rendered prompt has no <|think|> trigger; outputs checked",
+  "gpu": "RTX 4070 12 GB",
+  "feasibility": [
+   "attempt 1 (no offload): weights filled the card (11,963 MiB peak); no memory for KV cache",
+   "attempt 2 (--cpu-offload-gb 3): torch.compile error with offloaded weights (Unsupported setattr on OrderedDict)",
+   "attempt 3, disclosed deviation (--cpu-offload-gb 3 --enforce-eager): loaded"
+  ],
+  "memory_sampler": "nvidia-smi 1 s samples on the PC: artifacts/serving/gpu-mem-gemma.csv"
+ },
+ "started_at": "2026-11-10T03:34:32.324761+00:00",
+ "finished_at": "2026-11-10T04:04:46.544178+00:00"
+}

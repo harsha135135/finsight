@@ -35,12 +35,15 @@ def regenerate_matches(run_dir: Path) -> dict:
     """Regenerate a run's scorecard in a temporary copy and compare bytes with the stored files."""
     from modelforge.runner import write_scorecard
 
+    from modelforge import snapshots
+
     if not any((run_dir / name).exists() for name in SCORECARD_FILES):
-        return {}  # e.g. FinanceBench runs: scored by modelforge.financebench_score, hashed with the record
+        return {}  # e.g. FinanceBench runs: scored by modelforge.qa_score, regenerated through a record's regenerate block
+    items = snapshots.for_run(run_dir)      # committed item snapshot; falls back to rebuilding from the dataset
     with tempfile.TemporaryDirectory() as tmp:
         copy = Path(tmp) / run_dir.name
         shutil.copytree(run_dir, copy)
-        write_scorecard(copy)
+        write_scorecard(copy, items)
         return {name: (copy / name).read_bytes() == (run_dir / name).read_bytes()
                 for name in SCORECARD_FILES if (run_dir / name).exists()}
 
@@ -77,12 +80,23 @@ def regenerate_financebench(spec: dict) -> dict:
     return out
 
 
+# Large or machine-local artifacts that are not in the repository: adapters and checkpoints (separate download),
+# training data caches, GPU probe and serving logs. Missing ones are reported as "external", not as failures.
+EXTERNAL_PREFIXES = ("artifacts/adapters/", "artifacts/training/", "artifacts/probe/", "artifacts/serving/",
+                     "artifacts/recovery/", "artifacts/train-")
+
+
+def is_external(path: str) -> bool:
+    return path.startswith(EXTERNAL_PREFIXES)
+
+
 def verify(record_path: Path) -> dict:
     record = json.loads(record_path.read_text())
     report: dict = {"record": record["name"], "artifacts": {}, "runs": {}}
     for label, entry in record["artifacts"].items():
         path = Path(entry["path"])
-        report["artifacts"][label] = ("missing" if not path.exists()
+        report["artifacts"][label] = ("external (not in this checkout)" if not path.exists() and is_external(entry["path"])
+                                      else "missing" if not path.exists()
                                       else "ok" if artifact_hash(path) == entry["sha256"] else "CHANGED")
     regenerated_runs, hash_only_runs = 0, 0
     for run, entry in record["runs"].items():
@@ -108,9 +122,13 @@ def verify(record_path: Path) -> dict:
             tables = {"missing": False}
             report["regenerate_error"] = str(exc)
         report["score_tables"] = {k: "regenerated" if v else "MISMATCH" for k, v in tables.items()}
-    values = list(report["artifacts"].values()) + list(report["runs"].values())
-    report["hashes_verified"] = all(v == "ok" or (isinstance(v, str) and v.startswith("inputs ok")) for v in values)
+    values = [v for v in list(report["artifacts"].values()) + list(report["runs"].values()) if not v.startswith("external")]
+    external = sum(v.startswith("external") for v in report["artifacts"].values())
+    report["hashes_verified"] = ("all" if all(v == "ok" for v in values) and not external else
+                                 f"all present ({external} external artifacts not in this checkout)" if all(v == "ok" for v in values)
+                                 else "NO")
     report["missing"] = sum(v == "missing" for v in values)
+    report["external_not_present"] = external
     if "regenerate" in record:
         report["scores"] = "regenerated" if all(v == "regenerated" for v in report["score_tables"].values()) else "MISMATCH"
     elif regenerated_runs and not hash_only_runs:

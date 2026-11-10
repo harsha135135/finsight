@@ -52,11 +52,15 @@ class ResearchRequest(BaseModel):
 def resolve_model_config(choice: ModelChoice) -> dict:
     """Freeze the full model configuration at admission (later setting changes do not affect the job)."""
     settings = get_settings()
+    if settings.replay_dir is not None and choice.provider != "recorded":
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "this server is an offline replay: only provider 'recorded' is available")
+    if choice.provider == "recorded" and settings.replay_dir is None:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "recorded responses need replay mode (FINSIGHT_REPLAY_DIR)")
     if choice.provider == "claude" and not settings.allow_claude:
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Claude is disabled (paid calls); set FINSIGHT_ALLOW_CLAUDE=true to enable it")
     defaults = {"qwen": {"model": "Qwen/Qwen3-4B", "base_url": settings.qwen_base_url, "max_tokens": 1024},
                 "claude": {"model": settings.model_analyze, "max_tokens": settings.max_tokens_default},
-                "recorded": {"model": "fixtures", "max_tokens": None},
+                "recorded": {"model": "qwen3-4b-finqa-v1", "max_tokens": None},
                 "demo": {"model": "demo", "max_tokens": None}}[choice.provider]
     return {"provider": choice.provider, "model": choice.model or defaults["model"],
             "max_tokens": choice.max_tokens or defaults["max_tokens"], "base_url": defaults.get("base_url"),

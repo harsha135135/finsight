@@ -58,6 +58,8 @@ def markdown(report: dict) -> str:
     model = report["model"]
     lines += ["", "## Run", "", f"- Outcome: {_text(report['outcome'])}",
               f"- Model: {_text(model.get('provider'))} {_text(model.get('model'))} (contract {_text(model.get('contract'))})",
+              *([f"- **{_text(model['replay']['label'])}**; responses recorded "
+                 + ", ".join(sorted({_text(str(r.get('recorded_at'))[:10]) for r in model['replay']['responses']}))] if model.get("replay") else []),
               f"- Generated: {_text(report['generated_at'])}",
               f"- Usage: {_text(report['usage'])}", ""]
     return "\n".join(lines)

@@ -27,6 +27,7 @@ from finsight.findings import validate_report, year_of
 from finsight.ingestion.html import PARSER_VERSION, parse_filing
 from finsight.ingestion.sec import NoFilingError, SecSource
 from finsight.reasoning.base import ModelProvider
+from finsight.reasoning.recorded import request_key
 from finsight.reasoning.prompt import PROMPT_VERSION, SYSTEM, report_schema, user_message
 from finsight.reporting import markdown
 from finsight.retrieval.search import DERIVED, METRICS, search, store_passages
@@ -174,7 +175,7 @@ class ResearchStages:
             prompt = user if error is None else f"{user}\n\nYour previous output was invalid ({error}). Return valid JSON."
             generation = self.provider.generate(system, prompt, schema, job_id=self.job_id, stage="analysis",
                                                 attempt=attempt, scope="finsight")
-            self._record_unpaid(generation, attempt)
+            self._record_unpaid(generation, attempt, request_key(self.provider.model, system, prompt, schema))
             if generation.text is None:
                 status = generation.attempts[-1].status if generation.attempts else "error"
                 if status in ("refused", "truncated"):
@@ -199,16 +200,27 @@ class ResearchStages:
                                       repairs={**repairs, "malformed_output": repairs.get("malformed_output", 0) + 1})
         return {"status": "failed", "reason": f"malformed model output after one repair: {error}"}
 
-    def _record_unpaid(self, generation, attempt: int) -> None:
+    def _replay_provenance(self) -> dict:
+        """Which recorded responses answered this job's model calls, and where they came from."""
+        recordings = getattr(self.provider, "recordings", {}) or {}
+        rows = self.conn.execute("SELECT attempt, request_sha256 FROM model_attempts WHERE job_id = %s ORDER BY attempt",
+                                 (self.job_id,)).fetchall()
+        fields = ("job_id", "attempt", "model", "model_version", "recorded_at", "prompt_version")
+        return {"label": "CACHED REPLAY: recorded model responses; no model was called",
+                "responses": [{"request_sha256": r["request_sha256"],
+                               **{f: ((recordings.get(r["request_sha256"]) or {}).get("provenance") or {}).get(f) for f in fields}}
+                              for r in rows]}
+
+    def _record_unpaid(self, generation, attempt: int, request_sha256: str = "unpaid") -> None:
         if getattr(self.provider, "ledger", None) is not None:
             return  # paid calls are recorded by the ledger itself
         for record in generation.attempts:
             self.conn.execute(
                 "INSERT INTO model_attempts (id, scope, job_id, stage, attempt, request_sha256, provider, model, status, "
                 "paid, usage, latency_ms, model_version, stop_reason, response, error) VALUES (gen_random_uuid(), "
-                "'finsight', %s, 'analysis', %s, 'unpaid', %s, %s, %s, false, %s, %s, %s, %s, %s, %s) "
+                "'finsight', %s, 'analysis', %s, %s, %s, %s, %s, false, %s, %s, %s, %s, %s, %s) "
                 "ON CONFLICT (job_id, stage, attempt) DO NOTHING",
-                (self.job_id, attempt, self.provider.provider, self.provider.model,
+                (self.job_id, attempt, request_sha256, self.provider.provider, self.provider.model,
                  "completed" if record.status == "ok" else "failed",
                  json.dumps({"input_tokens": record.input_tokens_uncached, "output_tokens": record.output_tokens}),
                  record.latency_ms, record.served_model, record.status,
@@ -301,6 +313,7 @@ class ResearchStages:
             "contract": REPORT_CONTRACT, "company": research["company"], "period": research["period"],
             "question": request["question"], "outcome": review["outcome"], "filing": research["filing"],
             "findings": review["findings"], "unresolved": [u for u in review["unresolved"] if u],
-            "model": {k: self.model_config.get(k) for k in ("provider", "model", "max_tokens", "contract")},
+            "model": {**{k: self.model_config.get(k) for k in ("provider", "model", "max_tokens", "contract")},
+                      **({"replay": self._replay_provenance()} if self.model_config.get("provider") == "recorded" else {})},
             "generated_at": datetime.now(timezone.utc), "usage": dict(usage)})
         return {"outcome": review["outcome"], "report": report, "markdown": markdown(report)}

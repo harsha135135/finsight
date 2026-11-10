@@ -162,7 +162,7 @@ def search(conn, document_ids: list[str], metric: str, year: int, limit: int = 1
     rows = conn.execute(
         f"WITH q AS (SELECT ({query}) AS query) SELECT p.id, p.document_id, p.section, p.location, p.text, "
         f"ts_rank_cd(p.tsv, q.query) AS rank FROM passages p, q WHERE p.document_id = ANY(%s) AND p.tsv @@ q.query "
-        f"ORDER BY rank DESC LIMIT 5000", (*terms, document_ids)).fetchall()
+        f"ORDER BY rank DESC, p.id LIMIT 5000", (*terms, document_ids)).fetchall()
     candidates = []
     for row in rows:
         is_table = row["location"].get("table") is not None
@@ -174,7 +174,9 @@ def search(conn, document_ids: list[str], metric: str, year: int, limit: int = 1
                                     period=period_quality(row["text"], year, is_table),
                                     scoped=is_table and bool(_SCOPED.search(meta + " " + headers)),
                                     prose_reports=not is_table and _sentence_reports(row["text"], terms, year)))
-    candidates.sort(key=lambda c: (c.score, -len(c.text)), reverse=True)
+    # score, then shorter text, then passage id: ties never depend on the database's row order (replay needs the
+    # same evidence order, because passages are numbered p1..pn in the prompt)
+    candidates.sort(key=lambda c: (-c.score, len(c.text), c.id))
     top = candidates[:limit]
     if any(c.label_match and c.period_match for c in candidates):
         return Retrieval(metric, year, "found", top)

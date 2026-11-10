@@ -1,0 +1,53 @@
+{
+ "label": "finsight-qa-v1.5 fb-full base text-3",
+ "contract": "finsight-qa-v1",
+ "prompt_version": "finsight-qa-v1.5",
+ "schema_sha256": "64d77fd625636525bfd91ec93da236f2848e01a7f3a1b88b831d037127101c01",
+ "items_sha256": "53be0e07541196be57fe066816acbb3abe865462a6acb72057b451be34f8e0cc",
+ "model": "Qwen/Qwen3-4B",
+ "settings": {
+  "provider": "qwen",
+  "runtime": "vllm",
+  "model": "Qwen/Qwen3-4B",
+  "max_tokens": "1536",
+  "enable_thinking": "false",
+  "decoding": "greedy, guided JSON schema",
+  "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}"
+ },
+ "server": {
+  "vllm_version": "0.33.0",
+  "models": [
+   {
+    "id": "Qwen/Qwen3-4B",
+    "root": "Qwen/Qwen3-4B",
+    "parent": null,
+    "max_model_len": 6656
+   },
+   {
+    "id": "qwen3-4b-finqa-v2a",
+    "root": "artifacts/adapters/qwen3-4b-finqa-v2a/adapter",
+    "parent": "Qwen/Qwen3-4B",
+    "max_model_len": null
+   },
+   {
+    "id": "qwen3-4b-finqa-v2b",
+    "root": "artifacts/adapters/qwen3-4b-finqa-v2b/adapter",
+    "parent": "Qwen/Qwen3-4B",
+    "max_model_len": null
+   }
+  ]
+ },
+ "git": {
+  "commit": "26a4aeffed58cd70862b170a7d653fa87cdea2ac",
+  "dirty": false
+ },
+ "serving": {
+  "command": "modelforge serve --model Qwen/Qwen3-4B --revision 1cfa9a7208912126459214e8b04321603b3df60c --compact-json --max-model-len 6656 --lora v2a --lora v2b",
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "precision": "bfloat16 (no quantization)",
+  "gpu": "RTX 4070 12 GB",
+  "retrieval": "pdf-2 + text-3 (evals/financebench/retrieval-dev-pdf2-text-3.json)"
+ },
+ "started_at": "2026-11-10T03:19:51.948970+00:00",
+ "finished_at": "2026-11-10T03:24:53.907637+00:00"
+}

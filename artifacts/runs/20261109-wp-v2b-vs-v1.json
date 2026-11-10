@@ -1,0 +1,74 @@
+{
+ "a": "qwen3-4b-finqa-v2b",
+ "b": "qwen3-4b-finqa-v1",
+ "items": 193,
+ "metrics": {
+  "accuracy_answerable": {
+   "a": null,
+   "b": null,
+   "a_minus_b": null,
+   "ci95": null,
+   "n": 0
+  },
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "a": null,
+   "b": null,
+   "a_minus_b": null,
+   "ci95": null,
+   "n": 0
+  },
+  "abstention_recall_unanswerable": {
+   "a": 0.6839,
+   "b": 0.1244,
+   "a_minus_b": 0.5596,
+   "ci95": [
+    0.4752,
+    0.6485
+   ],
+   "n": 193
+  },
+  "false_abstention_answerable": {
+   "a": null,
+   "b": null,
+   "a_minus_b": null,
+   "ci95": null,
+   "n": 0
+  },
+  "invalid_output_rate": {
+   "a": 0.0,
+   "b": 0.0,
+   "a_minus_b": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 193
+  },
+  "evidence_validation_failure_rate": {
+   "a": 0.057,
+   "b": 0.1244,
+   "a_minus_b": -0.0674,
+   "ci95": [
+    -0.1182,
+    -0.0195
+   ],
+   "n": 193
+  },
+  "operational_failure_rate": {
+   "a": 0.0,
+   "b": 0.0,
+   "a_minus_b": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 193
+  }
+ },
+ "answerable_correctness_transitions_b_to_a": {
+  "both_correct": 0,
+  "fixed_by_a": 0,
+  "broken_by_a": 0,
+  "both_wrong": 0
+ }
+}

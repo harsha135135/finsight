@@ -1,0 +1,133 @@
+{
+ "config": {
+  "adapter": "qwen3-4b-base",
+  "commit": "6fa4023a34eec8119e7d0c97fb0c529e7e222f45-dirty",
+  "concurrency": 1,
+  "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "manifest": "finqa-grouped-v2-wrong-period",
+  "manifest_sha256": "3e21a39b0278798554a21f76cdc107c31427f6a7f3e27063632c6e821fb74038",
+  "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+  "prompt_version": "answer-v4",
+  "scorecard_version": "3",
+  "selection": "val_dev_wrong_period",
+  "server": {
+   "models": [
+    {
+     "id": "Qwen/Qwen3-4B",
+     "max_model_len": 5120,
+     "parent": null,
+     "root": "Qwen/Qwen3-4B"
+    },
+    {
+     "id": "qwen3-4b-finqa-v1",
+     "max_model_len": null,
+     "parent": "Qwen/Qwen3-4B",
+     "root": "artifacts/adapters/qwen3-4b-finqa-v1/adapter"
+    },
+    {
+     "id": "qwen3-4b-finqa-v2a",
+     "max_model_len": null,
+     "parent": "Qwen/Qwen3-4B",
+     "root": "artifacts/adapters/qwen3-4b-finqa-v2a/adapter"
+    },
+    {
+     "id": "qwen3-4b-finqa-v2b",
+     "max_model_len": null,
+     "parent": "Qwen/Qwen3-4B",
+     "root": "artifacts/adapters/qwen3-4b-finqa-v2b/adapter"
+    }
+   ],
+   "vllm_version": "0.33.0"
+  },
+  "settings": {
+   "decoding": "greedy, guided JSON schema",
+   "enable_thinking": "false",
+   "max_tokens": "1024",
+   "model": "Qwen/Qwen3-4B",
+   "provider": "qwen",
+   "runtime": "vllm",
+   "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}"
+  },
+  "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold"
+ },
+ "summary": {
+  "abstention_recall_unanswerable": {
+   "ci95": [
+    0.0957,
+    0.2256
+   ],
+   "mean": 0.1554,
+   "n": 193
+  },
+  "accuracy_answerable": null,
+  "answerable": 0,
+  "cost_usd": "unavailable",
+  "diagnostic_lenient_quote_accuracy_answerable": null,
+  "diagnostic_percent_scale_errors": 0,
+  "evidence_validation_failure_rate": {
+   "ci95": [
+    0.3855,
+    0.538
+   ],
+   "mean": 0.4611,
+   "n": 193
+  },
+  "evidence_validation_subcategories": {
+   "adds or subtracts mixed units": 1,
+   "figure is in a different passage than the one cited": 22,
+   "quote formatting differs from the passage (e.g. added $ or commas)": 10,
+   "quoted text not found in the evidence": 3,
+   "stated answer disagrees with the executed program": 38,
+   "value or scale disagrees with the quote": 22
+  },
+  "false_abstention_answerable": null,
+  "invalid_output_rate": {
+   "ci95": [
+    0.1389,
+    0.2696
+   ],
+   "mean": 0.2021,
+   "n": 193
+  },
+  "items": 193,
+  "latency_ms": {
+   "p50": 7482,
+   "p95": 11923
+  },
+  "missing_predictions": 0,
+  "operational_failure_rate": {
+   "ci95": [
+    0.0,
+    0.018
+   ],
+   "mean": 0.0052,
+   "n": 193
+  },
+  "reason_codes": {
+   "ABSTAIN_EVIDENCE_ABSENT": 30,
+   "ANSWERED": 34,
+   "MODEL_OUTPUT_INVALID": 39,
+   "OPERATIONAL": 1,
+   "VALIDATION_CONTRADICTION": 89
+  },
+  "throughput": {
+   "concurrency": [
+    1
+   ],
+   "items_per_second": 0.1363,
+   "output_tokens_per_second": 843.38,
+   "sessions": 1,
+   "wall_seconds": 88.0
+  },
+  "tokens": {
+   "input": 358369,
+   "output": 74241
+  },
+  "truncated_outputs": 1,
+  "ttft_ms": {
+   "p50": 262,
+   "p95": 400
+  },
+  "unanswerable": 193
+ }
+}

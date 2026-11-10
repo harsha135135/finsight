@@ -1,0 +1,43 @@
+{
+ "format": "finsight-sec-replay-v1",
+ "responses": {
+  "https://data.sec.gov/api/xbrl/companyfacts/CIK0000066740.json": {
+   "bytes": 5302901,
+   "content_type": "application/json",
+   "file": "f386e2155c94359b.gz",
+   "note": "original bytes from the job's cache (sha256 as recorded by the original job)",
+   "sha256": "f386e2155c94359b4e3f3a688c4b1d008d8082be0f87279cea40c15d6a04d209"
+  },
+  "https://data.sec.gov/submissions/CIK0000066740-submissions-001.json": {
+   "bytes": 314026,
+   "content_type": "application/json",
+   "file": "2e6cbda67e9e01c4.gz",
+   "sha256": "2e6cbda67e9e01c45a064089afc16fd477012c218a06b957973eec2d99adcf62"
+  },
+  "https://data.sec.gov/submissions/CIK0000066740-submissions-002.json": {
+   "bytes": 96803,
+   "content_type": "application/json",
+   "file": "ce1355f61d339e16.gz",
+   "sha256": "ce1355f61d339e165018b7e2c8f633188710a8c993848e57583a7d5325cec20a"
+  },
+  "https://data.sec.gov/submissions/CIK0000066740.json": {
+   "bytes": 160200,
+   "content_type": "application/json",
+   "file": "e6fbbedea8423158.gz",
+   "sha256": "e6fbbedea8423158524f0cf6a1285e20a43e18a8423afdc32fa4a61a0c3a41e3"
+  },
+  "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm": {
+   "bytes": 4113721,
+   "content_type": "text/html",
+   "file": "6f90b2e24893e658.gz",
+   "note": "original bytes from the job's cache (sha256 as recorded by the original job)",
+   "sha256": "6f90b2e24893e6589c3bbfc57afb206436f392d9aedcab19576853b357ced26a"
+  },
+  "https://www.sec.gov/files/company_tickers.json": {
+   "bytes": 796982,
+   "content_type": "application/json",
+   "file": "5955265e746d38ae.gz",
+   "sha256": "5955265e746d38ae450db6cf128c68991863ac1e5296e707515df2cfaa29252f"
+  }
+ }
+}

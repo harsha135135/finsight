@@ -1,0 +1,142 @@
+{
+ "config": {
+  "adapter": "qwen3-4b-base",
+  "commit": "aca1f5a3b5256dbc9dac39749b6ae996c7360a7b",
+  "concurrency": 1,
+  "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "manifest": "finqa-grouped-v2",
+  "manifest_sha256": "cbe78f1c576da01621597070d7d57595f4d6cdb3616c8b2aa728ada3e894c848",
+  "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+  "prompt_version": "answer-v4",
+  "scorecard_version": "3",
+  "selection": "val_dev_eval",
+  "server": {
+   "models": [
+    {
+     "id": "Qwen/Qwen3-4B",
+     "max_model_len": 5120,
+     "parent": null,
+     "root": "Qwen/Qwen3-4B"
+    },
+    {
+     "id": "qwen3-4b-finqa-v1",
+     "max_model_len": null,
+     "parent": "Qwen/Qwen3-4B",
+     "root": "artifacts/adapters/qwen3-4b-finqa-v1/adapter"
+    }
+   ],
+   "vllm_version": "0.33.0"
+  },
+  "settings": {
+   "decoding": "greedy, guided JSON schema",
+   "enable_thinking": "false",
+   "max_tokens": "1024",
+   "model": "Qwen/Qwen3-4B",
+   "provider": "qwen",
+   "runtime": "vllm",
+   "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}"
+  },
+  "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold"
+ },
+ "summary": {
+  "abstention_recall_unanswerable": {
+   "ci95": [
+    0.2424,
+    0.55
+   ],
+   "mean": 0.4,
+   "n": 40
+  },
+  "accuracy_answerable": {
+   "ci95": [
+    0.0935,
+    0.1878
+   ],
+   "mean": 0.1378,
+   "n": 254
+  },
+  "answerable": 254,
+  "cost_usd": "unavailable",
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "ci95": [
+    0.1331,
+    0.2383
+   ],
+   "mean": 0.185,
+   "n": 254
+  },
+  "diagnostic_percent_scale_errors": 7,
+  "evidence_validation_failure_rate": {
+   "ci95": [
+    0.3883,
+    0.5037
+   ],
+   "mean": 0.4456,
+   "n": 294
+  },
+  "evidence_validation_subcategories": {
+   "adds or subtracts mixed units": 1,
+   "figure is in a different passage than the one cited": 27,
+   "quote formatting differs from the passage (e.g. added $ or commas)": 27,
+   "quoted text not found in the evidence": 10,
+   "stated answer disagrees with the executed program": 40,
+   "value or scale disagrees with the quote": 28
+  },
+  "false_abstention_answerable": {
+   "ci95": [
+    0.0077,
+    0.0533
+   ],
+   "mean": 0.0276,
+   "n": 254
+  },
+  "invalid_output_rate": {
+   "ci95": [
+    0.1419,
+    0.2607
+   ],
+   "mean": 0.2007,
+   "n": 294
+  },
+  "items": 294,
+  "latency_ms": {
+   "p50": 7496,
+   "p95": 11833
+  },
+  "missing_predictions": 0,
+  "operational_failure_rate": {
+   "ci95": [
+    0.0,
+    0.0228
+   ],
+   "mean": 0.0102,
+   "n": 294
+  },
+  "reason_codes": {
+   "ABSTAIN_EVIDENCE_ABSENT": 23,
+   "ANSWERED": 78,
+   "MODEL_OUTPUT_INVALID": 59,
+   "OPERATIONAL": 3,
+   "VALIDATION_CONTRADICTION": 131
+  },
+  "throughput": {
+   "concurrency": [
+    1
+   ],
+   "items_per_second": 0.1298,
+   "output_tokens_per_second": 52.37,
+   "sessions": 1,
+   "wall_seconds": 2265.8
+  },
+  "tokens": {
+   "input": 532943,
+   "output": 118661
+  },
+  "truncated_outputs": 3,
+  "ttft_ms": {
+   "p50": 231,
+   "p95": 375
+  },
+  "unanswerable": 40
+ }
+}

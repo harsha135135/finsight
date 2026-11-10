@@ -1,0 +1,24 @@
+{
+ "supplied/base": {
+  "passed": 9,
+  "unverified": 3
+ },
+ "supplied/v2a": {
+  "unverified": 3,
+  "passed": 8
+ },
+ "supplied/v2b": {
+  "unverified": 4,
+  "passed": 3
+ },
+ "full/base": {
+  "unverified": 1
+ },
+ "full/v2a": {
+  "unverified": 2,
+  "passed": 1
+ },
+ "full/v2b": {
+  "unverified": 2
+ }
+}

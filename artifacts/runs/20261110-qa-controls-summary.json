@@ -1,0 +1,107 @@
+{
+ "base": {
+  "frozen_rule": {
+   "run": "20261110-qa-controls-base",
+   "negative": {
+    "numeric_period_passed": 8,
+    "numeric_period_unverified": 130,
+    "numeric_period_rejected": 33,
+    "insufficient_evidence": 21,
+    "answered_boolean": 1
+   },
+   "positive": {
+    "wrong_period_unverified": 142,
+    "wrong_period_passed": 31,
+    "correct_period_passed": 5,
+    "insufficient_evidence": 4,
+    "wrong_period_rejected": 6,
+    "correct_period_unverified": 4,
+    "answered_boolean": 1
+   }
+  },
+  "corrected_rule": {
+   "negative": {
+    "numeric_passed": 7,
+    "numeric_unverified": 129,
+    "numeric_rejected": 35
+   },
+   "positive": {
+    "wrong_unverified": 142,
+    "wrong_passed": 30,
+    "correct_passed": 5,
+    "wrong_rejected": 7,
+    "correct_unverified": 4
+   }
+  }
+ },
+ "v2a": {
+  "frozen_rule": {
+   "run": "20261110-qa-controls-v2a",
+   "negative": {
+    "numeric_period_rejected": 78,
+    "insufficient_evidence": 30,
+    "numeric_period_unverified": 73,
+    "numeric_period_passed": 11,
+    "answered_boolean": 1
+   },
+   "positive": {
+    "correct_period_passed": 57,
+    "wrong_period_passed": 23,
+    "wrong_period_unverified": 64,
+    "correct_period_unverified": 32,
+    "wrong_period_rejected": 12,
+    "insufficient_evidence": 4,
+    "answered_boolean": 1
+   }
+  },
+  "corrected_rule": {
+   "negative": {
+    "numeric_rejected": 87,
+    "numeric_unverified": 73,
+    "numeric_passed": 2
+   },
+   "positive": {
+    "correct_passed": 56,
+    "wrong_passed": 23,
+    "wrong_unverified": 64,
+    "correct_unverified": 32,
+    "wrong_rejected": 13
+   }
+  }
+ },
+ "v2b": {
+  "frozen_rule": {
+   "run": "20261110-qa-controls-v2b",
+   "negative": {
+    "insufficient_evidence": 140,
+    "numeric_period_rejected": 21,
+    "numeric_period_unverified": 27,
+    "numeric_period_passed": 4,
+    "answered_boolean": 1
+   },
+   "positive": {
+    "correct_period_passed": 56,
+    "wrong_period_passed": 29,
+    "wrong_period_unverified": 56,
+    "correct_period_unverified": 32,
+    "wrong_period_rejected": 10,
+    "insufficient_evidence": 7,
+    "answered_boolean": 3
+   }
+  },
+  "corrected_rule": {
+   "negative": {
+    "numeric_rejected": 24,
+    "numeric_unverified": 27,
+    "numeric_passed": 1
+   },
+   "positive": {
+    "correct_passed": 55,
+    "wrong_passed": 29,
+    "wrong_unverified": 56,
+    "correct_unverified": 32,
+    "wrong_rejected": 11
+   }
+  }
+ }
+}

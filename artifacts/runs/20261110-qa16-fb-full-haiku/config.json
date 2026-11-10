@@ -1,0 +1,9 @@
+{
+ "label": "finsight-qa-v1.6 fb-full Claude batch",
+ "model": "claude-haiku-5-5",
+ "effort": "medium",
+ "max_tokens": 5600,
+ "batch_id": "msgbatch_018ks5R8ftpSd85h5Bm4C3ms",
+ "prompt_version": "finsight-qa-v1.5",
+ "freeze_sha256": "66a7ec1a02a7d4122a7e60ed85c29c51c2f287aeb61163d4263a50ad395978cc"
+}

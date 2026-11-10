@@ -1,0 +1,117 @@
+{
+ "config": {
+  "adapter": "claude-claude-haiku-5-5-medium-batch",
+  "commit": "1b03eab9da6ee5e3e3c46f62e18b48e4fcd60d5c",
+  "concurrency": 1,
+  "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "manifest": "finqa-grouped-v2",
+  "manifest_sha256": "cbe78f1c576da01621597070d7d57595f4d6cdb3616c8b2aa728ada3e894c848",
+  "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+  "prompt_version": "answer-v4",
+  "scorecard_version": "3",
+  "selection": "val_dev_eval",
+  "server": null,
+  "settings": {
+   "api": "message batches (50% price)",
+   "effort": "medium",
+   "max_tokens": "2600",
+   "model": "claude-haiku-5-5",
+   "provider": "anthropic",
+   "sampling": "none sent",
+   "thinking": "adaptive (model default)"
+  },
+  "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold"
+ },
+ "summary": {
+  "abstention_recall_unanswerable": {
+   "ci95": [
+    0.7907,
+    0.9773
+   ],
+   "mean": 0.9,
+   "n": 40
+  },
+  "accuracy_answerable": {
+   "ci95": [
+    0.5311,
+    0.6745
+   ],
+   "mean": 0.6024,
+   "n": 254
+  },
+  "answerable": 254,
+  "cost_usd": "0.113073",
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "ci95": [
+    0.5394,
+    0.68
+   ],
+   "mean": 0.6102,
+   "n": 254
+  },
+  "diagnostic_percent_scale_errors": 0,
+  "evidence_validation_failure_rate": {
+   "ci95": [
+    0.0686,
+    0.1425
+   ],
+   "mean": 0.102,
+   "n": 294
+  },
+  "evidence_validation_subcategories": {
+   "figure is in a different passage than the one cited": 22,
+   "quote formatting differs from the passage (e.g. added $ or commas)": 2,
+   "stated answer disagrees with the executed program": 1,
+   "value or scale disagrees with the quote": 5
+  },
+  "false_abstention_answerable": {
+   "ci95": [
+    0.0415,
+    0.1235
+   ],
+   "mean": 0.0787,
+   "n": 254
+  },
+  "invalid_output_rate": {
+   "ci95": [
+    0.018,
+    0.0688
+   ],
+   "mean": 0.0408,
+   "n": 294
+  },
+  "items": 294,
+  "latency_ms": null,
+  "missing_predictions": 0,
+  "operational_failure_rate": {
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "n": 294
+  },
+  "reason_codes": {
+   "ABSTAIN_EVIDENCE_ABSENT": 56,
+   "ANSWERED": 196,
+   "MODEL_OUTPUT_INVALID": 12,
+   "VALIDATION_CONTRADICTION": 30
+  },
+  "throughput": {
+   "concurrency": [
+    1
+   ],
+   "items_per_second": 927.4448,
+   "output_tokens_per_second": 710936.91,
+   "sessions": 1,
+   "wall_seconds": 0.3
+  },
+  "tokens": {
+   "input": 1134396,
+   "output": 225367
+  },
+  "truncated_outputs": 0,
+  "ttft_ms": null,
+  "unanswerable": 40
+ }
+}

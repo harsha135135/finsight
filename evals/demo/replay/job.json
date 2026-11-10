@@ -1,0 +1,44 @@
+{
+ "request": {
+  "company": "MMM",
+  "cutoff_date": null,
+  "metrics": [
+   "revenue",
+   "operating_margin",
+   "capex",
+   "net_income"
+  ],
+  "period": "FY2025",
+  "question": "Report revenue, operating_margin, capex, net_income for MMM FY2025 from its 10-K."
+ },
+ "model_config": {
+  "provider": "recorded",
+  "model": "qwen3-4b-finqa-v1",
+  "contract": "finsight-report-v1",
+  "max_tokens": null
+ },
+ "original_job": "488aac69-a9f0-4910-be38-b17717bbef20",
+ "expected_status": "completed",
+ "expected_findings": [
+  [
+   "revenue",
+   "rejected",
+   "24948"
+  ],
+  [
+   "operating_margin",
+   "accepted",
+   "0.1855459355459355459355459355"
+  ],
+  [
+   "capex",
+   "rejected",
+   "-910"
+  ],
+  [
+   "net_income",
+   "rejected",
+   "3250"
+  ]
+ ]
+}

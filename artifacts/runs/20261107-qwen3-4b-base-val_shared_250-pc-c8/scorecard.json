@@ -1,0 +1,137 @@
+{
+ "config": {
+  "adapter": "qwen3-4b-base",
+  "commit": "86c62eb451251e8ae9471c4838098323e9eaefa8",
+  "concurrency": 8,
+  "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "manifest": "finqa-grouped-comparison",
+  "manifest_sha256": "d1d548d0607048c33cd95481c567ab5d0982974e976207f7304148019bf1af6c",
+  "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+  "prompt_version": "answer-v4",
+  "scorecard_version": "2",
+  "selection": "val_shared_250",
+  "server": {
+   "models": [
+    {
+     "id": "Qwen/Qwen3-4B",
+     "max_model_len": 5120,
+     "parent": null,
+     "root": "Qwen/Qwen3-4B"
+    }
+   ],
+   "vllm_version": "0.33.0"
+  },
+  "settings": {
+   "decoding": "greedy, guided JSON schema",
+   "enable_thinking": "false",
+   "max_tokens": "1024",
+   "model": "Qwen/Qwen3-4B",
+   "provider": "qwen",
+   "runtime": "vllm",
+   "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}"
+  },
+  "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold"
+ },
+ "summary": {
+  "abstention_recall_unanswerable": {
+   "ci95": [
+    0.1837,
+    0.4314
+   ],
+   "mean": 0.3,
+   "n": 50
+  },
+  "accuracy_answerable": {
+   "ci95": [
+    0.0794,
+    0.1784
+   ],
+   "mean": 0.125,
+   "n": 200
+  },
+  "answerable": 200,
+  "cost_usd": "unavailable",
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "ci95": [
+    0.1029,
+    0.205
+   ],
+   "mean": 0.15,
+   "n": 200
+  },
+  "diagnostic_percent_scale_errors": 4,
+  "evidence_validation_failure_rate": {
+   "ci95": [
+    0.4726,
+    0.5837
+   ],
+   "mean": 0.528,
+   "n": 250
+  },
+  "evidence_validation_subcategories": {
+   "adds or subtracts mixed units": 1,
+   "figure is in a different passage than the one cited": 32,
+   "quote formatting differs from the passage (e.g. added $ or commas)": 25,
+   "quote is not a single figure": 1,
+   "quoted text not found in the evidence": 11,
+   "stated answer disagrees with the executed program": 40,
+   "value or scale disagrees with the quote": 29
+  },
+  "false_abstention_answerable": {
+   "ci95": [
+    0.0048,
+    0.0526
+   ],
+   "mean": 0.025,
+   "n": 200
+  },
+  "invalid_output_rate": {
+   "ci95": [
+    0.0898,
+    0.1829
+   ],
+   "mean": 0.136,
+   "n": 250
+  },
+  "items": 250,
+  "latency_ms": {
+   "p50": 19623,
+   "p95": 29443
+  },
+  "missing_predictions": 0,
+  "operational_failure_rate": {
+   "ci95": [
+    0.0079,
+    0.0438
+   ],
+   "mean": 0.024,
+   "n": 250
+  },
+  "reason_codes": {
+   "ABSTAIN_EVIDENCE_ABSENT": 20,
+   "ANSWERED": 58,
+   "MODEL_OUTPUT_INVALID": 34,
+   "OPERATIONAL": 6,
+   "VALIDATION_CONTRADICTION": 132
+  },
+  "throughput": {
+   "concurrency": [
+    8
+   ],
+   "items_per_second": 0.397,
+   "output_tokens_per_second": 162.43,
+   "sessions": 1,
+   "wall_seconds": 629.7
+  },
+  "tokens": {
+   "input": 447599,
+   "output": 102284
+  },
+  "truncated_outputs": 6,
+  "ttft_ms": {
+   "p50": 10267,
+   "p95": 16876
+  },
+  "unanswerable": 50
+ }
+}

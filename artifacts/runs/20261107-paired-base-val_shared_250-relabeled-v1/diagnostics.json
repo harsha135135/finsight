@@ -1,0 +1,18 @@
+{
+ "adapter": "qwen3-4b-base",
+ "arithmetic_consistency": {
+  "n_executed_with_stated_answer": 91,
+  "rate": 0.6484
+ },
+ "inconsistent_but_program_correct": 2,
+ "note": "inconsistency shows stated answer and program disagree; it does not rule out memorization",
+ "program_accuracy_answerable": {
+  "ci95": [
+   0.0874,
+   0.1891
+  ],
+  "mean": 0.135,
+  "n": 200
+ },
+ "run": "artifacts/runs/20261107-paired-base-val_shared_250-relabeled-v1"
+}

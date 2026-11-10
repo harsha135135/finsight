@@ -1,0 +1,85 @@
+{
+ "current_validator": {
+  "base": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 11,
+    "accepted": 41
+   },
+   "control_correct_answers": {
+    "accepted": 12,
+    "unplaceable figure (no identifiable period)": 13
+   }
+  },
+  "v1": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 93
+   },
+   "control_correct_answers": {
+    "figure placed in a different year | some operand without a declared period": 45,
+    "accepted": 19,
+    "unplaceable figure (no identifiable period) | some operand without a declared period": 47
+   }
+  },
+  "v2a": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 91
+   },
+   "control_correct_answers": {
+    "figure placed in a different year | some operand without a declared period": 37,
+    "unplaceable figure (no identifiable period) | some operand without a declared period": 46,
+    "accepted": 20
+   }
+  },
+  "v2b": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 37
+   },
+   "control_correct_answers": {
+    "figure placed in a different year | some operand without a declared period": 41,
+    "accepted": 19,
+    "unplaceable figure (no identifiable period) | some operand without a declared period": 46
+   }
+  }
+ },
+ "candidate_tightened_rule": {
+  "base": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 52
+   },
+   "control_correct_answers": {
+    "accepted": 12,
+    "unplaceable figure (no identifiable period)": 13
+   }
+  },
+  "v1": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 93
+   },
+   "control_correct_answers": {
+    "figure placed in a different year | some operand without a declared period": 45,
+    "accepted": 19,
+    "unplaceable figure (no identifiable period) | some operand without a declared period": 47
+   }
+  },
+  "v2a": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 91
+   },
+   "control_correct_answers": {
+    "figure placed in a different year | some operand without a declared period": 37,
+    "unplaceable figure (no identifiable period) | some operand without a declared period": 46,
+    "accepted": 20
+   }
+  },
+  "v2b": {
+   "wrong_year_answers": {
+    "figure placed in a different year": 37
+   },
+   "control_correct_answers": {
+    "figure placed in a different year | some operand without a declared period": 41,
+    "accepted": 19,
+    "unplaceable figure (no identifiable period) | some operand without a declared period": 46
+   }
+  }
+ }
+}

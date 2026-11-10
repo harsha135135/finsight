@@ -1,0 +1,143 @@
+{
+ "items": 193,
+ "unconvertible_table_rows": 177,
+ "models": {
+  "base": {
+   "outcomes": {
+    "invalid": 40,
+    "wrong_year_accepted_by_finqa_validator": 19,
+    "wrong_year_rejected_by_finqa_validator": 33,
+    "other_wrong": 71,
+    "correct_abstention": 30
+   },
+   "outcomes_total": 193,
+   "replay_of_wrong_year_answers": {
+    "caught": 52
+   },
+   "missed_examples": [],
+   "control_correct_original_answers": {
+    "accepted": 12,
+    "falsely_rejected": 13
+   },
+   "control_false_rejection_examples": [
+    {
+     "item": "ADBE/2018/page_86.pdf-4",
+     "year": "2017",
+     "issue": "operand accrued_interest_penalties_2018: the source places '$24.6 million' under no identifiable period, not 2017"
+    },
+    {
+     "item": "AES/2016/page_185.pdf-1",
+     "year": "2015",
+     "issue": "operand preferred_stock_2016: the source places 'IPL preferred stock | 60 | 60' under no identifiable period, not 2015"
+    },
+    {
+     "item": "AON/2009/page_48.pdf-4",
+     "year": "2009",
+     "issue": "operand total_operating_income_2009: the source places '$900 million' under no identifiable period, not 2009"
+    }
+   ]
+  },
+  "v1": {
+   "outcomes": {
+    "wrong_year_accepted_by_finqa_validator": 80,
+    "correct_abstention": 24,
+    "other_wrong": 76,
+    "wrong_year_rejected_by_finqa_validator": 13
+   },
+   "outcomes_total": 193,
+   "replay_of_wrong_year_answers": {
+    "caught": 93
+   },
+   "missed_examples": [],
+   "control_correct_original_answers": {
+    "falsely_rejected": 92,
+    "accepted": 19
+   },
+   "control_false_rejection_examples": [
+    {
+     "item": "AAPL/2014/page_38.pdf-2",
+     "year": "2013",
+     "issue": "operand v0: the source places '$20,624' under 2014, not 2013"
+    },
+    {
+     "item": "AAPL/2014/page_38.pdf-3",
+     "year": "2012",
+     "issue": "operand v0: the source places '$28,987' under 2014, not 2012"
+    },
+    {
+     "item": "AAPL/2014/page_38.pdf-4",
+     "year": "2013",
+     "issue": "operand v1: the source places '$15,452' under 2012, not 2013"
+    }
+   ]
+  },
+  "v2a": {
+   "outcomes": {
+    "wrong_year_accepted_by_finqa_validator": 77,
+    "correct_abstention": 34,
+    "other_wrong": 68,
+    "wrong_year_rejected_by_finqa_validator": 14
+   },
+   "outcomes_total": 193,
+   "replay_of_wrong_year_answers": {
+    "caught": 91
+   },
+   "missed_examples": [],
+   "control_correct_original_answers": {
+    "falsely_rejected": 83,
+    "accepted": 20
+   },
+   "control_false_rejection_examples": [
+    {
+     "item": "AAPL/2014/page_38.pdf-2",
+     "year": "2013",
+     "issue": "operand v0: the source places '$20,624' under 2014, not 2013"
+    },
+    {
+     "item": "AAPL/2014/page_38.pdf-4",
+     "year": "2013",
+     "issue": "operand v1: the source places '$15,452' under 2012, not 2013"
+    },
+    {
+     "item": "ADBE/2018/page_86.pdf-1",
+     "year": "2017",
+     "issue": "operand v0: the source places '196,152' under 2018, not 2017"
+    }
+   ]
+  },
+  "v2b": {
+   "outcomes": {
+    "wrong_year_accepted_by_finqa_validator": 31,
+    "correct_abstention": 132,
+    "other_wrong": 24,
+    "wrong_year_rejected_by_finqa_validator": 6
+   },
+   "outcomes_total": 193,
+   "replay_of_wrong_year_answers": {
+    "caught": 37
+   },
+   "missed_examples": [],
+   "control_correct_original_answers": {
+    "falsely_rejected": 87,
+    "accepted": 19
+   },
+   "control_false_rejection_examples": [
+    {
+     "item": "AAPL/2014/page_38.pdf-2",
+     "year": "2013",
+     "issue": "operand v0: the source places '$20,624' under 2014, not 2013"
+    },
+    {
+     "item": "AAPL/2014/page_38.pdf-4",
+     "year": "2013",
+     "issue": "operand v1: the source places '$15,452' under 2012, not 2013"
+    },
+    {
+     "item": "ADBE/2018/page_86.pdf-1",
+     "year": "2017",
+     "issue": "operand v0: the source places '$196,152' under 2018, not 2017"
+    }
+   ]
+  }
+ }
+}

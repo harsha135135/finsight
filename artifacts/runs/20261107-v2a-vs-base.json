@@ -1,0 +1,83 @@
+{
+ "a": "qwen3-4b-finqa-v2a",
+ "b": "qwen3-4b-base",
+ "items": 294,
+ "metrics": {
+  "accuracy_answerable": {
+   "a": 0.5157,
+   "b": 0.1378,
+   "a_minus_b": 0.378,
+   "ci95": [
+    0.307,
+    0.4508
+   ],
+   "n": 254
+  },
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "a": 0.5157,
+   "b": 0.185,
+   "a_minus_b": 0.3307,
+   "ci95": [
+    0.2667,
+    0.3975
+   ],
+   "n": 254
+  },
+  "abstention_recall_unanswerable": {
+   "a": 0.5,
+   "b": 0.4,
+   "a_minus_b": 0.1,
+   "ci95": [
+    -0.0526,
+    0.2558
+   ],
+   "n": 40
+  },
+  "false_abstention_answerable": {
+   "a": 0.0118,
+   "b": 0.0276,
+   "a_minus_b": -0.0157,
+   "ci95": [
+    -0.0323,
+    -0.0035
+   ],
+   "n": 254
+  },
+  "invalid_output_rate": {
+   "a": 0.0068,
+   "b": 0.2007,
+   "a_minus_b": -0.1939,
+   "ci95": [
+    -0.2527,
+    -0.1343
+   ],
+   "n": 294
+  },
+  "evidence_validation_failure_rate": {
+   "a": 0.1224,
+   "b": 0.4456,
+   "a_minus_b": -0.3231,
+   "ci95": [
+    -0.3915,
+    -0.2581
+   ],
+   "n": 294
+  },
+  "operational_failure_rate": {
+   "a": 0.0,
+   "b": 0.0102,
+   "a_minus_b": -0.0102,
+   "ci95": [
+    -0.0228,
+    0.0
+   ],
+   "n": 294
+  }
+ },
+ "answerable_correctness_transitions_b_to_a": {
+  "both_correct": 30,
+  "fixed_by_a": 101,
+  "broken_by_a": 5,
+  "both_wrong": 118
+ }
+}

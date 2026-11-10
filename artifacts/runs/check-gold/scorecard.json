@@ -1,0 +1,91 @@
+{
+ "config": {
+  "adapter": "demo-gold",
+  "commit": "417cd3ead0fed6973a944f3a13ce2d3449d9e96f-dirty",
+  "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "manifest": "finqa-grouped",
+  "manifest_sha256": "04276a76ead604c45b58872119fe94b022d28403fc4e639b7d6b9ea084455b4a",
+  "prompt_sha256": "09a827edd77dfb51cdb2166cc234ff7829e82bcc0a753fd726d41a3ade0f3328",
+  "prompt_version": "answer-v3",
+  "scorecard_version": "1",
+  "selection": "val_200",
+  "settings": {
+   "model": "gold-program-oracle",
+   "provider": "demo"
+  },
+  "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold"
+ },
+ "summary": {
+  "abstention_recall_unanswerable": null,
+  "accuracy_answerable": {
+   "ci95": [
+    0.8571,
+    0.9462
+   ],
+   "mean": 0.905,
+   "n": 200
+  },
+  "answerable": 200,
+  "cost_usd": "0",
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "ci95": [
+    0.8571,
+    0.9462
+   ],
+   "mean": 0.905,
+   "n": 200
+  },
+  "diagnostic_percent_scale_errors": 0,
+  "evidence_validation_failure_rate": {
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "n": 200
+  },
+  "evidence_validation_subcategories": {},
+  "false_abstention_answerable": {
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "n": 200
+  },
+  "invalid_output_rate": {
+   "ci95": [
+    0.0538,
+    0.1429
+   ],
+   "mean": 0.095,
+   "n": 200
+  },
+  "items": 200,
+  "latency_ms": {
+   "p50": 0,
+   "p95": 0
+  },
+  "missing_predictions": 0,
+  "operational_failure_rate": {
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "n": 200
+  },
+  "reason_codes": {
+   "ANSWERED": 181,
+   "MODEL_OUTPUT_INVALID": 19
+  },
+  "throughput": null,
+  "tokens": {
+   "input": 0,
+   "output": 0
+  },
+  "truncated_outputs": 0,
+  "ttft_ms": null,
+  "unanswerable": 0
+ }
+}

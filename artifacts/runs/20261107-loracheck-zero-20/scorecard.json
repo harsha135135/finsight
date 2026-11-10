@@ -1,0 +1,145 @@
+{
+ "config": {
+  "adapter": "zero-adapter-check",
+  "commit": "3f9ef0a8e366403f085b2b9fe8d39ba8fc1f34cc",
+  "concurrency": 1,
+  "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "manifest": "finqa-grouped-comparison",
+  "manifest_sha256": "d1d548d0607048c33cd95481c567ab5d0982974e976207f7304148019bf1af6c",
+  "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+  "prompt_version": "answer-v4",
+  "scorecard_version": "2",
+  "selection": "val_shared_250",
+  "server": {
+   "models": [
+    {
+     "id": "Qwen/Qwen3-4B",
+     "max_model_len": 5120,
+     "parent": null,
+     "root": "Qwen/Qwen3-4B"
+    },
+    {
+     "id": "rec6",
+     "max_model_len": null,
+     "parent": "Qwen/Qwen3-4B",
+     "root": "artifacts/recovery/20261107/uninterrupted/adapter"
+    },
+    {
+     "id": "zero",
+     "max_model_len": null,
+     "parent": "Qwen/Qwen3-4B",
+     "root": "artifacts/adapters/zero-check"
+    }
+   ],
+   "vllm_version": "0.33.0"
+  },
+  "settings": {
+   "decoding": "greedy, guided JSON schema",
+   "enable_thinking": "false",
+   "max_tokens": "1024",
+   "model": "zero",
+   "provider": "qwen",
+   "runtime": "vllm",
+   "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}"
+  },
+  "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold"
+ },
+ "summary": {
+  "abstention_recall_unanswerable": {
+   "ci95": [
+    0.0,
+    0.75
+   ],
+   "mean": 0.2,
+   "n": 5
+  },
+  "accuracy_answerable": {
+   "ci95": [
+    0.0,
+    0.4706
+   ],
+   "mean": 0.2,
+   "n": 15
+  },
+  "answerable": 15,
+  "cost_usd": "unavailable",
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "ci95": [
+    0.0,
+    0.4706
+   ],
+   "mean": 0.2,
+   "n": 15
+  },
+  "diagnostic_percent_scale_errors": 2,
+  "evidence_validation_failure_rate": {
+   "ci95": [
+    0.16,
+    0.5333
+   ],
+   "mean": 0.3,
+   "n": 20
+  },
+  "evidence_validation_subcategories": {
+   "figure is in a different passage than the one cited": 2,
+   "quote formatting differs from the passage (e.g. added $ or commas)": 1,
+   "value or scale disagrees with the quote": 3
+  },
+  "false_abstention_answerable": {
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "mean": 0.0,
+   "n": 15
+  },
+  "invalid_output_rate": {
+   "ci95": [
+    0.0,
+    0.5217
+   ],
+   "mean": 0.2,
+   "n": 20
+  },
+  "items": 20,
+  "latency_ms": {
+   "p50": 9173,
+   "p95": 13436
+  },
+  "missing_predictions": 0,
+  "operational_failure_rate": {
+   "ci95": [
+    0.0,
+    0.15
+   ],
+   "mean": 0.05,
+   "n": 20
+  },
+  "reason_codes": {
+   "ABSTAIN_EVIDENCE_ABSENT": 1,
+   "ANSWERED": 8,
+   "MODEL_OUTPUT_INVALID": 4,
+   "OPERATIONAL": 1,
+   "VALIDATION_CONTRADICTION": 6
+  },
+  "throughput": {
+   "concurrency": [
+    1
+   ],
+   "items_per_second": 0.1029,
+   "output_tokens_per_second": 48.45,
+   "sessions": 1,
+   "wall_seconds": 194.3
+  },
+  "tokens": {
+   "input": 36285,
+   "output": 9413
+  },
+  "truncated_outputs": 1,
+  "ttft_ms": {
+   "p50": 274,
+   "p95": 357
+  },
+  "unanswerable": 5
+ }
+}

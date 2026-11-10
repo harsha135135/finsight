@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     # Dashboard and watcher
     allow_claude: bool = False          # Claude stays off in the dashboard unless explicitly enabled (paid calls)
     watcher_model: str | None = None    # local model for auto-analysis of new filings; None = no auto-analysis
+    replay_dir: Path | None = None      # offline replay bundle (SEC responses + recorded model responses); no network
 
 
 def get_settings() -> Settings:

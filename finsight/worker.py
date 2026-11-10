@@ -75,6 +75,8 @@ def build_stages(job: dict, conn, token: uuid.UUID, delays: dict | None = None) 
     if config["provider"] == "demo":
         return DemoStages(delays=delays or {})
     settings = get_settings()
+    if settings.replay_dir is not None:
+        return replay_stages(job, conn, token, settings.replay_dir, settings.state_dir / "artifacts")
     if config["provider"] == "qwen":
         from finsight.reasoning.qwen import QwenProvider
         provider = QwenProvider(config["model"], config.get("base_url") or settings.qwen_base_url,
@@ -87,12 +89,26 @@ def build_stages(job: dict, conn, token: uuid.UUID, delays: dict | None = None) 
                                   max_tokens=config.get("max_tokens") or settings.max_tokens_default,
                                   ledger=SpendLedger(conn, settings.spend_limit_usd))
     else:
-        from finsight.reasoning.recorded import RecordedProvider
-        provider = RecordedProvider(Path(config["recordings"]), config["model"])
+        raise ValueError("recorded model responses are only available in replay mode (FINSIGHT_REPLAY_DIR)")
     source = None
     if settings.sec_user_agent:
         source = SecSource(settings.sec_user_agent, settings.state_dir / "artifacts", conn=conn,
                            rate_limiter=PostgresRateLimiter(conn))
+    return ResearchStages(conn=conn, job_id=job["id"], token=token, source=source, provider=provider, model_config=config)
+
+
+def replay_stages(job: dict, conn, token: uuid.UUID, replay_dir: Path, store: Path) -> Stages:
+    """Offline: SEC responses from the bundle, model responses from its recordings; anything missing fails the job."""
+    from finsight.ingestion.sec import SecSource
+    from finsight.reasoning.recorded import RecordedProvider
+    from finsight.replay import REPLAY_USER_AGENT, ReplayTransport
+    from finsight.stages import ResearchStages
+
+    config = job["model_config"]
+    if config["provider"] != "recorded":
+        raise ValueError(f"replay mode serves recorded responses only, not provider {config['provider']!r}")
+    provider = RecordedProvider(Path(replay_dir) / "recordings.json", config["model"])
+    source = SecSource(REPLAY_USER_AGENT, store, conn=conn, transport=ReplayTransport(Path(replay_dir) / "sec"))
     return ResearchStages(conn=conn, job_id=job["id"], token=token, source=source, provider=provider, model_config=config)
 
 
@@ -139,8 +155,13 @@ def serve(url: str, worker_id: str, stages, artifacts: Path, *, once: bool = Fal
         beat = Heartbeat(url, job["id"], token, heartbeat_interval)
         beat.start()
         try:
-            job_stages = stages(job, conn, token) if callable(stages) else stages
-            run_job(conn, saver, job, token, job_stages, artifacts)
+            try:
+                job_stages = stages(job, conn, token) if callable(stages) else stages
+            except (ValueError, OSError, KeyError) as exc:      # bad configuration fails the job, never the worker
+                jobs.finish(conn, job["id"], token, "failed", f"configuration: {exc}"[:500])
+                job_stages = None
+            if job_stages is not None:
+                run_job(conn, saver, job, token, job_stages, artifacts)
         except (jobs.OwnershipLost, psycopg.OperationalError, psycopg.InterfaceError) as exc:
             print(f"worker {worker_id}: lost authority over job {job['id']} ({type(exc).__name__}); exiting",
                   file=sys.stderr, flush=True)

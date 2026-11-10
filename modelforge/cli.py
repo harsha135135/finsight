@@ -84,7 +84,8 @@ def main(argv: list[str] | None = None) -> int:
     rl.add_argument("--out", type=Path, required=True)
     rc = sub.add_parser("record", help="verify a frozen experiment record (artifact hashes, scorecard regeneration)")
     rc.add_argument("action", choices=["verify"])
-    rc.add_argument("path", type=Path)
+    rc.add_argument("path", type=Path, nargs="?", help="a record file (omit with --all)")
+    rc.add_argument("--all", action="store_true", help="verify every record in evals/records")
     sub.add_parser("probe", help="GPU, VRAM, telemetry and runtime checks (run on the GPU machine)")
     sv = sub.add_parser("serve", help="start vLLM on 127.0.0.1 with fixed, recorded settings (GPU machine)")
     sv.add_argument("--model", required=True)
@@ -186,6 +187,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "record":
         from modelforge import records
+        if args.all:
+            reports = [records.verify(p) for p in sorted(Path("evals/records").glob("*.json"))]
+            for r in reports:
+                print(f"{r['record']:42} passed={r['passed']}  hashes={r['hashes_verified']}  scores={r['scores']}  missing={r['missing']}")
+            return 0 if all(r["passed"] for r in reports) else 1
         report = records.verify(args.path)
         print(json.dumps(report, indent=1))
         return 0 if report["passed"] else 1

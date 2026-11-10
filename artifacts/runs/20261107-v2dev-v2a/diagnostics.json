@@ -1,0 +1,26 @@
+{
+ "adapter": "qwen3-4b-finqa-v2a",
+ "arithmetic_consistency": {
+  "n_executed_with_stated_answer": 245,
+  "rate": 0.8857
+ },
+ "inconsistent_but_program_correct": 14,
+ "note": "inconsistency shows stated answer and program disagree; it does not rule out memorization",
+ "paired_program_accuracy_vs_baseline": {
+  "a_minus_b": -0.0236,
+  "baseline": "artifacts/runs/20261107-v2dev-v1",
+  "ci95": [
+   -0.0596,
+   0.0146
+  ]
+ },
+ "program_accuracy_answerable": {
+  "ci95": [
+   0.5039,
+   0.6386
+  ],
+  "mean": 0.5709,
+  "n": 254
+ },
+ "run": "artifacts/runs/20261107-v2dev-v2a"
+}

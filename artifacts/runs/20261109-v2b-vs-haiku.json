@@ -1,0 +1,83 @@
+{
+ "a": "qwen3-4b-finqa-v2b",
+ "b": "claude-claude-haiku-5-5-medium-batch",
+ "items": 294,
+ "metrics": {
+  "accuracy_answerable": {
+   "a": 0.5315,
+   "b": 0.6024,
+   "a_minus_b": -0.0709,
+   "ci95": [
+    -0.1489,
+    0.0081
+   ],
+   "n": 254
+  },
+  "diagnostic_lenient_quote_accuracy_answerable": {
+   "a": 0.5315,
+   "b": 0.6102,
+   "a_minus_b": -0.0787,
+   "ci95": [
+    -0.1556,
+    0.0
+   ],
+   "n": 254
+  },
+  "abstention_recall_unanswerable": {
+   "a": 0.45,
+   "b": 0.9,
+   "a_minus_b": -0.45,
+   "ci95": [
+    -0.6098,
+    -0.2647
+   ],
+   "n": 40
+  },
+  "false_abstention_answerable": {
+   "a": 0.0354,
+   "b": 0.0787,
+   "a_minus_b": -0.0433,
+   "ci95": [
+    -0.085,
+    -0.0039
+   ],
+   "n": 254
+  },
+  "invalid_output_rate": {
+   "a": 0.0034,
+   "b": 0.0408,
+   "a_minus_b": -0.0374,
+   "ci95": [
+    -0.0655,
+    -0.0137
+   ],
+   "n": 294
+  },
+  "evidence_validation_failure_rate": {
+   "a": 0.1395,
+   "b": 0.102,
+   "a_minus_b": 0.0374,
+   "ci95": [
+    -0.0127,
+    0.0912
+   ],
+   "n": 294
+  },
+  "operational_failure_rate": {
+   "a": 0.0,
+   "b": 0.0,
+   "a_minus_b": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 294
+  }
+ },
+ "answerable_correctness_transitions_b_to_a": {
+  "both_correct": 110,
+  "fixed_by_a": 25,
+  "broken_by_a": 43,
+  "both_wrong": 76
+ }
+}

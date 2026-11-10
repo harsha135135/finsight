@@ -1,0 +1,55 @@
+{
+ "base": {
+  "negative": {
+   "answered_not_checked": 7,
+   "answered_unverified": 129,
+   "answered_period_rejected": 35,
+   "insufficient_evidence": 21,
+   "other_or_invalid": 1
+  },
+  "positive": {
+   "wrong_unverified": 142,
+   "wrong_passed": 26,
+   "wrong_not_checked": 3,
+   "correct_passed": 5,
+   "insufficient_evidence": 4,
+   "wrong_period_rejected": 8,
+   "correct_unverified": 4,
+   "other_or_invalid": 1
+  }
+ },
+ "v2a": {
+  "negative": {
+   "answered_period_rejected": 89,
+   "insufficient_evidence": 30,
+   "answered_unverified": 73,
+   "other_or_invalid": 1
+  },
+  "positive": {
+   "correct_passed": 55,
+   "wrong_passed": 22,
+   "wrong_unverified": 64,
+   "correct_unverified": 32,
+   "wrong_period_rejected": 15,
+   "insufficient_evidence": 4,
+   "other_or_invalid": 1
+  }
+ },
+ "v2b": {
+  "negative": {
+   "insufficient_evidence": 140,
+   "answered_period_rejected": 25,
+   "answered_unverified": 27,
+   "other_or_invalid": 1
+  },
+  "positive": {
+   "correct_passed": 53,
+   "wrong_passed": 28,
+   "wrong_period_rejected": 14,
+   "wrong_unverified": 56,
+   "correct_unverified": 32,
+   "insufficient_evidence": 7,
+   "other_or_invalid": 3
+  }
+ }
+}

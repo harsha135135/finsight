@@ -1,0 +1,53 @@
+{
+ "scorecard_version": "2",
+ "manifest": "finqa-grouped-comparison",
+ "manifest_sha256": "d1d548d0607048c33cd95481c567ab5d0982974e976207f7304148019bf1af6c",
+ "dataset_revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+ "selection": "val_shared_250",
+ "item_ids": [
+  "AAP/2011/page_28.pdf-2",
+  "AAP/2011/page_28.pdf-3",
+  "AAP/2011/page_28.pdf-3::unanswerable",
+  "AAP/2012/page_12.pdf-1",
+  "AAP/2012/page_12.pdf-1::unanswerable"
+ ],
+ "adapter": "rec6-adapter-check",
+ "settings": {
+  "provider": "qwen",
+  "runtime": "vllm",
+  "model": "rec6",
+  "max_tokens": "1024",
+  "enable_thinking": "false",
+  "decoding": "greedy, guided JSON schema",
+  "sampling": "{\"frequency_penalty\": 0, \"min_p\": 0, \"n\": 1, \"presence_penalty\": 0, \"repetition_penalty\": 1, \"seed\": 0, \"temperature\": 0, \"top_k\": -1, \"top_p\": 1}"
+ },
+ "prompt_version": "answer-v4",
+ "prompt_sha256": "f2d643c5829026e6dc26f322f95d4b212f918ff9bca4292d0f305fad4e83d764",
+ "commit": "3f9ef0a8e366403f085b2b9fe8d39ba8fc1f34cc",
+ "tolerance": "FinQA: executed value rounded to 5 decimals as float equals gold",
+ "concurrency": 1,
+ "server": {
+  "vllm_version": "0.33.0",
+  "models": [
+   {
+    "id": "Qwen/Qwen3-4B",
+    "root": "Qwen/Qwen3-4B",
+    "parent": null,
+    "max_model_len": 5120
+   },
+   {
+    "id": "rec6",
+    "root": "artifacts/recovery/20261107/uninterrupted/adapter",
+    "parent": "Qwen/Qwen3-4B",
+    "max_model_len": null
+   },
+   {
+    "id": "zero",
+    "root": "artifacts/adapters/zero-check",
+    "parent": "Qwen/Qwen3-4B",
+    "max_model_len": null
+   }
+  ]
+ },
+ "started_at": "2026-11-07T08:41:11.014245+00:00"
+}

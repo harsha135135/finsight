@@ -1,0 +1,31 @@
+{
+ "v1_selection_rows": {
+  "count": 200,
+  "reconstruction": "first 200 rows of finqa-grouped-v1 val.jsonl not in finqa-grouped-comparison:val_shared_250; sha256 matches training_record eval_ids_sha256",
+  "filing_groups": 100
+ },
+ "exposed": {
+  "answerable_items": 218,
+  "filing_groups": 49,
+  "v1_accuracy": 0.546,
+  "base_accuracy": 0.133,
+  "v1_minus_base": 0.413,
+  "ci95": [
+   0.34,
+   0.487
+  ]
+ },
+ "unexposed": {
+  "answerable_items": 36,
+  "filing_groups": 17,
+  "v1_accuracy": 0.528,
+  "base_accuracy": 0.167,
+  "v1_minus_base": 0.361,
+  "ci95": [
+   0.22,
+   0.5
+  ]
+ },
+ "negatives_in_exposed_groups": "33 of 40",
+ "answerable_in_exposed_families": "96 of 254"
+}
