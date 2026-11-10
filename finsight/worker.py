@@ -112,8 +112,37 @@ def replay_stages(job: dict, conn, token: uuid.UUID, replay_dir: Path, store: Pa
     return ResearchStages(conn=conn, job_id=job["id"], token=token, source=source, provider=provider, model_config=config)
 
 
+class SerializedSaver(PostgresSaver):
+    """PostgresSaver whose calls hold the session lock that graph nodes also hold (one session, no concurrent use)."""
+
+    def __init__(self, conn, lock=None) -> None:
+        super().__init__(conn)
+        self.session_lock = lock or threading.RLock()
+
+    def get_tuple(self, config):
+        with self.session_lock:
+            return super().get_tuple(config)
+
+    def list(self, *args, **kwargs):
+        with self.session_lock:
+            return iter(list(super().list(*args, **kwargs)))
+
+    def put(self, *args, **kwargs):
+        with self.session_lock:
+            return super().put(*args, **kwargs)
+
+    def put_writes(self, *args, **kwargs):
+        with self.session_lock:
+            return super().put_writes(*args, **kwargs)
+
+    def delete_thread(self, *args, **kwargs):
+        with self.session_lock:
+            return super().delete_thread(*args, **kwargs)
+
+
 def run_job(conn, saver: PostgresSaver, job: dict, token: uuid.UUID, stages: Stages, artifacts: Path) -> str:
-    ctx = JobContext(conn=conn, job_id=job["id"], token=token, artifacts=artifacts)
+    ctx = JobContext(conn=conn, job_id=job["id"], token=token, artifacts=artifacts,
+                     **({"session_lock": saver.session_lock} if hasattr(saver, "session_lock") else {}))
     graph = build_graph(ctx, stages).compile(checkpointer=saver)
     config = {"configurable": {"thread_id": str(job["id"])}}
     snapshot = graph.get_state(config)
@@ -142,7 +171,7 @@ def serve(url: str, worker_id: str, stages, artifacts: Path, *, once: bool = Fal
     if os.environ.get("FINSIGHT_HEARTBEAT_FILE"):
         LivenessFile(os.environ["FINSIGHT_HEARTBEAT_FILE"], min(heartbeat_interval, 5.0)).start()
     conn = connect(url, application_name=f"finsight-worker:{worker_id}")
-    saver = PostgresSaver(conn)
+    saver = SerializedSaver(conn)
     saver.setup()
     while True:
         claimed = jobs.claim(conn, worker_id)

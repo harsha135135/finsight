@@ -17,6 +17,7 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+import threading
 import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -89,6 +90,9 @@ class JobContext:
     job_id: uuid.UUID
     token: uuid.UUID
     artifacts: Path
+    # LangGraph runs nodes in a worker thread while the checkpointer writes (in pipeline mode) on the same session;
+    # psycopg's pipeline mode is not thread-safe, so node bodies and checkpointer calls take this lock in turn.
+    session_lock: Any = field(default_factory=threading.RLock)
 
 
 def _stored_result(ctx: JobContext, stage: str) -> dict | None:
@@ -107,18 +111,23 @@ def _check(ctx: JobContext) -> None:
 
 def _node(ctx: JobContext, stage: str, run):
     def node(state: JobState) -> dict:
-        _check(ctx)
-        stored = _stored_result(ctx, stage)
-        if stored is not None:
-            return {stage: stored}
-        jobs.owned_update(ctx.conn, ctx.job_id, ctx.token, stage=stage)
-        result = run(state)
-        if stage == "reporting":
-            result = {**result, "report_sha256": write_report(ctx, result["report"], result.get("markdown"))}
-        with ctx.conn.transaction():
-            jobs.owned_event(ctx.conn, ctx.job_id, ctx.token, "stage_result", stage=stage, detail=result)
-        return {stage: result}
+        with ctx.session_lock:
+            return _run_node(ctx, stage, run, state)
     return node
+
+
+def _run_node(ctx: JobContext, stage: str, run, state: JobState) -> dict:
+    _check(ctx)
+    stored = _stored_result(ctx, stage)
+    if stored is not None:
+        return {stage: stored}
+    jobs.owned_update(ctx.conn, ctx.job_id, ctx.token, stage=stage)
+    result = run(state)
+    if stage == "reporting":
+        result = {**result, "report_sha256": write_report(ctx, result["report"], result.get("markdown"))}
+    with ctx.conn.transaction():
+        jobs.owned_event(ctx.conn, ctx.job_id, ctx.token, "stage_result", stage=stage, detail=result)
+    return {stage: result}
 
 
 def write_report(ctx: JobContext, report: dict, markdown: str | None = None) -> str:
