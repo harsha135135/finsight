@@ -28,18 +28,53 @@ carries grader bias that the decoys measure only partly. The numeric and boolean
 Paired test, supplied numeric (exact McNemar on the same 33 questions): Haiku correct where base is not 15, the reverse
 0 (p = 6e-5); vs v2a 16 / 0 (p = 3e-5); vs v2b 20 / 0 (p = 2e-6). Development data, 33 questions.
 
-**Period validator (native FinQA controls, coverage rule applied to saved outputs).** Wrong-year answers passing:
-0 / 0 / 0 (base, v2a, v2b). Correct answers rejected for their period: 0 / 0 / 0. Correct answers rejected only in strict
-mode because a figure's period could not be placed: 4 / 32 / 32 of 9 / 87 / 85. On FinanceBench, gold-valued numeric
-answers rejected for their period: 0 for every model; strict-only rejections (unplaceable period): base 3, v2a 3,
-v2b 4, Haiku 7 (supplied).
+**Period validator: strict and lenient differ sharply (native FinQA controls, coverage rule applied to saved outputs).**
+- Negative controls (the requested year's evidence removed, another year's left; 193 items). Numeric answers accepted:
+  strict 0 / 0 / 0; lenient **14 of 171, 57 of 162, 18 of 52** answered (base, v2a, v2b). Lenient mode accepts a figure
+  whose period the source does not name, so it does not protect against wrong-period answers; only strict mode does.
+  ("0 escapes" in an earlier draft counted only answers whose every figure was placed.)
+- Positive controls: correct answers rejected for their period 0 / 0 / 0; correct answers rejected only in strict mode
+  because a figure's period could not be placed 4 / 32 / 32 (of 9 / 87 / 85 correct).
+- FinanceBench: gold-valued numeric answers rejected for their period: 0 for every model. Strict-only rejections
+  (unplaceable period): base 3, v2a 3, v2b 4, Haiku 7 (supplied) and 6 (full).
+
+**What the validator costs a strong model (Haiku, correct answers it rejected, by reason).**
+
+| Reason | Supplied | Full doc |
+|---|---|---|
+| Numeric, strict only: a figure's period could not be placed | 7 | 6 |
+| Claim check: number parsed with a trailing comma ("14,694," / "June 30,") — a parsing defect | 3 | 0 |
+| Claim check: day of month in a date ("December 31, 2022") or a section number ("Item 9.01") | 5 | 0 |
+| Claim check: a derived figure stated in prose (boolean answers carry no program) | 1 | 2 |
+| Operand: a dash meaning zero ("—") not accepted as a figure | 1 | 0 |
+
+**Haiku's accepted-but-wrong numeric answers (4, all accepted in both modes).**
+- 3M PP&E: correct figure, but the program divided by 1,000 to express billions although the contract already scales
+  figures — a scale error the interface invites.
+- General Mills free cash flow: subtracted a capex figure printed in parentheses, so 3,676.2 − (−460.8) — correct figures,
+  wrong calculation.
+- Pfizer/Upjohn: cited total separation costs ($700 million) where the gold expects 77.78 (a different quantity).
+- Amcor adjusted EBITDA: actually correct ($2,018 million) — scored wrong by a scorer defect (below).
+
+**Defects found after the freeze (not fixed; the frozen numbers above stand).**
+- Scorer: an explicit gold unit ("USD millions") is ignored when the question states no scale (one item). With it
+  honoured: supplied numeric base 13/33 (strict 10/15, lenient 13/18) and Haiku 28/33 (strict 21/24, lenient 28/31);
+  other cells unchanged.
+- Validator: trailing punctuation is kept on numbers in claims (3 correct Haiku answers rejected; local models also
+  affected). Dates' day numbers and section numbers are treated as figures.
+- Scale slips (right digits, wrong scale) count as wrong for every model: supplied base 1, v2a 5, v2b 5, Haiku 2
+  (including the scorer defect). Counting them correct would not change the ordering (Haiku 29, v2a 16, base 13, v2b 12).
 
 **Reading.**
-- With the right evidence supplied, the pipeline supports correct answers when the model is strong enough: Haiku answers
-  27 of 33 numeric questions correctly, and 20 of its 24 strictly accepted numeric answers are correct. The local
-  models' accepted answers are much less reliable (base 9/15, v2a 8/22, v2b 3/20 strict). The remaining limitation with
-  supplied evidence is the local models, not the evidence or validation pipeline.
+- With the right evidence supplied, the local models are the main limitation: Haiku answers 27 of 33 numeric questions
+  correctly (28 with the scorer defect fixed) against 12, 11 and 7, and is right on every numeric question any local
+  model gets right (paired test above).
+- The validator also costs real coverage on a strong model: strict mode rejects 7 of Haiku's 27 correct supplied numeric
+  answers (strict coverage 24/33 vs lenient 31/33), and the claim check rejects 10 correct supplied boolean or narrative
+  answers, 3 of them through a parsing defect. Lenient mode keeps that coverage but accepted 14–57 wrong-period answers
+  in the controls, so neither mode is both safe and complete yet.
 - With whole documents, retrieval is the limitation: Haiku declines most questions whose evidence was not retrieved
-  (23 of 33 numeric), and the answers it does give are accepted-and-correct (8/8 numeric, 5/5 boolean lenient).
-- Acceptance is a check, not a guarantee: even for Haiku, 4 of 24 strictly accepted numeric answers are wrong (correct
-  figures from the right year combined into the wrong metric is possible and is not caught by the validator).
+  (23 of 33 numeric), and the answers it does give are accepted-and-correct (8/8 numeric, 5/5 boolean, lenient).
+- Acceptance is a check, not a guarantee: even for Haiku, 3 of 24 strictly accepted numeric answers are genuinely wrong
+  (scale, sign, and a different quantity), none caught by the validator.
+- Narrative grades for Haiku come from a Claude model grading another Claude model, on top of the style caveat above.
