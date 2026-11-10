@@ -1,0 +1,150 @@
+{
+ "decision": {
+  "latency": "fails: median 17.8 s vs 2.9 s (offload and eager mode; not representative of a larger card)",
+  "memory": "fails: does not run on the RTX 4070 at 6,656 tokens without CPU offload",
+  "quality": "fails: primary endpoint 2 vs 10 of 33 (difference -8; company-clustered 95% interval -0.40 to -0.10 per question, excludes zero: worse)",
+  "result": "Gemma is not the local model for the sealed run; base Qwen3-4B stays"
+ },
+ "diagnostics": {
+  "declined_numeric": 9,
+  "malformed_passage_ids": 21,
+  "numeric_questions_answered_as_narrative": 15,
+  "of_those_stating_the_gold_value": 1,
+  "over_long_item": "financebench_id_00499 exceeds 6,656 tokens for both models (HTTP 400 for both)",
+  "thinking_markers_in_outputs": 0
+ },
+ "latency": {
+  "gemma": {
+   "p50": 17796,
+   "p95": 62813,
+   "statuses": {
+    "error": 1,
+    "ok": 74
+   },
+   "thinking_markers": 0,
+   "ttft_p50": 710
+  },
+  "qwen": {
+   "p50": 2913,
+   "p95": 8883,
+   "statuses": {
+    "error": 1,
+    "ok": 74
+   },
+   "thinking_markers": 0,
+   "ttft_p50": null
+  }
+ },
+ "lenient_precision": {
+  "gemma": [
+   2,
+   14
+  ],
+  "qwen": [
+   13,
+   18
+  ]
+ },
+ "memory": {
+  "card_mib": 12282,
+  "cpu_offload_gb": 3,
+  "enforce_eager": true,
+  "gemma_median_mib_during_run": 10917,
+  "gemma_peak_mib_during_run": 10919,
+  "no_offload_attempt_peak_mib": 11963
+ },
+ "primary": {
+  "ci95_company_clustered": [
+   -0.4,
+   -0.103
+  ],
+  "diff_per_question": -0.242,
+  "diff_questions": -8.0,
+  "gemma": 2.0,
+  "mcnemar": {
+   "gemma_only": 0,
+   "p": 0.0078,
+   "qwen_only": 8
+  },
+  "n": 33,
+  "qwen": 10.0
+ },
+ "strict_precision": {
+  "gemma": [
+   2,
+   14
+  ],
+  "qwen": [
+   10,
+   15
+  ]
+ },
+ "tables": {
+  "gemma": {
+   "boolean": {
+    "accepted_lenient": 12,
+    "accepted_strict": 12,
+    "correct_accepted_lenient": 6,
+    "correct_accepted_strict": 6,
+    "correct_any": 6,
+    "declined": 3,
+    "invalid_or_operational": 1,
+    "n": 20,
+    "unsupported": 4
+   },
+   "narrative": {
+    "accepted_lenient": 8,
+    "accepted_strict": 8,
+    "correct_accepted_lenient": 0,
+    "correct_accepted_strict": 0,
+    "correct_any": 0,
+    "declined": 7,
+    "n": 22,
+    "unsupported": 7
+   },
+   "numeric": {
+    "accepted_lenient": 14,
+    "accepted_strict": 14,
+    "correct_accepted_lenient": 2,
+    "correct_accepted_strict": 2,
+    "correct_any": 2,
+    "declined": 9,
+    "invalid_or_operational": 1,
+    "n": 33,
+    "unsupported": 9
+   }
+  },
+  "qwen": {
+   "boolean": {
+    "accepted_lenient": 15,
+    "accepted_strict": 15,
+    "correct_accepted_lenient": 11,
+    "correct_accepted_strict": 11,
+    "correct_any": 13,
+    "invalid_or_operational": 1,
+    "n": 20,
+    "unsupported": 4
+   },
+   "narrative": {
+    "accepted_lenient": 16,
+    "accepted_strict": 15,
+    "correct_accepted_lenient": 0,
+    "correct_accepted_strict": 0,
+    "correct_any": 0,
+    "invalid_or_operational": 1,
+    "n": 22,
+    "unsupported": 5
+   },
+   "numeric": {
+    "accepted_lenient": 18,
+    "accepted_strict": 15,
+    "correct_accepted_lenient": 13,
+    "correct_accepted_strict": 10,
+    "correct_any": 13,
+    "gold_value_strict_only_rejection_unverified": 3,
+    "n": 33,
+    "unsupported": 15
+   }
+  }
+ }
+}
